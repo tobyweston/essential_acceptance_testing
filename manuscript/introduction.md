@@ -1,0 +1,15 @@
+# Introduction
+
+## About this book
+
+Building software is hard. Building software that actually _does what's required_ is even harder. A huge part of this challenge is understanding what is actually required. To much gets lost in translation or misunderstood in conversation. This gets even harder if traditional non-verbal communication or big up front system design takes place. Getting it right is therefore about getting the communication right. This book is about communication.
+
+Being able to bridge this gap between specification and implementation is essential in _getting it right_. To this end, typical agile methodologies advocate a testing strategy that includes encoding your requirements as executable tests. Typically, we'll call these _acceptance tests_.
+
+This book shows how to organise your team and code to incorporate acceptance tests, nurture an environment of collaboration around the specification of these tests and communicating the results to your business sponsors. We'll look at a specific Java framework called Concordion as the specification engine and philosophical approaches to your design to make acceptance tests discrete, focused and manageable as the project grows.
+
+
+## Audience
+
+This book is intended for developers, testers and product owners. Although the principles are illustrated using Java and the Concordion framework, programming skills are not required. Just as programming skills aren't required to specify how a system should behave. It's useful if you have some experience in agile methodologies as the book assumes some familiarity.
+
