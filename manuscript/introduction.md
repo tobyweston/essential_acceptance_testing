@@ -1,15 +1,26 @@
 # Introduction
 
-## About this book
+## What's an Acceptance Test?
 
-Building software is hard. Building software that actually _does what's required_ is even harder. A huge part of this challenge is understanding what is actually required. To much gets lost in translation or misunderstood in conversation. This gets even harder if traditional non-verbal communication or big up front system design takes place. Getting it right is therefore about getting the communication right. This book is about communication.
+Before we start, we should probably agree on some common definitions. Deciding on a definition of acceptance test can be contentious. Different people have different interpretations. So what _is_ an acceptance test?
 
-Being able to bridge this gap between specification and implementation is essential in _getting it right_. To this end, typical agile methodologies advocate a testing strategy that includes encoding your requirements as executable tests. Typically, we'll call these _acceptance tests_.
+> An acceptance test is a set of criteria or _specification_ that helps the customer "accept" that the system behaves as they intend it to.
 
-This book shows how to organise your team and code to incorporate acceptance tests, nurture an environment of collaboration around the specification of these tests and communicating the results to your business sponsors. We'll look at a specific Java framework called Concordion as the specification engine and philosophical approaches to your design to make acceptance tests discrete, focused and manageable as the project grows.
+What would help me "accept" a system works as I expect? I imagine I'd need to _see_ something. Some output against a running system. Perhaps this could be a demo but really, I'd prefer something automated and repeatable. Something which reflects the current runtime behaviour of the system. Sounds a lot like regular unit style testing doesn't it?
+
+Documenting the runtime behaviour of our system is only half the story though. The other half is deciding what that behaviour should be. Getting input from interested parties _before_ building out a component is vital in ensuring we build the _right_ component. Turns out though that acceptance tests are a great vehicle for discussing requirements.
+
+Traditional definitions emphasis the idea that acceptance tests being customer authored. I tend to agree with this. If we write software that nobody wants, there's not much point in writing it. The customer can express their requirements in the form of acceptance criteria, a specification against which the system can be validated. Updating our definition then, would give us something like.
+
+> An acceptance test can be used to specify required behaviour before implementing functionality and then validate the behaviour against the built system.
+
+D>## Starting the full stack {#starting-the-full-stack}
+D>
+D> Many teams fall into the trap of thinking they need to start up the full stack in order to run an acceptance test. Apart from being expensive to say, start a web server and initialise the system, starting up the full stack doesn't automatically mean the test that runs will be an _acceptance test_. It just means it's running against a fully started system.
+D>
+D> An acceptance test is just as valid if it's run against a subset of the full system. In fact, this is an approach I prefer as it encourages a component based design. We'll look at this more in the [Port and Adapters](#ports-and-adapters) section.
 
 
-## Audience
+## Confidence and Trust
 
-This book is intended for developers, testers and product owners. Although the principles are illustrated using Java and the Concordion framework, programming skills are not required. Just as programming skills aren't required to specify how a system should behave. It's useful if you have some experience in agile methodologies as the book assumes some familiarity.
-
+## Why do we care?

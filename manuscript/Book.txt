@@ -5,5 +5,4 @@ acknowledgments.md
 
 mainmatter:
 introduction.md
-notes.md
 concordion.md
