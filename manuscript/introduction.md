@@ -6,13 +6,13 @@ Before we start, we should probably agree on some common definitions. Deciding o
 
 > An acceptance test is a set of criteria or _specification_ that helps the customer "accept" that the system behaves as they intend it to.
 
-What would help me "accept" a system works as I expect? I imagine I'd need to _see_ something. Some output against a running system. Perhaps this could be a demo but really, I'd prefer something automated and repeatable. Something which reflects the current runtime behaviour of the system. Sounds a lot like regular unit style testing doesn't it?
+What would help me "accept" a system works as I expect? I imagine I'd want to _see_ something. Some output to verify the behaviour of a running system. This could be a demo but really, I'd prefer something automated and repeatable. Sounds a lot like regular unit style testing doesn't it?
 
-Documenting the runtime behaviour of our system is only half the story though. The other half is deciding what that behaviour should be. Getting input from interested parties _before_ building out a component is vital in ensuring we build the _right_ component. Turns out though that acceptance tests are a great vehicle for discussing requirements.
+Documenting the runtime behaviour of our system is only half the story though. The other half is deciding what that behaviour should be. Getting input from interested parties _before_ building out a component is vital in ensuring we build the _right_ component. Turns out that acceptance tests are a great vehicle for discussing amd formalising these requirements.
 
-Traditional definitions emphasis the idea that acceptance tests being customer authored. I tend to agree with this. If we write software that nobody wants, there's not much point in writing it. The customer can express their requirements in the form of acceptance criteria, a specification against which the system can be validated. Updating our definition then, would give us something like.
+Traditional definitions emphasize that acceptance tests should be customer authored. I tend to agree with this. If we write software that nobody wants, there's not much point in writing it. The customer can express their requirements in the form of acceptance criteria, a specification against which the system can be validated. Adding to our definition then would give us something like.
 
-> An acceptance test can be used to specify required behaviour before implementing functionality and then validate the behaviour against the built system.
+>  An acceptance test is a set of criteria or _specification_ that helps the customer "accept" that the system behaves as they intend it to. The test can be used to specify required behaviour _before_ implementing functionality and then validate the behaviour against the completed implementation.
 
 D>## Starting the full stack {#starting-the-full-stack}
 D>

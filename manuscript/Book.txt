@@ -5,4 +5,5 @@ acknowledgments.md
 
 mainmatter:
 introduction.md
+the_process.md
 concordion.md
