@@ -1,3 +1,5 @@
+~# Part 1
+
 # Introduction
 
 ## What's an Acceptance Test?
@@ -14,7 +16,7 @@ Traditional definitions emphasize that acceptance tests should be customer autho
 
 >  An acceptance test is a set of criteria or _specification_ that helps the customer "accept" that the system behaves as they intend it to. The test can be used to specify required behaviour _before_ implementing functionality and then validate the behaviour against the completed implementation.
 
-D>## Starting up the full stack {#starting-the-full-stack}
+D>## Starting up the full stack {#starting-the-full-stack-aside}
 D>
 D> Many teams fall into the trap of thinking they need to start up the full stack in order to run an acceptance test. Apart from being expensive to say, start a web server and initialise the system, starting up the full stack doesn't automatically mean the test that runs will be an _acceptance test_. It just means it's running against a fully started system.
 D>
