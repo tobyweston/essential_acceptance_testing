@@ -22,6 +22,7 @@ D> Many teams fall into the trap of thinking they need to start up the full stac
 D>
 D> An acceptance test is just as valid if it's run against a subset of the full system. In fact, this is an approach I prefer as it encourages a component based design. We'll look at this more in the [Port and Adapters](#ports-and-adapters) section.
 
+## What's a story?
 
 ## Confidence and Trust
 

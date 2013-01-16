@@ -1,22 +1,61 @@
 # A Typical Agile Process
 
-> "When is the story done?"
+// TODO rename this file to typical_process
 
-## Agree Acceptance Criteria
+Story delivery life cycle.
 
-Once you've selected a story from the option list (backlog), you can work it up in terms of acceptance criteria. The idea here is to describe the requirements not in terms of a traditional test script (a series of instructions to follow) but as an english description of the business requirements. It's a subtle difference which we'll explore more in [Part 2](#part2).
+1. Pick a story
+1. Define acceptance criteria
+1. Agree acceptance criteria
+1. Develop functionality
+1. Demo and sign off
 
-For example, with a traditional test script, you might describe a user login in terms of steps; 
+## Define acceptance criteria
 
-> John clicks onto the user entry text box, enters his name and password before clicking the login button. The main page should be displayed.
+> "How do we know when a story is done?"
 
-They're geared up for manual testing and offer instructions that a real person can follow.
+Once you've selected a story from the option list (backlog), you can work it up in terms of acceptance criteria. The idea here is to describe the requirements not in terms of a traditional test script (a series of instructions to follow) but as an english description of the business goals. It's a subtle difference which we'll explore more in [Part 2](#part2).
 
-With more of a _specification_ based approach, you describe just the high level business flow (in plain english) and a person would interpret this into actions. It describes the objectives of the story.
+With more of a _specification_ based approach, you describe the high level business flow in plain english. You're not concerned with the details of how this might be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's required, the terms and the business context.
 
-> When a user logs in, the main page is displayed.
+This is done with the business. 
+
+A typical way to do this is to arange a session where the business and development team get together to define some basic stories. It's likely the business know what's comming up and this session's goals are to put some of these down on paper as stories. Each story should be explanied, it's goals outlined and the developers can start to think about how this might be realised with the system design. 
+
+D> ## What's a Story? {#whats-a-story-aside}
+D>
+D> There is often some debate about the definition of a story. For the purpose of this discussion, lets assume that a story is just a way to decompose the requirements into achievable chunks that, if implemented, would add _business_ value. It's common to physically write the story description on an index card. Teams might then use this as a token on the team's project board to visualise it's task management, moving from left to right to indicate progress.
+
+You'd then attempt to define some acceptance criteria.
+
+>D ## Do we need a meeting to agree acceptance criteria?
+>D
+>D You don't need a meeting to define acceptance criteria, in fact, its great if you can keep discussing and clarifying them over time. You may find it useful though to have a kick-off type meeting where you can discuss a story's background, context and goals.
+>D
+>D Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the teams understanding of a story. To be most efficent, some analysis work should have already been understaken.
+
+Once you've written the criteria down, you can attempt to agree them with interested parties. We'll brush over how best to physically record the criteria but we'd aim to have them in a format that will help us later when we come to convert them into executable tests. For arguments sake, you might record these on a Wiki, source code, HTML pages associated with the project source or just on the back of the story card.
+
+Remember that all this is done before writting any code.
+
+A> ## Define acceptance criteria check list {define-acceptance-criteria-check-list-aside}
+A> - Business analysis has been undertaken.
+A> - Developers understand the business background, context and goals for a story.
+A> - There is no ambiguity about business terms and everyone agrees of their definition.
+A> - Acceptance criteria have been discussed and documented.
 
 
+
+## Agree accepance criteria
+
+Starting with a set of criteria from the previous step, the next task is to sit down with everyone and agree on the format and content. This means pulling in testers, developers and domain experts, sit around a display and hammer out any details.
+
+
+>A ## Stickers as sign-off {#stickers-as-sign-off-aside}
+>A
+>A A great technique visualise progress of a story is to use stickers to represent agreement or sign-off at the various stages. For example, when a business analyst agrees to the acceptance criteria, a story's index card might get a green sticker. When a testers agrees, a blue sticker and when developers agree, a yellow one. You can have as many stickers as you like or use columns on your board.
+>A
+>A The whole purpose of the define, agree, develop, demo cycle is to spot problems early and adjust. In that spirit, it makes sense to prevent progress to the next step until previous steps have be completed. For example, don't start development until you have the full set of stickers. A If this causes delays and 'blocked' work, missing stickers can help highlight where the problem lies. 
 
 >D ##Specification by example {#specification-by-example-aside}
 >D

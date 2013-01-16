@@ -27,4 +27,6 @@ This book shows how to organise your team and code to incorporate acceptance tes
 
 ## Audience
 
-This book is intended for developers, testers and product owners. Although the principles are illustrated using Java and the Concordion framework, programming skills are not required. Just as programming skills aren't required to specify how a system should behave. It's useful if you have some experience in agile methodologies as the book assumes some familiarity.
+This book is intended for developers, testers and product owners wanting to find out more about typical agile team's daily practices. In particular, teams wishing to adopt agile testing techniques and acceptance testing as a way to manage and formalise requirements may find this book useful. The book talks about common Scrum-like practices used to better manage development projects. 
+
+Although the principles are illustrated using Java and the Concordion framework, programming skills are not required. .NET developers will still benefit from the overview in [Part 1](#part1) and the Concordion examples in [Part 2](#part2) can be directly related to the Concordion.NET.
