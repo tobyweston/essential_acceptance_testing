@@ -1,6 +1,4 @@
-# A Typical Agile Process
-
-// TODO rename this file to typical_process
+# Process Overview
 
 Story delivery life cycle.
 
