@@ -40,11 +40,17 @@
 ## Encourages hand off (Conway's law)
 ## Command and control
 ## Alternatives
-## Team dynamics
 
 {#whats-right-with-it.md}
 # So what's right with it?
 ## Fast
+## Project management structure
+## Design & Ports and adapters
+
+{#how-do-i-pick.md}
+# So how do I decide?
+## Team dynamics
+## Drefus scale
 
 {#pitfalls.md}
 # Pitfalls
