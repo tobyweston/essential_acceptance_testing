@@ -13,8 +13,8 @@ Look for other titles in the series on [Leanpub](https://leanpub.com/u/tobywesto
 
 **Lean Publishing**
 
-Publish early. Publish Often. Listen to your readers.
+"Publish early. Publish Often. Listen to your readers."
 
 In keeping with lean publishing principles, the first publication is a in-progress subset of the complete book. It's aimed at teams new to acceptance testing and defines a typical agile process you can use to incorporate acceptance testing into your projects. It encourages you to use specification by example and subsequent updates will expand on this with an concrete examples using the Concordion and Concordion.NET frameworks.
 
-Further chapters will also include discussion on when this process can break down and so offer teams guidance when deciding if adoption is even an option for them. Common pitfals are discussed and in-depth
+Further chapters will also include discussion on when this process can break down and so offer teams guidance when deciding if adoption is even an option for them. Common pitfalls are discussed and in-depth
