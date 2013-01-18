@@ -1,0 +1,58 @@
+{#toc}
+{#preface.md}
+# Preface
+## The ESSENTIAL series
+## Lean Publishing
+## About this book
+## Audience
+
+{#acknowledgments.md}
+# Acknowledgments
+
+{#introduction.md}
+# Introduction
+## What's an Acceptance Test?
+## What's a story?
+## Confidence and Trust
+## Why do we care?
+
+{#process_overview.md}
+# Process Overview
+## Agree acceptance criteria
+## Develop
+## Demonstrate
+
+{#process_example.md}
+# Retail Website Example
+## Pick a story
+## Agree acceptance criteria
+## Develop functionality
+## Demonstrate and sign off
+
+# Financial Application Example
+## Pick a story
+## Agree acceptance criteria
+## Develop functionality
+## Demonstrate and sign off
+
+{#what-wrong-with-it.md}
+# So what's wrong with it?
+## Encourages hand off (Conway's law)
+## Command and control
+## Alternatives
+## Team dynamics
+
+{#whats-right-with-it.md}
+# So what's right with it?
+## Fast
+
+{#pitfalls.md}
+# Pitfalls
+## Features hit production don't do what the customer wanted
+## I can't tell how the system should behave (organisation)
+## I can't tell if feature x is already implemented (organisation)
+## Tests repeat existing other tests as part of their scenario
+## My acceptance test suite takes forever to run
+## I get randomness in tests
+
+{#concordion.md}
