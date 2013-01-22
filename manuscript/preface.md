@@ -31,4 +31,4 @@ This book is intended for developers, testers and product owners wanting to find
 
 For teams experienced in using acceptance testing in your project, the book questions the standard practices and discusses some common pitfalls and how to avoid them.
 
-Although the principles are illustrated using Java and the Concordion framework, programming skills are not required. .NET developers will still benefit from the overview in [Part 1](#part1) and the Concordion examples in [Part 2](#part2) can be directly related to the Concordion.NET.
+Although the principles are illustrated using Java and the Concordion framework, programming skills are not required. .NET developers will still benefit from the overview in [Part 1](#part1), discussion in [Part 2](#part2) and the Concordion examples in [Part 3](#part3) can be directly related to the Concordion.NET.

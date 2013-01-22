@@ -1,4 +1,5 @@
 {#toc}
+{#part1-toc}
 {#preface.md}
 # Preface
 ## The ESSENTIAL series
@@ -35,6 +36,7 @@
 ## Develop functionality
 ## Demonstrate and sign off
 
+{#part2-toc}
 {#what-wrong-with-it.md}
 # So what's wrong with it?
 ## Encourages hand off (Conway's law)
@@ -61,5 +63,6 @@
 ## My acceptance test suite takes forever to run
 ## I get randomness in tests
 
+{#part3-toc}
 {#concordion.md}
 # Concordion

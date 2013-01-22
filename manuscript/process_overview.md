@@ -11,7 +11,7 @@ Story delivery life cycle.
 
 > "How do we know when a story is done?"
 
-Once you've selected a story from the option list (backlog), you can work it up in terms of acceptance criteria. The idea here is to describe the requirements not in terms of a traditional test script (a series of instructions to follow) but as an english description of the business goals. It's a subtle difference which we'll explore more in [Part 2](#part2).
+Once you've selected a story from the option list (backlog), you can work it up in terms of acceptance criteria. The idea here is to describe the requirements not in terms of a traditional test script (a series of instructions to follow) but as an english description of the business goals. It's a subtle difference which we'll explore more later.
 
 With more of a _specification_ based approach, you describe the high level business flow in plain english. You're not concerned with the details of how this might be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's required, the terms and the business context.
 
@@ -53,7 +53,7 @@ D> Specification by example is a way to describe your requirements using realist
 D>
 D> Following the process outlined in this book would naturally lead to a degree of specification by example. Don't get hung up on the term, I see it as just a useful label for the way we might naturally express requirements. If it's useful to think up examples to get your point across, go for it.
 D>
-D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done write, they should form a accessible record of how the system behaves. We'll look at some examples in [Part 2](#part2)
+D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done write, they should form a accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
 
 ![Overview](http://www.concordion.org/image/faq/StoryDeliveryLifecycle.png)
 
