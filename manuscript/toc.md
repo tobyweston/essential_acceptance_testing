@@ -13,6 +13,7 @@
 {#introduction.md}
 # Introduction
 ## What's an Acceptance Test?
+## Acceptance Criteria vs Acceptance Tests
 ## What's a story?
 ## Confidence and Trust
 ## Why do we care?
