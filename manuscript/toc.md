@@ -16,7 +16,6 @@
 ## Acceptance Criteria vs Acceptance Tests
 ## What's a story?
 ## Confidence and Trust
-## Why do we care?
 
 {#process_overview.md}
 # Process Overview
