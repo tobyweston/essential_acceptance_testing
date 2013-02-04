@@ -19,6 +19,7 @@
 
 {#process_overview.md}
 # Process Overview
+## The story delivery life cycle
 ## Agree acceptance criteria
 ## Develop
 ## Demonstrate
@@ -52,7 +53,7 @@
 {#how-do-i-pick.md}
 # So how do I decide?
 ## Team dynamics
-## Drefus scale
+## Dreyfus scale
 
 {#pitfalls.md}
 # Pitfalls
