@@ -55,7 +55,7 @@ This is pretty much the accepted definition of a user story but I don't think it
 
 >D ## Tasks vs stories {#tasks-vs-stories-aside}
 >D
->D It's easy to get confused with the difference between tasks and stories. It's useful to captures discrete tasks, things like "pay the gas bill", "talk to Bob in Commodities about their new API", but if these don't prove the "implementation -> business value" proposition, chances are they're not stories.
+>D It's easy to get confused with the difference between tasks and stories. It's useful to capture discrete tasks, things like "pay the gas bill", "talk to Bob in Commodities about their new API", but if these don't satisfy the "implementation _implies_ business value" proposition, chances are they're not stories.
 >D
 >D The team lead role can suffer this a lot but keeping track of todo items needn't muddy the waters when it comes to planning the story delivery of the team. It's important to realise that tasks or todo items fit more appropriately under project or team management and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great example.
 
