@@ -14,7 +14,7 @@
 # Introduction
 ## What's an Acceptance Test?
 ## Acceptance Criteria vs Acceptance Tests
-## What's a story?
+## What's a Story?
 ## Confidence and Trust
 
 {#process_overview.md}

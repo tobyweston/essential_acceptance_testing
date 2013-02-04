@@ -10,7 +10,7 @@ Look for other titles in the series on Leanpub.
 
 ## Lean Publishing
 
-> Publish early. Publish Often. Listen to your readers.
+> "Publish early. Publish Often. Listen to your readers."
 
 The first publication of  ESSENTIAL Acceptance Testing is aimed at teams new to acceptance testing and talks about incorporating acceptance testing into your projects. It's a subset of the full book. It describes a typical agile process and encourages specification by example to give you the confidence that what you're building is actually what the customer wants.
 

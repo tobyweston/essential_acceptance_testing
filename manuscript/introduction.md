@@ -51,11 +51,11 @@ He goes on to describe the typical template as something like
 
 This is pretty much the accepted definition of a user story but I don't think it's the full story. In practice, teams settle on their own style of writing stories loosely based by this definition. Some teams write stories on index cards, others write tasks or work items on post-its whilst others write up the background analysis in JIRA. Each team may use these to work out what to deliver and each may think of these as "stories". But to adhere to the spirit of the definition, a link to acceptance criteria needs to be established.
 
->D ## Tasks vs stories {#tasks-vs-stories-aside}
->D
->D It's easy to get confused with the difference between tasks and stories. It's useful to capture discrete tasks, things like "pay the gas bill" or "talk to Bob in Commodities about their new API", but if these don't satisfy the "implementation _implies_ business value" proposition, chances are they're not stories.
->D
->D The team lead role can suffer from this a lot but keeping track of todo items needn't muddy the waters when it comes to planning the story delivery of the team. It's important to realise that tasks or todo items fit more appropriately under project or team management and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
+D> ## Tasks vs stories {#tasks-vs-stories-aside}
+D>
+D> It's easy to get confused with the difference between tasks and stories. It's useful to capture discrete tasks, things like "pay the gas bill" or "talk to Bob in Commodities about their new API", but if these don't satisfy the "implementation _implies_ business value" proposition, chances are they're not stories.
+D>
+D> The team lead role can suffer from this a lot but keeping track of todo items needn't muddy the waters when it comes to planning the story delivery of the team. It's important to realise that tasks or todo items fit more appropriately under project or team management and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
 
 Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to be define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to build, it's difficult to know when we've actually built it.
 
@@ -73,11 +73,13 @@ It's totally acceptable for a single acceptance test to demonstrate multiple sto
 
 ## Confidence and Trust
 
-Showing the customer running code that implements their requirements builds trust. When you can relate this to individual stories or features at the end of an iteration, it gives confidence that the team can deliver and deliver the right thing. If we kept talking to the business whilst developing the acceptance criteria, we should have discovered misunderstanding early and reduced the risk of critical failure.
+Showing the customer running code builds trust. When you can associate running code to individual customer stories during an iteration, it gives confidence that the team can deliver and deliver the right thing. If we keep talking to the business whilst developing the acceptance criteria, we stand a better change of discovering misunderstanding early and reduce the risk of critical failure.
 
-This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves the feature is working correctly. The customer may also want to refer back to passing criteria, perhaps as test artifacts against a specific feature. Running your tests as part of your automated build and structuring the output in line with stories or iterations can help here. It also forms a kind of 'live' system documentation. All the major specification testing frameworks offer strategies for achieving this and we'll talk specifically about Concordion in [Part 3](#part3).
+This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves a feature is working correctly. The customer may also want to refer back to passing tests, perhaps against a specific feature.
 
-D>## Developer vs business language {#developer-vs-business-language-aside}
+Running your tests as part of your automated build and structuring the output in line with stories or iterations can help here. It also forms a kind of 'live' system documentation. All the major specification testing frameworks offer strategies for achieving this and we'll talk specifically about Concordion in [Part 3](#part3).
+
+D>## Technical vs business language {#technical-vs-business-language-aside}
 D>
 D> It's a really good idea to aim for a ubiquitous language between development and the business. It helps make sure that when someone is talking about the noun _instrument_, the team have a collective understanding of what an instrument actually is (is it a violin or an equity derivative?). When it comes to setting acceptance criteria, the language should favour the business camp. Write in terms of _business goals_ and not _test scripts_.
 D>
@@ -88,6 +90,6 @@ D> The business shouldn't care how a test is implemented behind the scenes. It s
 
  * [User Stories Applied: For Agile Software Development](http://amzn.to/WLmrVy), Mike Cohn>
  * [Succeeding with Agile: Software Development Using Scrum](http://amzn.to/11jVsrz), Mike Cohn
- * [Bridging the Communication Gap: Specification by Example and Agile Acceptance Testing](http://amzn.to/14A3Cds), Gojko Adzic
+ * [Bridging the Communication Gap](http://amzn.to/14A3Cds), Gojko Adzic
  * [Specification by Example: How Successful Teams Deliver the Right Software](http://amzn.to/YOPrlo), Gojko Adzic
  * [ATDD by Example: A Practical Guide to Acceptance Test-driven Development](http://amzn.to/Yxr8V4), Markus Gärtner
