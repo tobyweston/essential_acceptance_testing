@@ -88,11 +88,8 @@ D> The business shouldn't care how a test is implemented behind the scenes. It s
 
 ## Further reading
 
-### Acceptance testing background
-
- * Find some books on acceptance testing
-
-### User stories
-
- * [User Stories Applied: For Agile Software Development (Addison Wesley Signature Series)](http://amzn.to/WLmrVy), Mike Cohn>
+ * [User Stories Applied: For Agile Software Development](http://amzn.to/WLmrVy), Mike Cohn>
  * [Succeeding with Agile: Software Development Using Scrum](http://amzn.to/11jVsrz), Mike Cohn
+ * [Bridging the Communication Gap: Specification by Example and Agile Acceptance Testing](http://amzn.to/14A3Cds), Gojko Adzic
+ * [Specification by Example: How Successful Teams Deliver the Right Software](http://amzn.to/YOPrlo), Gojko Adzic
+ * [ATDD by Example: A Practical Guide to Acceptance Test-driven Development](http://amzn.to/Yxr8V4), Markus Gärtner
