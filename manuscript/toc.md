@@ -60,7 +60,7 @@
 ## Features hit production don't do what the customer wanted
 ## I can't tell how the system should behave (organisation)
 ## I can't tell if feature x is already implemented (organisation)
-## Tests repeat existing other tests as part of their scenario
+## Tests repeat steps from other tests as part of their scenario
 ## My acceptance test suite takes forever to run
 ## I get randomness in tests
 

@@ -27,7 +27,7 @@ On the back of the card, we might capture some early thoughts about acceptance c
 
 - No items in basket
 - Discounted items in basket
-- Free delivery with items over £10
+- Free delivery with items over $10
 
 ![Image here](missing.png)
 

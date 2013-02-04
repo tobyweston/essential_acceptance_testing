@@ -40,7 +40,7 @@ Remember that all this is done before writing any production code.
 A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
 A> - Business analysis has been undertaken.
 A> - Developers understand the business background, context and goals for a story.
-A> - There is no ambiguity about business terms and everyone agrees of their definition.
+A> - There is no ambiguity about business terms and everyone agrees on their definition.
 A> - Acceptance criteria have been discussed and documented.
 
 D> ## Stickers as sign-off {#stickers-as-sign-off-aside}
