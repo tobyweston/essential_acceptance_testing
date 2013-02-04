@@ -65,7 +65,7 @@ Sticking to the letter of the definition above can lead to ambiguous requirement
 
 Working from story definition through defining acceptance criteria to delivery is something David Peterson calls the [Story Delivery Life Cycle](#story-delivery-life-cycle).
 
-D>## A new acceptance test per story? {#a-new-acceptance-test-per-story}
+D>## A new acceptance test per story? {#a-new-acceptance-test-per-story-aside}
 D>
 D> Another pitfall teams often fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which may duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously there is balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
 
@@ -75,11 +75,24 @@ It's totally acceptable for a single acceptance test to demonstrate multiple sto
 
 ## Confidence and Trust
 
+Showing the customer running code that implements their requirements builds trust. When you can relate this to individual stories or features at the end of an iteration, it gives confidence that the team can deliver and deliver the right thing. If we kept talking to the business whilst developing the acceptance criteria, we should have discovered misunderstanding early and reduced the risk of critical failure.
+
+This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves the feature is working correctly. The customer may also want to refer back to passing criteria, perhaps as test artifacts against a specific feature. Running your tests as part of your automated build and structuring the output in line with stories or iterations can help here. It also forms a kind of 'live' system documentation. All the major specification testing frameworks offer strategies for achieving this and we'll talk specifically about Concordion in [Part 3](#part3).
+
+D>## Developer vs business language {#developer-vs-business-language-aside}
+D>
+D> It's a really good idea to aim for a ubiquitous language between development and the business. It helps make sure that when someone is talking about the noun _instrument_, the team have a collective understanding of what an instrument actually is (is it a violin or an equity derivative?). When it comes to setting acceptance criteria, the language should favour the business camp. Write in terms of _business goals_ and not _test scripts_.
+D>
+D> The business shouldn't care how a test is implemented behind the scenes. It should be shown to go green in the language _they_ understand. It may be that whilst building trust, developers have to explain what components are being exercised or even show data in it's raw form but ultimately, the code is none of the business's concern. I see far too many teams fall into this trap whereby the business try to influence test infrastructure or how to go about testing some feature. This is always down to trust. Work hard at building trust and avoid frustration.
+
 
 ## Further reading
 
 ### Acceptance testing background
 
+ * Find some books on acceptance testing
+
 ### User stories
+
  * [User Stories Applied: For Agile Software Development (Addison Wesley Signature Series)](http://amzn.to/WLmrVy), Mike Cohn>
  * [Succeeding with Agile: Software Development Using Scrum](http://amzn.to/11jVsrz), Mike Cohn
