@@ -41,7 +41,29 @@ D> An acceptance test is just as valid if it's run against a subset of the full 
 
 ## What's a story?
 
-Acceptance criteria are usually discussed in terms of _user stories_ so it may be worth while making sure we have a common understanding of what makes up a story. A typical agile process will focus on stories as a way of gathering requirements and organising them into deliverable chunks that, again, have _business value_. It's common then to associate acceptance tests with individual stories. Once the test is passing, we can infer that the story is finished.
+Acceptance criteria are usually discussed in terms of _user stories_ so it may be worth while making sure we have a common understanding of what makes up a story. A typical agile process will focus on stories as a way of gathering requirements and organising them into deliverable chunks that, again, have _business value_. It's common then to associate acceptance tests with individual stories. Once the test is passing, we can infer that the story is finished. There's a close relationship between stories and acceptance testing.
+
+Mike Cohen [describes user stories](http://www.mountaingoatsoftware.com/topics/user-stories) as
+
+> User stories are short, simple description of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system.
+
+He goes on to describe the typical template as something like
+
+> As a <type of user>, I want <some goal> so that <some reason>
+
+This is pretty much the accepted definition of a user story but I don't think it's the full story. In practice, teams settle on their own style of writing stories loosely inspired by this definition. Some teams write stories on index cards, others write tasks or work items on post-its whilst others write up the background analysis in JIRA. Each team may think of these are "stories" but to adhere to the spirit of the definition, a link to acceptance criteria needs to be established.
+
+>D ## Tasks vs stories {#tasks-vs-stories-aside}
+>D
+>D It's easy to get confused with the difference between tasks and stories. It's useful to captures discrete tasks, things like "pay the gas bill", "talk to Bob in Commodities about their new API", but if these don't prove the "implementation -> business value" proposition, chances are they're not stories.
+>D
+>D The team lead role can suffer this a lot but keeping track of todo items needn't muddy the waters when it comes to planning the story delivery of the team. It's important to realise that tasks or todo items fit more appropriately under project or team management and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great example.
+
+Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to be define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to build, it's difficult to know we've actually built it.
+
+Sticking to the letter of the definition above can lead to ambiguous requirements. We need to work a little harder. The spirit of the definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). Articulating the goal will likely take more that a single sentence on an index card. That's where defining acceptance criteria can come in handy.
+
+Working from story definition through defining acceptance criteria to delivery is something David Peterson calls the [Story Delivery Life Cycle](#story-delivery-life-cycle).
 
 D>## A new acceptance test per story? {#a-new-acceptance-test-per-story}
 D>
@@ -50,10 +72,13 @@ D> Another pitfall teams often fall into is to automatically create new acceptan
 It's totally acceptable for a single acceptance test to exercise multiple stories. Acceptance tests should be revisited and leveraged when new stories are defined. When it comes to acceptance testing, duplicated test paths often lead to slower test runs. Designing your system and test infrastructure to be componentised can also help.  We'll look at this more in the [Port and Adapters](#ports-and-adapters) section.
 
 
+
 ## Confidence and Trust
 
 
 ## Further reading
+
+### Acceptance testing background
 
 ### User stories
  * [User Stories Applied: For Agile Software Development (Addison Wesley Signature Series)](http://amzn.to/WLmrVy), Mike Cohn>

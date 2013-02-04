@@ -1,6 +1,6 @@
 # Process Overview
 
-Story delivery life cycle.
+## Story delivery life cycle. {#story-delivery-life-cycle}
 
 1. Pick a story
 1. Agree acceptance criteria
