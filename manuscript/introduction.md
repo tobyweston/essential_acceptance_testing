@@ -28,7 +28,17 @@ An acceptance test is the physical test artifact to be executed. It may be a tes
 
 [^test-test]: any test written in the language of choice. It could be a Java test to run in JUnit, a piece of JavaScript to run with Jasmine, Ruby and RSpec, C# and NUnit or just a main method. You get the idea.
 
+Acceptance criteria _become_ exception tests. The set of attributes associate with criteria is the super set of attributes associated with acceptance tests with the additional fact that tests should be _executable_.
 
+{title="Attributes of acceptance criteria and tests"}
+| Acceptance Criteria           | Acceptance Tests              |
+|-------------------------------|-------------------------------|
+|Document behaviour             |Document behaviour             |
+|Are specific                   |Are specific                   |
+|Are demonstrable and provable  |Are demonstrable and provable  |
+|Require discussion             |Require discussion             |
+|Are agreed                     |Are agreed                     |
+|                               |Are executable                 |
 
 
 D>## Starting up the full stack {#starting-the-full-stack-aside}
