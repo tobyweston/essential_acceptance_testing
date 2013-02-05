@@ -2,22 +2,15 @@
 
 ## The story delivery life cycle {#story-delivery-life-cycle}
 
+A typical agile process used by many teams today revolves around the following steps.
+
 1. Pick a story
 1. Agree acceptance criteria
 1. Develop functionality
 1. Demonstrate and sign off
+1. Repeat
 
-## Agree acceptance criteria
-
-> "How do we know when a story is done?"
-
-Once you've selected a story from the option list (backlog), you can work it up in terms of acceptance criteria. The idea here is to describe the requirements not in terms of a traditional test script (a series of instructions to follow) but as an english description of the business goals. It's a subtle difference which we'll explore more later.
-
-With more of a _specification_ based approach, you describe the high level business flow in plain english. You're not concerned with the details of how this might be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's required, the terms and the business context.
-
-This is done with the business or customer.
-
-A typical way to do this is to arrange a session where the business and development team get together to define some basic stories. It's likely the business know what's coming up and this session's goals are to put some of these down on paper as stories. Each story should be discussed, it's goals outlined and the developers can start to think about how it might be realised with the system design.
+## Pick a story
 
 D> ## What's a Story? {#whats-a-story-aside}
 D>
@@ -25,7 +18,27 @@ D> There is often some debate about the definition of a story. For the purpose o
 D>
 D> It's common to physically write the story description on an index card. Teams might then use this as a token on the team's project board to visualise it's task management, moving from left to right to indicate progress.
 
-You'd then attempt to define some acceptance criteria.
+
+## Agree acceptance criteria
+
+A> ## Inputs and outputs {#agree-acceptance-criteria-inputs-outputs-aside}
+A> **Inputs**
+A> * Story
+A>
+A> **Outputs**
+A> * List of examples and scenarios with expectations (the acceptance criteria)
+A> * Agreement from everyone that these demonstrate desired functionality
+A> * Additional documentation or context in whatever form is appropriate
+A>
+A> **Avoid**
+A> * Implementation details
+
+
+It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you'd typically formalise the acceptance criteria. Capture examples scenarios, edge cases and outcomes. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals.
+
+When you describe the high level business scenarios like this, you'll implicitly create a _specification_ accessible to business and technical staff. You're not concerned with the details of how things will be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's required, the terminology and the business context.
+
+This is best done with the business or customer. Get together and make sure everyone has a common understanding of what's needed. You can attempt to define some acceptance criteria. Expect lots of discussion about the specifics and come up with concrete examples and scenarios. What questions if answered will convince the customer that the system is behaving as they specified?
 
 D> ## Do we need a meeting to agree acceptance criteria?
 D>
@@ -33,7 +46,7 @@ D> You don't need a meeting to define acceptance criteria, in fact, its great if
 D>
 D> Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the teams understanding of a story. To be most efficient, some analysis work should have already been undertaken.
 
-Once you've written the criteria down, you can attempt to agree them with interested parties. We'll brush over how best to physically record the criteria but we'd aim to have them in a format that will help us later when we come to convert them into executable tests. For arguments sake, you might record these on a Wiki, HTML pages associated with the project source or just on the back of the story card.
+Once you've written the criteria down, the next step is to formally agree them with interested parties. We'll brush over how best to physically record the criteria but we'd aim to have them in a format that will help us later when we come to convert them into executable tests. For arguments sake, you might record these on a Wiki, HTML pages associated with the project source or just on the back of the story card. The point is though that after this step, everyone involved has agreed that the list of criteria is a reasonable effort at documenting the intent.
 
 Remember that all this is done before writing any production code.
 
