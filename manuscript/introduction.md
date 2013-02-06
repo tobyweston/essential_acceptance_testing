@@ -26,9 +26,9 @@ Defining the criteria is a useful step in understanding a story. It helps us def
 
 An acceptance test is the physical test artifact to be executed. It may be a test-test[^test-test], a test script that requires a human to step through, a record-replay style UI test or even a checklist on a scrap of paper. The acceptance test can be seen as the confirmation step in Ron Jefferies' [Three Cs of a user story](http://xprogramming.com/articles/expcardconversationconfirmation/).
 
-[^test-test]: any test written in the language of choice. It could be a Java test to run in JUnit, a piece of JavaScript to run with Jasmine, Ruby and RSpec, C# and NUnit or just a main method. You get the idea.
+[^test-test]: any test written in the language of choice, typically using a unit testing framework or similar. It could be a Java test to run in JUnit, a piece of JavaScript to run with Jasmine, Ruby and RSpec, C# and NUnit or just a main method. Calling them _unit_ tests would be clumsy but you'd get the idea.
 
-Acceptance criteria _become_ exception tests. The set of attributes associate with criteria is the super set of attributes associated with acceptance tests with the additional fact that tests should be _executable_.
+Acceptance criteria _become_ exception tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_.
 
 {title="Attributes of acceptance criteria and tests"}
 | Acceptance Criteria           | Acceptance Tests              |
@@ -98,8 +98,8 @@ D> The business shouldn't care how a test is implemented behind the scenes. It s
 
 ## Further reading
 
- * [User Stories Applied: For Agile Software Development](http://amzn.to/WLmrVy), Mike Cohn>
+ * [User Stories Applied: For Agile Software Development](http://amzn.to/WLmrVy), Mike Cohn
  * [Succeeding with Agile: Software Development Using Scrum](http://amzn.to/11jVsrz), Mike Cohn
  * [Bridging the Communication Gap](http://amzn.to/14A3Cds), Gojko Adzic
  * [Specification by Example: How Successful Teams Deliver the Right Software](http://amzn.to/YOPrlo), Gojko Adzic
- * [ATDD by Example: A Practical Guide to Acceptance Test-driven Development](http://amzn.to/Yxr8V4), Markus Gärtner
+ * [ATDD by Example: A Practical Guide to Acceptance Test-driven Development](http://amzn.to/Yxr8V4), Markus Gartner
