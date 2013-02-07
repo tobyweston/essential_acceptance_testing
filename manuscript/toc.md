@@ -38,26 +38,31 @@
 ## Demonstrate and sign off
 
 {#part2-toc}
-{#what-wrong-with-it.md}
-# So what's wrong with it?
+{#problems-it-causes.md}
+# What problems does it cause?
+## Communication
 ## Encourages hand off (Conway's law)
 ## Command and control
 ## Alternatives
 
-{#whats-right-with-it.md}
-# So what's right with it?
-## Fast
-## Project management structure
+{#problems-it-fixes.md}
+# What problems does it fix?
+## Communication (introvert developers, overcoming more system problems/dysfunction)
+## Generates understanding
+## Slow running tests
+## Project management structure / organisation
 ## Design & Ports and adapters
 
 {#how-do-i-pick.md}
 # So how do I decide?
 ## Team dynamics
 ## Dreyfus scale
+## Avoid cargo culture
 
 {#pitfalls.md}
-# Pitfalls
+# Problems and Pitfalls
 ## Features hit production don't do what the customer wanted
+## User's describe implementations not root problems
 ## I can't tell how the system should behave (organisation)
 ## I can't tell if feature x is already implemented (organisation)
 ## Tests repeat steps from other tests as part of their scenario
@@ -69,6 +74,7 @@
 ## What problems do acceptance tests claim to solve and what problems can they cause?
 ## How do I manage large numbers of acceptance tests - keeping the testing process fast enough that it does not become a huge burden and the tests relevant and fresh enough?
 ## How does applying acceptance testing techniques help us focus on reducing complexity in our IT environment?
+## When would you not write stories? Acceptance criteria?
 
 {#part3-toc}
 {#concordion.md}

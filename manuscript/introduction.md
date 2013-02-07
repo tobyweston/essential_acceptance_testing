@@ -28,7 +28,7 @@ An acceptance test is the physical test artifact to be executed. It may be a tes
 
 [^test-test]: any test written in the language of choice, typically using a unit testing framework or similar. It could be a Java test to run in JUnit, a piece of JavaScript to run with Jasmine, Ruby and RSpec, C# and NUnit or just a main method. Calling them _unit_ tests would be clumsy but you'd get the idea.
 
-Acceptance criteria _become_ exception tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_.
+Acceptance criteria _become_ exception tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_. Executing acceptances tests assert that the acceptance criteria have been met.
 
 {title="Attributes of acceptance criteria and tests"}
 | Acceptance Criteria           | Acceptance Tests              |

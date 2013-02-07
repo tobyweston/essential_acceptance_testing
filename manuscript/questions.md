@@ -6,3 +6,6 @@
 
 ## How does applying acceptance testing techniques help us focus on reducing complexity in our IT environment?
 
+## When would you not write stories? Acceptance criteria?
+
+Stories can be a necessary ceremony to overcome other system constraints or dysfunction.
