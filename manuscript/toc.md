@@ -40,10 +40,10 @@ The table of contents from the full version.
 **Problems it tries to fix?**
 
  * Communication barriers
- * Generates understanding
- * Slow running tests
- * Project management structure / organisation
- * Design & Ports and adapters
+ * Lack of shared memory
+ * Lack of collective understanding
+ * Ambiguous language
+ * Lack of structure and direction
 
 {#problems-it-causes.md}
 **What problems can it cause?**
