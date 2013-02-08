@@ -1,4 +1,4 @@
-# Pitfalls
+# Common pitfalls
 
 ## Features hit production don't do what the customer wanted
 

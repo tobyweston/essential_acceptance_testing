@@ -23,15 +23,15 @@ D> It's common to physically write the story description on an index card. Teams
 
 A> ## Inputs and outputs {#agree-acceptance-criteria-inputs-outputs-aside}
 A> **Inputs**
-A> * Story
+A> Story
 A>
 A> **Outputs**
-A> * List of examples and scenarios with expectations (the acceptance criteria)
-A> * Agreement from everyone that these demonstrate desired functionality
-A> * Additional documentation or context in whatever form is appropriate
+A> List of examples and scenarios with expectations (the acceptance criteria)
+A> Agreement from everyone that these demonstrate desired functionality
+A> Additional documentation or context in whatever form is appropriate
 A>
 A> **Avoid**
-A> * Implementation details
+A> Implementation details
 
 
 It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you'd typically formalise the acceptance criteria. Capture examples scenarios, edge cases and outcomes. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals.

@@ -1,21 +1,24 @@
 frontmatter:
 
-preface.md
-acknowledgments.md
+frontmatter/preface.md
+frontmatter/acknowledgments.md
 
 mainmatter:
 
-part1.md
-introduction.md
-process_overview.md
-process_example.md
+part1/preamble.md
+part1/introduction.md
+part1/overview.md
+part1/example.md
 
-part2.md
-unavailable.md
+part2/preamble.md
+part2/problems-it-fixes.md
+part2/problems-it-causes.md
+part2/pitfalls.md
+part2/questions.md
 
-part3.md
+part3/preamble.md
 unavailable.md
 
 backmatter:
 
-asides.md
+backmatter/asides.md

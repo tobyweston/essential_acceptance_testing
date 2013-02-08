@@ -1,5 +1,5 @@
 {#toc}
-{#part1-toc}
+{#toc}
 {#preface.md}
 # Preface
 ## The ESSENTIAL series
@@ -17,34 +17,18 @@
 ## What's a Story?
 ## Confidence and Trust
 
-{#process_overview.md}
-# Process Overview
+{#overview.md}
+# Overview
 ## The story delivery life cycle
 ## Agree acceptance criteria
 ## Develop
 ## Demonstrate
 
-{#process_example.md}
+{#example.md}
 # Retail Website Example
-## Pick a story
-## Agree acceptance criteria
-## Develop functionality
-## Demonstrate and sign off
-
 # Financial Application Example
-## Pick a story
-## Agree acceptance criteria
-## Develop functionality
-## Demonstrate and sign off
 
 {#part2-toc}
-{#problems-it-causes.md}
-# What problems does it cause?
-## Communication
-## Encourages hand off (Conway's law)
-## Command and control
-## Alternatives
-
 {#problems-it-fixes.md}
 # What problems does it fix?
 ## Communication (introvert developers, overcoming more system problems/dysfunction)
@@ -52,6 +36,13 @@
 ## Slow running tests
 ## Project management structure / organisation
 ## Design & Ports and adapters
+
+{#problems-it-causes.md}
+# What problems does it cause?
+## Communication
+## Encourages hand off (Conway's law)
+## Command and control
+## Alternatives
 
 {#how-do-i-pick.md}
 # So how do I decide?

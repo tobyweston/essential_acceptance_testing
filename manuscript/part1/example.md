@@ -1,4 +1,4 @@
-# Process Example - Retail Website
+# Example - Retail Website
 
 Story delivery life cycle.
 
