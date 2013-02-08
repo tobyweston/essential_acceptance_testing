@@ -11,4 +11,5 @@ part1/overview.md
 
 backmatter:
 
+toc.md
 backmatter/asides.md

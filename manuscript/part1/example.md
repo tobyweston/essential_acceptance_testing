@@ -1,4 +1,6 @@
-# Example - Retail Website
+# Examples
+
+## Retail Website
 
 Story delivery life cycle.
 
@@ -7,7 +9,7 @@ Story delivery life cycle.
 1. Develop functionality
 1. Demonstrate and sign off
 
-## Pick a story
+### Pick a story
 
 From Amazon's early backlog;
 
@@ -39,17 +41,17 @@ A useful way to rephrase a story is in the BDD-style of _given_, _when_, _then_.
 > Given a full shopping basket, when I visit the checkout area then I see the items...
 
 
-## Agree acceptance criteria
+### Agree acceptance criteria
 
 This step is about committing acceptance criteria to some electronic form and agreeing with everyone it expresses the expectations and is in a form that is conducive to turning into an executable artifact. This is where you'd write your HTML document, Wiki page or failing test using your favorite nUnit framework.
 
-## Develop functionality
+### Develop functionality
 
-## Demonstrate and sign off
+### Demonstrate and sign off
 
 
 
-# Process Example - Financial Application
+## Financial Application
 
 Story delivery life cycle.
 
