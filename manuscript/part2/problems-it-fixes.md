@@ -2,9 +2,11 @@
 
 ## Communication barriers
 
-The typical process described earlier can be useful to force communication. There's a formal vehicle (the acceptance test artifacts) that have to be authored and agreed and checkpoints in place to highlight the agreement (see the [stickers as sign-off](#stickers-as-sign-off-aside) aside).
+The typical process described earlier can be useful in encouraging communication. There's a formal vehicle (the acceptance test artifacts) that have to be authored and agreed and checkpoints in place to highlight the agreement (see the [stickers as sign-off](#stickers-as-sign-off-aside) aside).
 
-For some teams this is really important but it doesn't mean that the story definition lifecycle is a substitute for natural, daily communication. It can be tempting to lean on formal mechanisms like this as the _only_ communication mechanism but this can lead to its own problems (discussed in the [problems section](problems-it-can-cause)).
+> It's kind of saying "you must talk to the customer because you can't start development until you've got their agreement".
+
+It doesn't mean though, that the story definition life cycle is a substitute for spontaneous and continued communication. It can be tempting to lean on formal mechanisms like this as the _only_ communication mechanism but this can lead to its own problems (discussed in the [problems section](problems-it-can-cause)).
 
 The spirit of the thing is to encourage communication not to stifle it. You create artifacts that can be shared, referred back to and you demonstrate these executable artifacts to the stakeholders. It doesn't preclude speaking to them whenever you feel like it. If you discover new insight, you're free to adjust the acceptance criteria and tests.
 

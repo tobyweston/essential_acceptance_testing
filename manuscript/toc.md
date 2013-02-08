@@ -48,10 +48,9 @@ The table of contents from the full version.
 {#problems-it-causes.md}
 **What problems can it cause?**
 
- * Communication
- * Encourages hand off (Conway's law)
- * Command and control
- * Alternatives
+ * Communication crutch
+ * Hand off behaviour (Conway's law)
+ * Encouraging command and control
 
 {#how-do-i-pick.md}
 **So how do I decide?**
