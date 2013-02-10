@@ -10,6 +10,8 @@ The spirit of the process is to encourage communication not to stifle it. You cr
 
 When not using this approach, if you find that requirements are being misunderstood or not delivered as the customer intended, forcing formal communication like this _may_ be useful. In this case, it's a technique that may help overcome the underlying problems.
 
+
+
 ## Lack of shared memory
 
 The acceptance tests document a shared (and agreed) understanding of features. As time goes on, its easy to forget how a particular feature is supposed to behave. If acceptance tests are in a customer friendly format, they form reference documentation that will always be accurate; a live record of the system's behaviour.
@@ -19,11 +21,13 @@ Tools like [Yatspec](http://code.google.com/p/yatspec/), [Concordion](http://con
 ![An example of a Concordion HTML overview. Tests are grouped under tabs and users can drill down into the test's detail.](images/concordion/overview_passing.png)
 
 
+
 ## Lack of collective understanding of requirements
 
 It's very difficult to appreciate what a customer really wants from broken fragments of conversations or email trails. There a lot of room for ambiguity. By slowing down and carefully going over examples and collaboratively creating acceptance criteria, the hope is that any misunderstanding will come up early and be addressed. It's often the case that specific questions about error and edge cases will surface and cause the customer to think harder about their requirements.
 
 Writing acceptance criteria down in the form of tests isn't the only tool available here. Conversation, previously generated documentation, spreadsheets, flow diagrams, gorilla diagramming, anything and everything all feed into the process. Acceptance tests just document the understanding.
+
 
 
 ## Ambiguous language
@@ -37,6 +41,7 @@ Not assuming anything and defining terms clearly in acceptance tests can be a go
 The spirit here is to strive for a ubiquitous language.
 
 
+
 ## Lack of structure and direction
 
 Iterative development favours planning; iterations are planned ahead of time. The stories to deliver are fixed at the start of an iteration. Although the iterations are short, it still imposes some rigidity. The balance is in offering the delivery team stability as well as being responsive to changes in business priorities.
@@ -48,5 +53,3 @@ Having an established process like the story definition life cycle can give stru
 Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Moral and discipline suffer.
 
 This may well be a point more about decomposition than acceptance testing. People just handle small tasks better. There is a personal psychology aspect but there's also advantages for the business in dealing in small features. It reduces risk and allows for quicker change of direction. It's the cost of change curve.
-
-
