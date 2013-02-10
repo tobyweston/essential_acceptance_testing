@@ -22,4 +22,14 @@ The intention behind having defined steps is around breaking down communication 
 
 ## Command and control structures
 
-The agree, demo, sign off check points are designed to ensure make sure key things happen during development.
+The agree, demo, sign off check points are designed to ensure  key things happen during development. The steps can be misused however to create a command and control structure whereby the teams completion or lack of completion of the steps are used to exert pressure and assign blame.
+
+The steps are supposed to be a guide. Getting a sticker or moving an index card across the board are not the goals unto themselves. Progress indicators like this can highlight bottlenecks and show progress but if these symptoms are used as a stick to beat the team, the overall situation won't improve.
+
+We shouldn't loose sight that the steps in any system should not be about targets and outputs but about understanding the team's capabilities. If the biggest bottleneck in the system is getting the business to find time to go through acceptance criteria, we've exposed an underlying problem to address. We shouldn't plaster over it by working around it or blame the process and give up.
+
+
+
+## Plan, do, check, act.
+
+Does the prescription help or hinder Deming's plan, do, check, act approach?

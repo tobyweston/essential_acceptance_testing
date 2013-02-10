@@ -50,6 +50,6 @@ By stability, I mean that the goal for the next week or so is well known and the
 
 Having an established process like the story definition life cycle can give structure to delivery and contribute to sustainable pace. Such a process certainly offers clear boundaries and check points. Crossing them helps establish a rhythm or cadence and gives the team a chance to celebrate in what they've achieved. People know where they stand.
 
-Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Moral and discipline suffer.
+Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Moral and discipline suffer. It goes against the the constancy of purpose Deming warns of when talking about the Seven Deadly Diseases.
 
 This may well be a point more about decomposition than acceptance testing. People just handle small tasks better. There is a personal psychology aspect but there's also advantages for the business in dealing in small features. It reduces risk and allows for quicker change of direction. It's the cost of change curve.
