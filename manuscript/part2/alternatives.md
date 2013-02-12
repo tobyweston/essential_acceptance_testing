@@ -14,7 +14,7 @@ A big part of acceptance testing is ensuring you achieve what the custom intende
 
 You may shift emphasis onto cause grained style testing, exercising large parts of the system with scenarios driven out by the development team. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours and you'll likely adhere to the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp).
 
-![The testing triangle; fewer tests should exist that exercise the UI than core services (behaviours) and components (units)]()
+![The testing triangle; fewer tests should exist that exercise the UI than core services (behaviours) and components (units)](images/test-pyramid.jpg)
 
 
 ## Don't specify
