@@ -25,6 +25,7 @@ The intention behind having defined steps is around breaking down communication 
 One of the biggest problem with the traditional acceptance test process is the temptation to focus on the practices and not the reasons behind them. Just like a [cargo cult](http://en.wikipedia.org/wiki/Cargo_cult), practitioners can be lured into following behaviours in the hope that the benefits will magically manifest. It's a causal fallacy. Tests aren't the goal unto themselves.
 
 
+
 ## Command and control structures
 
 The agree, demo, sign off check points are designed to ensure  key things happen during development. The steps can be misused however to create a command and control structure whereby the teams completion or lack of completion of the steps are used to exert pressure and assign blame.
