@@ -20,11 +20,9 @@ The intention behind having defined steps is around breaking down communication 
 
 
 
-## Cargo culture
+## Cargo cult
 
-Any process should be subject to the plan, do, check, adjust cycle.
-
-Tests aren't the goal unto themselves...
+One of the biggest problem with the traditional acceptance test process is the temptation to focus on the practices and not the reasons behind them. Just like a [cargo cult](http://en.wikipedia.org/wiki/Cargo_cult), practitioners can be lured into following behaviours in the hope that the benefits will magically manifest. It's a causal fallacy. Tests aren't the goal unto themselves.
 
 
 ## Command and control structures
