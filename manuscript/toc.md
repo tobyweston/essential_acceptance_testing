@@ -52,6 +52,13 @@ The table of contents from the full version.
  * Hand off behaviour (Conway's law)
  * Encouraging command and control
 
+**Alternatives**
+
+ * Don't write acceptance tests
+ * Don't specify
+ * Measure don't agree
+ * Log don't specify
+
 {#how-do-i-pick.md}
 **So how do I decide?**
 

@@ -40,3 +40,4 @@ We shouldn't loose sight that the steps in any system should not be about target
 ## Plan, do, check, act.
 
 Does the prescription help or hinder Deming's plan, do, check, act approach?
+
