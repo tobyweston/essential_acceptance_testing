@@ -7,7 +7,7 @@ Before we start, we should probably agree on some common definitions. Deciding o
 
 > An acceptance test is a set of _executable_ criteria, examples or specification that help the customer "accept" that the system behaves as they intend it to.
 
-So, as a customer, what would help me "accept" a system works as I expect? I imagine I'd want to _see_ something. Some output to verify the behaviour of a running system. This could be a demo or something automated and repeatable. The important points are that I've recorded my criteria for acceptance and these can be verified against a running system.
+What would help a customer "accept" a system works as expected? Some input and output to verify the behaviour of a running system. This could be a manual demo or something automated and repeatable. The important points are that the customer's criteria for acceptance have been recorded and verified against a running system.
 
 Documenting the runtime behaviour of a system is only half the story. The other half is deciding what that behaviour should be. Getting input from interested parties _before_ building out a component is vital in ensuring we build the _right_ component. Turns out that acceptance tests are a great vehicle for discussing amd formalising these requirements.
 
