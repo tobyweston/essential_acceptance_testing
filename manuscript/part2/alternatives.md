@@ -10,7 +10,7 @@ If you genuinely don't have customer or if you are your own customer, it's worth
 
 A big part of acceptance testing is ensuring you achieve what the custom intended. The customer is the audience and acceptance tests aim to give them confidence. Without that audience, testing confidence is more about supporting the development team and is typically technology focused.
 
-![Brian Marick's testing matrix]()
+![Brian Marick's testing matrix](missing.png)
 
 You may shift emphasis onto cause grained style testing, exercising large parts of the system with scenarios driven out by the development team. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours and you'll likely adhere to the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp).
 
@@ -41,7 +41,7 @@ Matt Savage coined the phrase "log don't specify" to capture the idea of writing
 
 You can flip this on its head if you skip the specification step and instrument your test code directly so that it outputs artifacts directly to share and document. In Java, the Yatspec framework does this.
 
-![Example of Yatspec output documenting system behaviour. The test code is self documenting]()
+![Example of Yatspec output documenting system behaviour. The test code is self documenting](missing.png)
 
 
 ## Summary
