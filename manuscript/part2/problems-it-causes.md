@@ -36,8 +36,14 @@ The steps are supposed to be a guide. Getting a sticker or moving an index card 
 We shouldn't loose sight that the steps in any system should not be about targets and outputs but about understanding the team's capabilities. If the biggest bottleneck in the system is getting the business to find time to go through acceptance criteria, we've exposed an underlying problem to address. We shouldn't plaster over it by working around it or blame the process and give up.
 
 
+## Construct validity
 
-## Plan, do, check, act.
+The story life cycle is premised on a story having business "value". In practice, it can be very difficult to define this value. Often, we assume _real_ value (i.e. cash) will come later and _interim_ value (i.e. features) will come from stories. There is obvious tension between real value and theoretical value. For example, some business models adopt a "built it, and they will come" approach. They may interpret business value in the story sense to mean incremental features but it's real value may well be in attracting users and capturing their life time value (revenue).
 
-Does the prescription help or hinder Deming's plan, do, check, act approach?
+Defining business "value" suffers from a kind of construct validity. Are the things we measure reflective of the underlying value we're postulating. Is the thing we're measuring representative of value? Are we creating a "value" construct that really models our goals?
+
+
+
+## Artificial constraints
+
 
