@@ -1,13 +1,9 @@
 frontmatter:
 
-frontmatter/preface.md
-frontmatter/acknowledgments.md
-
 mainmatter:
 
 part1/preamble.md
 part1/introduction.md
-part1/overview.md
 
 backmatter:
 
