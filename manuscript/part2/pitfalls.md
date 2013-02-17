@@ -8,12 +8,13 @@ W> Help set the direction, get involved and make suggestions via the [Leanpub pa
 W>
 
 
-## Features hit production that customer wanted didn't want
+## Features hit production that the customer didn't want
+
 (collective understanding)
 
 
 
-## Users describe implementations not root problems
+## Users describe solutions not problems
 
 (technical over exposure)
 
@@ -27,7 +28,7 @@ The only real acceptance criteria is "is it making money?".
 
 
 
-## Users can't tell how the system should behave
+## Users can't tell how the system is supposed to behave
 
 (shared memory)
 
