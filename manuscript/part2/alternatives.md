@@ -48,7 +48,7 @@ Matt Savage coined the phrase "log don't specify" to capture the idea of writing
 
 You can flip this on its head if you skip the specification step and instrument your test code directly so that it outputs artifacts directly to share and document. In Java, the Yatspec framework does this.
 
-![Example of Yatspec output documenting system behaviour. The test code is self documenting](missing.png)
+![Example of Yatspec output documenting system behaviour. The test code is self documenting](images/yatspec-example.png)
 
 
 ## Summary

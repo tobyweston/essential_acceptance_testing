@@ -1,12 +1,5 @@
 # Problems acceptance testing tries to fix
 
-W> ## This section is not finished
-W>
-W> This section is not yet finished. It's a work in progress, a lean publishing effort. I try not to publish anything that's too sketchy but bear with me.
-W>
-W> Help set the direction, get involved and make suggestions via the [Leanpub page](https://leanpub.com/essential_acceptance_testing).
-W>
-
 ## Communication barriers
 
 The typical process described in [part 1](#part1) can be useful in encouraging communication. There's a formal vehicle (the acceptance test artifacts) that should be authored and agreed and it puts checkpoints in place to emphasise the agreement (see the [stickers as sign-off](#stickers-as-sign-off-aside) aside).

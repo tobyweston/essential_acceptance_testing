@@ -237,7 +237,7 @@ dl.index-result {
 
             <li class='test-passed'><a href="#reverseConvertibleSwapIsEnriched">Reverse convertible swap is enriched</a></li>
         
-            <li class='test-passed'><a href="#swapCanBeMappedToTradeGatewayPayload">Swap can be mapped to trade gateway payload</a></li>
+            <li class='test-passed'><a href="#swapCanBeMappedToTradeGatewayPayload">Swap can be mapped to risk system payload</a></li>
         
             <li class='test-passed'><a href="#reverseConvertibleIssuedByLondonBranch">Reverse convertible issued by london branch</a></li>
         
@@ -261,7 +261,7 @@ dl.index-result {
                     <pre class="highlight specification">
 Given any product exists with basic features and the product is issued by ISSUER_CS_ LONDON
 When a reverse convertible coupon swap is created based on the product
-Then the swap is enriched with expected enrichment</pre>
+Then the swap is enriched with expected enrichments</pre>
                     <h2>Test results:</h2>
 
 
@@ -311,7 +311,7 @@ total: 16</div>
         <div class="testmethod">
 
         <a id="swapCanBeMappedToTradeGatewayPayload"></a>
-        <h2>Swap can be mapped to trade gateway payload</h2>
+        <h2>Swap can be mapped to risk system payload</h2>
 
             
 
@@ -321,8 +321,8 @@ total: 16</div>
                     <h2>Specification</h2>
                     <pre class="highlight specification">
 Given a reverse convertible coupon swap created from a product with basic features
-When trade gateway xml is generated
-Then trade gateway payload is xml equal to &quot;&lt;gatewayTrade&gt;&quot;
+When risk system xml is generated
+Then risk system payload is xml equal to &quot;&lt;gatewayTrade&gt;&quot;
 &quot;&lt;Trader&gt;aTrader&lt;/Trader&gt;&quot;
 &quot;&lt;PrimaryRiskId/&gt;&quot;
 &quot;&lt;gatewaySchemaStyle&gt;MM&lt;/gatewaySchemaStyle&gt;&quot;
@@ -360,7 +360,7 @@ Test passed</pre>
                         </table>
 
 
-                        <h3 class="logKey" logkey="trade_gateway_payload">trade gateway payload</h3>
+                        <h3 class="logKey" logkey="trade_gateway_payload">risk system payload</h3>
                         <div class="logValue highlight String" >&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;gatewayTrade&gt;
     &lt;dtdTradeType&gt;SWAP&lt;/dtdTradeType&gt;
     &lt;gatewaySchemaStyle&gt;MM&lt;/gatewaySchemaStyle&gt;
