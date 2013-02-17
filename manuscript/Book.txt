@@ -1,8 +1,5 @@
 frontmatter:
 
-frontmatter/preface.md
-frontmatter/acknowledgments.md
-
 mainmatter:
 
 part1/preamble.md
