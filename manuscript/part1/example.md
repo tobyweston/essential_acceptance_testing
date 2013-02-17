@@ -22,23 +22,19 @@ From Amazon's early backlog;
 
 > Users should be able see total prices for their basket.
 
-![Image here](missing.png)
+![Image here](images/story_1.png)
 
 Perhaps "story" is too grand a title but typically, requirements will start life vague like this. Our first job is to add some specificity. In discussion with the business owner, developers and testers, focus on expanding the description to make any implications, explicit. This helps make scope more concrete.
 
 > "As an Amazon customer, when I visit the checkout area, I would like to review the items in my shopping basket along with a total price and delivery cost, so that I know how much I will be spending if I go on to purchase the items."
 
-![Image here](missing.png)
+![Image here](images/story_2.png)
 
 I find forcing myself to use the phrase "so that" helps me think about the context of the story. Why is it needed? What is the user hoping to achieve? I find this can help me tease out additional requirements that would otherwise go inferred.
 
 On the back of the card, we might capture some early thoughts about acceptance criteria, general comments and scope.
 
-- No items in basket
-- Discounted items in basket
-- Free delivery with items over $10
-
-![Image here](missing.png)
+![Image here](images/story_3.png)
 
 We're starting to think about example scenarios and their outcome.
 

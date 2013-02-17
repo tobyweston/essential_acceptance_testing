@@ -11,6 +11,8 @@ W>
 
 A typical agile process used by many teams today revolves around the following steps.
 
+![The typical story definition life cycle](images/story_lifecycle.png)
+
 1. Pick a story
 1. Agree acceptance criteria
 1. Develop functionality
@@ -77,9 +79,10 @@ D> Following the process outlined in this book would naturally lead to a degree 
 D>
 D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done right, they should form a accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
 
-![The typical story definition life cycle](images/missing.png)
+![A typical specification](images/example_spec.png)
 
-![A typical specification](images/missing.png)
+![The specification converted into a running acceptance test](images/example_spec_passing.png)
+
 
 ## Develop
 

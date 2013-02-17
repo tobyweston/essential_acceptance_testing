@@ -17,7 +17,7 @@ If you genuinely don't have customer or if you are your own customer, it's worth
 
 A big part of acceptance testing is ensuring you achieve what the custom intended. The customer is the audience and acceptance tests aim to give them confidence. Without that audience, testing confidence is more about supporting the development team and is typically technology focused.
 
-![Brian Marick's testing matrix](missing.png)
+![Brian Marick's testing matrix](images/testing_matrix.png)
 
 You may shift emphasis onto cause grained style testing, exercising large parts of the system with scenarios driven out by the development team. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours and you'll likely adhere to the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp).
 
@@ -36,7 +36,7 @@ If you can deliver features quickly enough and cheaply enough, you can agree beh
 
 Arguably the most important success criteria is if a feature directly affects your revenue. If a deployed feature is making you money, it's a success. You may get additional feedback by virtue of being in a live environment. If you can move away from agreeing acceptance criteria and defining acceptance tests upfront towards understanding how features affect key business metrics, you can start to measure these and use them to course correct. This fits nicely into the plan, do, check, adjust cycle.
 
-![Identifying business metrics inputs directly into the check step of Deming's PCDA cycle](images/PDCA.png)
+![Identifying business metrics inputs directly into the check step of Deming's PCDA cycle](images/pdca.png)
 
 
 
