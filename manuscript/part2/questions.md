@@ -1,6 +1,9 @@
 # Q&A
 
-## Can we have a brief overview of what do we mean when we say "Acceptance testing"
+After running various workshops, some of the same questions keep popping up.
+
+
+## What do we mean when we say "acceptance testing"
 
 See the [introduction](#part1) section.
 
@@ -10,6 +13,9 @@ See the [introduction](#part1) section.
 Keeping the testing process fast enough that it does not become a huge burden and the tests relevant and fresh enough?
 
 Easier answer for greenfield projects, much harder for existing code bases.
+
+
+## How do you map acceptance tests to stories in say JIRA?
 
 
 ## How does applying acceptance testing techniques help us focus on reducing complexity?
@@ -40,3 +46,12 @@ Can we talk about exposing the acceptance criteria to the business. Why would we
 ## How do you layer various types of testing to maximise benefit?
 
 The team I'm on write automated unit tests and have recently begun writing automated acceptance tests. We are not exactly sure where these should fit in at the moment, as we still use mocked objects in the acceptance tests they feel more like just unit tests written in business language. This has some benefit, but not as much as we were expecting\hoping. We're not sure whether we should instead be writing them more like end-to-end tests, or perhaps a mixture of both. So we'd be interested in seeing some real-world examples of how other teams might layer their various test suites, and how much value they really bring in comparison to other types of testing.
+
+
+## How does exception testing fit with unit and end-to-end tests?
+
+
+## Aren't acceptance tests slow with high maintenance costs?
+
+
+## What's the best way to leverage CI servers like TeamCity and Jenkins?

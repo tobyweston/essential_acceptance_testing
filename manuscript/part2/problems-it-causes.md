@@ -1,4 +1,4 @@
-# Problems it can cause {#problems-it-can-cause}
+# Problems acceptance testing can cause {#problems-it-can-cause}
 
 ## Communication crutch
 
@@ -18,6 +18,11 @@ The problem here was that each stage was accompanied with a hand off and a loss 
 
 The intention behind having defined steps is around breaking down communication barriers but examples like this show that we can misuse the formalism to reinforce existing barriers.
 
+
+
+## Technical over exposure
+
+The business know too much about the technology choices. It's really none of their business! [more]
 
 
 ## Cargo cult

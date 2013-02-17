@@ -1,4 +1,4 @@
-# Problems it tries to fix
+# Problems acceptance testing tries to fix
 
 ## Communication barriers
 

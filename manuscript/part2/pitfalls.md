@@ -1,8 +1,13 @@
 # Common pitfalls
 
-## Features hit production don't do what the customer wanted
+## Features hit production that customer wanted didn't want
+(collective understanding)
 
-## User's describe implementations not root problems
+
+
+## Users describe implementations not root problems
+
+(technical over exposure)
 
 Need to deconstruct.
 
@@ -14,12 +19,25 @@ The only real acceptance criteria is "is it making money?".
 
 
 
-## I can't tell how the system should behave (organisation)
+## Users can't tell how the system should behave
 
-## I can't tell if feature x is already implemented (organisation)
+(shared memory)
+
+
+
+## Users can't tell if feature x is already implemented
+
+
 
 ## Tests repeat steps from other tests as part of their scenario
 
-## My acceptance test suite takes forever to run
 
-## I get randomness in tests
+
+## The acceptance test suite takes forever to run
+
+
+
+## Intermittent failures in tests
+
+Randomness / flickering behaviour.
+

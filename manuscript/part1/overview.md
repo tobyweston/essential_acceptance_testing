@@ -1,4 +1,4 @@
-# Process Overview {#process-overview}
+# Typical Process Overview {#process-overview}
 
 ## The story delivery life cycle {#story-delivery-life-cycle}
 
@@ -70,9 +70,9 @@ D> Following the process outlined in this book would naturally lead to a degree 
 D>
 D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done right, they should form a accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
 
-![The typical story definition life cycle](images/StoryDeliveryLifecycle.png)
+![The typical story definition life cycle](images/missing.png)
 
-![A typical specification](images/AnatomyOfAnActiveSpec.png)
+![A typical specification](images/missing.png)
 
 ## Develop
 
