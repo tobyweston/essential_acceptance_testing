@@ -38,7 +38,7 @@ The only real acceptance criteria is "is it making money?".
 
 
 
-## Tests repeat steps from other tests as part of their scenario
+## Tests repeat themselves.
 
 
 
