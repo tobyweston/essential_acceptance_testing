@@ -6,6 +6,3 @@ part1/preamble.md
 part1/introduction.md
 
 backmatter:
-
-toc.md
-backmatter/asides.md
