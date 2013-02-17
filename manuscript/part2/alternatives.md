@@ -1,7 +1,7 @@
 
 # Alternatives (post acceptance tests)
 
-W> ## This section is not finished
+W> ## This section is not yet finished
 W>
 W> This section is not yet finished. It's a work in progress, a lean publishing effort. I try not to publish anything that's too sketchy but bear with me.
 W>

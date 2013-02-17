@@ -1,6 +1,6 @@
 # Examples
 
-W> ## This section is not finished
+W> ## This section is not yet finished
 W>
 W> This section is not yet finished. It's a work in progress, a lean publishing effort. I try not to publish anything that's too sketchy but bear with me.
 W>
@@ -55,11 +55,3 @@ This step is about committing acceptance criteria to some electronic form and ag
 
 
 ## Financial Application
-
-### Pick a story
-
-### Agree acceptance criteria
-
-### Develop functionality
-
-### Demonstrate and sign off
