@@ -1,8 +1,15 @@
 # Examples
 
+W> ## This section is not finished
+W>
+W> This section is not yet finished. It's a work in progress, a lean publishing effort. I try not to publish anything that's too sketchy but bear with me.
+W>
+W> Help set the direction, get involved and make suggestions via the [Leanpub page](https://leanpub.com/essential_acceptance_testing).
+W>
+
 ## Retail Website
 
-Story delivery life cycle.
+Remember the story delivery life cycle?
 
 1. Pick a story
 1. Agree acceptance criteria
@@ -13,17 +20,17 @@ Story delivery life cycle.
 
 From Amazon's early backlog;
 
-> User should see total prices for their basket.
+> Users should be able see total prices for their basket.
 
 ![Image here](missing.png)
 
 Perhaps "story" is too grand a title but typically, requirements will start life vague like this. Our first job is to add some specificity. In discussion with the business owner, developers and testers, focus on expanding the description to make any implications, explicit. This helps make scope more concrete.
 
-> As an Amazon customer, when I visit the checkout area, I see the items in my shopping basket along with a total price and delivery cost, so that I know how much I will be spending if I go on to purchase the items.
+> "As an Amazon customer, when I visit the checkout area, I would like to review the items in my shopping basket along with a total price and delivery cost, so that I know how much I will be spending if I go on to purchase the items."
 
 ![Image here](missing.png)
 
-I find forcing myself to use the phrase "so that" help me think about the context of the story. Why is it needed? What is the user hoping to achieve? I find this can help me tease out additional requirements that would otherwise go inferred.
+I find forcing myself to use the phrase "so that" helps me think about the context of the story. Why is it needed? What is the user hoping to achieve? I find this can help me tease out additional requirements that would otherwise go inferred.
 
 On the back of the card, we might capture some early thoughts about acceptance criteria, general comments and scope.
 
@@ -53,9 +60,7 @@ This step is about committing acceptance criteria to some electronic form and ag
 
 ## Financial Application
 
-Story delivery life cycle.
-
-1. Pick a story
-1. Agree acceptance criteria
-1. Develop functionality
-1. Demonstrate and sign off
+### Pick a story
+### Agree acceptance criteria
+### Develop functionality
+### Demonstrate and sign off

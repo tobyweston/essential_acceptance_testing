@@ -8,6 +8,7 @@ part1/overview.md
 part1/example.md
 
 part2/preamble.md
+unfinished.md
 part2/problems-it-fixes.md
 part2/problems-it-causes.md
 part2/pitfalls.md
