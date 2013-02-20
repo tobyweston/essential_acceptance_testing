@@ -1,4 +1,4 @@
-# Introduction
+# Introduction {#introduction}
 
 
 ## What's an Acceptance Test?
@@ -21,7 +21,7 @@ In [Agile Testing](http://amzn.to/WKDYkq), Lisa Crispin and Janet Gregory descri
 
 An important addendum to our definition then should be that acceptance tests don't have to be about just business behaviour, they can also be about broader system qualities such as non-functional requirements and usability. It's still about customer confidence.
 
-Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. Acceptance tests may or may not have anything to do with user stories. At least, in our definition, we're talking generally about system behaviour and brushing over the idea of stories describing behaviour. I don't think it's a prerequisite. Similarly, _business value_ is a tricky thing to quantify. We'll talk more about that later.
+Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. Acceptance tests may or may not have anything to do with user stories. At least, in our definition, we're talking generally about system behaviour and brushing over the idea that stories can describe behaviour. I don't think it's a prerequisite. Similarly, _business value_ is a tricky thing to quantify. We'll talk more about that later.
 
 
 
@@ -29,7 +29,9 @@ Unfortunately, Cripin's definition talks specifically about _stories_ and busine
 
 We'll often use the terms acceptance criteria and acceptance test interchangeably but I tend to think about them as distinct.
 
-Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as expected. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing the analysis for a story and are typically concerned with the business functionality. The implication here is that the business are best placed to define the first set of criteria.
+Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as expected. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing the analysis for a story and are typically concerned with the business functionality.
+
+The implication here is that the business are best placed to define the first set of criteria.
 
 Defining the criteria is a useful step in understanding a story. It helps us define the scope of the feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding of the story. Criteria should be implementation agnostic and written at a fairly high level. You'd then _implement_ the criteria in terms of one or more acceptance tests. A single criterion (for example, "the total basket value is displayed correctly") may require multiple examples to be provable (for example, what exactly does "correct" mean here?). That's where the implementation as executable acceptance _tests_ comes in.
 
@@ -47,7 +49,7 @@ Acceptance criteria _become_ exception tests. Attributes that describe acceptanc
 |Are demonstrable and provable  |Are demonstrable and provable  |
 |Require discussion             |Require discussion             |
 |Are agreed                     |Are agreed                     |
-|                               |Are executable                 |
+|                               |**Are executable**             |
 
 
 D>## Starting up the full stack {#starting-the-full-stack-aside}
@@ -68,7 +70,9 @@ He goes on to describe the typical template as something like
 
 > As a <type of user>, I want <some goal> so that <some reason>
 
-This is pretty much the accepted definition of a user story but I don't think it's the full story. In practice, teams settle on their own style of writing stories loosely based on this definition. Some stick to the style, others write abbreviated comments or even long hand. Some write stories on index cards, others write tasks or work items on post-its whilst others write up the background analysis in JIRA. Each team may use these to work out what to deliver and each may think of these as "stories". But to adhere to the spirit of the definition, a link to acceptance criteria needs to be established.
+This is pretty much the accepted definition of a user story but I don't think it's the full story. In practice, teams settle on their own style of writing stories loosely based on this definition. Some stick to the style, others write abbreviated comments or even write out requirements long hand. Some write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in JIRA. Each team may use these to work out what to deliver and each team may think of these as "stories".
+
+To adhere to the spirit of the definition, a link from story to acceptance criteria needs to be established.
 
 D> ## Tasks vs stories {#tasks-vs-stories-aside}
 D>
@@ -78,13 +82,13 @@ D> The team lead role can suffer from this a lot but keeping track of todo items
 
 Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to be define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to build, it's difficult to know when we've actually built it.
 
-Sticking to the letter of the definition above can lead to ambiguous requirements. We need to work a little harder. The spirit of the definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). Articulating the goal will likely take more that a single sentence on an index card. That's where defining acceptance criteria comes in.
+Sticking to the letter of the definition above can lead to ambiguous requirements. We need to work a little harder. The spirit of the definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). Articulating the goal will likely take more that a single sentence on an index card and that's where defining acceptance criteria comes in.
 
-Working from story definition through defining acceptance criteria to delivery is something David Peterson calls the [Story Delivery Life Cycle](#story-delivery-life-cycle). We'll look at that in the [process overview](#process-overview) section.
+Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story Delivery Life Cycle](#story-delivery-life-cycle). It underpins common agile processes and we'll take a look at it in the [process overview](#process-overview) section.
 
 D>## A new acceptance test per story? {#a-new-acceptance-test-per-story-aside}
 D>
-D> Another pitfall teams often fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which may duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously there is balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
+D> Another pitfall teams often fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which will duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously there is balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
 
 It's totally acceptable for a single acceptance test to demonstrate multiple stories. Acceptance tests should be revisited and leveraged when new stories are defined. When it comes to acceptance testing, duplicated test paths often lead to slower test runs. Designing your system and test infrastructure to be componentised also helps.  We'll look at this more in the [Port and Adapters](#ports-and-adapters) section.
 
@@ -94,15 +98,17 @@ It's totally acceptable for a single acceptance test to demonstrate multiple sto
 
 Showing the customer running code builds trust. When you can associate running code to individual customer stories during an iteration, it gives confidence that the team can deliver and deliver the right thing. If we keep talking to the business whilst developing the acceptance criteria, we stand a better change of discovering misunderstanding early and reduce the risk of critical failure.
 
-This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves a feature is working correctly. The customer may also want to refer back to passing tests, perhaps against a specific feature.
+This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves a feature is working correctly. The customer may also want to refer back to passing tests, perhaps to cross-reference a specific feature.
 
-Running your tests as part of your automated build and structuring the output in line with stories or iterations can help. It also forms a kind of 'live' system documentation. All the major specification testing frameworks offer strategies for achieving this and we'll talk specifically about Concordion in [Part 3](#part3).
+Running your tests as part of your automated build and structuring the output in line with stories or iterations can help. It also forms a kind of 'live' system documentation. The majority of specification testing frameworks offer strategies for achieving this and we'll talk specifically about [Concordion](http://concordion.org) in [Part 3](#part3).
 
 D>## Technical vs business language {#technical-vs-business-language-aside}
 D>
-D> It's a really good idea to aim for a ubiquitous language between development and the business. It helps make sure that when someone is talking about the noun _instrument_, the team have a collective understanding of what an instrument actually is (is it a violin or an equity derivative from the finance industry?). When it comes to setting acceptance criteria, the language should favour the business camp. Write in terms of _business goals_ and not _test scripts_.
+D> It's a really good idea to aim for a ubiquitous language between development and the business. It helps make sure that when someone is talking about something, the whole team have a collective understanding of what that _thing_ is. As a silly example, is an "instrument" a violin or an equity derivative from the finance industry?
 D>
-D> The business shouldn't care how a test is implemented behind the scenes. It should be shown to go green in the language _they_ understand. It may be that whilst building trust, developers have to explain what components are being exercised or even show data in it's raw form but ultimately, the code is none of the business's concern. I see far too many teams fall into this trap whereby the business try to influence test infrastructure or how to go about testing some feature. This is always down to trust. Work hard at building trust and avoid frustration.
+D> When it comes to setting acceptance criteria, the language should favour the business camp. Write in terms of _business goals_ and not _test scripts_. The business shouldn't care how a test is implemented behind the scenes. It should be shown to go green in the language _they_ understand.
+D>
+D> It may be that whilst building trust, developers have to explain what components are being exercised or even show data in it's raw form but ultimately, the code is none of the business's concern. I see far too many teams fall into the trap where the business try to influence test infrastructure or how to go about testing some feature. This is always down to trust. Work hard at building trust and avoid the frustration.
 
 
 ## Further reading

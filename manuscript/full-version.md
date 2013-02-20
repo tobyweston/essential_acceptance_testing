@@ -2,7 +2,7 @@
 
 The full version discusses the conventional acceptance testing strategies used by many agile teams today. In part 1, it describes generally accepted strategies, their motivations, pitfalls and techniques to maximise success. It talks about how testing influences design and how to avoid the common problem of too many tests and specification overload.
 
-If you want tips applying conventional acceptance testing strategies, part 1 can help you get started and avoid common mistakes. The {#introduction} section from part 1 is included in this sample.
+If you want tips applying conventional acceptance testing strategies, part 1 can help you get started and avoid common mistakes. The [introduction](#introduction) section from part 1 is included in this sample.
 
 In part 2, the book discusses why some of these techniques are fundamentally floored and tries to pose some difficult questions. Has acceptance testings techniques become dogma? Can stories really have business "value"? How can we test value? Can we run thousands of acceptance tests quickly?
 
@@ -10,7 +10,7 @@ If you're interested in what's beyond the canon, part 2 may get you thinking. In
 
 ## Full table of contents
 
-**Part 1 - The typical agile strategy**
+###Part 1 - The typical agile strategy
 
 **Introduction**
 
@@ -25,7 +25,7 @@ If you're interested in what's beyond the canon, part 2 may get you thinking. In
  - The story delivery life cycle
  - Examples
 
-**Part 2 - Discussion and alternatives**
+###Part 2 - Discussion and alternatives
 
 **Problems acceptance testing tries to fix**
 
