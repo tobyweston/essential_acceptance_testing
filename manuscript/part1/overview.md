@@ -39,27 +39,31 @@ D> It's common to physically write the story description on an index card. Teams
 ## Agree acceptance criteria
 
 A> ## Inputs and outputs {#agree-acceptance-criteria-inputs-outputs-aside}
-A> **Inputs**
-A> Story
+A> **Inputs:**
 A>
-A> **Outputs**
-A> List of examples and scenarios with expectations (the acceptance criteria)
-A> Agreement from everyone that these demonstrate desired functionality
-A> Additional documentation or context in whatever form is appropriate
+A> - Story
+A> - Additional communication
 A>
-A> **Avoid**
-A> Implementation details
+A> **Outputs:**
+A>
+A> - List of examples and scenarios with expectations (the acceptance criteria)
+A> - Agreement from everyone that these demonstrate desired functionality
+A> - Additional documentation or context in whatever form is appropriate
+A>
+A> **Avoid:**
+A>
+A> - Implementation details
 
 
 It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you'd typically formalise the acceptance criteria. Capture examples scenarios, edge cases and outcomes. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals.
 
 When you describe the high level business scenarios like this, you'll implicitly create a specification accessible to business and technical staff. You're not concerned with the details of how things will be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's required, the terminology and the business context.
 
-This is best done with the business or customer. Get together and make sure everyone has a common understanding of what's needed. You can attempt to define some acceptance criteria. Expect lots of discussion about the specifics and come up with concrete examples and scenarios. What questions if answered will convince the customer that the system is behaving as they specified?
+This is best done with the business or customer. Get together and make sure everyone has a common understanding of what's needed. Expect lots of discussion about the specifics and come up with concrete examples and scenarios. What questions, if answered, will convince the customer that the system is behaving as they specified?
 
 D> ## Do we need a meeting to agree acceptance criteria?
 D>
-D> You don't need a meeting to define acceptance criteria, in fact, its great if you can keep discussing and clarifying them as you need to. You may find it useful to have a kick-off meeting where you can discuss a story's background, context and goals.
+D> You don't need a meeting to define acceptance criteria, in fact, its great if you can keep discussing and clarifying them as you need to. You may find it useful however, to have a kick-off meeting where you can discuss a story's background, context and goals.
 D>
 D> Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the teams understanding of a story. To be most efficient, some analysis work should have already been undertaken.
 
@@ -68,10 +72,11 @@ Once you've written the criteria down, the next step is to formally agree them w
 Remember that all this is done before writing any production code.
 
 A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
-A> - Business analysis has been undertaken.
-A> - Developers understand the business background, context and goals for a story.
-A> - There is no ambiguity about business terms and everyone agrees on their definition.
-A> - Acceptance criteria have been discussed and documented.
+A> - Business analysis has been undertaken
+A> - Developers understand the business background, context and goals for a story
+A> - There is no ambiguity about business terms and everyone agrees on their definition
+A> - Acceptance criteria have been discussed and documented
+A> - Agreement from everyone on acceptance criteria
 
 D> ## Stickers as sign-off {#stickers-as-sign-off-aside}
 D>
@@ -87,14 +92,15 @@ D> Following the process outlined in this book would naturally lead to a degree 
 D>
 D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done right, they should form a accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
 
-![A typical specification](images/example_spec.png)
+![An example of acceptance criteria documented amd ready for agreement](images/example_spec.png)
 
-![The specification converted into a running acceptance test](images/example_spec_passing.png)
 
 
 ## Develop
 
+
+
 ## Demonstrate
 
 
-
+![  Acceptance criteria from above converted into a running acceptance test](images/example_spec_passing.png)
