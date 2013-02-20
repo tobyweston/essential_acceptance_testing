@@ -2,6 +2,7 @@ frontmatter:
 
 mainmatter:
 
+full-version.md
 part1/preamble.md
 part1/introduction.md
 
