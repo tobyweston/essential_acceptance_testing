@@ -3,25 +3,27 @@
 
 ## What's an Acceptance Test?
 
-Before we start, we should probably agree on some common definitions. Deciding on a definition of acceptance test can be contentious. Different people have different interpretations. So what _is_ an acceptance test?
+Before we start, we should probably agree on some common definitions. Deciding on a definition of acceptance test can be contentious. Different people have different interpretations. So what is an acceptance test?
 
 > An acceptance test is a set of _executable_ criteria, examples or specification that help the customer "accept" that the system behaves as they intend it to.
 
-What would help a customer "accept" a system works as expected? Some input and output to verify the behaviour of a running system. This could be a manual demo or something automated and repeatable. The important points are that the customer's criteria for acceptance have been recorded and verified against a running system.
+What would help a customer "accept" a system works as expected? What would inspire confidence? Perhaps some input and output to verify the behaviour of a running system? For example, a manual demo or automated test. The customer would likely want to influence these inputs and assert their expectations against the outputs. The important point here is that the customer's criteria for acceptance are recorded and verified against a running system.
 
-Documenting the runtime behaviour of a system is only half the story. The other half is deciding what that behaviour should be. Getting input from interested parties _before_ building out a component is vital in ensuring we build the _right_ component. Turns out that acceptance tests are a great vehicle for discussing amd formalising these requirements.
+Documenting the runtime behaviour of a system is only half the story. The other half is deciding what that behaviour should be. Getting input from interested parties _before_ building out a component is helpful in ensuring we build the _right_ component. Turns out that acceptance tests are a great vehicle for discussing amd formalising these requirements.
 
-Traditional definitions emphasize that acceptance tests should be customer authored. I tend to agree with this. If we write software that nobody wants, there's not much point in writing it. The customer can express their requirements in the form of acceptance criteria, a specification against which the system can be validated. Adding to our definition then would give us something like.
+Traditional definitions emphasize that acceptance tests should be customer authored. I tend to agree with this. If we write software that nobody wants, there's not much point in writing it. The customer can express their requirements in the form of acceptance criteria forming a specification against which the system can be validated. Adding to our definition then would give us something like.
 
 >  An acceptance test is a set of _executable_ criteria, examples or specification that help the customer "accept" that the system behaves as they intend it to. The test can be used to specify required behaviour _before_ implementing functionality and then validate the behaviour against the completed implementation.
 
-On reflection, that definitions is a little restrictive. In Agile Testing, Lisa Crispin and Janet Gregory describe acceptance tests as
+In [Agile Testing](http://amzn.to/WKDYkq), Lisa Crispin and Janet Gregory describe acceptance tests as
 
 > Tests that define the business value each story must deliver. They may verify functional requirements or nonfunctional requirements such as performance or reliability ... Acceptance test is a broad term that may include both business facing and technology facing tests.
 
-An important addendum to our definition then should be that acceptance tests don't have to be about just business behaviour, they can also be about broader system qualities such as non-functional requirements and usability.
+An important addendum to our definition then should be that acceptance tests don't have to be about just business behaviour, they can also be about broader system qualities such as non-functional requirements and usability. It's still about customer confidence.
 
-In the context of the typical agile acceptance testing strategy this chapter talks about though, our definition focuses on Crispin's second testing quadrant but acknowledges that they can also encompass quadrants three and four.
+Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. Acceptance tests may or may not have anything to do with user stories. At least, in our definition, we're talking generally about system behaviour and brushing over the idea of stories describing behaviour. I don't think it's a prerequisite. Similarly, _business value_ is a tricky thing to quantify. We'll talk more about that later.
+
+
 
 ## Acceptance Criteria vs Acceptance Tests
 
