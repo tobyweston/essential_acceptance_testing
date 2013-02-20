@@ -11,16 +11,23 @@ W>
 
 A typical agile process used by many teams today revolves around the following steps.
 
-1. Pick a story
-1. Agree acceptance criteria
-1. Develop functionality
-1. Demonstrate and sign off
-1. Repeat
+|------------------------------|
+|1. Pick a story               |
+|1. Agree acceptance criteria  |
+|1. Develop functionality      |
+|1. Demonstrate and sign off   |
+|1. Repeat                     |
+|
 
 ![The story definition life cycle](images/story_lifecycle.png)
 
-
 ## Pick a story
+
+Picking the next story to play should just be about taking the next highest priority story from the option list. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals. In the corporate environment, this is typically business analysts working out candidate features for a given project.
+
+It would typically fall to iteration planning of a Scrum-like process to move a set of stories from the backlog to the planned iteration. The team would then attempt to deliver these stories. In a Kanban process, the backlog becomes the pool of candidate stories to draw from at any given time. They create the input queue for development activities (such as agree acceptance criteria). In both cases, it helps if when picking up a story to work on, there is a good understanding of the business objective it realises. In other words, what's the _real value_ this story would deliver.
+
+The next step is to nail this down as acceptance criteria.
 
 D> ## What's a Story? {#whats-a-story-aside}
 D>
@@ -46,7 +53,7 @@ A> Implementation details
 
 It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you'd typically formalise the acceptance criteria. Capture examples scenarios, edge cases and outcomes. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals.
 
-When you describe the high level business scenarios like this, you'll implicitly create a _specification_ accessible to business and technical staff. You're not concerned with the details of how things will be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's required, the terminology and the business context.
+When you describe the high level business scenarios like this, you'll implicitly create a specification accessible to business and technical staff. You're not concerned with the details of how things will be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's required, the terminology and the business context.
 
 This is best done with the business or customer. Get together and make sure everyone has a common understanding of what's needed. You can attempt to define some acceptance criteria. Expect lots of discussion about the specifics and come up with concrete examples and scenarios. What questions if answered will convince the customer that the system is behaving as they specified?
 
