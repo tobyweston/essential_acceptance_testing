@@ -30,6 +30,14 @@ Writing acceptance criteria down in the form of tests isn't the only tool availa
 
 
 
+## Blurring of "what" from "how"
+
+This is really making the point that it's the "what" that's important and not the "how". At least, when it comes to the business goals (which are more than likely to include making money), focusing on the goal is very different than focusing on the details of how to achieve it. If these ideas are blurred, all kinds of problems can arise. It can be as simple as empowering the best placed people.
+
+Acceptance testing, at least in principle, aims to help separate goals from implementation. Goals are defined as acceptance criteria and the development team are left to implement and prove that the criteria have been met. In practice, technology choice can undermine this aspiration. For example, if a testing technology exposes too much detail about the system design or criteria are written in technical terms (rather than business terms), the business will acclimatise in the detail and may miss the high level objectives. Defining technical stories (with little real value) is another example.
+
+
+
 ## Ambiguous language
 
 Often customers and developers have their own language for things. When there's ambiguity in terminology, misunderstanding or confusion is bound to arise.
