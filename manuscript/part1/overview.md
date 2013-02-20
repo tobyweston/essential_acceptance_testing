@@ -11,6 +11,7 @@ W>
 
 A typical agile process used by many teams today revolves around the following steps.
 
+| Story definition life cycle  |
 |------------------------------|
 |1. Pick a story               |
 |1. Agree acceptance criteria  |
@@ -23,9 +24,9 @@ A typical agile process used by many teams today revolves around the following s
 
 ## Pick a story
 
-Picking the next story to play should just be about taking the next highest priority story from the option list. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals. In the corporate environment, this is typically business analysts working out candidate features for a given project.
+Picking the next story to play should just be about taking the next highest priority story from the list of options. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals. In the corporate environment, this is typically business analysts working out candidate features for a given project.
 
-It would typically fall to iteration planning of a Scrum-like process to move a set of stories from the backlog to the planned iteration. The team would then attempt to deliver these stories. In a Kanban process, the backlog becomes the pool of candidate stories to draw from at any given time. They create the input queue for development activities (such as agree acceptance criteria). In both cases, it helps if when picking up a story to work on, there is a good understanding of the business objective it realises. In other words, what's the _real value_ this story would deliver.
+It would typically fall to iteration planning of a Scrum-like process to move a set of stories from the backlog to the planned iteration. The team would then attempt to deliver these stories. In a Kanban-like process, the backlog becomes the pool of candidate stories to draw from at any given time. They create the input queue for development activities (such as agree acceptance criteria). In both cases, it helps if when picking up a story to work on, there is a good understanding of the business objective it realises. In other words, what's the _real value_ this story would deliver.
 
 The next step is to nail this down as acceptance criteria.
 
@@ -92,13 +93,22 @@ D> Following the process outlined in this book would naturally lead to a degree 
 D>
 D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done right, they should form a accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
 
-![An example of acceptance criteria documented amd ready for agreement](images/example_spec.png)
+![An example of acceptance criteria documented and ready for agreement](images/example_spec.png)
 
 
 
 ## Develop
 
-As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase.
+As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase. It may be that tests are written early in the development phase, before any real work has gone on where they'll fail until the story is completed. Or, it may be that the majority of development is undertaken before work on the acceptance test work starts.
+
+Which approach you choose has interesting influences on developer testing. For example, if the coarse grained acceptance test is left until the end, there's more room to focus on unit tests and adopt a Test Driven Design approach. TDD in this sense can be used as a _design aid_. When implementing the acceptance test, there's very little still left unknown. It's a bit like test-confirm where you back fill the details to get a green test.
+
+When developer's start with failing acceptance tests, the focus shifts a little. Acceptance tests can be used to drive out coarse grained behaviour like unit tests drive out local design choices. The tests themselves may change more frequently with more discussion with the customer taking place. The emphasis is on requirements (the story) and in this sense, the tests become more of a _requirements aid_. This Acceptance Test Driven Design approach puts acceptance tests in the position that TDD puts unit tests; at the beginning.
+
+There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of sufficient here is really down to the business. If it's unlikely that edge cases that unit tests would have covered will materialise and if the cost of fixing these in production is low, then why bother? Especially, if this upfront cost affects the time to delivery aka time to pay day.
+
+Which approach you choose is down to your own experience and team make up. Sometimes, the two approaches compliment each other, other times they get in each others way and duplicate effort. Judicious testing takes practice.
+
 
 
 ## Demonstrate
