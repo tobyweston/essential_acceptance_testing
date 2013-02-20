@@ -6,6 +6,7 @@ part1/preamble.md
 part1/introduction.md
 part1/overview.md
 part1/example.md
+part1/design.md
 
 part2/preamble.md
 unfinished.md
