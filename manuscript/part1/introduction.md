@@ -21,7 +21,15 @@ In [Agile Testing](http://amzn.to/WKDYkq), Lisa Crispin and Janet Gregory descri
 
 An important addendum to our definition then should be that acceptance tests don't have to be about just business behaviour, they can also be about broader system qualities such as non-functional requirements and usability. It's still about customer confidence.
 
-Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. Acceptance tests may or may not have anything to do with user stories. At least, in our definition, we're talking generally about system behaviour and brushing over the idea that stories can describe behaviour. I don't think it's a prerequisite. Similarly, _business value_ is a tricky thing to quantify. We'll talk more about that later.
+Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. Acceptance tests may or may not have anything to do with user stories. At least, in our definition, we're talking generally about system behaviour and brushing over the idea that stories can describe behaviour. I don't think that's a prerequisite. Similarly, _business value_ is a tricky thing to quantify. We'll talk more about that later.
+
+D> ##Specification by example {#specification-by-example-aside}
+D>
+D> Specification by example is a way to describe your requirements using realistic examples. Rather than trying to express requirements through abstract statements, you'd typically describe the context in english and follow it with example scenarios which when executed would hold true for a system implementing the requirements correctly.
+D>
+D> Following the process outlined in this book would naturally lead to a degree of specification by example. Don't get hung up on the term, I see it as just a useful label for the way we might naturally express requirements. If it's useful to think up examples to get your point across, go for it.
+D>
+D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done right, they should form a accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
 
 
 
