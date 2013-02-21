@@ -29,7 +29,7 @@ The intention behind having defined steps is around breaking down communication 
 
 ## Technical over exposure
 
-The business know too much about the technology choices. It's really none of their business! [more]
+If we're not careful, the business can end up knowing too much about the technology choices. It's really none of their concern. [more to come]
 
 
 ## Cargo cult
@@ -57,4 +57,4 @@ Defining business "value" suffers from a kind of construct validity. Are the thi
 
 ## Artificial constraints
 
-
+We have to be careful not to constrain ourselves artificially. The given/when/then pattern advocated by BDD for example encourages a certain way to frame our thought process. This isn't always appropriate and we should avoid falling into assuming it is. At the heart of agile principles is the idea to adapt, we should always be mindful of this and continually review process. [more to come]
