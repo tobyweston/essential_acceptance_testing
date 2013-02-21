@@ -1,0 +1,5 @@
+# Publishing notes
+
+| Version     | Notes                                                   |
+|-------------|---------------------------------------------------------|
+| 2013-02-17  | First published edition                                 |

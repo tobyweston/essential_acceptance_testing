@@ -1,4 +1,5 @@
 frontmatter:
+frontmatter/release.md
 
 mainmatter:
 
