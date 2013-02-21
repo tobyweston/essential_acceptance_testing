@@ -22,6 +22,8 @@ A typical agile process used by many teams today revolves around the following s
 
 ![The story definition life cycle](images/story_lifecycle.png)
 
+
+
 ## Pick a story
 
 Picking the next story to play should be as simply as taking the next highest priority story from the list of options. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals. In the corporate environment, this is typically business analysts working out candidate features for a given project.
@@ -72,6 +74,9 @@ Once you've written the criteria down, the next step is to formally agree them w
 
 Remember that all this is done before writing any production code.
 
+![An example of acceptance criteria documented and ready to be agreed agreement](images/example_spec.png)
+
+
 A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
 A> - Business analysis has been undertaken
 A> - Developers understand the business background, context and goals for a story
@@ -79,23 +84,38 @@ A> - There is no ambiguity about business terms and everyone agrees on their def
 A> - Acceptance criteria have been discussed and documented
 A> - Agreement has been reached on the acceptance criteria
 
-D> ## Stickers as sign-off {#stickers-as-sign-off-aside}
-D>
-D> A great technique to visualise progress of a story is to use stickers to represent agreement or sign-off at the various stages. For example, when a business analyst agrees to the acceptance criteria, a story's index card might get a green sticker. When a testers agrees, a blue sticker and when developers agree, a yellow one. You can have as many stickers as you like or you could use columns on your board instead.
-D>
-D> The whole purpose of the define, agree, develop, demo cycle is to spot problems early and adjust. In that spirit, it makes sense to prevent progress to the next step until previous steps have be completed. For example, don't start development until you have the full set of stickers. If this causes delays and 'blocked' work, missing stickers can help highlight where the bottleneck lies.
-
-![An example of acceptance criteria documented and ready for agreement](images/example_spec.png)
-
-
 
 ## Develop
+
+A> ## Inputs and outputs {#develop-inputs-outputs-aside}
+A> **Inputs:**
+A>
+A> - Story and context
+A> - Agreed acceptance criteria
+A>
+A> **Outputs:**
+A>
+A> - Implemented story functionality (deployable)
+A> - Acceptance tests (converted from acceptance criteria)
+A>
+A> **Avoid:**
+A>
+A> - Implementing anything unrelated to the story
+
 
 As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase. It may be that tests are written early in the development phase, before any real work has gone on where they'll fail until the story is completed. Or, it may be that the majority of development is undertaken before work on the acceptance test work starts.
 
 Which approach you choose has interesting influences on developer testing. For example, if the coarse grained acceptance test is left until the end, there's more room to focus on unit tests and adopt a Test Driven Design (TDD) approach. TDD in this sense can be used as a _design aid_. When implementing the acceptance test, there's very little still left unknown. It's a bit like test-confirm where you back fill the details to get a green test.
 
 When developer's start with failing acceptance tests, the focus shifts a little. Acceptance tests can be used to drive out coarse grained behaviour like unit tests drive out local design choices. The tests themselves may change more frequently with more discussion with the customer taking place. The emphasis is on requirements (the story) and in this sense, the tests become more of a _requirements aid_. This Acceptance Test Driven Design approach puts acceptance tests in the position that TDD puts unit tests; at the beginning.
+
+
+D> ## Stickers as sign-off {#stickers-as-sign-off-aside}
+D>
+D> A great technique to visualise progress of a story is to use stickers to represent agreement or sign-off at the various stages. For example, when a business analyst agrees to the acceptance criteria, a story's index card might get a green sticker. When a testers agrees, a blue sticker and when developers agree, a yellow one. You can have as many stickers as you like or you could use columns on your board instead.
+D>
+D> The whole purpose of the define, agree, develop, demo cycle is to spot problems early and adjust. In that spirit, it makes sense to prevent progress to the next step until previous steps have be completed. For example, don't start development until you have the full set of stickers. If this causes delays and 'blocked' work, missing stickers can help highlight where the bottleneck lies.
+
 
 There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of sufficient here is really down to the business. If it's unlikely that edge cases unit tests would have covered will actually materialise and if the cost of fixing these in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery aka time to pay day. To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests.
 
