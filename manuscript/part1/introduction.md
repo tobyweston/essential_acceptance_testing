@@ -29,7 +29,7 @@ D> Specification by example is a way to describe your requirements using realist
 D>
 D> Following the process outlined in this book would naturally lead to a degree of specification by example. Don't get hung up on the term, I see it as just a useful label for the way we might naturally express requirements. If it's useful to think up examples to get your point across, go for it.
 D>
-D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done right, they should form a accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
+D> Balancing enough scenarios to cover functionality without repeating yourself is key. When done right, they should form an accessible record of how the system behaves. We'll look at some examples using Concordion in [Part 3](#part3)
 
 
 
@@ -47,7 +47,7 @@ An acceptance test is the physical test artifact to be executed. It may be a tes
 
 [^test-test]: any test written in the language of choice, typically using a unit testing framework or similar. It could be a Java test to run in JUnit, a piece of JavaScript to run with Jasmine, Ruby and RSpec, C# and NUnit or just a main method. Calling them _unit_ tests would be clumsy but you'd get the idea.
 
-Acceptance criteria _become_ exception tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_. Executing acceptances tests assert that the acceptance criteria have been met.
+Acceptance criteria _become_ acceptance tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_. Executing acceptances tests assert that the acceptance criteria have been met.
 
 {title="Attributes of acceptance criteria and tests"}
 | Acceptance Criteria           | Acceptance Tests              |
@@ -88,15 +88,15 @@ D> It's easy to get confused with the difference between tasks and stories. It's
 D>
 D> The team lead role can suffer from this a lot but keeping track of todo items needn't muddy the waters when it comes to planning the story delivery of the team. It's important to realise that tasks or todo items fit more appropriately under project or team management and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
 
-Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to be define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to build, it's difficult to know when we've actually built it.
+Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to build, it's difficult to know when we've actually built it.
 
-Sticking to the letter of the definition above can lead to ambiguous requirements. We need to work a little harder. The spirit of the definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). Articulating the goal will likely take more that a single sentence on an index card and that's where defining acceptance criteria comes in.
+Sticking to the letter of the definition above can lead to ambiguous requirements. We need to work a little harder. The spirit of the definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). Articulating the goal will likely take more than a single sentence on an index card and that's where defining acceptance criteria comes in.
 
 Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story Delivery Life Cycle](#story-delivery-life-cycle). It underpins common agile processes and we'll take a look at it in the [process overview](#process-overview) section.
 
 D>## A new acceptance test per story? {#a-new-acceptance-test-per-story-aside}
 D>
-D> Another pitfall teams often fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which will duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously there is balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
+D> Another pitfall teams often fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which will duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously, there is a balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
 
 It's totally acceptable for a single acceptance test to demonstrate multiple stories. Acceptance tests should be revisited and leveraged when new stories are defined. When it comes to acceptance testing, duplicated test paths often lead to slower test runs. Designing your system and test infrastructure to be componentised also helps.  We'll look at this more in the [Port and Adapters](#ports-and-adapters) section.
 
@@ -104,7 +104,7 @@ It's totally acceptable for a single acceptance test to demonstrate multiple sto
 
 ## Confidence and Trust
 
-Showing the customer running code builds trust. When you can associate running code to individual customer stories during an iteration, it gives confidence that the team can deliver and deliver the right thing. If we keep talking to the business whilst developing the acceptance criteria, we stand a better change of discovering misunderstanding early and reduce the risk of critical failure.
+Showing the customer running code builds trust. When you can associate running code to individual customer stories during an iteration, it gives confidence that the team can deliver and deliver the right thing. If we keep talking to the business whilst developing the acceptance criteria, we stand a better chance of discovering misunderstanding early and reduce the risk of critical failure.
 
 This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves a feature is working correctly. The customer may also want to refer back to passing tests, perhaps to cross-reference a specific feature.
 
