@@ -1,12 +1,5 @@
 # Typical Process Overview {#process-overview}
 
-W> ## This section is not yet finished
-W>
-W> This section is not yet finished. It's a work in progress, a lean publishing effort. I try not to publish anything that's too sketchy but bear with me.
-W>
-W> Help set the direction, get involved and make suggestions via the [Leanpub page](https://leanpub.com/essential_acceptance_testing).
-W>
-
 ## The story delivery life cycle {#story-delivery-life-cycle}
 
 A typical agile process used by many teams today revolves around the following steps.
@@ -133,13 +126,13 @@ After the demo, if everyone agrees the implementation does what's expected, the 
 
 You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivery value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
 
-![Acceptance criteria from above converted into a running acceptance test](images/example_spec_passing.png)
+![Acceptance criteria from above converted into a running acceptance test; an example of something you might demo](images/example_spec_passing.png)
 
 
 ### A note on manual testing
 
-If you're lucky, there's plenty of staff on hand willing to perform some exploratory testing. This doesn't have to wait until the end of an iteration, it can start as soon as a story is stable enough to test. Usually this would be when the story is finished and acceptance tests are passing. It's useful to have a stable deployment environment for this.
+If you're lucky, there's plenty of people on hand willing to perform some exploratory testing. This doesn't have to wait until the end of an iteration, it can start as soon as a story is stable enough to test. Usually this would be when the story is finished and acceptance tests are passing. It's useful to have a stable deployment environment for this.
 
-Acceptance testing doesn't negate the need for manual, exploratory style testing. Lisa Crispin calls this kind of testing critiquing the product. Some product critique can be achieved using acceptance testing whilst others require a more manual approach or specialist tools. We'll look more at this later when we talk about Brian Marick's testing matrix and Lisa Crispin's elaboration of it.
+Acceptance testing doesn't negate the need for manual, exploratory style testing. Lisa Crispin calls this kind of testing critiquing the product. Some product critique can be achieved using acceptance testing whilst others require a more manual approach or specialist tools. We'll look more at this later when we talk about Brian Marick's testing matrix and Crispin's elaboration.
 
-To some degree, acceptance test suites can cover the need for regression testing. That is to say that they can show that the specifications havn't changed over time.
+To some degree, acceptance test suites address the need for regression testing. That is to say that they can show that the specifications haven't changed over time.
