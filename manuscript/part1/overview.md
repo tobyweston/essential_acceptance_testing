@@ -4,7 +4,7 @@
 
 A typical agile process used by many teams today revolves around the following steps.
 
-| Story definition life cycle   |
+| Story delivery life cycle     |
 |-------------------------------|
 | 1. Pick a story               |
 | 2. Agree acceptance criteria  |
@@ -13,7 +13,7 @@ A typical agile process used by many teams today revolves around the following s
 | 5. Repeat                     |
 
 
-![The story definition life cycle](images/story_lifecycle.png)
+![The story delivery life cycle](images/story_lifecycle.png)
 
 
 
@@ -23,7 +23,7 @@ Picking the next story to play should be as simple as taking the next highest pr
 
 D> ## What's a Story? {#whats-a-story-aside}
 D>
-D> There is often some debate about the definition of a story. For the purpose of this discussion, lets assume that a story is just a way to decompose the requirements into achievable chunks that, if implemented, would add _business value_.
+D> There is often some debate about the definition of the term "story". For the purpose of this discussion, lets assume that a story is just a way to decompose the requirements into achievable chunks that, if implemented, would add _business value_.
 D>
 D> It's common to physically write the story description on an index card. Teams might then use this as a token on the team's project board to visualise it's life, moving from left to right to indicate progress.
 
@@ -120,11 +120,11 @@ Your team's experiences and preferences will influence which approach you choose
 
 ## Demonstrate
 
-This step is about proving to customers that their requirements have been realised. It's about giving them confidence. You can do this in whatever way works best. A common approach is to run through a demo and go through the passing acceptance tests huddled around a desk.
+This step is about proving to customers that their requirements have been realised. It's about giving them confidence. You can do this in whatever way works best for your team. A common approach is to run through a manual demo and walk through the passing acceptance tests huddled around a desk or with a projector.
 
 After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the life cycle again with the next story. If everyone doesn't agree or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
 
-You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivery value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
+You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivering value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
 
 ![Acceptance criteria from above converted into a running acceptance test; an example of something you might demo](images/example_spec_passing.png)
 
