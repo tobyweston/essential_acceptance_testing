@@ -32,7 +32,7 @@ Stories can be a necessary ceremony to overcome other system constraints or dysf
 
 
 
-## How does agile acceptance testing differ from conventional style UAT?
+## How does agile acceptance testing differ from conventional UAT?
 
 > "It would interesting to know how Agile Acceptance testing is different from traditional user acceptance testing in Waterfall model."
 

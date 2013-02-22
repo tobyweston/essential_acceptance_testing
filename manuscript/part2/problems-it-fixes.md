@@ -2,7 +2,7 @@
 
 ## Communication barriers
 
-The typical process described in [part 1](#part1) can be useful in encouraging communication. There's a formal vehicle (the acceptance test artifacts) that should be authored and agreed and it puts checkpoints in place to emphasise the agreement (see the [stickers as sign-off](#stickers-as-sign-off-aside) aside).
+The typical process described in [part 1](#part1) can be useful in encouraging communication. There's a formal vehicle (the acceptance test artifacts) that must be created and agreed and it puts checkpoints in place to emphasise the agreement (see the [stickers as sign-off](#stickers-as-sign-off-aside) aside).
 
 It doesn't mean that the story delivery life cycle is a substitute for spontaneous and continued communication. It can be tempting to lean on formal mechanisms like this as the _only_ communication mechanism but this can lead to its own problems (discussed in the [problems section](#problems-it-can-cause)).
 
@@ -42,9 +42,9 @@ Acceptance testing, at least in principle, aims to help separate goals from impl
 
 Often customers and developers have their own language for things. When there's ambiguity in terminology, misunderstanding or confusion is bound to arise.
 
-For example, in finance the noun _trade_ can mean very different things to different departments. The direction of a transaction, _buy_ or _sell_ can be inverted depending on what side of the fence you sit on. Getting this right in your system is obviously going to be important.
+For example, in finance, the noun _trade_ can mean very different things to different departments. The direction of a transaction, _buy_ or _sell_ can be inverted depending on what side of the fence you sit on. Getting this right in your system is obviously going to be important.
 
-Not assuming anything and defining terms clearly in acceptance tests can be a good way to ensure some consistency. This takes discipline though and relies on people bringing up inconsistent use of terminology as it happens. The formalism of terminology in an acceptance test artifact aims to solidify their definition.
+Not assuming anything and defining terms clearly in acceptance tests can be a good way to ensure some consistency. This takes discipline though and relies on people bringing up inconsistent use of terminology as it happens. The agreed use of terminology formalised in an acceptance test artifact aims to solidify their definition.
 
 The spirit here is to strive for a ubiquitous language.
 
