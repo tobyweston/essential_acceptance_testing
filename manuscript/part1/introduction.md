@@ -1,7 +1,7 @@
 # Introduction {#introduction}
 
 
-## What's an Acceptance Test?
+## What's an acceptance test?
 
 Before we start, we should probably agree on some common definitions. Deciding on a definition of acceptance test can be contentious. Different people have different interpretations. So what is an acceptance test?
 
@@ -33,7 +33,7 @@ D> Balancing enough scenarios to cover functionality without repeating yourself 
 
 
 
-## Acceptance Criteria vs Acceptance Tests
+## Acceptance criteria vs acceptance tests
 
 We'll often use the terms acceptance criteria and acceptance test interchangeably but I tend to think about them as distinct.
 
@@ -102,7 +102,7 @@ It's totally acceptable for a single acceptance test to demonstrate multiple sto
 
 
 
-## Confidence and Trust
+## Confidence and trust
 
 Showing the customer running code builds trust. When you can associate running code to individual customer stories during an iteration, it gives confidence that the team can deliver and deliver the right thing. If we keep talking to the business whilst developing the acceptance criteria, we stand a better chance of discovering misunderstanding early and reduce the risk of critical failure.
 
