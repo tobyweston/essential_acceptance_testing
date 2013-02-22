@@ -26,17 +26,18 @@ A typical agile process used by many teams today revolves around the following s
 
 ## Pick a story
 
-Picking the next story to play should be as simply as taking the next highest priority story from the list of options. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals. In the corporate environment, this is typically business analysts working out candidate features for a given project.
-
-It would usually fall to the iteration planning of a Scrum-like process to move a set of stories from the backlog to the planned iteration. The team would then attempt to deliver these stories. In a Kanban-like process, the backlog becomes the pool of candidate stories that are drawn from at any given time; it becomes the input queue for subsequent activities (such as agreeing acceptance criteria). In both cases, it helps if when picking up a story to work on, there is a good understanding of the business objective it realises. In other words, what's the _real value_ this story would deliver.
-
-The next step is to nail this down as acceptance criteria.
+Picking the next story to play should be as simple as taking the next highest priority story from the list of options. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals (cash). In the corporate environment, this is typically business analysts working out candidate features for a given project.
 
 D> ## What's a Story? {#whats-a-story-aside}
 D>
 D> There is often some debate about the definition of a story. For the purpose of this discussion, lets assume that a story is just a way to decompose the requirements into achievable chunks that, if implemented, would add _business value_.
 D>
 D> It's common to physically write the story description on an index card. Teams might then use this as a token on the team's project board to visualise it's life, moving from left to right to indicate progress.
+
+It would usually fall to the iteration planning of a Scrum-like process to move a set of stories from the backlog to the planned iteration. The team would then attempt to deliver these stories when starting the iteration. In a Kanban-like process, the backlog becomes the pool of candidate stories that are drawn from at any given time; it becomes the input queue for subsequent activities (such as agreeing acceptance criteria). In both cases, it helps if when picking up a story to work on, there is a good understanding of the business objective it realises. In other words, what's the _real value_ this story would deliver.
+
+The next step is to nail this down as acceptance criteria.
+
 
 
 ## Agree acceptance criteria
@@ -58,7 +59,7 @@ A>
 A> - Implementation details
 
 
-It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you can formalise the acceptance criteria. Capture examples scenarios, edge cases and outcomes. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals.
+It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you can formalise the acceptance criteria. Capture example scenarios, edge cases and outcomes. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals. When you can prove these have been met, you know the story is done.
 
 When you describe the high level business scenarios like this, you implicitly create a specification accessible to business and technical staff. You're not concerned with the details of how things will be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's expected, the terminology and the business context.
 
@@ -70,14 +71,15 @@ D> No. You don't need a meeting to define acceptance criteria, in fact, its grea
 D>
 D> Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the teams understanding of a story. To be most efficient, some analysis work should have already been undertaken.
 
-Once you've written the criteria down, the next step is to formally agree them with interested parties. We'll brush over how best to physically record the criteria but we'd aim to have them in a format that will help us later when we come to convert them into executable tests. For arguments sake, you might record these on a Wiki, HTML pages stored with the source code or just on the back of the story card. The point is that after this step, everyone involved has agreed that the list of criteria is a reasonable effort at documenting the intent. It's not set in stone but it captures the current understanding.
+Once you've written the criteria down, the next step is to formally agree them with interested parties. We'll brush over how best to physically record the criteria but aim to have them in a format that will help you later when it comes to converting them into executable tests. For arguments sake, you might record these on a Wiki, HTML pages stored with the source code or just on the back of the story card. The point is that after this step, everyone involved has agreed that the list of criteria is a reasonable effort at documenting the intent. It's not set in stone but it captures the current understanding.
 
 Remember that all this is done before writing any production code.
 
-![An example of acceptance criteria documented and ready to be agreed agreement](images/example_spec.png)
+![An example of acceptance criteria documented and ready to be agreed agreement. It's loaded with domain specific terminology that also should be agreed](images/example_spec.png)
 
 
 A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
+A> Tick off these items as you go through the agree acceptance criteria phase.
 A> - Business analysis has been undertaken
 A> - Developers understand the business background, context and goals for a story
 A> - There is no ambiguity about business terms and everyone agrees on their definition
@@ -103,11 +105,11 @@ A>
 A> - Implementing anything unrelated to the story
 
 
-As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase. It may be that tests are written early in the development phase, before any real work has gone on where they'll fail until the story is completed. Or, it may be that the majority of development is undertaken before work on the acceptance test work starts.
+As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase. It may be that tests are written early in the development phase, before any real work has gone on and they'll continue fail until the story is completed. Or, it may be that the majority of development is undertaken before work on implementing the acceptance tests start.
 
-Which approach you choose has interesting influences on developer testing. For example, if the coarse grained acceptance test is left until the end, there's more room to focus on unit tests and adopt a Test Driven Design (TDD) approach. TDD in this sense can be used as a _design aid_. When implementing the acceptance test, there's very little still left unknown. It's a bit like test-confirm where you back fill the details to get a green test.
+Which approach you choose has interesting influences on developer testing. For example, if the coarse grained acceptance test is left until the end, there's more scope to focus on unit tests and adopt a TDD approach. TDD in this sense can be used as a _design aid_. When it comes to implementing the acceptance test, there'll be very little left unknown. It can be a bit like test-confirm where you back fill the details to get a green test.
 
-When developer's start with failing acceptance tests, the focus shifts a little. Acceptance tests can be used to drive out coarse grained behaviour like unit tests drive out local design choices. The tests themselves may change more frequently with more discussion with the customer taking place. The emphasis is on requirements (the story) and in this sense, the tests become more of a _requirements aid_. This Acceptance Test Driven Design approach puts acceptance tests in the position that TDD puts unit tests; at the beginning.
+When developer's start with failing acceptance tests, the focus shifts a little. Acceptance tests can be used to drive out coarse grained behaviour like unit tests drive out local design choices. The tests themselves may change more frequently with more discussion with the customer taking place. The emphasis is on requirements (the story) and in this sense, the tests become more of a _requirements aid_. This ATDD approach puts acceptance tests in the position that TDD puts unit tests in; at the beginning.
 
 
 D> ## Stickers as sign-off {#stickers-as-sign-off-aside}
@@ -117,15 +119,19 @@ D>
 D> The whole purpose of the define, agree, develop, demo cycle is to spot problems early and adjust. In that spirit, it makes sense to prevent progress to the next step until previous steps have be completed. For example, don't start development until you have the full set of stickers. If this causes delays and 'blocked' work, missing stickers can help highlight where the bottleneck lies.
 
 
-There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of sufficient here is really down to the business. If it's unlikely that edge cases unit tests would have covered will actually materialise and if the cost of fixing these in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery aka time to pay day. To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests.
+There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of "sufficient" here is really down to the business. If the edge cases that unit tests would have picked up are unlikely ever to materialise and if the cost of fixing these once in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery (time to pay day). To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests. Acceptance tests have monetary value, unit tests have strategic value.
 
-Which approach you choose is down to your own experience and team make up. Sometimes, the two approaches compliment each other, other times they get in each others way and duplicate effort. Judicious testing takes practice.
+Your team's experiences and preferences will influence which approach you choose. Sometimes, the two compliment each other, other times they get in each others way and duplicate effort. Judicious testing takes practice.
 
 
 
 ## Demonstrate
 
 This step is about proving to customers that their requirements have been realised. It's about giving them confidence. You can do this in whatever way works best. A common approach is to run through a demo and go through the passing acceptance tests huddled around a desk.
+
+After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the life cycle again with the next story. If everyone doesn't agree or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
+
+You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivery value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
 
 ![Acceptance criteria from above converted into a running acceptance test](images/example_spec_passing.png)
 
