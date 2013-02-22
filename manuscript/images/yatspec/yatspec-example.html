@@ -228,20 +228,20 @@ dl.index-result {
 </head>
 <body>
 
-<h1>Reverse convertible coupon swap acceptance</h1>
+<h1>Reverse convertible coupon swap acceptance test</h1>
 
 <div class="contents">
     <h2>Contents</h2>
 
     <ul class="contents">
 
-            <li class='test-passed'><a href="#reverseConvertibleSwapIsEnriched">Reverse convertible swap is enriched</a></li>
+            <li class='test-passed'>Scenario 1: <a href="#reverseConvertibleSwapIsEnriched">Reverse convertible swap is enriched</a></li>
         
-            <li class='test-passed'><a href="#swapCanBeMappedToTradeGatewayPayload">Swap can be mapped to risk system payload</a></li>
+            <li class='test-passed'>Scenario 2: <a href="#swapCanBeMappedToTradeGatewayPayload">Swap can be mapped to risk system XML payload</a></li>
         
-            <li class='test-passed'><a href="#reverseConvertibleIssuedByLondonBranch">Reverse convertible issued by london branch</a></li>
+            <li class='test-passed'>Scenario 3: <a href="#reverseConvertibleIssuedByLondonBranch">Reverse convertible issued by london branch</a></li>
         
-            <li class='test-passed'><a href="#reverseConvertibleIssuedByInternationalBranch">Reverse convertible issued by international branch</a></li>
+            <li class='test-passed'>Scenario 4: <a href="#reverseConvertibleIssuedByInternationalBranch">Reverse convertible issued by international branch</a></li>
         
     </ul>
 </div>
@@ -250,7 +250,7 @@ dl.index-result {
         <div class="testmethod">
 
         <a id="reverseConvertibleSwapIsEnriched"></a>
-        <h2>Reverse convertible swap is enriched</h2>
+        <h2>Scenario 1: Reverse convertible swap is enriched</h2>
 
             
 
@@ -259,7 +259,7 @@ dl.index-result {
                     <a id=""></a>
                     <h2>Specification</h2>
                     <pre class="highlight specification">
-Given any product exists with basic features and the product is issued by ISSUER_CS_ LONDON
+Given any product exists with basic features and the product is issued by LONDON BRANCH
 When a reverse convertible coupon swap is created based on the product
 Then the swap is enriched with expected enrichments</pre>
                     <h2>Test results:</h2>
@@ -400,9 +400,9 @@ Test passed</pre>
                     <a id=""></a>
                     <h2>Specification</h2>
                     <pre class="highlight specification">
-Given any product exists with basic features and the product is issued by ISSUER_CS_ LONDON
+Given any product exists with basic features and the product is issued by LONDON BRANCH
 When a reverse convertible coupon swap is created based on the product
-Then the swap counterparty is counterparty OTC_ISSUANCE_CS_ LONDON</pre>
+Then the swap counterparty is counterparty LONDON ISSUANCE</pre>
                     <h2>Test results:</h2>
 
 
