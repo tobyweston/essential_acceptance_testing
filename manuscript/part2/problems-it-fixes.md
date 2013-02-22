@@ -48,8 +48,6 @@ Not assuming anything and defining terms clearly in acceptance tests can be a go
 
 The spirit here is to strive for a ubiquitous language.
 
-![An example of annotated acceptance criteria defining parts of the domain](missing.png)
-
 
 ## Lack of structure and direction
 
