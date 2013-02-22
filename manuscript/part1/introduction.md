@@ -17,11 +17,11 @@ Traditional definitions emphasize that acceptance tests should be customer autho
 
 In [Agile Testing](http://amzn.to/WKDYkq), Lisa Crispin and Janet Gregory describe acceptance tests as
 
-> Tests that define the business value each story must deliver. They may verify functional requirements or nonfunctional requirements such as performance or reliability ... Acceptance test is a broad term that may include both business facing and technology facing tests.
+> "Tests that define the business value each story must deliver. They may verify functional requirements or nonfunctional requirements such as performance or reliability ... Acceptance test is a broad term that may include both business facing and technology facing tests."
 
 An important addendum to our definition then should be that acceptance tests don't have to be about just business behaviour, they can also be about broader system qualities such as non-functional requirements and usability. It's still about customer confidence.
 
-Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. Acceptance tests may or may not have anything to do with user stories. At least, in our definition, we're talking generally about system behaviour and brushing over the idea that stories can describe behaviour. I don't think that's a prerequisite. Similarly, _business value_ is a tricky thing to quantify. We'll talk more about that later.
+Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. Acceptance tests may or may not have anything to do with user stories. At least, in our definition, we're talking generally about system behaviour and brushing over the idea that stories could describe behaviour. I don't think a story is necessarily a prerequisite to an acceptance test. Similarly, _business value_ is a tricky thing to quantify. We'll talk more about that later.
 
 D> ##Specification by example {#specification-by-example-aside}
 D>

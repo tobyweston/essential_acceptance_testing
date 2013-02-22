@@ -11,14 +11,14 @@ W>
 
 A typical agile process used by many teams today revolves around the following steps.
 
-| Story definition life cycle  |
-|------------------------------|
-|1. Pick a story               |
-|2. Agree acceptance criteria  |
-|3. Develop functionality      |
-|4. Demonstrate and sign off   |
-|5. Repeat                     |
-|
+| Story definition life cycle   |
+|-------------------------------|
+| 1. Pick a story               |
+| 2. Agree acceptance criteria  |
+| 3. Develop functionality      |
+| 4. Demonstrate and sign off   |
+| 5. Repeat                     |
+
 
 ![The story definition life cycle](images/story_lifecycle.png)
 
