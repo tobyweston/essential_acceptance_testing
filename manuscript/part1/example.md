@@ -40,7 +40,7 @@ We're starting to think about example scenarios and their outcome.
 A useful way to rephrase a story is in the BDD-style of _given_, _when_, _then_. This can help focus on important aspects but takes practice and careful consideration to be useful. It's all too easy to skip the hard questions. Forcing yourself to think about them can tease out additional facets which you may have missed. Remember though that BDD is just another tool and it's not always appropriate. It's not the goal unto itself so don't shoe horn it if it's not going to fit.
 
 D> ## Badly worded stories {#badly-worded-stories-aside}
-D> It's usually a bad idea to talk about specific UI components in stories. "When a user navigates to the front page, enters their name and click's 'submit'..." would read better as "When a user attempts to enter their name and login so that...". It focuses the team at a business context. Without this it's harder to think about the motivations and goals. The developer's may also implement the tests to mimic the wording which can lead to coupling at the test infrastructure level and inflexible test design.
+D> It's usually a bad idea to talk about specific UI components in stories. "When a user navigates to the front page, enters their name and click's the 'submit' button..." would read better as "When a user attempts to enter their name and login so that...". It focuses the team at a business context and avoids the volatile details. For example, why must the user _click_? They may _tap_ on an iPad. It may also encourage developer's to implement the tests to mimic the wording which can lead to coupling at the test infrastructure level and inflexible test design.
 
 
 ### Agree acceptance criteria
