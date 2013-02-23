@@ -173,14 +173,14 @@ ins {
 <h2>Given</h2>
 
 <p>
-    An instrument does not exist in EPS with a UBS Listing ID of <b concordion:set="#acmeId">5345644444</b>
+    An instrument does not exist in EPS with a Listing ID of <b concordion:set="#acmeId">5345644444</b>
 </p>
 <span concordion:execute="setupEmptyResponseFromEps(#acmeId)" />
 
 <h2>When</h2>
 
 <p concordion:execute="#exception = getSymbolExpectingException(#acmeId)">
-    EPS is queried against the UBS Listing ID
+    EPS is queried against the Listing ID
 </p>
 
 <h2>Then</h2>

@@ -184,7 +184,7 @@ ins {
 <ol>
     <li concordion:execute="#email = receiveEmail()">An email with Price Adjustment Booking Instructions with a trade date 05/07/2011 <strong concordion:assertEquals="#email.wasReceived()" class="success">is sent</strong> to designated email addresses.</li>
     <li>The email has an attachment named <strong concordion:assertEquals="#email.firstAttachment()" class="success">price_adjustment_booking_instructions_20110705.xls</strong></li>
-    <li>Also, Price Adjustment Booking Instructions <strong concordion:assertEquals="receivedViaSecureTransport()" class="success">are sent</strong> to a Secure Transport location as <strong concordion:assertEquals="getSecureTransportFileName()" class="success">UBS ETFs - Price Adjustment Booking Instructions for 05-07-2011.xls</strong></li>
+    <li>Also, Price Adjustment Booking Instructions <strong concordion:assertEquals="receivedViaSecureTransport()" class="success">are sent</strong> to a Secure Transport location as <strong concordion:assertEquals="getSecureTransportFileName()" class="success">ETFs - Price Adjustment Booking Instructions for 05-07-2011.xls</strong></li>
 </ol>
 
 <div class="information">

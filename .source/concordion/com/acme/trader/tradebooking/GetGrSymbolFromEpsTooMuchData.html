@@ -171,7 +171,7 @@ ins {
 <h1>Get Risk Symbol when EPS gives too Much Data</h1>
 
 <p>
-    EPS returns a JSON array of objects representing instruments for a matching instrument query. For a given UBS Listing
+    EPS returns a JSON array of objects representing instruments for a matching instrument query. For a given Listing
     ID, we expect the array to be of size one, however, strange things may occur in the EPS system to give us back an
     array with more than one element. Bad news.
 </p>
@@ -179,14 +179,14 @@ ins {
 <h2>Given</h2>
 <p>
     Some incorrect behaviour occurs in EPS whereby multiple instruments are returns from a call to the instrument
-    service for a UBS Listing ID <b concordion:set="#acmeId">342344439A</b>
+    service for a Listing ID <b concordion:set="#acmeId">342344439A</b>
 </p>
 <span concordion:execute="setupInvalidResponse(#acmeId)" />
 
 <h2>When</h2>
 
 <p concordion:execute="#exception = getSymbolExpectingException(#acmeId)">
-    EPS is queried for some UBS Listing ID
+    EPS is queried for some Listing ID
 </p>
 
 <h2>Then</h2>

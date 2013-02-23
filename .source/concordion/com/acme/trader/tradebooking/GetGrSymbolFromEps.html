@@ -173,20 +173,20 @@ ins {
 <p>
     In order to create an instrument in Risk, one of the fields that is required is the Risk <b>symbol</b> of the underlying
     equity. This field is not found within ESM or the transaction information but is obtainable by querying the application
-    EPS using the UBS Listing ID for the equity
+    EPS using the Listing ID for the equity
 </p>
 
 <h2>Given</h2>
 
 <p>
-    An instrument exists within EPS with a UBS Listing ID of <b concordion:set="#acmeId">0001036177</b> (CARREFOUR)
+    An instrument exists within EPS with a Listing ID of <b concordion:set="#acmeId">0001036177</b> (CARREFOUR)
     and an Risk symbol of <b concordion:set="#symbol">CA=F</b>
 </p>
 <span concordion:execute="addInstrumentToEps(#acmeId, #symbol)" />
 
 <h2>When</h2>
 
-<p concordion:execute="#result = getSymbolFor(#acmeId)">EPS is queried with the UBS Listing ID</p>
+<p concordion:execute="#result = getSymbolFor(#acmeId)">EPS is queried with the Listing ID</p>
 
 <h2>Then</h2>
 
