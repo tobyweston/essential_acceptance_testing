@@ -179,13 +179,13 @@ ins {
 <h2>Given</h2>
 <p>
     Some incorrect behaviour occurs in EPS whereby multiple instruments are returns from a call to the instrument
-    service for a UBS Listing ID <b concordion:set="#ubsId">342344439A</b>
+    service for a UBS Listing ID <b concordion:set="#acmeId">342344439A</b>
 </p>
-<span concordion:execute="setupInvalidResponse(#ubsId)" />
+<span concordion:execute="setupInvalidResponse(#acmeId)" />
 
 <h2>When</h2>
 
-<p concordion:execute="#exception = getSymbolExpectingException(#ubsId)">
+<p concordion:execute="#exception = getSymbolExpectingException(#acmeId)">
     EPS is queried for some UBS Listing ID
 </p>
 
@@ -204,7 +204,7 @@ ins {
 </p>
 </div>
 
-<span concordion:execute="cleanupMockEps(#ubsId)" />
+<span concordion:execute="cleanupMockEps(#acmeId)" />
 
 <div class="information">
     <h3>Further Information</h3>

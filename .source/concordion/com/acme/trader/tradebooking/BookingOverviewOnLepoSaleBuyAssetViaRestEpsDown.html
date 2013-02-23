@@ -193,7 +193,7 @@ ins {
 <div class="example">
 <p>The actual log message content is shown below <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
 <div class="details">
-<pre concordion:echo="logContents()">ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=DGS=BLX, UbsId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=1, Cashflow=0, Underlying equity: RIC=arrrh, ISIN=FR0000120172
+<pre concordion:echo="logContents()">ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=DGS=BLX, acmeId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=1, Cashflow=0, Underlying equity: RIC=arrrh, ISIN=FR0000120172
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6666 refused, Connection refused]
 ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
 java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 6684979a-af6a-4060-af77-80d7e26fffb3
@@ -256,9 +256,9 @@ Caused by: java.net.ConnectException: Connection refused
 	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:123)
 	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:123)
 	... 33 more
-ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=89.76, Cashflow=-125,468.37, Underlying equity: RIC=Katy, ISIN=DE0005190003
+ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=89.76, Cashflow=-125,468.37, Underlying equity: RIC=Katy, ISIN=DE0005190003
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6969 refused, Connection refused]
-ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003
+ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6969 refused, Connection refused]
 ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
 java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 09b53fef-c209-4448-83cc-2250e4ea8282
@@ -396,11 +396,11 @@ Caused by: java.net.ConnectException: Connection refused
 	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:123)
 	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:123)
 	... 35 more
-ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003
+ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6969 refused, Connection refused]
-ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=-1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003
+ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=-1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6969 refused, Connection refused]
-ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003
+ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6969 refused, Connection refused]
 ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
 java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 09b53fef-c209-4448-83cc-2250e4ea8282
@@ -548,11 +548,11 @@ Caused by: java.net.ConnectException: Connection refused
 
 and alerts 
 
-ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=89.76, Cashflow=-125,468.37, Underlying equity: RIC=Katy, ISIN=DE0005190003]
-ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003]
-ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003]
-ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=-1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003]
-ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003]</pre>
+ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=89.76, Cashflow=-125,468.37, Underlying equity: RIC=Katy, ISIN=DE0005190003]
+ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003]
+ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003]
+ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=-1, Cashflow=-1,987.01, Underlying equity: RIC=Katy, ISIN=DE0005190003]
+ImportantMessage[Corporate Action - failed to book tally: Symbol=unknown, acmeId=000000370, TransactionId=09b53fef-c209-4448-83cc-2250e4ea8282, TD=1969-12-07, Qty=1, Cashflow=0, Underlying equity: RIC=Katy, ISIN=DE0005190003]</pre>
 </div>
 </div>
 

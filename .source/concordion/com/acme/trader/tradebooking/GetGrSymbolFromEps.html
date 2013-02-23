@@ -179,20 +179,20 @@ ins {
 <h2>Given</h2>
 
 <p>
-    An instrument exists within EPS with a UBS Listing ID of <b concordion:set="#ubsId">0001036177</b> (CARREFOUR)
+    An instrument exists within EPS with a UBS Listing ID of <b concordion:set="#acmeId">0001036177</b> (CARREFOUR)
     and an Risk symbol of <b concordion:set="#symbol">CA=F</b>
 </p>
-<span concordion:execute="addInstrumentToEps(#ubsId, #symbol)" />
+<span concordion:execute="addInstrumentToEps(#acmeId, #symbol)" />
 
 <h2>When</h2>
 
-<p concordion:execute="#result = getSymbolFor(#ubsId)">EPS is queried with the UBS Listing ID</p>
+<p concordion:execute="#result = getSymbolFor(#acmeId)">EPS is queried with the UBS Listing ID</p>
 
 <h2>Then</h2>
 
 <p>The symbol field is returned as <b concordion:assertEquals="#result" class="success">CA=F</b></p>
 
-<span concordion:execute="cleanupMockEps(#ubsId)" />
+<span concordion:execute="cleanupMockEps(#acmeId)" />
 
 <div class="information">
     <h3>Further Information</h3>
