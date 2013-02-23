@@ -1,5 +1,1 @@
-part2/preamble.md
-part2/problems-it-fixes.md
-part2/problems-it-causes.md
-part2/pitfalls.md
-part2/questions.md
+part1/example.md
