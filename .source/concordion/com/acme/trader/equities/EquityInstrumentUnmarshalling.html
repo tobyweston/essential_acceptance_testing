@@ -161,32 +161,32 @@ ins {
   font-size: 8pt;
 }
 </style>
-    <title>Lingua Unmarshalling of Equity Instruments</title>
+    <title>Bridge Unmarshalling of Equity Instruments</title>
     <meta name="iteration" content="Iteration 12" />
     <meta name="jira" content="TRADER-107" />
     <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
 </head>
 <body><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Equities.html">Equities Overview</a> &gt;</span>
-<h1>Lingua Unmarshalling of Equity Instruments</h1>
+<h1>Bridge Unmarshalling of Equity Instruments</h1>
 
 <h2>Given</h2>
 
 <p>
-    A Lingua object exists with nulls
+    A Bridge object exists with nulls
 </p>
 
 
 <h2>When</h2>
 
 <p>
-    Lingua is used to unmarshall the json into an object
+    Bridge is used to unmarshall the json into an object
 </p>
 
 
 <h2>Then</h2>
 
 <p>
-    Lingua throws an exception, for example,
+    Bridge throws an exception, for example,
 </p>
 
 <div class="example">
@@ -200,19 +200,19 @@ ins {
         <tbody>
         <tr>
             <td align="center">RIC</td>
-            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullRic()" class="success">com.ubs.lingua.marshalling.EncodingException: com.ubs.lingua.common.LinguaException: Propertyric is not nillable</td>
+            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullRic()" class="success">com.acme.bridge.marshalling.EncodingException: com.acme.bridge.common.BridgeException: Propertyric is not nillable</td>
         </tr>
         <tr>
             <td align="center">Sedol</td>
-            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullSedol()" class="success">com.ubs.lingua.marshalling.EncodingException: com.ubs.lingua.common.LinguaException: Propertysedol is not nillable</td>
+            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullSedol()" class="success">com.acme.bridge.marshalling.EncodingException: com.acme.bridge.common.BridgeException: Propertysedol is not nillable</td>
         </tr>
         <tr>
             <td align="center">Currency</td>
-            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullCurrency()" class="success">com.ubs.lingua.marshalling.EncodingException: com.ubs.lingua.common.LinguaException: Propertycurrency is not nillable</td>
+            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullCurrency()" class="success">com.acme.bridge.marshalling.EncodingException: com.acme.bridge.common.BridgeException: Propertycurrency is not nillable</td>
         </tr>
         <tr>
             <td align="center">UBS ID</td>
-            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullacmeId()" class="success">com.ubs.lingua.marshalling.EncodingException: com.ubs.lingua.common.LinguaException: PropertyacmeId is not nillable</td>
+            <td align="left" concordion:assertEquals="unmarshallExpectingExceptionWithNullacmeId()" class="success">com.acme.bridge.marshalling.EncodingException: com.acme.bridge.common.BridgeException: PropertyacmeId is not nillable</td>
         </tr>
 
         </tbody>
