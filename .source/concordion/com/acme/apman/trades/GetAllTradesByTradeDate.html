@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get All Trades by Trade Date via REST</title>
+    <meta name="iteration" content="Iteration 36, Iteration 33, Iteration 34, API GET /apman/trades/{date}" />
+    <meta name="jira" content="APMAN-439, APMAN-443, APMAN-438, APMAN-451, APMAN-457, APMAN-441, APMAN-469, APMAN-477, APMAN-494, APMAN-508" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../Apman.html">Apman</a> &gt; <a href="Trades.html">Trades</a> &gt;</span>
+<h1>Get All Trades by Trade Date via REST</h1>
+
+<h2>Given</h2>
+
+<p>Trades are available in the system along with corresponding equities</p>
+
+<div class="example">
+    <h3>Trades</h3>
+
+    <table concordion:execute="createTrade(#id, #type, #etfIdentifier, #externalIdentifier, #equityIdentifier, #currency, #price, #quantity, #cashflow, #priceAdjustment, #tradeDate, #settlementDate, #createdDate, #createBy, #transactionIdentifier)">
+        <thead>
+         <tr>
+            <th concordion:set="#id" width="100px">Identifier</th>
+            <th concordion:set="#transactionIdentifier" width="100px">Transaction Identifier</th>
+            <th concordion:set="#type" width="200px">Type</th>
+            <th concordion:set="#etfIdentifier" width="200px">ETF Identifier</th>
+            <th concordion:set="#externalIdentifier" width="200px">GR Instr Tic</th>
+            <th concordion:set="#equityIdentifier" width="200px">Equity Identifier</th>
+            <th concordion:set="#currency" width="250px">Currency</th>
+            <th concordion:set="#price" width="250px">Price</th>
+            <th concordion:set="#quantity" width="250px">Quantity</th>
+            <th concordion:set="#cashflow" width="250px">Cashflow</th>
+            <th concordion:set="#priceAdjustment" width="250px">Price Adjustment</th>
+            <th concordion:set="#tradeDate" width="250px">Trade Date</th>
+            <th concordion:set="#settlementDate" width="250px">Settlement Date</th>
+            <th concordion:set="#createdDate" width="200px">Created</th>
+            <th concordion:set="#createBy" width="200px">Created By</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">10e8efe8-9799-4f5b-8d0a-26c91a0d0fd4</td>
+            <td align="center" />
+            <td align="center">TRS_AP</td>
+            <td align="center">25f9f040-2959-11e0-91fa-0800200c9a66</td>
+            <td align="center">240863423</td>
+            <td align="center" />
+            <td align="center">USD</td>
+            <td align="center">38.01</td>
+            <td align="center">6100000</td>
+            <td align="center">-231861000</td>
+            <td align="center">3434.11</td>
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-16</td>
+            <td align="center">2010-10-12T16:02:32.000+01:00</td>
+            <td align="center">David Davis</td>
+        </tr>
+        <tr>
+            <td align="center">63876d3f-bb11-4564-af12-0ee54ecf4f27</td>
+            <td align="center" />
+            <td align="center">TRS_PERF</td>
+            <td align="center">7091e880-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">345665699</td>
+            <td align="center" />
+            <td align="center">EUR</td>
+            <td align="center">50.75</td>
+            <td align="center">5000000</td>
+            <td align="center">-253750000</td>
+            <td align="center" />
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-16</td>
+            <td align="center">2012-10-12T16:06:33.000+01:00</td>
+            <td align="center">Kerry Kotona</td>
+        </tr>
+        <tr>
+            <td align="center">e99f582e-2933-4ad3-b6d0-22fe56324b22</td>
+            <td align="center" />
+            <td align="center">FFS</td>
+            <td align="center">7091e880-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">345554850</td>
+            <td align="center" />
+            <td align="center">GBP</td>
+            <td align="center">48.984</td>
+            <td align="center">1000000</td>
+            <td align="center">-48984000</td>
+            <td align="center" />
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-17</td>
+            <td align="center">2012-10-17T13:06:34.000+01:00</td>
+            <td align="center">Eliza Doufcall</td>
+        </tr>
+        <tr>
+            <td align="center">2091e880-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center" />
+            <td align="center">INST_W</td>
+            <td align="center" />
+            <td align="center">123456789</td>
+            <td align="center" />
+            <td align="center">EUR</td>
+            <td align="center">48.984</td>
+            <td align="center">1000000</td>
+            <td align="center">-48984000</td>
+            <td align="center" />
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-17</td>
+            <td align="center">2012-10-17T13:06:35.000+01:00</td>
+            <td align="center">Eliza Doufcall</td>
+        </tr>
+        <tr>
+            <td align="center">babababa-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">fabababa-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">CA_LEPO</td>
+            <td align="center" />
+            <td align="center" />
+            <td align="center">34534555</td>
+            <td align="center">CHF</td>
+            <td align="center">456.33</td>
+            <td align="center">40</td>
+            <td align="center">-18253.2</td>
+            <td align="center">3434.11</td>
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-17</td>
+            <td align="center">2012-10-17T13:06:36.000+01:00</td>
+            <td align="center">Joel Spolsky</td>
+        </tr>
+        <tr>
+            <td align="center">cadababa-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">fadababa-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">CA_LEPO</td>
+            <td align="center" />
+            <td align="center" />
+            <td align="center">34534555</td>
+            <td align="center">EUR</td>
+            <td align="center">456.33</td>
+            <td align="center">40</td>
+            <td align="center">-18253.2</td>
+            <td align="center" />
+            <td align="center">2011-01-15</td>
+            <td align="center">2011-01-17</td>
+            <td align="center">2012-10-17T13:06:37.000+01:00</td>
+            <td align="center">Joel Spolsky</td>
+        </tr>
+        <tr>
+            <td align="center">badebade-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">fadebade-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">EQUITY</td>
+            <td align="center" />
+            <td align="center" />
+            <td align="center">34534555</td>
+            <td align="center">NOK</td>
+            <td align="center">456.33</td>
+            <td align="center">40</td>
+            <td align="center">-18253.2</td>
+            <td align="center" />
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-17</td>
+            <td align="center">2010-10-11T11:06:07.000+01:00</td>
+            <td align="center">Joel Spolsky</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Equities</h3>
+
+    <table concordion:execute="addEquity(#equityIdentifier, #name, #sedol, #cusip, #isin)">
+        <thead>
+        <tr>
+            <th concordion:set="#equityIdentifier" width="150px">Equity Identifier</th>
+            <th concordion:set="#name" width="150px">Name</th>
+            <th concordion:set="#sedol" width="150px">SEDOL</th>
+            <th concordion:set="#cusip" width="150px">CUSIP</th>
+            <th concordion:set="#isin" width="150px">ISIN</th>
+        </tr>
+        <tr>
+            <td align="center">34534555</td>
+            <td align="center">CHEESY1</td>
+            <td align="center">B02ZKR9</td>
+            <td align="center">000519000</td>
+            <td align="center">DE0005190003</td>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+
+
+
+<h2>When</h2>
+
+<p>
+    The trades are queried by Trade Date 2011-01-16
+</p>
+
+<div class="example">
+    <p>
+        The trades as a <i>resource</i> are queried with a HTTP <code>GET</code> on the URL...
+    </p>
+    <pre concordion:set="#resource">/apman/trades/2011/01/16</pre>
+</div>
+
+<h2>Then</h2>
+
+<p concordion:execute="#response = get(#resource)">
+    The list of trades contains the following information...
+</p>
+
+<div class="example">
+    <h3>Example</h3>
+    <pre concordion:assertEquals="#response" class="success">[
+  {
+    "id" : "babababa-2939-11e0-91fa-0800200c9a66",
+    "description" : "Asset Portfolio Trading",
+    "instrument" : {
+      "type" : "CA_LEPO",
+      "description" : "Corporate Action (Low Exercise Price Option)",
+      "identifiers" : {
+        "sedol" : "LPB02ZKR9",
+        "isin" : "LPDE0005190003",
+        "name" : "CHEESY1 (LEPO)"
+      }
+    },
+    "price" : 456.33,
+    "currency" : "CHF",
+    "quantity" : 40,
+    "cashflow" : -18253.2,
+    "priceAdjustment" : 3434.11,
+    "transactionIdentifier" : "fabababa-2939-11e0-91fa-0800200c9a66",
+    "tradeDate" : "2011-01-16",
+    "settlementDate" : "2011-01-17",
+    "createdDate" : "2012-10-17T13:06:36.000+01:00",
+    "createdBy" : "Joel Spolsky"
+  },
+  {
+    "id" : "badebade-2939-11e0-91fa-0800200c9a66",
+    "description" : "Asset Portfolio Trading",
+    "instrument" : {
+      "type" : "EQUITY",
+      "description" : "Equity",
+      "identifiers" : {
+        "esmEquityTradeLineUbsId" : "34534555",
+        "sedol" : "B02ZKR9",
+        "cusip" : "000519000",
+        "isin" : "DE0005190003",
+        "name" : "CHEESY1"
+      }
+    },
+    "price" : 456.33,
+    "currency" : "NOK",
+    "quantity" : 40,
+    "cashflow" : -18253.2,
+    "transactionIdentifier" : "fadebade-2939-11e0-91fa-0800200c9a66",
+    "tradeDate" : "2011-01-16",
+    "settlementDate" : "2011-01-17",
+    "createdDate" : "2010-10-11T11:06:07.000+01:00",
+    "createdBy" : "Joel Spolsky"
+  },
+  {
+    "id" : "e99f582e-2933-4ad3-b6d0-22fe56324b22",
+    "description" : "Asset Portfolio Trading",
+    "instrument" : {
+      "type" : "FFS",
+      "description" : "Fully Funded Swap",
+      "etf" : "7091e880-2939-11e0-91fa-0800200c9a66",
+      "identifiers" : {
+        "grInstrTic" : "345554850"
+      }
+    },
+    "price" : 48.984,
+    "currency" : "GBP",
+    "quantity" : 1000000,
+    "cashflow" : -48984000,
+    "tradeDate" : "2011-01-16",
+    "settlementDate" : "2011-01-17",
+    "createdDate" : "2012-10-17T13:06:34.000+01:00",
+    "createdBy" : "Eliza Doufcall"
+  },
+  {
+    "id" : "10e8efe8-9799-4f5b-8d0a-26c91a0d0fd4",
+    "description" : "Asset Portfolio Trading",
+    "instrument" : {
+      "type" : "TRS_AP",
+      "description" : "Total Return Swap (Asset Portfolio Leg)",
+      "etf" : "25f9f040-2959-11e0-91fa-0800200c9a66",
+      "identifiers" : {
+        "grInstrTic" : "240863423"
+      }
+    },
+    "price" : 38.01,
+    "currency" : "USD",
+    "quantity" : 6100000,
+    "cashflow" : -231861000,
+    "priceAdjustment" : 3434.11,
+    "tradeDate" : "2011-01-16",
+    "settlementDate" : "2011-01-16",
+    "createdDate" : "2010-10-12T16:02:32.000+01:00",
+    "createdBy" : "David Davis"
+  },
+  {
+    "id" : "2091e880-2939-11e0-91fa-0800200c9a66",
+    "description" : "Internal Trade",
+    "instrument" : {
+      "type" : "INST_W",
+      "description" : "Instalment Warrant",
+      "identifiers" : {
+        "grInstrTic" : "123456789"
+      }
+    },
+    "price" : 48.984,
+    "currency" : "EUR",
+    "quantity" : 1000000,
+    "cashflow" : -48984000,
+    "tradeDate" : "2011-01-16",
+    "settlementDate" : "2011-01-17",
+    "createdDate" : "2012-10-17T13:06:35.000+01:00",
+    "createdBy" : "Eliza Doufcall"
+  },
+  {
+    "id" : "63876d3f-bb11-4564-af12-0ee54ecf4f27",
+    "description" : "Asset Portfolio Trading",
+    "instrument" : {
+      "type" : "TRS_PERF",
+      "description" : "Total Return Swap (Performance Leg)",
+      "etf" : "7091e880-2939-11e0-91fa-0800200c9a66",
+      "identifiers" : {
+        "grInstrTic" : "345665699"
+      }
+    },
+    "price" : 50.75,
+    "currency" : "EUR",
+    "quantity" : 5000000,
+    "cashflow" : -253750000,
+    "tradeDate" : "2011-01-16",
+    "settlementDate" : "2011-01-16",
+    "createdDate" : "2012-10-12T16:06:33.000+01:00",
+    "createdBy" : "Kerry Kotona"
+  }
+]</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 407 ms on 19-Jun-2012 at 20:05:17 BST</div></div></body>
+</html>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Create Sell LEPO / Buy Asset Transaction via REST when LEPO Asset Already Exists</title>
+    <meta name="iteration" content="Iteration 18, API PUT /apman/transactions/asset_sale_create_lepos" />
+    <meta name="jira" content="APMAN-212, APMAN-215, APMAN-262, APMAN-395" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../../Apman.html">Apman</a> &gt; <a href="../Transaction.html">Transactions</a> &gt; <a href="Leposalebuyasset.html">Sell LEPO / Buy Asset</a> &gt;</span>
+<h1>Create Sell LEPO / Buy Asset Transaction via REST when LEPO Asset Already Exists</h1>
+
+<p class="information">
+    Creating a new Sell LEPO / Buy Asset transaction is actually achieved by executing the previous
+    <a href="../assetsalecreatelepo/AssetSaleBuyLepo.html">Sell Asset / Buy LEPO</a> workflow
+    (changing the transaction to the EXECUTED state).
+</p>
+
+<h2>Given</h2>
+
+<p>
+    A Sell Asset / Buy LEPO transaction exsists and is in the <b>REVIEWED</b> state with an equity id
+    <b concordion:execute="#transaction = createTransaction(#TEXT)">0778911234</b>
+</p>
+<p>
+    An Equity Asset already exists for the equity <b>0778911234</b>
+</p>
+<p>
+    A LEPO Asset already exists for the equity <b>0778911234</b>
+</p>
+
+<h2>When</h2>
+
+<p concordion:execute="#response = execute(#transaction)">A HTTP PUT request is made to transition the Sell Asset / Buy LEPO transaction to the <b>EXECUTED</b> state</p>
+
+<h2>Then</h2>
+
+<p>
+    The system should behave the same as for the case when the LEPO asset doesn't exist (see <a href="CreateLepoSaleBuyAssetViaRest.html">Create Sell LEPO / Buy Asset Transaction via REST</a>)
+    but rather than try to create a new LEPO Asset (as in the former), it should update it. The test <a href="../assetsalecreatelepo/UpdateAssetSaleBuyLepoExecutedToApproved.html">Create Sell LEPO / Buy Asset Transaction via REST updating Assets</a>
+    demonstrates this. However, the behaviour shown below is intended to demonstrate the the HTTP response is consistent.
+</p>
+<p>
+    Therefore, the HTTP response includes the status <b concordion:assertEquals="#response.status" class="success">300 (Multiple Choices)</b>
+</p>
+
+<div class="example">
+<p>
+    The HTTP response also includes the following content in the message body
+</p>
+<pre concordion:assertEquals="#response.body" class="success">[
+  {
+    "name" : "Lepo Asset",
+    "resource" : "http://localhost:8181/apman/assets/22222222-0000-0000-0000-000000000001"
+  },
+  {
+    "name" : "Sell LEPO / Buy Asset Transaction",
+    "resource" : "http://localhost:8181/apman/transactions/00000000-0000-0000-0000-888888888888"
+  },
+  {
+    "name" : "Equity Asset",
+    "resource" : "http://localhost:8181/apman/assets/11111111-0000-0000-0000-000000000001"
+  }
+]</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 40 ms on 19-Jun-2012 at 20:06:29 BST</div></div></body>
+</html>

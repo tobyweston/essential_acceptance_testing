@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get A Corporate Action with transaction reference</title>
+    <meta name="iteration" content="Iteration 23, API GET /apman/corporate_actions/id" />
+    <meta name="jira" content="APMAN-331,APMAN-431" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../Apman.html">Apman</a> &gt; <a href="Corporateaction.html">Corporate Action Overview</a> &gt;</span>
+<h1>Get A Corporate Action with transaction reference</h1>
+
+<h2>Given</h2>
+
+ <p>A Corporate Action is available</p>
+
+ <div class="example">
+    <h3>Example</h3>
+
+        <table concordion:execute="sendEpicMessage(#eventId, #type, #exDate, #recordDate, #paymentDate, #grossDividend, #netDividend, #withHoldingTaxRate, #isin, #sedol, #cusip, #currency, #soi)">
+        <thead>
+        <tr>
+            <th concordion:set="#eventId" width="100px">Event ID</th>
+            <th concordion:set="#type" width="100px">Type</th>
+            <th concordion:set="#exDate" width="100px">Ex Date</th>
+            <th concordion:set="#recordDate" width="100px">Record Date</th>
+            <th concordion:set="#paymentDate" width="100px">Payment Date</th>
+            <th concordion:set="#grossDividend" width="100px">Gross Dividend</th>
+            <th concordion:set="#netDividend" width="100px">Net Dividend</th>
+            <th concordion:set="#withHoldingTaxRate" width="100px">Withholding Tax Rate</th>
+            <th concordion:set="#isin" width="100px">ISIN</th>
+            <th concordion:set="#sedol" width="100px">SEDOL</th>
+            <th concordion:set="#cusip" width="100px">CUSIP</th>
+            <th concordion:set="#currency" width="100px">Currency</th>
+            <th concordion:set="#soi" width="100px">Source System Code</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">1235191</td>
+            <td align="center">CD</td>
+            <td align="center">2010-12-10 00:00:00.000 GMT+00:00</td>
+            <td align="center">2010-12-12 00:00:00.000 GMT+00:00</td>
+            <td align="center">2011-01-04 00:00:00.000 GMT+00:00</td>
+            <td align="center">0.2736</td>
+            <td align="center">0.26985</td>
+            <td align="center">0.1</td>
+            <td align="center">US00247X1000</td>
+            <td align="center">B1YFR51</td>
+            <td align="center">008000AA7</td>
+            <td align="center">GBP</td>
+            <td align="center">APM,GLB,SES,SSE,TEM</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<p concordion:execute="createTransactionForCorporateAction(#transactionIdentifier, #eventId)">A transaction <i concordion:set="#transactionIdentifier">cafebabe-5a08-11e0-80e3-0800200c9a66</i> was <span>created</span></p>
+
+<h2>When</h2>
+
+<p>
+    The Corporate Actions are queried,
+</p>
+
+<div class="example">
+    <p>
+        The Corporate actions as a <i>resource</i> are queried with a HTTP <code>GET</code> on the URL...
+    </p>
+    <pre concordion:set="#resource">/apman/corporate_actions/1235191</pre>
+    <p>
+        with a "accept" mime-type of...
+    </p>
+    <pre>application/json</pre>
+</div>
+
+<h2>Then</h2>
+
+<p concordion:execute="#response = get(#resource)">
+    The corporate action contains the following information...
+</p>
+
+<div class="example">
+    <h3>Example</h3>
+    <pre concordion:assertEquals="#response" class="success">
+  {
+    "id" : "1235191",
+    "type" : "CD",
+    "exDate" : "2010-12-10",
+    "recordDate" : "2010-12-12",
+    "paymentDate" : "2011-01-04",
+    "grossDividend" : 0.2736,
+    "netDividend" : 0.26985,
+    "withholdingTaxRate" : 0.1,
+    "isin" : "US00247X1000",
+    "sedol" : "B1YFR51",
+    "cusip" : "008000AA7",
+    "currency" : "GBP",
+    "archived" : false,
+    "transactionIdentifiers" : [
+        "cafebabe-5a08-11e0-80e3-0800200c9a66"
+     ]
+  }
+</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 226 ms on 19-Jun-2012 at 20:06:14 BST</div></div></body>
+</html>

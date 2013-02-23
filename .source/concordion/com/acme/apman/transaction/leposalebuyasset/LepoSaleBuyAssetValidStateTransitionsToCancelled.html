@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Update Sell LEPO / Buy Asset via REST - Valid State Transitions to Cancelled</title>
+    <meta name="iteration" content="Iteration 24, Iteration 16, API PUT /apman/transactions/exercise_lepos" />
+    <meta name="jira" content="APMAN-236, APMAN-217, APMAN-332" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+    <script src="../../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('medium');$('.details2').toggle('medium');"><span class="breadcrumbs"><a href="../../Apman.html">Apman</a> &gt; <a href="../Transaction.html">Transactions</a> &gt; <a href="Leposalebuyasset.html">Sell LEPO / Buy Asset</a> &gt;</span>
+<h1>Update Sell LEPO / Buy Asset via REST - Valid State Transitions to Cancelled</h1>
+
+<div class="example">
+<h2>Given</h2>
+
+<p>
+    A LEPO asset exists with an equity identifier of <b concordion:set="#equityIdentifier">4949849849</b>
+    <span concordion:execute="createLepoAsset(#equityIdentifier)" />
+</p>
+<p>
+    An Sell LEPO / Buy Asset Transaction on equity  <b concordion:echo="#equityIdentifier">4949849849</b> exists with a state of <b>REJECTED</b> <span concordion:execute="#transactionIdentifier = createRejectedTransactionWith(#equityIdentifier)" />
+    and id of <b concordion:echo="#transactionIdentifier">0b244b24-9c58-4aa0-ac09-0ab9768e3593</b>
+</p>
+
+
+<h2>When</h2>
+
+<p>A HTTP <code>PUT</code> request is made <img style="cursor:pointer" onclick="showDetails();" src="../../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
+
+<div class="details">
+<div class="example">
+<pre concordion:set="#resource">/apman/transactions</pre>
+<p>
+    with the message body including a plain text representation of the transaction <b concordion:echo="#transactionIdentifier">0b244b24-9c58-4aa0-ac09-0ab9768e3593</b>
+</p>
+<span concordion:execute="#json = constructJson(#transactionIdentifier, #equityIdentifier)" />
+<pre concordion:echo="#json">{
+  "id" : "0b244b24-9c58-4aa0-ac09-0ab9768e3593",
+  "type" : "Sell LEPO / Buy Asset",
+  "riskClass" : "bad",
+  "strategy" : "kermit",
+  "family" : "chazzwazzer",
+  "subBook" : "chill",
+  "quantity" : 9160.675732281756,
+  "state" : "CANCELLED",
+  "equityIdentifier" : "4949849849",
+  "tradeDate" : "1970-01-12",
+  "createdDate" : "1970-01-23T08:30:05.044+01:00",
+  "createdBy" : "klerkenw",
+  "modifiedDate" : "1970-01-13T04:10:46.718+01:00",
+  "modifiedBy" : "yogafrog",
+  "rejectionComment" : "arrrh",
+  "cancellationReason" : "MANUAL",
+  "coltBook" : "chazzwazzer",
+  "executedPrice" : 1262.5410503101787,
+  "executedQuantity" : 8084.472305558461,
+  "taxRate" : 0.1742350430528451,
+  "settlementDate" : "1970-01-15",
+  "exerciseDate" : "1969-12-24",
+  "corporateActionIdentifier" : "000000345",
+  "cashflow" : 1.0206978155863332E7,
+  "currency" : "GBP",
+  "priceAdjustmentCurrency" : "GBP"
+}</pre>
+<p>
+    with an <code>Accept</code> header of
+</p>
+<pre>application/json</pre>
+</div>
+</div>
+
+<h2>Then</h2>
+
+<span concordion:execute="#exercise = update(#transactionIdentifier, #resource, #json)" />
+<p>
+    The state of transaction <b concordion:echo="#transactionIdentifier">0b244b24-9c58-4aa0-ac09-0ab9768e3593</b> changes to <b concordion:assertEquals="#exercise.state" class="success">CANCELLED</b> in the repository, with a reason <b concordion:assertEquals="#exercise.cancellationReason" class="success">MANUAL</b>
+</p>
+
+<br />
+</div>
+<div class="example">
+<h2>Given</h2>
+
+<p>
+    A LEPO asset exists with an equity identifier of <b concordion:set="#equityIdentifier">1818183513</b>
+    <span concordion:execute="createLepoAsset(#equityIdentifier)" />
+</p>
+<p>
+    An Sell LEPO / Buy Asset Transaction on equity <b concordion:echo="#equityIdentifier">1818183513</b> exists with a state of <b>DRAFT</b> <span concordion:execute="#transactionIdentifier = createDraftTransactionWith(#equityIdentifier)" />
+    and id of <b concordion:echo="#transactionIdentifier">fa9a6e25-4635-4aea-bf05-09c464f77d9b</b>
+</p>
+
+
+<h2>When</h2>
+
+<p>A HTTP <code>PUT</code> request is made <img style="cursor:pointer" onclick="showDetails2();" src="../../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
+
+<div class="details2">
+<div class="example">
+<pre concordion:set="#resource">/apman/transactions</pre>
+<p>
+    with the message body including a plain text representation of the transaction <b concordion:echo="#transactionIdentifier">fa9a6e25-4635-4aea-bf05-09c464f77d9b</b>
+</p>
+<span concordion:execute="#json = constructJson(#transactionIdentifier, #equityIdentifier)" />
+<pre concordion:echo="#json">{
+  "id" : "fa9a6e25-4635-4aea-bf05-09c464f77d9b",
+  "type" : "Sell LEPO / Buy Asset",
+  "riskClass" : "barf",
+  "strategy" : "chill",
+  "family" : "chazzwazzer",
+  "subBook" : "barf",
+  "quantity" : 7071.361888178332,
+  "state" : "CANCELLED",
+  "equityIdentifier" : "1818183513",
+  "tradeDate" : "1969-12-14",
+  "createdDate" : "1969-12-19T20:15:16.605+01:00",
+  "createdBy" : "skywalkerl",
+  "modifiedDate" : "1970-01-04T19:15:10.694+01:00",
+  "modifiedBy" : "darwkinsr",
+  "rejectionComment" : "Grrrr",
+  "cancellationReason" : "MANUAL",
+  "coltBook" : "barf",
+  "executedPrice" : 1164.263070631263,
+  "executedQuantity" : 7260.507610387627,
+  "taxRate" : 0.17983271590816774,
+  "settlementDate" : "1969-12-17",
+  "exerciseDate" : "1970-01-15",
+  "corporateActionIdentifier" : "000000349",
+  "cashflow" : 8453140.884811552,
+  "currency" : "USD",
+  "priceAdjustmentCurrency" : "GBP"
+}</pre>
+<p>
+    with an <code>Accept</code> header of
+</p>
+<pre>application/json</pre>
+</div>
+</div>
+
+<h2>Then</h2>
+
+<span concordion:execute="#exercise = update(#transactionIdentifier, #resource, #json)" />
+<p>
+    The state of transaction <b concordion:echo="#transactionIdentifier">fa9a6e25-4635-4aea-bf05-09c464f77d9b</b> changes to <b concordion:assertEquals="#exercise.state" class="success">CANCELLED</b> in the repository, with a reason <b concordion:assertEquals="#exercise.cancellationReason" class="success">MANUAL</b>
+</p>
+
+<br />
+</div>
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+
+    function showDetails2() {
+        $('.details2').toggle('fast');
+    }
+</script>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 139 ms on 19-Jun-2012 at 20:06:13 BST</div></div></body>
+</html>

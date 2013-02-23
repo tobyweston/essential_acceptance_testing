@@ -1,0 +1,83 @@
+.clear {
+    clear: both;
+    height: 0;
+    visibility: hidden;
+    display: block;
+}
+
+#container {
+}
+
+#container ul {
+    list-style: none;
+    list-style-position: outside;
+    border: 0pt none;
+    margin: 0pt;
+    padding: 0pt;
+    vertical-align: baseline;
+}
+
+#container ul.menu li {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: -1px;
+}
+
+#container ul.menu li {
+    font-weight: 700;
+    display: block;
+    padding: 5px 10px 5px 10px;
+    background: #efefef;
+    margin-bottom: -1px;
+    border: 1px solid #d0ccc9;
+    border-width: 1px 1px 1px 1px;
+    position: relative;
+    color: #898989;
+    cursor: pointer;
+}
+
+#container ul.menu li.active {
+    background: #fff;
+    top: 1px;
+    border-bottom: 0;
+    color: #5f95ef;
+}
+
+.content {
+    margin: 0pt auto;
+    background: #efefef;
+    background: #fff;
+    border: 1px solid #d0ccc9;
+    text-align: left;
+    padding: 10px;
+    padding-bottom: 20px;
+}
+
+.content h2 {
+    line-height: 1em;
+    vertical-align: middle;
+    text-align: left;
+    height: 48px;
+    padding: 20px 0px 0px 0px;
+    font-size: 32px;
+}
+
+.content.Iteration {
+    display: block;
+}
+
+.content.unknown {
+    display: none;
+}
+
+.content.Functional {
+    display: none;
+}
+
+.content.JIRA {
+    display: none;
+}
+
+.content.API {
+    display: none;
+}

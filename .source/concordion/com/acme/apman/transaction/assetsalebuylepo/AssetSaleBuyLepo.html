@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Sell Asset / Buy LEPO </title>
+    <meta name="iteration" content="Functional summary" />
+    <meta name="ignore" content="false" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../../Apman.html">Apman</a> &gt; <a href="../Transaction.html">Transactions</a> &gt; <a href="Assetsalebuylepo.html">Sell Asset / Buy LEPO </a> &gt;</span>
+    <h1>Sell Asset / Buy LEPO</h1>
+    <div class="example">
+        <h2>Acceptance Tests</h2>
+        <ul>
+            <li><a href="../../../../../Overview.html">Overview</a></li>
+            <li><a href="AssetSaleBuyLepo.html">AssetSaleBuyLepo.html</a> (this page)</li>
+            <li><a href="../TransactionHistory.html">AssetSaleBuyLepoHistory.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateAwaitingReviewToRejected.html">AssetSaleBuyLepoStateAwaitingReviewToRejected.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateAwaitingReviewToReviewed.html">AssetSaleBuyLepoStateAwaitingReviewToReviewed.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateDraftToAwaitingReview.html">AssetSaleBuyLepoStateDraftToAwaitingReview.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateDraftToAwaitingReviewViaJsonAllRestrictions.html">AssetSaleBuyLepoStateDraftToAwaitingReviewViaJsonAllRestrictions.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateDraftToAwaitingReviewViaJsonEsmDown.html">AssetSaleBuyLepoStateDraftToAwaitingReviewViaJsonEsmDown.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateDraftToCancelled.html">AssetSaleBuyLepoStateDraftToCancelled.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateDraftToDraft.html">AssetSaleBuyLepoStateDraftToDraft.html</a></li>
+            <li><a href="AssetSaleBuyLepoStateReviewedToExecuted.html">AssetSaleBuyLepoStateReviewedToExecuted.html</a></li>
+            <li><a href="AssetSaleBuyLepoStatesToCancelled.html">AssetSaleBuyLepoStatesToCancelled.html</a></li>
+            <li><a href="AssetSaleBuyLepoStatesToRejected.html">AssetSaleBuyLepoStatesToRejected.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRest.html">CreateAssetSaleBuyLepoViaRest.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRestEsmDown.html">CreateAssetSaleBuyLepoViaRestEsmDown.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRestIgnoringFields.html">CreateAssetSaleBuyLepoViaRestIgnoringFields.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRestInvalidTradeDate.html">CreateAssetSaleBuyLepoViaRestInvalidTradeDate.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRestMissingFields.html">CreateAssetSaleBuyLepoViaRestMissingFields.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRestRestrictedByPortfolioManager.html">CreateAssetSaleBuyLepoViaRestRestrictedByPortfolioManager.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRestRestrictedInESM.html">CreateAssetSaleBuyLepoViaRestRestrictedInESM.html</a></li>
+            <li><a href="CreateAssetSaleBuyLepoViaRestRestrictedInESMWithUnknownCode.html">CreateAssetSaleBuyLepoViaRestRestrictedInESMWithUnknownCode.html</a></li>
+            <li><a href="GetAssetSaleBuyLepoViaRestAllTransactions.html">GetAssetSaleBuyLepoViaRestAllTransactions.html</a></li>
+            <li><a href="GetAssetSaleBuyLepoViaRestSingleTransaction.html">GetAssetSaleBuyLepoViaRestSingleTransaction.html</a></li>
+            <li><a href="UpdateAssetSaleBuyLepoExecutedToApproved.html">UpdateAssetSaleBuyLepoExecutedToApproved.html</a></li>
+        </ul>
+    </div>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 4 ms on 19-Jun-2012 at 20:07:06 BST</div></div></body>
+</html>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Update Sell Asset / Buy LEPO via REST - Draft to Awaiting Review on a Restricted Equity</title>
+    <meta name="iteration" content="Iteration 16, API PUT /apman/transactions/asset_sale_create_lepos" />
+    <meta name="jira" content="APMAN-236, APMAN-214" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../../Apman.html">Apman</a> &gt; <a href="../Transaction.html">Transactions</a> &gt; <a href="Assetsalebuylepo.html">Sell Asset / Buy LEPO </a> &gt;</span>
+<h1>Update Sell Asset / Buy LEPO via REST - Draft to Awaiting Review on a Restricted Equity</h1>
+
+<h2>Given</h2>
+
+<p>
+    An equity exists with an id of <b concordion:set="#equityIdentifier1">13311336</b> and is restricted by Portfolio Manager
+    <span concordion:execute="#identifier1 = createPortfolioRestrictedEquity(#equityIdentifier1)" />
+</p>
+
+<p>
+    An equity exists with an id of <b concordion:set="#equityIdentifier2">23311336</b> and is restricted in ESM
+    (restriction list code <span concordion:execute="#identifier1 = createRestrictedEquity(#equityIdentifier2, #TEXT)">RL3</span>,
+    Principal Trading Restriction)
+</p>
+
+<p>
+    An equity exists with an id of <b concordion:set="#equityIdentifier3">33311336</b> and is restricted in ESM
+    (restriction list code <span concordion:execute="#identifier1 = createRestrictedEquity(#equityIdentifier3, #TEXT)">RL5</span>,
+    Agency Trading and Principal Trading restriction)
+</p>
+
+<p>
+    An equity exists with an id of <b concordion:set="#equityIdentifier4">43311336</b> and is restricted in ESM
+    (restriction list code <span concordion:execute="#identifier2 = createRestrictedEquity(#equityIdentifier4, #TEXT)">RL6</span>,
+    Agency Trading and Principal Trading restriction)
+</p>
+
+<p>
+    An equity exists with an id of <b concordion:set="#equityIdentifier5">53311336</b> and is restricted in ESM
+    (restriction list code <span concordion:execute="#identifier1 = createRestrictedEquity(#equityIdentifier5, #TEXT)">RL1</span>,
+    Restriction not used by Apman)
+</p>
+
+<p>
+    Following Sell Asset / Buy LEPO transactions exist
+</p>
+
+<div class="example">
+    <table concordion:execute="#returnedIdentifier = createTransaction(#identifier, #state, #equityIdentifier)">
+        <thead>
+        <tr>
+            <th width="400px" concordion:set="#identifier">Identifier</th>
+            <th width="100px" concordion:set="#state">State</th>
+            <th width="150px" concordion:set="#equityIdentifier">Equity identifier</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">CAFEBABE-03b3-00FB-FF00-FF00FF00FF00</td>
+            <td align="center">DRAFT</td>
+            <td align="center">13311336</td>
+        </tr>
+        <tr>
+            <td align="center">BABEFACE-03b3-00FB-FF00-FF00FF00FF00</td>
+            <td align="center">DRAFT</td>
+            <td align="center">23311336</td>
+        </tr>
+        <tr>
+            <td align="center">F00BAF00-03b3-00FB-FF00-FF00FF00FF00</td>
+            <td align="center">DRAFT</td>
+            <td align="center">33311336</td>
+        </tr>
+        <tr>
+            <td align="center">B00FB00F-03b3-00FB-FF00-FF00FF00FF00</td>
+            <td align="center">DRAFT</td>
+            <td align="center">43311336</td>
+        </tr>
+        <tr>
+            <td align="center">D00BD00B-03b3-00FB-FF00-FF00FF00FF00</td>
+            <td align="center">DRAFT</td>
+            <td align="center">53311336</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h2>When</h2>
+
+<p>
+    HTTP <code>PUT</code> requests are made to <code concordion:set="#resource">/apman/transactions</code>
+    to move any of the above transactions to <b>AWAITING_REVIEW</b>
+</p>
+
+
+<h2>Then</h2>
+
+<p>
+    As Principal Trading Restrictions and Portfolio Manager Restrictions should prevent transition to AWAITING_REVIEW, the system responds indicating the requested transitions are not allowed.
+    For example, the following HTTP status responses, response bodies, transaction statuses and transaction cancellation reasons are the returned:
+</p>
+<table concordion:execute="#details = updateAndGetAssetSale(#resource, #identifier)">
+    <thead>
+    <tr>
+        <th width="150px" concordion:set="#identifier">Transaction equity identifier</th>
+        <th width="150px" concordion:assertEquals="#details.equityIdentifier">Transaction equity identifier</th>
+        <th width="150px" concordion:assertEquals="#details.responseStatus">HTTP status</th>
+        <th width="150px" concordion:assertEquals="#details.responseBody">Body</th>
+        <th width="100px" concordion:assertEquals="#details.transactionState">Transaction status</th>
+        <th width="150px" concordion:assertEquals="#details.cancellationReason">Transaction cancellation reason</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="center">CAFEBABE-03b3-00FB-FF00-FF00FF00FF00</td>
+        <td align="center" class="success">13311336</td>
+        <td align="center" class="success">403 (Forbidden)</td>
+        <td align="center" class="success">{"message" : "Equity 13311336 is restricted"}</td>
+        <td align="center" class="success">CANCELLED</td>
+        <td align="center" class="success">RESTRICTED_EQUITY</td>
+    </tr>
+
+    <tr>
+        <td align="center">BABEFACE-03b3-00FB-FF00-FF00FF00FF00</td>
+        <td align="center" class="success">23311336</td>
+        <td align="center" class="success">403 (Forbidden)</td>
+        <td align="center" class="success">{"message" : "Equity 23311336 is restricted"}</td>
+        <td align="center" class="success">CANCELLED</td>
+        <td align="center" class="success">RESTRICTED_EQUITY</td>
+    </tr>
+
+    <tr>
+        <td align="center">F00BAF00-03b3-00FB-FF00-FF00FF00FF00</td>
+        <td align="center" class="success">33311336</td>
+        <td align="center" class="success">403 (Forbidden)</td>
+        <td align="center" class="success">{"message" : "Equity 33311336 is restricted"}</td>
+        <td align="center" class="success">CANCELLED</td>
+        <td align="center" class="success">RESTRICTED_EQUITY</td>
+    </tr>
+    <tr>
+        <td align="center">B00FB00F-03b3-00FB-FF00-FF00FF00FF00</td>
+        <td align="center" class="success">43311336</td>
+        <td align="center" class="success">403 (Forbidden)</td>
+        <td align="center" class="success">{"message" : "Equity 43311336 is restricted"}</td>
+        <td align="center" class="success">CANCELLED</td>
+        <td align="center" class="success">RESTRICTED_EQUITY</td>
+    </tr>
+    <tr>
+        <td align="center">D00BD00B-03b3-00FB-FF00-FF00FF00FF00</td>
+        <td align="center" class="success">53311336</td>
+        <td align="center" class="success">200 (OK)</td>
+        <td align="center" class="success"> </td>
+        <td align="center" class="success">AWAITING_REVIEW</td>
+        <td align="center" class="success">(null)</td>
+    </tr>
+    </tbody>
+</table>
+<br />
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 224 ms on 19-Jun-2012 at 20:06:38 BST</div></div></body>
+</html>
