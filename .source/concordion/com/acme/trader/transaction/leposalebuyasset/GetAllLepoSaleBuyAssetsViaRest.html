@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get All Sell LEPO / Buy Asset Transactions via REST</title>
+    <meta name="iteration" content="Iteration 36, Iteration 32, Iteration 31, Iteration 24, Iteration 16, Iteration 22, Iteration 35, API GET /trader/transactions/exercise_lepos" />
+    <meta name="jira" content="TRADER-212, TRADER-217, TRADER-255, TRADER-332, TRADER-408, TRADER-413, TRADER-426, TRADER-431, TRADER-472, TRADER-482" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+    <script src="../../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../../Trader.html">Trader</a> &gt; <a href="../Transaction.html">Transactions</a> &gt; <a href="Leposalebuyasset.html">Sell LEPO / Buy Asset</a> &gt;</span>
+<h1>Get All Sell LEPO / Buy Asset Transactions via REST</h1>
+
+<h2>Given</h2>
+
+<p>Sell LEPO / Buy Asset transactions are available in the system <img style="cursor:pointer" onclick="showDetails();" src="../../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
+
+<p>Corporate action referenced by the Sell LEPO / Buy Asset transactions with a gross dividend of <span concordion:set="#dividend">5</span>exists in the system</p>
+
+<div class="details">
+    <div class="example">
+        <h3>Example</h3>
+
+        <table concordion:execute="createTransaction(#id, #equityIdentifier, #quantity, #tradeDate, #coltBook, #created, #createdBy, #modified, #modifiedBy, #state, #corporateActionIdentifier, #taxRate, #riskClass, #strategy, #family, #subBook, #exerciseDate, #executedQuantity, #executedPrice, #dividend)">
+            <thead>
+            <tr>
+                <th width="100px" concordion:set="#id">ID</th>
+                <th width="250px" concordion:set="#quantity">Quantity</th>
+                <th width="250px" concordion:set="#executedQuantity">Executed Quantity</th>
+                <th width="250px" concordion:set="#executedPrice">Executed Price</th>
+                <th width="100px" concordion:set="#state">Transaction State</th>
+                <th width="100px" concordion:set="#riskClass">Risk Class</th>
+                <th width="100px" concordion:set="#strategy">Strategy</th>
+                <th width="100px" concordion:set="#family">Family</th>
+                <th width="100px" concordion:set="#subBook">Sub Book</th>
+                <th width="250px" concordion:set="#equityIdentifier">Equity Identifier</th>
+                <th width="250px" concordion:set="#tradeDate">Trade Date</th>
+                <th width="250px" concordion:set="#exerciseDate">Exercise Date</th>
+                <th width="200px" concordion:set="#coltBook">Colt Book</th>
+                <th width="250px" concordion:set="#corporateActionIdentifier">Corporate Action Identifier</th>
+                <th width="200px" concordion:set="#taxRate">Tax Rate</th>
+                <th width="200px" concordion:set="#created">Created</th>
+                <th width="200px" concordion:set="#createdBy">Created By</th>
+                <th width="200px" concordion:set="#modified">Modified</th>
+                <th width="200px" concordion:set="#modifiedBy">Modified By</th>
+                <th width="100px" concordion:assertEquals="repositoryContainsTransaction()">Added</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td align="center">0e90cee0-011f-11e0-a976-0800200c9a66</td>
+                <td align="center">58.66</td>
+                <td align="center" />
+                <td align="center" />
+                <td align="center">DRAFT</td>
+                <td align="center">ETF_USD</td>
+                <td align="center">Strategy_XYZ</td>
+                <td align="center">ETF_CL_USD</td>
+                <td align="center">ETF_Local_USD</td>
+                <td align="center">00000503</td>
+                <td align="center">2010-10-06</td>
+                <td align="center">2010-10-07</td>
+                <td align="center">Book1</td>
+                <td align="center">1234055</td>
+                <td align="center">0.30</td>
+                <td align="center">2010-10-06T15:02:32.000+01:00</td>
+                <td align="center">David Cameroon</td>
+                <td align="center">2010-10-07T15:02:32.000+01:00</td>
+                <td align="center">Nick Clegg</td>
+                <td align="center" class="success">true</td>
+            </tr>
+            <tr>
+                <td align="center">1e9dd8f0-011f-11e0-a976-0800200c9a67</td>
+                <td align="center">1555</td>
+                <td align="center" />
+                <td align="center" />
+                <td align="center">AWAITING_REVIEW</td>
+                <td align="center">ETF_AUS</td>
+                <td align="center">Strategy_EFG</td>
+                <td align="center">ETF_CL_AUS</td>
+                <td align="center">ETF_Local_AUS</td>
+                <td align="center">00000505</td>
+                <td align="center">2010-09-05</td>
+                <td align="center">2010-09-06</td>
+                <td align="center">Book2</td>
+                <td align="center">1234077</td>
+                <td align="center">0.22</td>
+                <td align="center">2010-10-06T15:02:32.000+01:00</td>
+                <td align="center">Paul O'Grady</td>
+                <td align="center">2010-10-07T15:02:32.000+01:00</td>
+                <td align="center">Lilly Savage</td>
+                <td align="center" class="success">true</td>
+            </tr>
+            <tr>
+                <td align="center">1e9dd8f0-011f-11e0-a976-0800200c9a68</td>
+                <td align="center">1555</td>
+                <td align="center">1554</td>
+                <td align="center">0</td>
+                <td align="center">APPROVED</td>
+                <td align="center">ETF_AUS</td>
+                <td align="center">Strategy_EFG</td>
+                <td align="center">ETF_CL_AUS</td>
+                <td align="center">ETF_Local_AUS</td>
+                <td align="center">00000505</td>
+                <td align="center">2010-09-05</td>
+                <td align="center">2010-09-06</td>
+                <td align="center">Book2</td>
+                <td align="center">1234077</td>
+                <td align="center">0.22</td>
+                <td align="center">2010-10-06T15:02:32.000+01:00</td>
+                <td align="center">Paul O'Grady</td>
+                <td align="center">2010-10-07T15:02:32.000+01:00</td>
+                <td align="center">Lilly Savage</td>
+                <td align="center" class="success">true</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="example">
+    Corporate Actions exist in the system, with currencies
+    <table concordion:execute="addCorporateAction(#corporateActionIdentifier, #grossDividend, #currency)">
+        <thead>
+        <tr>
+            <th concordion:set="#corporateActionIdentifier">Corporate Action Identifier</th>
+            <th concordion:set="#grossDividend">Gross Dividend</th>
+            <th concordion:set="#currency">Currency</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1234055</td>
+            <td>5</td>
+            <td />
+        </tr>
+        <tr>
+            <td>1234077</td>
+            <td>5</td>
+            <td>EUR</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="example">
+    Equities exist in the system, with currencies
+    <table concordion:execute="addEquity(#equityIdentifier, #currency)">
+        <thead>
+        <tr>
+            <th concordion:set="#equityIdentifier">Equity Identifier</th>
+            <th concordion:set="#currency">Currency</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>00000503</td>
+            <td>USD</td>
+        </tr>
+        <tr>
+            <td>00000505</td>
+            <td>GBP</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>When</h2>
+
+<p>
+    The system is queried for Sell LEPO / Buy Asset transactions <img style="cursor:pointer" onclick="showDetails();" src="../../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" />
+</p>
+
+<div class="details">
+    <div class="example">
+        <p>
+            The Sell Asset transactions as a <i>resource</i> are queried with a HTTP <code>GET</code> on the URL...
+        </p>
+        <pre concordion:set="#resource">/trader/transactions/exercise_lepos</pre>
+        <p>
+            with a "accept" mime-type of...
+        </p>
+        <pre>application/json</pre>
+    </div>
+</div>
+
+<h2>Then</h2>
+
+<p>
+    The list of Sell Asset transactions contains the following information...
+</p>
+
+<div class="example">
+    <h3>Example</h3>
+
+    <pre concordion:assertEquals="get(#resource)" class="success">
+[
+  {
+    "id" : "0e90cee0-011f-11e0-a976-0800200c9a66",
+    "type" : "Sell LEPO / Buy Asset",
+    "riskClass" : "ETF_USD",
+    "strategy" : "Strategy_XYZ",
+    "family" : "ETF_CL_USD",
+    "subBook" : "ETF_Local_USD",
+    "quantity" : 58.66,
+    "state" : "DRAFT",
+    "equityIdentifier" : "00000503",
+    "tradeDate" : "2010-10-06",
+    "createdDate" : "2010-10-06T15:02:32.000+01:00",
+    "createdBy" : "David Cameroon",
+    "modifiedDate" : "2010-10-07T15:02:32.000+01:00",
+    "modifiedBy" : "Nick Clegg",
+    "coltBook" : "Book1",
+    "taxRate" : 0.3,
+    "exerciseDate" : "2010-10-07",
+    "corporateActionIdentifier" : "1234055",
+    "currency" : "USD"
+  },
+  {
+    "id" : "1e9dd8f0-011f-11e0-a976-0800200c9a67",
+    "type" : "Sell LEPO / Buy Asset",
+    "riskClass" : "ETF_AUS",
+    "strategy" : "Strategy_EFG",
+    "family" : "ETF_CL_AUS",
+    "subBook" : "ETF_Local_AUS",
+    "quantity" : 1555,
+    "state" : "AWAITING_REVIEW",
+    "equityIdentifier" : "00000505",
+    "tradeDate" : "2010-09-05",
+    "createdDate" : "2010-10-06T15:02:32.000+01:00",
+    "createdBy" : "Paul O'Grady",
+    "modifiedDate" : "2010-10-07T15:02:32.000+01:00",
+    "modifiedBy" : "Lilly Savage",
+    "coltBook" : "Book2",
+    "taxRate" : 0.22,
+    "exerciseDate" : "2010-09-06",
+    "corporateActionIdentifier" : "1234077",
+    "currency" : "GBP",
+    "priceAdjustmentCurrency" : "EUR"
+  },
+    {
+    "id" : "1e9dd8f0-011f-11e0-a976-0800200c9a68",
+    "type" : "Sell LEPO / Buy Asset",
+    "riskClass" : "ETF_AUS",
+    "strategy" : "Strategy_EFG",
+    "family" : "ETF_CL_AUS",
+    "subBook" : "ETF_Local_AUS",
+    "quantity" : 1555,
+    "state" : "APPROVED",
+    "equityIdentifier" : "00000505",
+    "tradeDate" : "2010-09-05",
+    "createdDate" : "2010-10-06T15:02:32.000+01:00",
+    "createdBy" : "Paul O'Grady",
+    "modifiedDate" : "2010-10-07T15:02:32.000+01:00",
+    "modifiedBy" : "Lilly Savage",
+    "coltBook" : "Book2",
+    "executedPrice" : 0.0,
+    "executedQuantity" : 1554,
+    "taxRate" : 0.22,
+    "exerciseDate" : "2010-09-06",
+    "corporateActionIdentifier" : "1234077",
+    "cashflow" : 0.0,
+    "priceAdjustment" : 6060.6,
+    "currency" : "GBP",
+    "priceAdjustmentCurrency" : "EUR"
+  }
+
+]
+</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+</script>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 446 ms on 19-Jun-2012 at 20:05:16 BST</div></div></body>
+</html>

@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:c="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Settlement Instructions Verification</title>
+    <meta name="iteration" content="Iteration 30" />
+    <meta name="jira" content="TRADER-402" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../../Trader.html">Trader</a> &gt; <a href="../External.html">Bookings</a> &gt;</span>
+<h1>Settlement Instructions Verification</h1>
+
+
+<h2>Given</h2>
+
+<p>A list of settlement instructions represented by a configuration file</p>
+
+<h2>When</h2>
+
+<p>
+    Settlement instructions file is loaded
+</p>
+
+<h2>Then</h2>
+
+<p>
+    Following settlement instructions are available in trader
+</p>
+
+<div class="example">
+<h3>Settlement Instructions</h3>
+<table c:verifyRows="#instruction : getSettlementInstructions()">
+<thead>
+<tr>
+    <th c:assertEquals="#instruction.currency">Currency</th>
+    <th c:assertEquals="#instruction.nostroAgent">Nostro Agent</th>
+    <th c:assertEquals="#instruction.nostroAgentBic">Nostro Agent BIC (57A)</th>
+    <th c:assertEquals="#instruction.beneficiaryBank">Beneficiary Bank</th>
+    <th c:assertEquals="#instruction.beneficiaryBankBic">Beneficiary Bank BIC</th>
+    <th c:assertEquals="#instruction.ibanOrAccountNameOrClearingCode">IBAN / Account Number / Clearing Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td class="success">AED</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH6900286AAAAMWS93N47</td>
+</tr>
+<tr>
+    <td class="success">AUD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH7400286AAAAMWS93N54</td>
+</tr>
+<tr>
+    <td class="success">BHD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH8800286AAAAMWS93N7L</td>
+</tr>
+<tr>
+    <td class="success">CAD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH4700286AAAAMWS93N55</td>
+</tr>
+<tr>
+    <td class="success">CHF</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH540028628604438001J</td>
+</tr>
+<tr>
+    <td class="success">CYP</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH4200286AAAAMWS93N48</td>
+</tr>
+<tr>
+    <td class="success">CZK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH6100286AAAAMWS93N7M</td>
+</tr>
+<tr>
+    <td class="success">DKK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH6200286AAAAMWS93N4D</td>
+</tr>
+<tr>
+    <td class="success">EEK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH1500286AAAAMWS93N49</td>
+</tr>
+<tr>
+    <td class="success">EUR</td>
+    <td class="success">UBS Deutschland AG Frankfurt</td>
+    <td class="success">UBSWDEFFXXX</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">DE58501306002864438010</td>
+</tr>
+<tr>
+    <td class="success">GBP</td>
+    <td class="success">UBS AG, London</td>
+    <td class="success">UBSWGB55XXX</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">Sortcode: 23-23-23 (02860000044380010510 MT103 only)</td>
+</tr>
+<tr>
+    <td class="success">HKD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH3400286AAAAMWS93N7N</td>
+</tr>
+<tr>
+    <td class="success">HRK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH6200286AAAAMWS93N5A</td>
+</tr>
+<tr>
+    <td class="success">HUF</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH7700286AAAAMWS93N7P</td>
+</tr>
+<tr>
+    <td class="success">ILS</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH2300286AAAAMWS93N7R</td>
+</tr>
+<tr>
+    <td class="success">ISK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH3500286AAAAMWS93N5B</td>
+</tr>
+<tr>
+    <td class="success">JPY</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH6600286AAAAMWS93N7T</td>
+</tr>
+<tr>
+    <td class="success">KES</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH0800286AAAAMWS93N5C</td>
+</tr>
+<tr>
+    <td class="success">KWD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH2000286AAAAMWS93N56</td>
+</tr>
+<tr>
+    <td class="success">LTL</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH7800286AAAAMWS93N5D</td>
+</tr>
+<tr>
+    <td class="success">LVL</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH0900286AAAAMWTB5J5S</td>
+</tr>
+<tr>
+    <td class="success">MAD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH5100286AAAAMWS93N5E</td>
+</tr>
+<tr>
+    <td class="success">MTL</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH2400286AAAAMWS93N5F</td>
+</tr>
+<tr>
+    <td class="success">MXN</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH3900286AAAAMWS93N7U</td>
+</tr>
+<tr>
+    <td class="success">NOK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH1200286AAAAMWS93N7V</td>
+</tr>
+<tr>
+    <td class="success">NZD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH6300286AAAAMWS93N58</td>
+</tr>
+<tr>
+    <td class="success">OMR</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH9400286AAAAMWS93N5G</td>
+</tr>
+<tr>
+    <td class="success">PLN</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH5500286AAAAMWS93N7X</td>
+</tr>
+<tr>
+    <td class="success">QAR</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH6700286AAAAMWS93N5H</td>
+</tr>
+<tr>
+    <td class="success">RON</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH1900286AAAA7DLLLD99</td>
+</tr>
+<tr>
+    <td class="success">RUB</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH9800286AAAAMWTAE9LS</td>
+</tr>
+<tr>
+    <td class="success">SAR</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH2800286AAAAMWS93N7Y</td>
+</tr>
+<tr>
+    <td class="success">SEK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH5300286AAAAMWS93N44</td>
+</tr>
+<tr>
+    <td class="success">SGD</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH9800286AAAAMWS93N7Z</td>
+</tr>
+<tr>
+    <td class="success">SIT</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH1300286AAAAMWS93N5J</td>
+</tr>
+<tr>
+    <td class="success">SKK</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH7300286AAAAMWS93N72</td>
+</tr>
+<tr>
+    <td class="success">THB</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH4600286AAAAMWS93N73</td>
+</tr>
+<tr>
+    <td class="success">TND</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH8300286AAAAMWS93N5K</td>
+</tr>
+<tr>
+    <td class="success">TRY</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH1900286AAAAMWS93N74</td>
+</tr>
+<tr>
+    <td class="success">USD</td>
+    <td class="success">UBS AG, Stamford Branch</td>
+    <td class="success">UBSWUS33XXX</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">101-WA-140007-000</td>
+</tr>
+<tr>
+    <td class="success">ZAR</td>
+    <td class="success">UBS AG, Zurich Branch</td>
+    <td class="success">UBSWCHZH80A</td>
+    <td class="success">UBS AG, London Branch</td>
+    <td class="success">UBSWGB2LXXX</td>
+    <td class="success">CH3600286AAAAMWS93N59</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<br />
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 68 ms on 19-Jun-2012 at 20:05:54 BST</div></div></body>
+</html>

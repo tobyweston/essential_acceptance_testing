@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Sell LEPO / Buy Asset Booking in GR</title>
+    <meta name="iteration" content="Iteration 24, Iteration 31, Iteration 32,Iteration 35,Iteration 36" />
+    <meta name="jira" content="TRADER-334, TRADER-354, TRADER-408, TRADER-425, TRADER-434, TRADER-473,TRADER-472,TRADER-495" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+    <script src="../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Tradebooking.html">Trade Booking Overview</a> &gt;</span>
+<h1>Sell LEPO / Buy Asset Booking in GR</h1>
+
+<p>
+    Having previously <a href="CreateLepoAndTally.html">created a LEPO instrument in GR and tallied onto it</a> as a
+    result of concluding the Sell Asset / Buy LEPO workflow, the LEPO will be exercised on expiry by executing
+    or cancelling the Sell LEPO / Buy Asset workflow.
+</p>
+
+<h2>When</h2>
+
+<p>
+    Trader receives a request to execute an Sell LEPO / Buy Asset transaction. A request to exercise the LEPO is made to GR (via Dragon) including a dividend cash flow adjustment.
+    <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" />
+</p>
+
+<div class="details">
+<div class="example">
+    <h3>Example</h3>
+    <table>
+        <thead>
+        <tr>
+            <th width="150px">Transaction Identifier</th>
+            <th width="150px">GR Symbol</th>
+            <th width="150px">Currency</th>
+            <th width="150px">Executed Quantity</th>
+            <th width="150px">Executed Price</th>
+            <th width="150px">Gross Dividend</th>
+            <th width="150px">Tax Rate</th>
+            <th width="150px">Strategy</th>
+            <th width="150px">Risk Class</th>
+            <th width="150px">Family</th>
+            <th width="150px">SubBook</th>
+            <th width="150px">Trade Date</th>
+            <th width="150px">Exercise Date</th>
+            <th width="150px">Settlement Date</th>
+        </tr>
+        </thead>
+        <tr>
+            <td align="center" concordion:set="#transactionId">7582348b-37e1-2345-9431-3545645621a1</td>
+            <td align="center" concordion:set="#symbol">CG=P</td>
+            <td align="center" concordion:set="#currency">GBP</td>
+            <td align="center" concordion:set="#executedQuantity">1000.6</td>
+            <td align="center" concordion:set="#executedPrice">100.2</td>
+            <td align="center" concordion:set="#grossDividend">0.311832</td>
+            <td align="center" concordion:set="#taxRate">0.33</td>
+            <td align="center" concordion:set="#strategy">MY_STRAT</td>
+            <td align="center" concordion:set="#riskClass">RISKY</td>
+            <td align="center" concordion:set="#family">RRD</td>
+            <td align="center" concordion:set="#subbook">SUB_1</td>
+            <td align="center" concordion:set="#tradeDate">2011-06-29</td>
+            <td align="center" concordion:set="#exerciseDate">2011-06-30</td>
+            <td align="center" concordion:set="#settlementDate">2011-04-01</td>
+        </tr>
+    </table>
+    <p><em>The tally premium is calculated as the gross dividend rate * (1 - tax rate)</em></p>
+    <p><em>The exercise date on the Sell LEPO / Buy Asset transaction is used as the expiration date.</em></p>
+    <span concordion:execute="#lepo = createLepo(#transactionId, #currency, #executedPrice, #executedQuantity, #grossDividend, #taxRate, #strategy, #riskClass, #family, #subbook, #tradeDate, #settlementDate, #exerciseDate)" />
+</div>
+</div>
+
+<h2>Then</h2>
+
+<p concordion:execute="book(#lepo, #symbol)">
+    A valid JSON message is sent to Dragon representing a negative tally onto an existing LEPO (as referenced by
+    the <b>symbol</b>) via a HTTP POST.
+</p>
+<div class="example">
+<h3>Example</h3>
+
+<pre concordion:assertEquals="verifyRequestWasReceived(#TEXT)" class="success">{
+  "ticketNum" : "7582348b-37e1-2345-9431-3545645621a1",
+  "csrmRefNum" : "BKP350LDN5334755",
+  "premiumUnit" : "GBP",
+  "strategy" : "MY_STRAT",
+  "riskClass" : "RISKY",
+  "family" : "RRD",
+  "subbook" : "SUB_1",
+  "bookDate" : "29 Jun 2011 00:00:00",
+  "settlementDate" : "01 Apr 2011 00:00:00",
+  "quantity" : 1000.6,
+  "tallyPremium" : 100.2,
+  "shortCounterparty" : "UBS_ETFS_PLC",
+  "clazz" : "com.swissbank.eq.foundation.trades.TallyObj",
+  "commitType" : "INSERT_ONLY",
+  "needsUpdating" : "true",
+  "source" : "Trader",
+  "firm" : "642",
+  "orderOpenClosed" : "Exercise",
+  "createCashTally" : "true",
+  "deal_instrument_obj" : {
+    "needsUpdating" : "false",
+    "clazz" : "com.swissbank.eq.foundation.instruments.BinaryOption",
+    "symbol" : "ETF_AP_LEPO_CG=P_110630"
+  }
+}</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="BookingOverviewOnLepoSaleBuyAssetViaRest.html">What else happens on execute, other bookings?</a></li>
+        <li><a href="LepoSaleBuyAssetCancelViaRest.html">What happens if the workflow is cancelled?</a></li>
+        <li><a href="LepoSaleBuyAssetCancel.html">What does the Dragon message look like if the order is cancelled?</a></li>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+</script>
+
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 18 ms on 19-Jun-2012 at 20:06:06 BST</div></div></body>
+</html>

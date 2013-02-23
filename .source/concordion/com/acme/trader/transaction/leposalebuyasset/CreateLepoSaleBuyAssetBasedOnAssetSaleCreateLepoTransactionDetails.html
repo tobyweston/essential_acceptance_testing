@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Create Sell LEPO / Buy Asset Transaction via REST from Sell Asset / Buy LEPO Transaction</title>
+    <meta name="iteration" content="Iteration 31, Iteration 24, Iteration 17, Iteration 22, API PUT /trader/transactions/asset_sale_create_lepos" />
+    <meta name="jira" content="TRADER-215, TRADER-255, TRADER-332, TRADER-408" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../../Trader.html">Trader</a> &gt; <a href="../Transaction.html">Transactions</a> &gt; <a href="Leposalebuyasset.html">Sell LEPO / Buy Asset</a> &gt;</span>
+<h1>Create Sell LEPO / Buy Asset Transaction via REST from Sell Asset / Buy LEPO Transaction</h1>
+
+<h2>Given</h2>
+
+<p>The following Sell Asset / Buy LEPO transaction exists with details as follows</p>
+
+<div class="example">
+<h3>Sell Asset / Buy LEPO Transaction</h3>
+<table concordion:execute="#transaction = createTransaction(#equityIdentifier, #corporateActionIdentifier, #exerciseDate, #taxRate, #subBook, #riskClass, #family, #strategy, #coltBook)">
+    <thead>
+    <tr>
+        <th width="250px" concordion:set="#equityIdentifier">Equity Identifier</th>
+        <th width="175px" concordion:set="#corporateActionIdentifier">Corporate Action Identifier</th>
+        <th width="175px" concordion:set="#taxRate">Tax Rate</th>
+        <th width="175px" concordion:set="#executedQuantity">Executed Quantity</th>
+        <th width="175px" concordion:set="#exerciseDate">Exercise Date</th>
+        <th width="175px" concordion:set="#subBook">SubBook</th>
+        <th width="175px" concordion:set="#riskClass">Risk Class</th>
+        <th width="175px" concordion:set="#family">Family</th>
+        <th width="175px" concordion:set="#strategy">Strategy</th>
+        <th width="175px" concordion:set="#coltBook">Colt Book</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="center">99999999999</td>
+        <td align="center">1234014</td>
+        <td align="center">0.25</td>
+        <td align="center">600</td>
+        <td align="center">2011-05-28</td>
+        <td align="center">Some book</td>
+        <td align="center">Daredevil</td>
+        <td align="center">Mum</td>
+        <td align="center">Retreat</td>
+        <td align="center">Revolver</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<h2>When</h2>
+
+<p concordion:execute="#transactions = execute(#transaction, #executedQuantity)">The Sell Asset / Buy LEPO transaction moves to the <b>EXECUTED</b> state</p>
+
+<h2>Then</h2>
+
+<p>
+    An Sell LEPO / Buy Asset transaction is created with following details, notably, the <i>executed quantity</i> has been
+    transferred to the <i>quantity</i>,<i>exercise date</i> has been both copied and transferred to the <i>trade date</i> and Corporate Action Identifier
+    and Tax Rate are copied over, along with booking details (subBook, colt book, risk class, family and strategy)
+</p>
+
+
+<div class="example">
+<h3>Sell LEPO / Buy Asset Transaction</h3>
+<table>
+    <thead>
+    <tr>
+        <th width="200px">Type</th>
+        <th width="155px">State</th>
+        <th width="200px">Equity Identifier</th>
+        <th width="175px">Quantity</th>
+        <th width="275px">Trade Date</th>
+        <th width="275px">Exercise Date</th>
+        <th width="275px">Corporate Action Identifier</th>
+        <th width="275px">Tax Rate</th>
+        <th width="275px">SubBook</th>
+        <th width="275px">Risk Class</th>
+        <th width="275px">Strategy</th>
+        <th width="275px">Family</th>
+        <th width="275px">Colt Book</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="center" concordion:execute="#result = getTransactionMatchingType(#TEXT, #transactions)">Sell LEPO / Buy Asset</td>
+        <td align="center" concordion:assertEquals="#result.state" class="success">DRAFT</td>
+        <td align="center" concordion:assertEquals="#result.equityIdentifier" class="success">EquityIdentifier[99999999999]</td>
+        <td align="center" concordion:assertEquals="#result.quantity" class="success">Quantity[600]</td>
+        <td align="center" concordion:assertEquals="#result.tradeDate" class="success">TradeDate[Sat May 28 00:00:00 BST 2011]</td>
+        <td align="center" concordion:assertEquals="#result.exerciseDate" class="success">ExerciseDate[Sat May 28 00:00:00 BST 2011]</td>
+        <td align="center" concordion:assertEquals="#result.corporateActionIdentifier" class="success">CorporateActionIdentifier[1234014]</td>
+        <td align="center" concordion:assertEquals="#result.taxRate" class="success">TaxRate[0.25]</td>
+        <td align="center" concordion:assertEquals="#result.subBook" class="success">SubBook[Some book]</td>
+        <td align="center" concordion:assertEquals="#result.riskClass" class="success">RiskClass[Daredevil]</td>
+        <td align="center" concordion:assertEquals="#result.strategy" class="success">Strategy[Retreat]</td>
+        <td align="center" concordion:assertEquals="#result.family" class="success">Family[Mum]</td>
+        <td align="center" concordion:assertEquals="#result.coltBook" class="success">ColtBook[Revolver]</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 154 ms on 19-Jun-2012 at 20:05:49 BST</div></div></body>
+</html>

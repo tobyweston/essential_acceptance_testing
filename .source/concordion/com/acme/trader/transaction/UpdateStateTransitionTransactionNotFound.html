@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Update Transaction via REST - Transaction Not Found</title>
+    <meta name="iteration" content="Iteration 13, Iteration 16, API PUT /trader/transactions/asset_sales, API PUT /trader/transactions/asset_purchases, API PUT /trader/transactions/asset_sale_create_lepos, API PUT /trader/transactions/exercise_lepos" />
+    <meta name="jira" content="TRADER-162, TRADER-214" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Transaction.html">Transactions</a> &gt;</span>
+<h1>Update Transaction via REST - Transaction Not Found</h1>
+
+<h2>Given</h2>
+
+<p>
+    DRAFT transactions exist for each workflow type in the system
+</p>
+
+<h2>When</h2>
+
+<p>
+    A valid state transition (in this case to CANCELLED) is requested via a HTTP <code>PUT</code>, but for a transition id that doesn't exist.
+</p>
+
+<h2>Then</h2>
+
+<p>
+    The system indicates the transaction is not found
+</p>
+
+<table concordion:execute="#response = update(#type, #identifier)">
+    <thead>
+    <tr>
+        <th concordion:set="#type">Type</th>
+        <th width="250px" concordion:set="#identifier">CANCELLED Transaction Identifier</th>
+        <th concordion:assertEquals="#response.status">Response</th>
+        <th concordion:assertEquals="#response.body">Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="center">Sell Asset</td>
+        <td align="center">7181e31d-420d-4cc5-b28d-9fba2570aa67</td>
+        <td class="success">404 (Not Found)</td>
+        <td class="success">{"message" : "transaction with identifier 7181e31d-420d-4cc5-b28d-9fba2570aa67 not found"}</td>
+    </tr>
+    <tr>
+        <td align="center">Buy Asset</td>
+        <td align="center">7181e31d-420d-4cc5-b28d-9fba2570aa88</td>
+        <td class="success">404 (Not Found)</td>
+        <td class="success">{"message" : "transaction with identifier 7181e31d-420d-4cc5-b28d-9fba2570aa88 not found"}</td>
+    </tr>
+    <tr>
+        <td align="center">Sell Asset / Buy LEPO</td>
+        <td align="center">7181e31d-420d-4cc5-b28d-9fba2570aa44</td>
+        <td class="success">404 (Not Found)</td>
+        <td class="success">{"message" : "transaction with identifier 7181e31d-420d-4cc5-b28d-9fba2570aa44 not found"}</td>
+    </tr>
+    <tr>
+        <td align="center">Sell LEPO / Buy Asset</td>
+        <td align="center">7181e31d-420d-4cc5-b28d-9fba2570aa22</td>
+        <td class="success">404 (Not Found)</td>
+        <td class="success">{"message" : "transaction with identifier 7181e31d-420d-4cc5-b28d-9fba2570aa22 not found"}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 82 ms on 19-Jun-2012 at 20:06:55 BST</div></div></body>
+</html>

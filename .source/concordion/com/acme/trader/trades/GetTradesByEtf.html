@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get Trades via REST by ETF ID</title>
+    <meta name="iteration" content="Iteration 36, API GET /trader/trades/etf" />
+    <meta name="jira" content="TRADER-502, TRADER-508" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Trades.html">Trades</a> &gt;</span>
+<h1>Get Trades via REST by ETF ID</h1>
+
+<h2>Given</h2>
+
+<p>Three trades are available in the system, two of which are associated with the ETF Identifier <strong>7091e880-2939-11e0-91fa-0800200c9a66</strong> (FTSE 100 ETF) </p>
+
+<div class="example">
+    <h3>Example</h3>
+
+    <table concordion:execute="createTrade(#id, #type, #etfIdentifier, #externalIdentifier, #currency, #price, #quantity, #tradeDate, #settlementDate, #createdDate, #createBy, #transactionIdentifier, #cashflow)">
+        <thead>
+         <tr>
+            <th concordion:set="#id" width="100px">Identifier</th>
+            <th concordion:set="#transactionIdentifier" width="100px">Transaction Identifier</th>
+            <th concordion:set="#type" width="200px">Type</th>
+            <th concordion:set="#etfIdentifier" width="200px">ETF Identifier</th>
+            <th concordion:set="#externalIdentifier" width="200px">GR Inst Tic</th>
+            <th concordion:set="#currency" width="250px">Currency</th>
+            <th concordion:set="#price" width="250px">Price</th>
+            <th concordion:set="#quantity" width="250px">Quantity</th>
+            <th concordion:set="#cashflow" width="250px">Cashflow</th>
+            <th concordion:set="#tradeDate" width="250px">Trade Date</th>
+            <th concordion:set="#settlementDate" width="250px">Settlement Date</th>
+            <th concordion:set="#createdDate" width="200px">Created</th>
+            <th concordion:set="#createBy" width="200px">Created By</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">7b9f837c-9e93-4cbb-844a-aec447d38642</td>
+            <td align="center">1b9f837c-9e93-4cbb-844a-aec447d38642</td>
+            <td align="center">TRS_AP</td>
+            <td align="center">7091e880-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">345554850</td>
+            <td align="center">EUR</td>
+            <td align="center">38.01</td>
+            <td align="center">150000</td>
+            <td align="center">5701500</td>
+            <td align="center">2010-12-20</td>
+            <td align="center">2010-12-23</td>
+            <td align="center">2010-10-12T16:02:32.000+01:00</td>
+            <td align="center">Bobby Boydel</td>
+        </tr>
+        <tr>
+            <td align="center">2db2df1b-3c01-49fc-ae4f-e4a73b8cec77</td>
+            <td align="center">1db2df1b-3c01-49fc-ae4f-e4a73b8cec77</td>
+            <td align="center">TRS_PERF</td>
+            <td align="center">7091e880-2939-11e0-91fa-0800200c9a66</td>
+            <td align="center">345665699</td>
+            <td align="center">NOK</td>
+            <td align="center">81.252</td>
+            <td align="center">2500000</td>
+            <td align="center">203130000</td>
+            <td align="center">2011-01-03</td>
+            <td align="center">2011-01-06</td>
+            <td align="center">2012-10-12T16:06:32.000+01:00</td>
+            <td align="center">Rozzie Raspberry</td>
+        </tr>
+        <tr>
+            <td align="center">d579309c-42d3-424d-bb8e-60016183fd67</td>
+            <td align="center">1579309c-42d3-424d-bb8e-60016183fd67</td>
+            <td align="center">FFS</td>
+            <td align="center">25f9f040-2959-11e0-91fa-0800200c9a66</td>
+            <td align="center">240863423</td>
+            <td align="center">EUR</td>
+            <td align="center">48.984</td>
+            <td align="center">1000000</td>
+            <td align="center">48984000</td>
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-17</td>
+            <td align="center">2012-10-17T13:06:34.000+01:00</td>
+            <td align="center">Shamone Jackson</td>
+        </tr>
+        <tr>
+            <td align="center">25f9f040-2959-11e0-91fa-0800200c9a66</td>
+            <td align="center">15f9f040-2959-11e0-91fa-0800200c9a66</td>
+            <td align="center">INST_W</td>
+            <td align="center" />
+            <td align="center">123456789</td>
+            <td align="center">EUR</td>
+            <td align="center">48.984</td>
+            <td align="center">1000000</td>
+            <td align="center">48984000</td>
+            <td align="center">2011-01-16</td>
+            <td align="center">2011-01-17</td>
+            <td align="center">2012-10-17T13:06:34.000+01:00</td>
+            <td align="center">Shamone Jackson</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>When</h2>
+
+<p>
+    The trades are queried,
+</p>
+
+<div class="example">
+    <p>
+        The trades as a <i>resource</i> are queried with a HTTP <code>GET</code> on the URL...
+    </p>
+    <pre concordion:set="#resource">/trader/trades/etf/7091e880-2939-11e0-91fa-0800200c9a66?new_format=true</pre>
+</div>
+
+<h2>Then</h2>
+
+<p concordion:execute="#response=get(#resource)">
+    The list of trades contains the following information...
+</p>
+
+<div class="example">
+    <h3>Example</h3>
+    <pre concordion:assertEquals="#response" class="success">[
+  {
+    "id" : "2db2df1b-3c01-49fc-ae4f-e4a73b8cec77",
+    "description" : "Asset Portfolio Trading",
+    "instrument" : {
+      "type" : "TRS_PERF",
+      "description" : "Total Return Swap (Performance Leg)",
+      "etf" : "7091e880-2939-11e0-91fa-0800200c9a66",
+      "identifiers" : {
+        "grInstrTic" : "345665699"
+      }
+    },
+    "price" : 81.252,
+    "currency" : "NOK",
+    "quantity" : 2500000,
+    "cashflow" : 203130000,
+    "transactionIdentifier" : "1db2df1b-3c01-49fc-ae4f-e4a73b8cec77",
+    "tradeDate" : "2011-01-03",
+    "settlementDate" : "2011-01-06",
+    "createdDate" : "2012-10-12T16:06:32.000+01:00",
+    "createdBy" : "Rozzie Raspberry"
+  },
+  {
+    "id" : "7b9f837c-9e93-4cbb-844a-aec447d38642",
+    "description" : "Asset Portfolio Trading",
+    "instrument" : {
+      "type" : "TRS_AP",
+      "description" : "Total Return Swap (Asset Portfolio Leg)",
+      "etf" : "7091e880-2939-11e0-91fa-0800200c9a66",
+      "identifiers" : {
+        "grInstrTic" : "345554850"
+      }
+    },
+    "price" : 38.01,
+    "currency" : "EUR",
+    "quantity" : 150000,
+    "cashflow" : 5701500,
+    "transactionIdentifier" : "1b9f837c-9e93-4cbb-844a-aec447d38642",
+    "tradeDate" : "2010-12-20",
+    "settlementDate" : "2010-12-23",
+    "createdDate" : "2010-10-12T16:02:32.000+01:00",
+    "createdBy" : "Bobby Boydel"
+  }
+]</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 158 ms on 19-Jun-2012 at 20:05:21 BST</div></div></body>
+</html>

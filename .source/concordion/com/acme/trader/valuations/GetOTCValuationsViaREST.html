@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get OTC Valuations via REST by Trade Date</title>
+    <meta name="iteration" content="Iteration 26, Iteration 27, API GET /trader/valuations/otc/{date}" />
+    <meta name="jira" content="TRADER-358, TRADER-362, TRADER-366, TRADER-485, TRADER-487" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+    <script src="../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Valuations.html">Valuations Overview</a> &gt;</span>
+<h1>Get OTC Valuations via REST by Trade Date</h1>
+
+<h2>Given</h2>
+
+<p>Trades exist in the system <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
+
+<div class="details">
+<div class="example">
+    <h3>Trades</h3>
+    <table concordion:execute="createTrade(#grInstrTic, #type, #quantity, #tradeDate)">
+        <thead>
+         <tr>
+            <th concordion:set="#grInstrTic" width="200px">GR Instr Tic</th>
+            <th concordion:set="#type" width="250px">Type</th>
+            <th concordion:set="#quantity" width="250px">Quantity</th>
+            <th concordion:set="#tradeDate" width="250px">Trade Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">240863423</td>
+            <td align="center">TRS_AP</td>
+            <td align="center">80</td>
+            <td align="center">2010-12-20</td>
+        </tr>
+        <tr>
+            <td align="center">240863423</td>
+            <td align="center">TRS_AP</td>
+            <td align="center">-30</td>
+            <td align="center">2010-12-19</td>
+        </tr>
+        <tr>
+            <td align="center">345665699</td>
+            <td align="center">TRS_PERF</td>
+            <td align="center">40</td>
+            <td align="center">2010-12-17</td>
+        </tr>
+        <tr>
+            <td align="center">345554850</td>
+            <td align="center">FFS</td>
+            <td align="center">100</td>
+            <td align="center">2011-01-16</td>
+        </tr>
+        <tr>
+            <td align="center">123456789</td>
+            <td align="center">INST_W</td>
+            <td align="center">500</td>
+            <td align="center">2010-12-15</td>
+        </tr>
+        <tr>
+            <td align="center">888883333</td>
+            <td align="center">CA_LEPO</td>
+            <td align="center">66</td>
+            <td align="center">2010-12-11</td>
+        </tr>
+        <tr>
+            <td align="center" />
+            <td align="center">CA_LEPO</td>
+            <td align="center">50</td>
+            <td align="center">2010-12-11</td>
+        </tr>
+        <tr>
+            <td align="center">006060842</td>
+            <td align="center">EQUITY</td>
+            <td align="center">99</td>
+            <td align="center">2010-12-11</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+<h2>When</h2>
+
+<p>
+    The OTC trade valuations are queried via REST with a trade date 2010-12-20
+</p>
+
+<div class="example">
+    <p>
+        The valuations are queried with a HTTP <code>GET</code> on the following URL...
+    </p>
+    <pre concordion:set="#resource">/trader/valuations/otc/2010/12/20</pre>
+</div>
+
+<h2>Then</h2>
+
+<p>
+    The valuation contains the following information...
+</p>
+
+
+<div class="example">
+    <h3>Example</h3>
+    <pre concordion:assertEquals="getValuation(#resource)" class="success">{
+  "instruments" : [
+    {
+      "grInstrTic" : null,
+      "type" : "CA_LEPO",
+      "position" : 50,
+      "trades" : 0.0
+    },
+    {
+      "grInstrTic" : "888883333",
+      "type" : "CA_LEPO",
+      "position" : 66,
+      "trades" : 0.0
+    },
+    {
+      "grInstrTic" : "345665699",
+      "type" : "TRS_PERF",
+      "position" : 40,
+      "trades" : 0.0
+    },
+    {
+      "grInstrTic" : "240863423",
+      "type" : "TRS_AP",
+      "position" : 50,
+      "trades" : 80
+    },
+    {
+      "grInstrTic" : "123456789",
+      "type" : "INST_W",
+      "position" : 500,
+      "trades" : 0.0
+    }
+  ]
+}</pre>
+
+<p>Position: sum of quantity for all trades where TRADE_DATE &lt;= input date</p>
+<p>Trades: sum of quantity for all trades where TRADE_DATE = input date</p>
+
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+</script>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 58 ms on 19-Jun-2012 at 20:06:02 BST</div></div></body>
+</html>

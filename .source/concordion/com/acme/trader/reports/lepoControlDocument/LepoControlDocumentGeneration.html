@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:c="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>LEPO Control Document Generation</title>
+    <meta name="iteration" content="Iteration 30, Iteration 31,Iteration 32" />
+    <meta name="jira" content="TRADER-401, TRADER-428" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../../Trader.html">Trader</a> &gt; <a href="../Reports.html">Reports</a> &gt;</span>
+<h1>LEPO Control Document Generation</h1>
+
+<div class="information">
+    <p>Following document describes the expected <a href="http://confluence.swissbank.com/display/AISAP/Generate+LEPO+Control+Document+%28All%29">format</a></p>
+
+</div>
+
+<h2>Given</h2>
+
+<div class="example">
+    <h3>LEPO Assets</h3>
+    <table c:execute="addAsset(#equityIdentifier, #position, #effectiveDate, #type)">
+        <thead>
+        <tr>
+            <th c:set="#equityIdentifier">Equity Identifier</th>
+            <th c:set="#position">Position</th>
+            <th c:set="#effectiveDate">Effective Date</th>
+            <th c:set="#type">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0001039367</td>
+            <td>0</td>
+            <td>2011-02-15</td>
+            <td>EQUITY</td>
+        </tr>
+        <tr>
+            <td>0001039370</td>
+            <td>0</td>
+            <td>2011-02-15</td>
+            <td>EQUITY</td>
+        </tr>
+        <tr>
+            <td>0001006882</td>
+            <td>500</td>
+            <td>2011-02-15</td>
+            <td>EQUITY</td>
+        </tr>
+        <tr>
+            <td>0001986364</td>
+            <td>0</td>
+            <td>2011-02-15</td>
+            <td>EQUITY</td>
+        </tr>
+        <tr>
+            <td>0001013185</td>
+            <td>10000</td>
+            <td>2011-02-15</td>
+            <td>EQUITY</td>
+        </tr>
+        <tr>
+            <td>0001045268</td>
+            <td>0</td>
+            <td>2011-02-15</td>
+            <td>EQUITY</td>
+        </tr>
+        <tr>
+            <td>0001039370</td>
+            <td>0</td>
+            <td>2011-02-15</td>
+            <td>LEPO</td>
+        </tr>
+        <tr>
+            <td>0001006882</td>
+            <td>0</td>
+            <td>2011-02-15</td>
+            <td>LEPO</td>
+        </tr>
+        <tr>
+            <td>0001986364</td>
+            <td>50</td>
+            <td>2011-02-15</td>
+            <td>LEPO</td>
+        </tr>
+        <tr>
+            <td>0001013185</td>
+            <td>100</td>
+            <td>2011-02-15</td>
+            <td>LEPO</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="example">
+    <h3>Equities</h3>
+    <table c:execute="addEquity(#equityIdentifier, #name, #isin, #sedol, #currency)">
+        <thead>
+        <tr>
+            <th c:set="#equityIdentifier">Equity Identifier</th>
+            <th c:set="#name">Equity Name</th>
+            <th c:set="#isin">ISIN</th>
+            <th c:set="#sedol">Sedol</th>
+            <th c:set="#currency">Currency</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0001039367</td>
+            <td>BMW DEM50</td>
+            <td>DE0005190003</td>
+            <td>5756029</td>
+            <td>EUR</td>
+        </tr>
+        <tr>
+            <td>0001039370</td>
+            <td>BMW NV PREF</td>
+            <td>DE0005190037</td>
+            <td>5756030</td>
+            <td>EUR</td>
+        </tr>
+        <tr>
+            <td>0001006882</td>
+            <td>VIVENDI UNIVERSAL</td>
+            <td>FR0000127771</td>
+            <td>4834777</td>
+            <td>EUR</td>
+        </tr>
+        <tr>
+            <td>0001986364</td>
+            <td>ROSNEFT GDR</td>
+            <td>US67812M2070</td>
+            <td>B17FSC2</td>
+            <td>USD</td>
+        </tr>
+        <tr>
+            <td>0001013185</td>
+            <td>L'OREAL.(NEW)</td>
+            <td>FR0000120321</td>
+            <td>4057808</td>
+            <td>EUR</td>
+        </tr>
+        <tr>
+            <td>0001045268</td>
+            <td>L'OREAL</td>
+            <td>FR0000120321</td>
+            <td>8756102</td>
+            <td>EUR</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="example">
+    <h3>Corporate Actions</h3>
+    <table c:execute="addCorporateAction(#corporateActionIdentifier, #grossDividend, #isin, #sedol, #exDate, #recDate, #payDate)">
+        <thead>
+        <tr>
+            <th c:set="#corporateActionIdentifier">Corporate Action Identifier</th>
+            <th c:set="#grossDividend">Gross Dividend</th>
+            <th c:set="#isin">ISIN</th>
+            <th c:set="#sedol">SEDOL</th>
+            <th c:set="#exDate">Ex Date</th>
+            <th c:set="#recDate">Record Date</th>
+            <th c:set="#payDate">Pay Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>3244</td>
+            <td>0.063345</td>
+            <td>US67812M2070</td>
+            <td>B17FSC2</td>
+            <td>2011-02-15</td>
+            <td>2011-02-17</td>
+            <td>2011-02-27</td>
+        </tr>
+        <tr>
+            <td>3245</td>
+            <td>0.311832</td>
+            <td>FR0000120321</td>
+            <td>4057808</td>
+            <td>2011-02-01</td>
+            <td>2011-02-05</td>
+            <td>2011-02-10</td>
+        </tr>
+        <tr>
+            <td>3246</td>
+            <td>3.2</td>
+            <td>DE0005190037</td>
+            <td>5756030</td>
+            <td />
+            <td />
+            <td />
+        </tr>
+        <tr>
+            <td>3247</td>
+            <td>3.2</td>
+            <td>DE0005190037</td>
+            <td>5756030</td>
+            <td>2011-02-15</td>
+            <td>2011-02-17</td>
+            <td>2011-02-26</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="example">
+    <h3>Sell LEPO / Buy Asset Transactions</h3>
+    <table c:execute="addLepoSaleBuyAssetTransactions(#equityIdentifier, #state, #exerciseDate, #taxRate, #corporateActionIdentifier)">
+        <thead>
+        <tr>
+            <th c:set="#equityIdentifier">Equity Identifier</th>
+            <th c:set="#state">State</th>
+            <th c:set="#exerciseDate">Exercise Date</th>
+            <th c:set="#taxRate">Tax Rate</th>
+            <th c:set="#corporateActionIdentifier">Corporate Action ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0001986364</td>
+            <td>DRAFT</td>
+            <td>2011-02-27</td>
+            <td>0.25</td>
+            <td>3244</td>
+        </tr>
+        <tr>
+            <td>0001986364</td>
+            <td>DRAFT</td>
+            <td>2011-02-26</td>
+            <td>0.1</td>
+            <td>3244</td>
+        </tr>
+        <tr>
+            <td>0001013185</td>
+            <td>DRAFT</td>
+            <td>2010-01-10</td>
+            <td>0.28</td>
+            <td>3245</td>
+        </tr>
+        <tr>
+            <td>0001013185</td>
+            <td>CANCELLED</td>
+            <td>2010-01-10</td>
+            <td>0.26375</td>
+            <td>3245</td>
+        </tr>
+        <tr>
+            <td>0001039370</td>
+            <td>APPROVED</td>
+            <td>2012-01-10</td>
+            <td>0.27</td>
+            <td>3246</td>
+        </tr>
+        <tr>
+            <td>0001006882</td>
+            <td>APPROVED</td>
+            <td>2012-01-10</td>
+            <td>0.2</td>
+            <td>3247</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="example">
+    <h3>Closing Prices</h3>
+    <table c:execute="addClosingPrice(#equityIdentifier, #price, #effectiveDate)">
+        <thead>
+        <tr>
+            <th c:set="#equityIdentifier">Equity Identifier</th>
+            <th c:set="#price">Price</th>
+            <th c:set="#effectiveDate">Effective Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0001039367</td>
+            <td>25.1</td>
+            <td>2011-02-15</td>
+        </tr>
+        <tr>
+            <td>0001039370</td>
+            <td>14.2</td>
+            <td>2011-02-15</td>
+        </tr>
+        <tr>
+            <td>0001006882</td>
+            <td>22.1</td>
+            <td>2011-02-15</td>
+        </tr>
+        <tr>
+            <td>0001986364</td>
+            <td>28.6</td>
+            <td>2011-02-16</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>When</h2>
+
+<p>
+    The LEPO Control Document is requested for date <i c:set="#tradeDate">2011-02-15</i>
+</p>
+
+<h2>Then</h2>
+
+
+<div class="example">
+    <p>
+        Spreadsheet with the same data as <a c:assertTrue="isLepoControlDocumentSameAsExpected(#HREF, #tradeDate)" href="expectedLepoControlDocument.xls" class="success">Example LEPO Control Document</a> is
+        generated
+    </p>
+</div>
+
+<br />
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 172 ms on 19-Jun-2012 at 20:05:54 BST</div></div></body>
+</html>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Buy LEPO and tally onto it in GR via REST - Error message returned or URN not produced</title>
+    <meta name="iteration" content="Iteration 24, Iteration 25, Iteration 32" />
+    <meta name="jira" content="TRADER-333, TRADER-347, TRADER-363, TRADER-435" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+    <script src="../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Tradebooking.html">Trade Booking Overview</a> &gt;</span>
+<h1>Buy LEPO and tally onto it in GR via REST - Error message returned or URN not produced</h1>
+
+<h2>Given</h2>
+
+<p concordion:execute="setupTrader()">
+    An Sell Asset / Buy LEPO transaction exists in the <b>REVIEWED</b> state
+</p>
+
+<p>Dragon responds with an error message or does not produce an URN</p>
+
+<h2>When</h2>
+
+<p concordion:execute="moveTransactionToExecuted()">The transaction moves to the <b>EXECUTED</b> state</p>
+
+<h2>Then</h2>
+
+<ol>
+    <li><span concordion:assertEquals="lepoCreatedAndTalliedInGr()" class="success">Buy LEPO and Tally request is made to Dragon</span></li>
+    <li><span concordion:assertEquals="logContainsDragonError()" class="success">The log contains information about the Dragon error</span></li>
+    <li><span concordion:assertEquals="logContainsTransactionIdentifier()" class="success">The log also indicates the transaction identifier</span></li>
+    <li>The trade is not added to repository</li>
+    <li><span concordion:assertEquals="settlementTicketIsNotSentToRambo()" class="success">A settlement ticket is <b>not</b> sent (via email) to Rambo</span></li>
+    <li><span concordion:assertEquals="bookingChatMessageNotSent()" class="success">A chat <font color="red">alert</font> indicating the booking was <b>not</b> made in GR is sent to MindAlign</span></li>
+</ol>
+
+<div class="example">
+<p>The actual log message content is shown below <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
+<div class="details">
+<pre concordion:echo="logContents()">ERROR - Unable to perform booking with GR or other systems, Corporate Action - failed to book tally: Symbol=DGS=BLX, UbsId=000000379, TransactionId=9c85b7f5-6c2a-442f-b0e6-e3005d2159b8, TD=1970-01-03, Qty=-42.97, Cashflow=258,594.03, Underlying equity: RIC=chill, ISIN=DE0005190003
+Exception messages : [com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required, com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required, field 'GR_URN' is required]
+ERROR - Unable to perform booking with GR or other systems, uncaught exception, 
+java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 9c85b7f5-6c2a-442f-b0e6-e3005d2159b8
+	at java.util.concurrent.FutureTask$Sync.innerGet(FutureTask.java:232)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:91)
+	at com.acme.trader.transaction.lepo.SimpleThreadedLepoServicesLogger$1.run(SimpleThreadedLepoServicesLogger.java:16)
+	at java.lang.Thread.run(Thread.java:680)
+Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 9c85b7f5-6c2a-442f-b0e6-e3005d2159b8
+	at com.acme.trader.external.gr.GrService.book(GrService.java:37)
+	at com.acme.trader.transaction.lepo.BookAndSettleLepoTask.call(BookAndSettleLepoTask.java:25)
+	at com.acme.trader.transaction.lepo.BookAndSettleLepoTask.call(BookAndSettleLepoTask.java:9)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	... 1 more
+Caused by: com.acme.trader.external.ExternalApiException: com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required
+	at com.acme.trader.external.dragon.DragonService.book(DragonService.java:38)
+	at sun.reflect.GeneratedMethodAccessor220.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.acme.trader.external.dragon.DragonLoggingInvocationHandler.invoke(DragonLoggingInvocationHandler.java:28)
+	at $Proxy18.book(Unknown Source)
+	at com.acme.trader.external.gr.GrService.book(GrService.java:29)
+	... 7 more
+Caused by: com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required
+	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.unmarshall(DragonResponseUnmarshaller.java:28)
+	at com.acme.trader.external.dragon.DragonService.book(DragonService.java:36)
+	... 13 more
+Caused by: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required
+	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.getGrUrnFrom(DragonResponseUnmarshaller.java:57)
+	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.getDragonResponseFrom(DragonResponseUnmarshaller.java:36)
+	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.unmarshall(DragonResponseUnmarshaller.java:26)
+	... 14 more
+</pre>
+</div>
+<p>The actual chat message content is shown below</p>
+<div class="details">
+<pre concordion:echo="chatContents()">chat received 
+
+
+
+and alerts 
+
+ImportantMessage[Corporate Action - failed to book tally: Symbol=DGS=BLX, UbsId=000000379, TransactionId=9c85b7f5-6c2a-442f-b0e6-e3005d2159b8, TD=1970-01-03, Qty=-42.97, Cashflow=258,594.03, Underlying equity: RIC=chill, ISIN=DE0005190003]</pre>
+</div>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="CreateLepoAndTally.html">What does the Dragon message look like?</a></li>
+        <li><a href="http://confluence.swissbank.com/display/AISAP/Generate+Rambo+Ticket+%28IB+Ops%29">What should the Rambo email look like?</a></li>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+</script>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 136 ms on 19-Jun-2012 at 20:06:06 BST</div></div></body>
+</html>

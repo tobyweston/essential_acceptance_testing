@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Book IComp in GR</title>
+    <meta name="iteration" content="Iteration 33" />
+    <meta name="jira" content="TRADER-445" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+    <script src="../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Tradebooking.html">Trade Booking Overview</a> &gt;</span>
+<h1>Book IComp in GR</h1>
+
+<p>
+    An IComp instrument in GR will reflect the composition of the asset portfolio for a given ETF. It's used to represent
+    the risk associated with the TRS AP leg (as it's the underlying instrument for that leg) although it is not part of
+    the ETF Co-ordination desk's risk view (as they don't actually own the portfolio).
+</p>
+<p>
+    Nightly GR mark runs will value the IComp and this data is used in the subsequent reconciliation process (T+1). Failure
+    to keep the IComp in-sync with the portfolio will result in reconciliation failures and discrepancies in the ETF
+    Co-ordination desk's P&amp;L.
+</p>
+<p>
+    See the <a href="http://confluence.swissbank.com/display/AISAP/IComp+Update">IComp Update wiki page</a> for more background.
+</p>
+
+<h2>Given</h2>
+<p>
+    Today's date is <b concordion:set="#date">2011-08-04</b> and a varied asset portfolio exists <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" />
+</p>
+
+<div class="details">
+<div class="example">
+    <h3>Assets</h3>
+    <table>
+        <thead>
+        <tr>
+            <th width="150px">Equity Identifier</th>
+            <th width="250px">GR InstrTic (used as tradableInfoID)</th>
+            <th width="150px">Type</th>
+            <th width="150px">Effective Date</th>
+            <th width="150px">Position</th>
+        </tr>
+        </thead>
+        <tr>
+            <td align="center" concordion:set="#equityId">100000125</td>
+            <td align="center" concordion:set="#grInstrTic">X</td>
+            <td align="center" concordion:set="#type">EQUITY</td>
+            <td align="center" concordion:set="#effectiveDate">2011-08-03</td>
+            <td align="center" concordion:set="#position">100</td>
+        </tr>
+        <tr>
+            <td align="center" concordion:set="#equityId">100000125</td>
+            <td align="center" concordion:set="#grInstrTic">X</td>
+            <td align="center" concordion:set="#type">EQUITY</td>
+            <td align="center" concordion:set="#effectiveDate">2011-08-04</td>
+            <td align="center" concordion:set="#position">10000</td>
+        </tr>
+        <tr>
+            <td align="center" concordion:set="#equityId">200000999</td>
+            <td align="center" concordion:set="#grInstrTic">Y</td>
+            <td align="center" concordion:set="#type">EQUITY</td>
+            <td align="center" concordion:set="#effectiveDate">2011-08-04</td>
+            <td align="center" concordion:set="#position">0</td>
+        </tr>
+        <tr>
+            <td align="center" concordion:set="#equityId">200000999</td>
+            <td align="center" concordion:set="#grInstrTic" />
+            <td align="center" concordion:set="#type">LEPO</td>
+            <td align="center" concordion:set="#effectiveDate">2011-08-04</td>
+            <td align="center" concordion:set="#position">1000</td>
+        </tr>
+        <tr>
+            <td align="center" concordion:set="#equityId">300000001</td>
+            <td align="center" concordion:set="#grInstrTic">A</td>
+            <td align="center" concordion:set="#type">EQUITY</td>
+            <td align="center" concordion:set="#effectiveDate">2011-08-04</td>
+            <td align="center" concordion:set="#position">0</td>
+        </tr>
+        <tr>
+            <td align="center" concordion:set="#equityId">400000001</td>
+            <td align="center" concordion:set="#grInstrTic">B</td>
+            <td align="center" concordion:set="#type">LEPO</td>
+            <td align="center" concordion:set="#effectiveDate">2011-08-04</td>
+            <td align="center" concordion:set="#position">0</td>
+        </tr>
+    </table>
+    <span concordion:execute="#booking = createBooking()" />
+</div>
+</div>
+
+<h2>When</h2>
+
+<p>
+    Trader makes an IComp booking to reflect the current portfolio composition
+</p>
+
+
+<h2>Then</h2>
+
+<p concordion:execute="book(#booking)">
+    A valid JSON message is sent to Dragon via a HTTP POST containing all the portfolio consituents (<b>for a known
+    tradableInfoID</b> representing the IComp instrument)
+</p>
+
+<div class="example">
+<h3>Example</h3>
+
+<!--<pre concordion:assertEquals="verifyRequestWasReceived(#TEXT)">{-->
+<pre>{
+   "clazz" : "com.swissbank.eq.foundation.instruments.IndexComposition",
+   "tradableInfoID" : "????????",
+   "commitType" : "UPDATE",
+   "needsUpdating" : "true",
+   "classification" : "IComp",
+   "idx_components" : [
+    {
+         "clazz" : "com.swissbank.eq.foundation.instruments.IndexComponent",
+         "commitType" : "INSERT_ONLY",
+         "needsUpdating" : "true",
+         "shares" : 10000,
+         "sharesSource" : "Normal",
+         "component_instrument" : {
+              "clazz" : "com.swissbank.eq.foundation.instruments.Instrument",
+              "commitType" : "INSERT_ONLY",
+              "needsUpdating" : "false",
+              "tradableInfoID" : "X"
+         }
+      },
+      {
+         "clazz" : "com.swissbank.eq.foundation.instruments.IndexComponent",
+         "commitType" : "INSERT_ONLY",
+         "needsUpdating" : "true",
+         "shares" : 1000,
+         "sharesSource" : "Normal",
+         "component_instrument" : {
+              "clazz" : "com.swissbank.eq.foundation.instruments.Instrument",
+              "commitType" : "INSERT_ONLY",
+              "needsUpdating" : "false",
+              "tradableInfoID" : "Y"
+         }
+      }
+
+    ]
+}</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+        <li><a href="BookICompOnSchedule.html">When is this message sent to Dragon?</a></li>
+        <li><a href="http://confluence.swissbank.com/display/AISAP/IComp+Update">IComp Update page on the wiki</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+</script>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 30 ms on 19-Jun-2012 at 20:05:41 BST</div></div></body>
+</html>

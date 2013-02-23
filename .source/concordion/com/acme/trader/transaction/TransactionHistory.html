@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get Transaction History via Repository</title>
+    <meta name="iteration" content="Iteration 16, Iteration 18,Iteration 22, Iteration 27, Iteration 28" />
+    <meta name="jira" content="TRADER-172, TRADER-245, TRADER-254, TRADER-258, TRADER-372" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Transaction.html">Transactions</a> &gt;</span>
+<h1>Get Transaction History via Repository</h1>
+
+<h2>Given</h2>
+
+<p>
+    A <b>DRAFT</b> transaction exists and is taken from the DRAFT state through to APPROVED using the following details
+</p>
+<div class="example">
+    <h3>Example Transaction Details (Sell Asset / Buy LEPO)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th width="250px">Draft</th>
+                <th width="250px">Awaiting Review</th>
+                <th width="250px">Reviewed</th>
+                <th width="250px">Executed</th>
+                <th width="250px">Approved</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                <ul>
+                    <li>Trade Date <b concordion:set="#tradeDate">2010-12-29</b></li>
+                    <li>Quantity <b concordion:set="#quantity">100000</b></li>
+                    <li>Risk class <b concordion:set="#riskClass">ETF_GBP</b></li>
+                    <li>Strategy <b concordion:set="#strategy">Strategy_A</b></li>
+                    <li>Family <b concordion:set="#family">ETF_CL_GBP</b></li>
+                    <li>Sub Book <b concordion:set="#subbook">ETF_LOCAL_GBP</b></li>
+                    <li>Colt Book <b concordion:set="#coltbook">Book1</b></li>
+                    <li>Exercise Date <b concordion:set="#exerciseDate">2011-01-29</b></li>
+                    <li>Corporate Action Identifier <b concordion:set="#corporateActionIdentifier">1234096</b></li>
+                    <li>Tax Rate <b concordion:set="#taxRate">0.20</b></li>
+                    <li>Created On <b concordion:set="#created">01/01/1970 01:00:00</b></li>
+                    <li>Created By <b concordion:set="#createdBy">maggsja</b></li>
+                    <li>Modified On <b concordion:set="#modified">01/01/1970 01:00:00</b></li>
+                    <li>Modified By <b concordion:set="#modifiedBy">maggsja</b></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Executed Price <b concordion:set="#executedPrice">1000.0</b></li>
+                    <li>Executed Quantity <b concordion:set="#executedQuantity">10</b></li>
+                    <li>Settlement Date <b concordion:set="#settlementDate">2011-01-04</b></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Equity Asset Identifier <b concordion:set="#equityAssetIdentifier">9328c990-c098-11df-851a-0800200c9a66</b></li>
+                    <li>Lepo Asset Identifier <b concordion:set="#lepoAssetIdentifier">4528c990-d098-11df-851a-0800200c9a66</b></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<p>
+    Each state transition occurs <b>five minutes</b> apart, the user is authenticated as <b concordion:set="#user">frankisenf</b>
+</p>
+<span concordion:execute="createTransaction(#riskClass, #strategy, #family, #subbook, #coltbook, #tradeDate, #created, #createdBy, #quantity, #modified, #modifiedBy, #exerciseDate, #executedPrice, #executedQuantity, #settlementDate, #equityAssetIdentifier, #lepoAssetIdentifier, #user, #corporateActionIdentifier, #taxRate)" />
+
+<h2>When</h2>
+
+<p>The ETF Coordination Desk or IB Trader views the history of the transaction in the repository</p>
+
+<h2>Then</h2>
+
+<p>
+    The current transaction details include
+</p>
+
+<div class="example">
+    <h3>Current Details</h3>
+    <table concordion:execute="#details = getTransactionDetails()">
+        <thead>
+        <tr>
+            <th width="150px" concordion:assertEquals="#details.riskClass">Risk Class</th>
+            <th width="150px" concordion:assertEquals="#details.strategy">Strategy</th>
+            <th width="150px" concordion:assertEquals="#details.family">Family</th>
+            <th width="150px" concordion:assertEquals="#details.subBook">Sub Book</th>
+            <th width="150px" concordion:assertEquals="#details.coltBook">Colt Book</th>
+            <th width="150px" concordion:assertEquals="#details.quantity">Quantity</th>
+            <th width="150px" concordion:assertEquals="#details.state">State</th>
+            <th width="150px" concordion:assertEquals="#details.tradeDate">Trade Date</th>
+            <th width="150px" concordion:assertEquals="#details.exerciseDate">Exercise Date</th>
+            <th width="150px" concordion:assertEquals="#details.executedPrice">Executed Price</th>
+            <th width="150px" concordion:assertEquals="#details.executedQuantity">Executed Quantity</th>
+            <th width="150px" concordion:assertEquals="#details.settlementDate">Settlement Date</th>
+            <th width="150px" concordion:assertEquals="#details.corporateActionIdentifier">Corporate Action Identifier</th>
+            <th width="150px" concordion:assertEquals="#details.taxRate">Tax Rate</th>
+            <th width="150px" concordion:assertEquals="#details.equityAssetIdentifier">Equity Asset Identifier</th>
+            <th width="150px" concordion:assertEquals="#details.lepoAssetIdentifier">Lepo Asset Identifier</th>
+            <th width="150px" concordion:assertEquals="#details.createdDate">Created On</th>
+            <th width="150px" concordion:assertEquals="#details.createdBy">Created By</th>
+            <th width="150px" concordion:assertEquals="#details.modifiedDate">Modified On</th>
+            <th width="150px" concordion:assertEquals="#details.modifiedBy">Modified By</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center" class="success">ETF_GBP</td>
+            <td align="center" class="success">Strategy_A</td>
+            <td align="center" class="success">ETF_CL_GBP</td>
+            <td align="center" class="success">ETF_LOCAL_GBP</td>
+            <td align="center" class="success">Book1</td>
+            <td align="center" class="success">100000</td>
+            <td align="center" class="success">APPROVED</td>
+            <td align="center" class="success">2010-12-29</td>
+            <td align="center" class="success">2011-01-29</td>
+            <td align="center" class="success">1000</td>
+            <td align="center" class="success">10</td>
+            <td align="center" class="success">2011-01-04</td>
+            <td align="center" class="success">1234096</td>
+            <td align="center" class="success">0.2</td>
+            <td align="center" class="success">9328c990-c098-11df-851a-0800200c9a66</td>
+            <td align="center" class="success">4528c990-d098-11df-851a-0800200c9a66</td>
+            <td align="center" class="success">01/01/1970 01:00:00</td>
+            <td align="center" class="success">maggsja</td>
+            <td align="center" class="success">01/01/1970 01:20:00</td>
+            <td align="center" class="success">frankisenf</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>
+    The history of state transitions are displayed
+</p>
+
+<div class="example">
+    <h3>History Details</h3>
+
+    <p>Current state will not be displayed in the table</p>
+    <table concordion:verifyRows="#history : getTransactionHistoryDetails()">
+        <thead>
+        <tr>
+            <th width="150px" concordion:assertEquals="#history.equityIdentifier">Equity Id</th>
+            <th width="150px" concordion:assertEquals="#history.riskClass">Risk Class</th>
+            <th width="150px" concordion:assertEquals="#history.strategy">Strategy</th>
+            <th width="150px" concordion:assertEquals="#history.family">Family</th>
+            <th width="150px" concordion:assertEquals="#history.subBook">Sub Book</th>
+            <th width="150px" concordion:assertEquals="#history.coltBook">Colt Book</th>
+            <th width="150px" concordion:assertEquals="#history.quantity">Quantity</th>
+            <th width="150px" concordion:assertEquals="#history.state">State</th>
+            <th width="150px" concordion:assertEquals="#history.tradeDate">Trade Date</th>
+            <th width="150px" concordion:assertEquals="#history.exerciseDate">Exercise Date</th>
+            <th width="150px" concordion:assertEquals="#history.corporateActionIdentifier">Corporate Action Identifier</th>
+            <th width="150px" concordion:assertEquals="#history.taxRate">Tax Rate</th>
+            <th width="150px" concordion:assertEquals="#history.executedPrice">Executed Price</th>
+            <th width="150px" concordion:assertEquals="#history.executedQuantity">Executed Quantity</th>
+            <th width="150px" concordion:assertEquals="#history.settlementDate">Settlement Date</th>
+            <th width="150px" concordion:assertEquals="#history.createdDate">Created On</th>
+            <th width="150px" concordion:assertEquals="#history.createdBy">Created By</th>
+            <th width="150px" concordion:assertEquals="#history.modifiedDate">Modified On</th>
+            <th width="150px" concordion:assertEquals="#history.modifiedBy">Modified By</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center" class="success">0008889999</td>
+            <td align="center" class="success">ETF_GBP</td>
+            <td align="center" class="success">Strategy_A</td>
+            <td align="center" class="success">ETF_CL_GBP</td>
+            <td align="center" class="success">ETF_LOCAL_GBP</td>
+            <td align="center" class="success">Book1</td>
+            <td align="center" class="success">100000</td>
+            <td align="center" class="success">DRAFT</td>
+            <td align="center" class="success">2010-12-29</td>
+            <td align="center" class="success">2011-01-29</td>
+            <td align="center" class="success">1234096</td>
+            <td align="center" class="success">0.2</td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success">01/01/1970 01:00:00</td>
+            <td align="center" class="success">maggsja</td>
+            <td align="center" class="success">01/01/1970 01:00:00</td>
+            <td align="center" class="success">maggsja</td>
+        </tr>
+        <tr>
+            <td align="center" class="success">0008889999</td>
+            <td align="center" class="success">ETF_GBP</td>
+            <td align="center" class="success">Strategy_A</td>
+            <td align="center" class="success">ETF_CL_GBP</td>
+            <td align="center" class="success">ETF_LOCAL_GBP</td>
+            <td align="center" class="success">Book1</td>
+            <td align="center" class="success">100000</td>
+            <td align="center" class="success">AWAITING_REVIEW</td>
+            <td align="center" class="success">2010-12-29</td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success">1234096</td>
+            <td align="center" class="success">0.2</td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success">01/01/1970 01:00:00</td>
+            <td align="center" class="success">maggsja</td>
+            <td align="center" class="success">01/01/1970 01:05:00</td>
+            <td align="center" class="success">frankisenf</td>
+        </tr>
+        <tr>
+            <td align="center" class="success">0008889999</td>
+            <td align="center" class="success">ETF_GBP</td>
+            <td align="center" class="success">Strategy_A</td>
+            <td align="center" class="success">ETF_CL_GBP</td>
+            <td align="center" class="success">ETF_LOCAL_GBP</td>
+            <td align="center" class="success">Book1</td>
+            <td align="center" class="success">100000</td>
+            <td align="center" class="success">REVIEWED</td>
+            <td align="center" class="success">2010-12-29</td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success">1234096</td>
+            <td align="center" class="success">0.2</td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success">01/01/1970 01:00:00</td>
+            <td align="center" class="success">maggsja</td>
+            <td align="center" class="success">01/01/1970 01:10:00</td>
+            <td align="center" class="success">frankisenf</td>
+        </tr>
+        <tr>
+            <td align="center" class="success">0008889999</td>
+            <td align="center" class="success">ETF_GBP</td>
+            <td align="center" class="success">Strategy_A</td>
+            <td align="center" class="success">ETF_CL_GBP</td>
+            <td align="center" class="success">ETF_LOCAL_GBP</td>
+            <td align="center" class="success">Book1</td>
+            <td align="center" class="success">100000</td>
+            <td align="center" class="success">EXECUTED</td>
+            <td align="center" class="success">2010-12-29</td>
+            <td align="center" class="success"> </td>
+            <td align="center" class="success">1234096</td>
+            <td align="center" class="success">0.2</td>
+            <td align="center" class="success">1000</td>
+            <td align="center" class="success">10</td>
+            <td align="center" class="success">2011-01-04</td>
+            <td align="center" class="success">01/01/1970 01:00:00</td>
+            <td align="center" class="success">maggsja</td>
+            <td align="center" class="success">01/01/1970 01:15:00</td>
+            <td align="center" class="success">frankisenf</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 158 ms on 19-Jun-2012 at 20:06:36 BST</div></div></body>
+</html>

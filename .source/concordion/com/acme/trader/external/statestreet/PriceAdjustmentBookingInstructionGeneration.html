@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:c="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Price Adjustment Booking Instructions Generation Verification</title>
+    <meta name="iteration" content="Iteration 34" />
+    <meta name="jira" content="TRADER-463" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+</head>
+<body><span class="breadcrumbs"><a href="../../Trader.html">Trader</a> &gt; <a href="../External.html">Bookings</a> &gt;</span>
+<h1>Price Adjustment Booking Instructions Generation Verification</h1>
+
+<div class="information">
+    <p>Today is <i>2001-07-05</i></p>
+    <p>Following document describes the expected <a href="http://confluence.swissbank.com/display/AISAP/Generate+Price+Adjustment+Booking+Instructions+%28State+Street%29">format</a>
+    </p>
+    <p>Only APPROVED Sell LEPO / Buy Assets for a given trade date are included in this report</p>
+</div>
+
+<h2>Given</h2>
+
+<div class="example">
+    <h3>Equities</h3>
+    <table c:execute="addEquity(#equityIdentifier, #sedol, #name)">
+        <thead>
+        <tr>
+            <th c:set="#equityIdentifier">Equity Identifier</th>
+            <th c:set="#sedol">Sedol</th>
+            <th c:set="#name">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">0003038975</td>
+            <td align="center">B1YFR51</td>
+            <td align="center">AAA ENGY</td>
+        </tr>
+        <tr>
+            <td align="center">0001268502</td>
+            <td align="center" />
+            <td align="center">3M</td>
+        </tr>
+        <tr>
+            <td align="center">00000102</td>
+            <td align="center">0540528</td>
+            <td align="center">HSBC HOLDINGS</td>
+        </tr>
+        <tr>
+            <td align="center">0001986364</td>
+            <td align="center">B17FSC2</td>
+            <td align="center">ROSNEFT GDR</td>
+        </tr>
+        <tr>
+            <td align="center">0001039367</td>
+            <td align="center">5756029</td>
+            <td align="center">BMW DEM50</td>
+        </tr>
+        </tbody>
+    </table>
+    <span c:execute="replaceEquities()" />
+</div>
+
+<div class="example">
+    <h3>Corporate Actions</h3>
+    <table c:execute="addCorporateAction(#corporateActionId, #grossDividend, #currency)">
+        <thead>
+        <tr>
+            <th c:set="#corporateActionId">Corporate Action Identifier</th>
+            <th c:set="#grossDividend">Gross Dividend</th>
+            <th c:set="#currency">Currency</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>894114</td>
+            <td>0.063345</td>
+            <td>EUR</td>
+        </tr>
+        <tr>
+            <td>1119135</td>
+            <td>0.311832</td>
+            <td>GBP</td>
+        </tr>
+        <tr>
+            <td>1119136</td>
+            <td>0.311832</td>
+            <td>USD</td>
+        </tr>
+        <tr>
+            <td>1262431</td>
+            <td>0.5</td>
+            <td>EUR</td>
+        </tr>
+        <tr>
+            <td>1283432</td>
+            <td>0.5</td>
+            <td>EUR</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="example">
+    <h3>Transactions</h3>
+    <table c:execute="addTransaction(#type, #state, #corporateActionId, #equityIdentifier, #quantity, #executedQuantity, #taxRate, #tradeDate, #settlementDate, #exerciseDate)">
+        <thead>
+        <tr>
+            <th c:set="#type">Type</th>
+            <th c:set="#state">State</th>
+            <th c:set="#corporateActionId">Corporate Action Identifier</th>
+            <th c:set="#equityIdentifier">Equity Identifier</th>
+            <th c:set="#quantity">Quantity</th>
+            <th c:set="#executedQuantity">Executed Quantity</th>
+            <th c:set="#taxRate">Tax Rate</th>
+            <th c:set="#tradeDate">Trade Date</th>
+            <th c:set="#settlementDate">Settlement Date</th>
+            <th c:set="#exerciseDate">Exercise Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>APPROVED</td>
+            <td>894114</td>
+            <td>0003038975</td>
+            <td>2000</td>
+            <td>20000</td>
+            <td>0.1</td>
+            <td>2001-07-05</td>
+            <td>2011-08-23</td>
+            <td>2011-08-25</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>APPROVED</td>
+            <td>894114</td>
+            <td>0003038975</td>
+            <td>2000</td>
+            <td>20000</td>
+            <td>0.1</td>
+            <td>2001-07-04</td>
+            <td>2011-08-23</td>
+            <td>2011-08-25</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>APPROVED</td>
+            <td>1119135</td>
+            <td>0001268502</td>
+            <td>3000</td>
+            <td>30000</td>
+            <td>0.3</td>
+            <td>2001-07-05</td>
+            <td>2011-08-24</td>
+            <td>2011-08-26</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>APPROVED</td>
+            <td>1119136</td>
+            <td>00000102</td>
+            <td>4000</td>
+            <td>40000</td>
+            <td>0.25</td>
+            <td>2001-07-05</td>
+            <td>2011-08-25</td>
+            <td>2011-08-27</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>APPROVED</td>
+            <td>1119136</td>
+            <td>00000102</td>
+            <td>4000</td>
+            <td>40000</td>
+            <td>0.25</td>
+            <td>2001-07-06</td>
+            <td>2011-08-25</td>
+            <td>2011-08-27</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>DRAFT</td>
+            <td>1119136</td>
+            <td>00000102</td>
+            <td>4000</td>
+            <td>40000</td>
+            <td>0.25</td>
+            <td>2001-07-05</td>
+            <td>2011-08-25</td>
+            <td>2011-08-27</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>APPROVED</td>
+            <td>1262431</td>
+            <td>0001986364</td>
+            <td>5000</td>
+            <td>50000</td>
+            <td>0.1</td>
+            <td>2001-07-05</td>
+            <td>2011-08-26</td>
+            <td>2011-08-28</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>EXECUTED</td>
+            <td>1262431</td>
+            <td>0001986364</td>
+            <td>5000</td>
+            <td>50000</td>
+            <td>0.1</td>
+            <td>2001-07-05</td>
+            <td>2011-08-26</td>
+            <td>2011-08-28</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>APPROVED</td>
+            <td>1283432</td>
+            <td>0001039367</td>
+            <td>6000</td>
+            <td>60000</td>
+            <td>0.2</td>
+            <td>2001-07-05</td>
+            <td>2011-08-23</td>
+            <td>2011-08-25</td>
+        </tr>
+        <tr>
+            <td>Sell LEPO / Buy Asset</td>
+            <td>CANCELLED</td>
+            <td>1283432</td>
+            <td>0001039367</td>
+            <td>6000</td>
+            <td>60000</td>
+            <td>0.2</td>
+            <td>2001-07-05</td>
+            <td>2011-08-23</td>
+            <td>2011-08-25</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h2>When</h2>
+
+<p>
+    The Price Adjustment Booking Instructions Document is requested for trade date <i c:set="#effectiveDate">2001-07-05</i>
+</p>
+
+<h2>Then</h2>
+
+
+<div class="example">
+    <p>
+        Spreadsheet with the same data as <a c:assertTrue="arePriceAdjustmentBookingInstructionsAsExpected(#effectiveDate, #HREF)" href="expectedPriceAdjustmentBooking.xls" class="success">Price Adjustment Booking
+        Instructions</a> is generated as <a href="actualPriceAdjustmentBooking.xls">Actual Price Adjustment Booking
+        Instructions Document</a>
+    </p>
+</div>
+
+<br />
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 340 ms on 19-Jun-2012 at 20:05:38 BST</div></div></body>
+</html>

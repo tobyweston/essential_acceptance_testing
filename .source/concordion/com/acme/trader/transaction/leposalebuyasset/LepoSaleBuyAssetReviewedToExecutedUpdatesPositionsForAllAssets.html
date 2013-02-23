@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Update Sell LEPO / Buy Asset via REST - Reviewed to Executed Updates Positions For All Assets</title>
+    <meta name="iteration" content="Iteration 24, Iteration 17, API PUT /trader/transactions/exercise_lepos" />
+    <meta name="jira" content="TRADER-212, TRADER-222, TRADER-332, TRADER-395" />
+    <link rel="stylesheet" href="../../../../../concordion.css" type="text/css" />
+    <script src="../../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('fast');"><span class="breadcrumbs"><a href="../../Trader.html">Trader</a> &gt; <a href="../Transaction.html">Transactions</a> &gt; <a href="Leposalebuyasset.html">Sell LEPO / Buy Asset</a> &gt;</span>
+<h1>Update Sell LEPO / Buy Asset via REST - Reviewed to Executed Updates Positions For All Assets</h1>
+
+<h2>Given</h2>
+
+<div class="example">
+    <h3>Assets</h3>
+    <table concordion:execute="createAsset(#type, #assetIdentifier, #equityIdentifier, #position)">
+        <thead>
+        <tr>
+            <th width="250px" concordion:set="#assetIdentifier">Asset Identifier</th>
+            <th width="100px" concordion:set="#type">Type</th>
+            <th width="250px" concordion:set="#equityIdentifier">Equity Identifier</th>
+            <th width="175px" concordion:set="#position">Position</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">5da2af10-b23c-4ae2-b0b1-248269b857aa</td>
+            <td align="center">EQUITY</td>
+            <td align="center">6666666666</td>
+            <td align="center">0</td>
+        </tr>
+        <tr>
+            <td align="center">723a363c-7962-43ae-8fe3-a1a2777350ae</td>
+            <td align="center">LEPO</td>
+            <td align="center">6666666666</td>
+            <td align="center">10900</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="example">
+    <h3>Transactions</h3>
+
+    <p concordion:execute="#identifier = createTransactionWith(#equityIdentifier)">
+        Sell LEPO / Buy Asset Transactions exist with the state <b concordion:set="#state">REVIEWED</b>, one of which has
+        an id of <i concordion:set="#equityIdentifier">6666666666</i>.
+    </p>
+
+</div>
+
+<h2>When</h2>
+
+<p>A HTTP <code>PUT</code> request to transition to the EXECUTED state with an executed quantity of <i concordion:set="#executedQuantity">10900</i> is made <img style="cursor:pointer" onclick="showDetails();" src="../../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
+
+<div class="details">
+    <div class="example">
+        <pre concordion:set="#resource">/trader/transactions</pre>
+        <p>
+            with the message body including a plain text representation of the transaction
+        </p>
+        <span concordion:execute="#json = constructJson(#identifier, #equityIdentifier, #executedQuantity)" />
+        <pre concordion:echo="#json">{
+  "id" : "b25b0905-3246-4c18-99d7-d6131bcb082f",
+  "type" : "Sell LEPO / Buy Asset",
+  "riskClass" : "bad",
+  "strategy" : "barf",
+  "family" : "robot",
+  "subBook" : "Katy",
+  "quantity" : 245.92694442946538,
+  "state" : "EXECUTED",
+  "equityIdentifier" : "6666666666",
+  "tradeDate" : "1970-01-04",
+  "createdDate" : "1969-12-20T12:24:12.422+01:00",
+  "createdBy" : "yogafrog",
+  "modifiedDate" : "1969-12-18T22:38:05.824+01:00",
+  "modifiedBy" : "darwkinsr",
+  "coltBook" : "Katy",
+  "executedPrice" : 3627.6257745411754,
+  "executedQuantity" : 10900,
+  "taxRate" : 0.8662096942999662,
+  "settlementDate" : "1970-01-09",
+  "exerciseDate" : "1970-01-19",
+  "corporateActionIdentifier" : "000000337",
+  "cashflow" : 3.954112094249881E7,
+  "priceAdjustment" : 1.3578374418446967E7,
+  "currency" : "GBP",
+  "priceAdjustmentCurrency" : "USD"
+}</pre>
+        <p>
+            with an <code>Accept</code> header of
+        </p>
+        <pre>application/json</pre>
+    </div>
+</div>
+
+<h2>Then</h2>
+<p>
+    The LEPO asset is effectively sold so the position is reduced. The counterpart transaction is to increase the
+    equity asset's position.
+</p>
+<span concordion:execute="update(#identifier, #resource, #json)" />
+<div class="example">
+    <h3>Assets</h3>
+    <table concordion:execute="#asset = getAsset(#assetIdentifier)">
+        <thead>
+        <tr>
+            <th width="250px" concordion:set="#assetIdentifier">Asset Identifier</th>
+            <th width="100px" concordion:assertEquals="#asset.type">Type</th>
+            <th width="250px" concordion:assertEquals="#asset.equityIdentifier">Equity Identifier</th>
+            <th width="175px" concordion:assertEquals="#asset.position">Position</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">5da2af10-b23c-4ae2-b0b1-248269b857aa</td>
+            <td align="center" class="success">EQUITY</td>
+            <td align="center" class="success">6666666666</td>
+            <td align="center" class="success">10900</td>
+        </tr>
+        <tr>
+            <td align="center">723a363c-7962-43ae-8fe3-a1a2777350ae</td>
+            <td align="center" class="success">LEPO</td>
+            <td align="center" class="success">6666666666</td>
+            <td align="center" class="success">0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+</script>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 187 ms on 19-Jun-2012 at 20:06:12 BST</div></div></body>
+</html>

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get Transactions via REST by Date</title>
+    <meta name="iteration" content="Iteration 16, Iteration 14, API GET /trader/transactions" />
+    <meta name="jira" content="TRADER-154, TRADER-212" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+    <script src="../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('#actual_json').toggle('slow');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Transaction.html">Transactions</a> &gt;</span>
+<h1>Get Transactions via REST by Date</h1>
+
+<h2>Given</h2>
+
+ <p>The following Sell Asset, Buy Asset and Sell LEPO / Buy Asset transactions for different trade dates exist in the system</p>
+
+<div class="example">
+    <h3>Example</h3>
+
+    <table concordion:execute="createTransaction(#identifier, #tradeDate, #type, #state)">
+        <thead>
+        <tr>
+            <th colspan="14">Transaction information</th>
+        </tr>
+        <tr>
+            <th width="300px" concordion:set="#identifier">Transaction Identifier</th>
+            <th width="100px" concordion:set="#tradeDate">Trade Date</th>
+            <th width="200px" concordion:set="#type">Transaction Type</th>
+            <th width="200px" concordion:set="#state">Transaction State</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">7dfdeffc-1671-4f92-a548-0ff05f553cc4</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Sell Asset</td>
+            <td align="center">Draft</td>
+        </tr>
+        <tr>
+            <td align="center">a44e3180-0380-11e0-a976-0800200c9a66</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Sell Asset / Buy LEPO</td>
+            <td align="center">Reviewed</td>
+        </tr>
+        <tr>
+            <td align="center">ab84cfe1-0380-11e0-a976-0800200c9a66</td>
+            <td align="center">2010-10-14</td>
+            <td align="center">Sell Asset / Buy LEPO</td>
+            <td align="center">Approved</td>
+        </tr>
+        <tr>
+            <td align="center">f0000f00-1671-4f92-a548-f00f00f00f00</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Sell LEPO / Buy Asset</td>
+            <td align="center">Draft</td>
+        </tr>
+        <tr>
+            <td align="center">b0000b00-1671-4f92-a548-b00b00b00b00</td>
+            <td align="center">2010-10-14</td>
+            <td align="center">Sell LEPO / Buy Asset</td>
+            <td align="center">Draft</td>
+        </tr>
+        <tr>
+            <td align="center">eebf8247-4501-4c34-bcb1-ac7bb1d98278</td>
+            <td align="center">2010-10-15</td>
+            <td align="center">Sell Asset</td>
+            <td align="center">Awaiting Review</td>
+        </tr>
+        <tr>
+            <td align="center">e694f541-86f4-4689-92e7-3051c9c062de</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Buy Asset</td>
+            <td align="center">Reviewed</td>
+        </tr>
+        <tr>
+            <td align="center">caf82f96-08ce-4ccc-9ac7-1ebb8fb85c80</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Buy Asset</td>
+            <td align="center">Executed</td>
+        </tr>
+         <tr>
+            <td align="center">ca109825-1e56-4398-b3b2-95f5e7503a30</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Buy Asset</td>
+             <td align="center">Approved</td>
+        </tr>
+        <tr>
+            <td align="center">f5211a92-d529-488a-943d-a083c4e86a02</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Buy Asset</td>
+            <td align="center">Rejected</td>
+        </tr>
+        <tr>
+            <td align="center">47bc2e2f-b4d4-4e65-8e7b-85251d8f202d</td>
+            <td align="center">2010-10-19</td>
+            <td align="center">Buy Asset</td>
+            <td align="center">Rejected</td>
+        </tr>
+        <tr>
+            <td align="center">c5ad6319-acdc-4caf-a505-993aa1633e1a</td>
+            <td align="center">2010-10-10</td>
+            <td align="center">Buy Asset</td>
+            <td align="center">Cancelled</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>When</h2>
+
+<p>
+    The transaction resource is queried,
+</p>
+
+<div class="example">
+    <p>
+        The transactions as <i>resources</i> are queried with a HTTP <code>GET</code> on the URL...
+    </p>
+    <pre concordion:set="#json = findTransactions(#TEXT)">/trader/transactions/2010/10/10</pre>
+    <p>
+        with a "accept" mime-type of...
+    </p>
+    <pre>application/json</pre>
+</div>
+
+<h2>Then</h2>
+
+<p>The following <span concordion:assertEquals="numberOfTransactionsReturned(#json)" class="success">8</span> transactions will be returned</p>
+
+<table>
+    <thead>
+    <tr>
+        <th width="300px">Transaction Identifier</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">7dfdeffc-1671-4f92-a548-0ff05f553cc4</td>
+    </tr>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">f0000f00-1671-4f92-a548-f00f00f00f00</td>
+    </tr>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">e694f541-86f4-4689-92e7-3051c9c062de</td>
+    </tr>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">caf82f96-08ce-4ccc-9ac7-1ebb8fb85c80</td>
+    </tr>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">ca109825-1e56-4398-b3b2-95f5e7503a30</td>
+    </tr>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">f5211a92-d529-488a-943d-a083c4e86a02</td>
+    </tr>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">c5ad6319-acdc-4caf-a505-993aa1633e1a</td>
+    </tr>
+    <tr>
+        <td align="center" concordion:assertEquals="jsonContains(#json, #TEXT)" class="success">a44e3180-0380-11e0-a976-0800200c9a66</td>
+    </tr>
+    </tbody>
+</table>
+
+<p><button>Toggle JSON</button></p>
+<div id="actual_json">
+<p>
+    The following Json was returned...
+</p>
+<pre concordion:echo="#json.prettyPrint()">[
+  {
+    "id" : "7dfdeffc-1671-4f92-a548-0ff05f553cc4",
+    "type" : "Sell Asset",
+    "riskClass" : "france",
+    "strategy" : "chazzwazzer",
+    "family" : "barf",
+    "subBook" : "Grrrr",
+    "quantity" : 3713.274482837633,
+    "state" : "DRAFT",
+    "equityIdentifier" : "000000660",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1969-12-17T11:54:22.949+01:00",
+    "createdBy" : "gandolff",
+    "modifiedDate" : "1970-01-09T17:25:24.536+01:00",
+    "modifiedBy" : "bagginsb",
+    "comment" : "you have the right to remain silent...",
+    "executingBroker" : "kermit",
+    "executedPrice" : 9993.35001999516,
+    "executedQuantity" : 8338.488576995902,
+    "settlementDate" : "1970-01-12",
+    "equityAssetIdentifier" : "df5a0417-47ad-45b0-8678-b90af1438734",
+    "cashflow" : 8.332943498765141E7,
+    "currency" : "CHF"
+  },
+  {
+    "id" : "a44e3180-0380-11e0-a976-0800200c9a66",
+    "type" : "Sell Asset / Buy LEPO",
+    "riskClass" : "kermit",
+    "strategy" : "france",
+    "family" : "arrrh",
+    "subBook" : "chazzwazzer",
+    "quantity" : 1071.1284755101346,
+    "state" : "REVIEWED",
+    "equityIdentifier" : "000000662",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1969-12-24T16:08:52.260+01:00",
+    "createdBy" : "skywalkerl",
+    "modifiedDate" : "1970-01-20T15:19:32.250+01:00",
+    "modifiedBy" : "bagginsb",
+    "comment" : "my wife left me for her yoga teacher",
+    "coltBook" : "chill",
+    "executedPrice" : 9434.031741358976,
+    "executedQuantity" : 7467.988472632711,
+    "taxRate" : 0.3139404549279087,
+    "settlementDate" : "1970-01-14",
+    "exerciseDate" : "1970-01-23",
+    "equityAssetIdentifier" : "6f704091-659d-4e47-b3fd-31d592327569",
+    "lepoAssetIdentifier" : "b48e8da0-4517-4bc2-991d-4e95ab229af1",
+    "corporateActionIdentifier" : "000000443",
+    "cashflow" : 7.045324029491994E7,
+    "currency" : "CHF"
+  },
+  {
+    "id" : "c5ad6319-acdc-4caf-a505-993aa1633e1a",
+    "type" : "Buy Asset",
+    "riskClass" : "france",
+    "strategy" : "Grrrr",
+    "family" : "robot",
+    "subBook" : "arrrh",
+    "quantity" : 9762.606414208345,
+    "state" : "CANCELLED",
+    "equityIdentifier" : "000000682",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1970-01-15T08:12:39.631+01:00",
+    "createdBy" : "gandolff",
+    "modifiedDate" : "1970-01-07T16:35:58.837+01:00",
+    "modifiedBy" : "yoda",
+    "comment" : "its raining outside",
+    "rejectionComment" : "kermit",
+    "cancellationReason" : "MANUAL",
+    "executingBroker" : "Katy",
+    "executedPrice" : 1266.1377966034793,
+    "executedQuantity" : 5009.051988537755,
+    "settlementDate" : "1970-01-24",
+    "equityAssetIdentifier" : "067d4e37-a4d6-445b-9841-ba73d15f472d",
+    "cashflow" : 6342150.047839469,
+    "currency" : "GBP"
+  },
+  {
+    "id" : "ca109825-1e56-4398-b3b2-95f5e7503a30",
+    "type" : "Buy Asset",
+    "riskClass" : "kermit",
+    "strategy" : "Grrrr",
+    "family" : "robot",
+    "subBook" : "chazzwazzer",
+    "quantity" : 4931.695306664999,
+    "state" : "APPROVED",
+    "equityIdentifier" : "000000676",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1970-01-07T19:08:39.536+01:00",
+    "createdBy" : "bagginsb",
+    "modifiedDate" : "1970-01-18T11:37:30.828+01:00",
+    "modifiedBy" : "gandolff",
+    "comment" : "you have the right to remain silent...",
+    "executingBroker" : "chill",
+    "executedPrice" : 929.55539465166,
+    "executedQuantity" : 9934.995728550324,
+    "settlementDate" : "1969-12-25",
+    "equityAssetIdentifier" : "5bd9c235-9e1c-43ec-b31d-db9602b38fbb",
+    "cashflow" : 9235128.875315152,
+    "currency" : "CHF"
+  },
+  {
+    "id" : "caf82f96-08ce-4ccc-9ac7-1ebb8fb85c80",
+    "type" : "Buy Asset",
+    "riskClass" : "bad",
+    "strategy" : "arrrh",
+    "family" : "kermit",
+    "subBook" : "kermit",
+    "quantity" : 2755.0900613919825,
+    "state" : "EXECUTED",
+    "equityIdentifier" : "000000674",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1969-12-13T03:44:58.754+01:00",
+    "createdBy" : "yoda",
+    "modifiedDate" : "1969-12-30T18:31:07.249+01:00",
+    "modifiedBy" : "darwkinsr",
+    "comment" : "you have the right to remain silent...",
+    "executingBroker" : "france",
+    "executedPrice" : 8751.409406578123,
+    "executedQuantity" : 3906.953082638411,
+    "settlementDate" : "1969-12-21",
+    "equityAssetIdentifier" : "6e7d4f0c-7fcb-4a1d-9013-19643b147d67",
+    "cashflow" : 3.419134595846119E7,
+    "currency" : "CHF"
+  },
+  {
+    "id" : "e694f541-86f4-4689-92e7-3051c9c062de",
+    "type" : "Buy Asset",
+    "riskClass" : "barf",
+    "strategy" : "Katy",
+    "family" : "Grrrr",
+    "subBook" : "chazzwazzer",
+    "quantity" : 8195.081991827272,
+    "state" : "REVIEWED",
+    "equityIdentifier" : "000000672",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1969-12-19T20:59:45.109+01:00",
+    "createdBy" : "bagginsb",
+    "modifiedDate" : "1970-01-07T20:37:06.937+01:00",
+    "modifiedBy" : "klerkenw",
+    "comment" : "whatever trevor",
+    "executingBroker" : "chazzwazzer",
+    "executedPrice" : 186.62400470079277,
+    "executedQuantity" : 3830.0228353555253,
+    "settlementDate" : "1970-01-04",
+    "equityAssetIdentifier" : "d7e001bb-1480-4e38-8f78-d16172d94432",
+    "cashflow" : 714774.1996295332,
+    "currency" : "JPY"
+  },
+  {
+    "id" : "f0000f00-1671-4f92-a548-f00f00f00f00",
+    "type" : "Sell LEPO / Buy Asset",
+    "riskClass" : "bad",
+    "strategy" : "robot",
+    "family" : "kermit",
+    "subBook" : "france",
+    "quantity" : 3839.3229712104726,
+    "state" : "DRAFT",
+    "equityIdentifier" : "000000666",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1970-01-10T20:24:11.929+01:00",
+    "createdBy" : "skywalkerl",
+    "modifiedDate" : "1969-12-28T17:48:26.878+01:00",
+    "modifiedBy" : "klerkenw",
+    "coltBook" : "arrrh",
+    "executedPrice" : 7845.023600400853,
+    "executedQuantity" : 6590.696215514565,
+    "taxRate" : 0.027846918865828796,
+    "settlementDate" : "1969-12-31",
+    "exerciseDate" : "1969-12-10",
+    "corporateActionIdentifier" : "000000447",
+    "cashflow" : 5.170416735378435E7,
+    "currency" : "GBP",
+    "priceAdjustmentCurrency" : "GBP"
+  },
+  {
+    "id" : "f5211a92-d529-488a-943d-a083c4e86a02",
+    "type" : "Buy Asset",
+    "riskClass" : "chazzwazzer",
+    "strategy" : "france",
+    "family" : "france",
+    "subBook" : "barf",
+    "quantity" : 8446.47992679432,
+    "state" : "REJECTED",
+    "equityIdentifier" : "000000678",
+    "tradeDate" : "2010-10-10",
+    "createdDate" : "1969-12-29T03:31:11.414+01:00",
+    "createdBy" : "yoda",
+    "modifiedDate" : "1970-01-06T08:23:48.583+01:00",
+    "modifiedBy" : "gandolff",
+    "comment" : "whatever trevor",
+    "rejectionComment" : "france",
+    "executingBroker" : "Grrrr",
+    "executedPrice" : 7137.9152702815,
+    "executedQuantity" : 4169.723780521302,
+    "settlementDate" : "1969-12-16",
+    "equityAssetIdentifier" : "4837fec1-809c-4f46-ab18-3f3776f996f1",
+    "cashflow" : 2.9763135045838907E7,
+    "currency" : "CHF"
+  }
+]</pre>
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<script>
+    $("button").click(function () {
+        $("#actual_json").toggle("slow");
+    });
+</script>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 90 ms on 19-Jun-2012 at 20:06:37 BST</div></div></body>
+</html>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head><style>* {
+  font-family: Arial;
+}
+body {
+  padding: 32px;  
+}
+pre {
+  padding: 6px 28px 6px 28px;
+  background-color: #E8EEF7;
+}
+pre, pre *, code, code *, kbd {
+  font-family: Courier New, Courier;
+  font-size: 10pt;
+}
+h1, h1 * {
+  font-size: 24pt;	
+}
+p, td, th, li, .breadcrumbs {
+  font-size: 10pt;
+}
+p, li {
+  line-height: 140%;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 8px 0px 8px 0px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+td {
+  background-color: white;
+  vertical-align: top;
+}
+th {
+  background-color: #C3D9FF;
+}
+li {
+  margin-top: 6px;
+  margin-bottom: 6px; 
+}
+
+
+.example {
+  padding: 2px 12px 6px 12px;
+  border: 1px solid #C3D9FF;
+  margin: 6px 0px 28px 0px;
+  background-color: #F5F9FD;
+}
+.example h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12pt;
+}
+
+p.success {
+  padding: 2px;
+}
+.success, .success * {
+  background-color: #afa !important;
+}
+.success pre {
+  background-color: #bbffbb;
+}
+.failure, .failure * {
+  background-color: #ffb0b0;
+  padding: 1px;
+}
+.failure .expected {
+  text-decoration: line-through;
+  color: #bb5050;
+}
+.ignored, .ignored * {
+  background-color: #f0f0f0 !important;	
+}
+
+ins {
+  text-decoration: none;	
+}
+
+.exceptionMessage {
+  background-color: #fdd;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 10pt;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
+  text-decoration: none !important;
+}
+.stackTrace, .stackTrace * {
+  font-weight: normal;
+}
+.stackTrace {
+  display: none;
+  padding: 1px 4px 4px 4px;
+  background-color: #fdd;
+  border-top: 1px dotted black;
+}
+.stackTraceExceptionMessage {
+  display: block;
+  font-family: Courier New, Courier, Monospace;
+  font-size: 8pt;
+  white-space: wrap;
+  padding: 1px 0px 1px 0px;
+}
+.stackTraceEntry {
+  white-space: nowrap;
+  font-family: Courier New, Courier, Monospace;
+  display: block;
+  font-size: 8pt;
+  padding: 1px 0px 1px 32px;
+}
+.stackTraceButton {
+  font-size: 8pt;
+  margin: 2px 8px 2px 0px;
+  font-weight: normal;
+  font-family: Arial;
+}
+
+.special {
+  font-style: italic;
+}
+.missing, .missing * {
+  background-color: #ff9999;
+}
+.surplus, .surplus * {
+  background-color: #ff9999;
+}
+.footer {
+  text-align: right;
+  margin-top: 40px;
+  font-size: 8pt;
+  width: 100%;
+  color: #999;
+}
+.footer .testTime {
+  padding: 2px 10px 0px 0px;
+}
+
+.idea {
+  font-size: 9pt;
+  color: #888;
+  font-style: italic;	
+}
+.tight li {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+.commentary {
+  float: right;
+  width: 200px;
+  background-color: #ffffd0;
+  padding:8px;
+  border: 3px solid #eeeeb0;	 
+  margin: 10px 0px 10px 10px;	 
+}
+.commentary, .commentary * {
+  font-size: 8pt;
+}
+</style>
+    <title>Get Allocations via REST</title>
+    <meta name="iteration" content="Iteration 19, API GET /trader/allocations" />
+    <meta name="jira" content="TRADER-269" />
+    <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
+    <script src="../../../../jquery-1.7.2.js">.</script>
+</head>
+<body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Allocations.html">Allocations</a> &gt;</span>
+<h1>Get Allocations via REST</h1>
+
+<h2>Given</h2>
+
+<p>
+    The Allocation repository contains the following allocation data,
+</p>
+
+<div class="example">
+    <h3>Example</h3>
+
+    <table concordion:execute="createAllocation(#id, #etfId, #assetPortfolioId, #ratio, #effectiveDate, #createdBy, #createdDate, #modifiedBy, #modifiedDate)">
+        <thead>
+        <tr>
+            <th width="260px" concordion:set="#id">Identifier</th>
+            <th width="260px" concordion:set="#etfId">ETF Identifier</th>
+            <th width="260px" concordion:set="#assetPortfolioId">Asset Portfolio Identifier</th>
+            <th width="100px" concordion:set="#ratio">Ratio</th>
+            <th width="100px" concordion:set="#effectiveDate">Effective Date</th>
+            <th width="100px" concordion:set="#createdBy">Created By</th>
+            <th width="100px" concordion:set="#createdDate">Created Date</th>
+            <th width="100px" concordion:set="#modifiedBy">Modified By</th>
+            <th width="100px" concordion:set="#modifiedDate">Modified Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">766345b4-7345-4345-4452-ee2b43511145</td>
+            <td align="center">00000000-0000-0000-0000-00000000000A</td>
+            <td align="center">11111111-1111-1111-1111-111111111111</td>
+            <td align="center">0.88</td>
+            <td align="center">2010-10-06</td>
+            <td align="center">Bob</td>
+            <td align="center">2010-10-06T15:01:32.000+01:00</td>
+            <td align="center">Dave</td>
+            <td align="center">2010-11-26T15:11:32.000+01:00</td>
+        </tr>
+        <tr>
+            <td align="center">b04f349f-995e-45e7-b172-54e3f3cb1e08</td>
+            <td align="center">00000000-0000-0000-0000-00000000000B</td>
+            <td align="center">11111111-1111-1111-1111-111111111111</td>
+            <td align="center">0.12</td>
+            <td align="center">2011-12-07</td>
+            <td align="center">Eric</td>
+            <td align="center">2011-11-06T15:12:32.000+01:00</td>
+            <td align="center">Mary</td>
+            <td align="center">2011-01-16T15:29:32.000+01:00</td>
+        </tr>
+        <tr>
+            <td align="center">d2eaab82-0cc6-4463-9cfd-31c0ed08d210</td>
+            <td align="center">00000000-0000-0000-0000-00000000000A</td>
+            <td align="center">23423454-c235-2223-3d23-0d23434c56d6</td>
+            <td align="center">1.0</td>
+            <td align="center">2011-01-26</td>
+            <td align="center">Bob</td>
+            <td align="center">2010-10-06T15:02:02.000+01:00</td>
+            <td align="center">Dave</td>
+            <td align="center">2010-11-26T15:02:00.000+01:00</td>
+        </tr>
+        <tr>
+            <td align="center">e29a4cfc-197c-4d0d-9ce1-a2fd46356367</td>
+            <td align="center">00000000-0000-0000-0000-00000000000C</td>
+            <td align="center">12343422-a938-5236-b235-0235255556d6</td>
+            <td align="center">1.0</td>
+            <td align="center">2009-8-8</td>
+            <td align="center">Bob</td>
+            <td align="center">2010-10-06T15:02:12.000+01:00</td>
+            <td align="center">Dave</td>
+            <td align="center">2010-11-26T15:02:37.000+01:00</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>When</h2>
+
+<p>
+    The allocations are queried with a HTTP <code>GET</code> <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" />
+</p>
+
+<div class="details">
+    <div class="example">
+        <pre concordion:set="#resource">/trader/allocations</pre>
+        <p>
+            with a "accept" mime-type of...
+        </p>
+        <pre concordion:set="#mime">application/json</pre>
+    </div>
+</div>
+
+<h2>Then</h2>
+
+<p>
+    The response contains the following information...
+</p>
+
+<div class="example">
+    <h3>Example</h3>
+
+    <pre concordion:assertEquals="getAllocationsViaRest()" class="success">[
+  {
+    "id" : "766345b4-7345-4345-4452-ee2b43511145",
+    "etfIdentifier" : "00000000-0000-0000-0000-00000000000a",
+    "assetPortfolioIdentifier" : "11111111-1111-1111-1111-111111111111",
+    "ratio" : 0.88,
+    "effectiveDate" : "2010-10-06",
+    "createdBy" : "Bob",
+    "createdDate" : "2010-10-06T15:01:32.000+01:00",
+    "modifiedBy" : "Dave",
+    "modifiedDate" : "2010-11-26T14:11:32.000+00:00"
+  },
+  {
+    "id" : "b04f349f-995e-45e7-b172-54e3f3cb1e08",
+    "etfIdentifier" : "00000000-0000-0000-0000-00000000000b",
+    "assetPortfolioIdentifier" : "11111111-1111-1111-1111-111111111111",
+    "ratio" : 0.12,
+    "effectiveDate" : "2011-12-07",
+    "createdBy" : "Eric",
+    "createdDate" : "2011-11-06T14:12:32.000+00:00",
+    "modifiedBy" : "Mary",
+    "modifiedDate" : "2011-01-16T14:29:32.000+00:00"
+  },
+  {
+    "id" : "d2eaab82-0cc6-4463-9cfd-31c0ed08d210",
+    "etfIdentifier" : "00000000-0000-0000-0000-00000000000a",
+    "assetPortfolioIdentifier" : "23423454-c235-2223-3d23-0d23434c56d6",
+    "ratio" : 1.0,
+    "effectiveDate" : "2011-01-26",
+    "createdBy" : "Bob",
+    "createdDate" : "2010-10-06T15:02:02.000+01:00",
+    "modifiedBy" : "Dave",
+    "modifiedDate" : "2010-11-26T14:02:00.000+00:00"
+  },
+  {
+    "id" : "e29a4cfc-197c-4d0d-9ce1-a2fd46356367",
+    "etfIdentifier" : "00000000-0000-0000-0000-00000000000c",
+    "assetPortfolioIdentifier" : "12343422-a938-5236-b235-0235255556d6",
+    "ratio" : 1.0,
+    "effectiveDate" : "2009-08-08",
+    "createdBy" : "Bob",
+    "createdDate" : "2010-10-06T15:02:12.000+01:00",
+    "modifiedBy" : "Dave",
+    "modifiedDate" : "2010-11-26T14:02:37.000+00:00"
+  }
+]</pre>
+
+</div>
+
+<div class="information">
+    <h3>Further Information</h3>
+    <ul>
+        <li><a href="../../../../Overview.html">Overview</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function showDetails() {
+        $('.details').toggle('fast');
+    }
+</script>
+<div class="footer">Results generated by <a href="http://www.concordion.org"><img src="../../../../image/concordion-logo.png" alt="Concordion" border="0" /></a><div class="testTime">in 28 ms on 19-Jun-2012 at 20:06:26 BST</div></div></body>
+</html>
