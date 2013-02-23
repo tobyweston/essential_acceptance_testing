@@ -183,13 +183,13 @@ ins {
 <h2>Then</h2>
 
 <ol>
-    <li><span concordion:assertEquals="lepoTalliedInGr()" class="success">An existing LEPO instrument is tallied in GR with a negative quantity</span></li>
+    <li><span concordion:assertEquals="lepoTalliedInGr()" class="success">An existing LEPO instrument is tallied in Risk with a negative quantity</span></li>
     <li><span concordion:assertEquals="positivePriceAdjustmentMadeForLepo()" class="success">The LEPO instrument is tallied on to, to create the price adjustment cashflow</span></li>
     <li><span concordion:assertEquals="negativePriceAdjustmentMadeForLepo()" class="success">The LEPO instrument is tallied off of, to revert the change in position</span></li>
     <li><span concordion:assertEquals="settlementTicketIsSentToRambo()" class="success">A settlement ticket is sent to Rambo</span></li>
     <li><span concordion:assertEquals="positivePriceAdjustmentMadeForTrs()" class="success">An instrument representing the TRS AP Leg is tallied on to, to create the price adjustment cashflow</span></li>
     <li><span concordion:assertEquals="negativePriceAdjustmentMadeForTrs()" class="success">An instrument representing the TRS AP Leg is tallied off of, to revert the change in position</span></li>
-    <li><span concordion:assertEquals="bookingChatMessageSent()" class="success">A chat message indicating the booking was made in GR is sent to MindAlign</span></li>
+    <li><span concordion:assertEquals="bookingChatMessageSent()" class="success">A chat message indicating the booking was made in Risk is sent to MindAlign</span></li>
 </ol>
 
 <div class="example">

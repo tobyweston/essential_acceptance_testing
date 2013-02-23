@@ -161,14 +161,14 @@ ins {
   font-size: 8pt;
 }
 </style>
-    <title>Buy LEPO and tally onto it in GR via REST - Error message returned or URN not produced</title>
+    <title>Buy LEPO and tally onto it in Risk via REST - Error message returned or URN not produced</title>
     <meta name="iteration" content="Iteration 24, Iteration 25, Iteration 32" />
     <meta name="jira" content="TRADER-333, TRADER-347, TRADER-363, TRADER-435" />
     <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
     <script src="../../../../jquery-1.7.2.js">.</script>
 </head>
 <body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Tradebooking.html">Trade Booking Overview</a> &gt;</span>
-<h1>Buy LEPO and tally onto it in GR via REST - Error message returned or URN not produced</h1>
+<h1>Buy LEPO and tally onto it in Risk via REST - Error message returned or URN not produced</h1>
 
 <h2>Given</h2>
 
@@ -190,21 +190,21 @@ ins {
     <li><span concordion:assertEquals="logContainsTransactionIdentifier()" class="success">The log also indicates the transaction identifier</span></li>
     <li>The trade is not added to repository</li>
     <li><span concordion:assertEquals="settlementTicketIsNotSentToRambo()" class="success">A settlement ticket is <b>not</b> sent (via email) to Rambo</span></li>
-    <li><span concordion:assertEquals="bookingChatMessageNotSent()" class="success">A chat <font color="red">alert</font> indicating the booking was <b>not</b> made in GR is sent to MindAlign</span></li>
+    <li><span concordion:assertEquals="bookingChatMessageNotSent()" class="success">A chat <font color="red">alert</font> indicating the booking was <b>not</b> made in Risk is sent to MindAlign</span></li>
 </ol>
 
 <div class="example">
 <p>The actual log message content is shown below <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
 <div class="details">
-<pre concordion:echo="logContents()">ERROR - Unable to perform booking with GR or other systems, Corporate Action - failed to book tally: Symbol=DGS=BLX, UbsId=000000379, TransactionId=9c85b7f5-6c2a-442f-b0e6-e3005d2159b8, TD=1970-01-03, Qty=-42.97, Cashflow=258,594.03, Underlying equity: RIC=chill, ISIN=DE0005190003
-Exception messages : [com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required, com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required, field 'GR_URN' is required]
-ERROR - Unable to perform booking with GR or other systems, uncaught exception, 
-java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 9c85b7f5-6c2a-442f-b0e6-e3005d2159b8
+<pre concordion:echo="logContents()">ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=DGS=BLX, UbsId=000000379, TransactionId=9c85b7f5-6c2a-442f-b0e6-e3005d2159b8, TD=1970-01-03, Qty=-42.97, Cashflow=258,594.03, Underlying equity: RIC=chill, ISIN=DE0005190003
+Exception messages : [com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'Risk_URN' is required, com.acme.trader.marshalling.MissingJsonException: field 'Risk_URN' is required, field 'Risk_URN' is required]
+ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
+java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 9c85b7f5-6c2a-442f-b0e6-e3005d2159b8
 	at java.util.concurrent.FutureTask$Sync.innerGet(FutureTask.java:232)
 	at java.util.concurrent.FutureTask.get(FutureTask.java:91)
 	at com.acme.trader.transaction.lepo.SimpleThreadedLepoServicesLogger$1.run(SimpleThreadedLepoServicesLogger.java:16)
 	at java.lang.Thread.run(Thread.java:680)
-Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 9c85b7f5-6c2a-442f-b0e6-e3005d2159b8
+Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 9c85b7f5-6c2a-442f-b0e6-e3005d2159b8
 	at com.acme.trader.external.gr.GrService.book(GrService.java:37)
 	at com.acme.trader.transaction.lepo.BookAndSettleLepoTask.call(BookAndSettleLepoTask.java:25)
 	at com.acme.trader.transaction.lepo.BookAndSettleLepoTask.call(BookAndSettleLepoTask.java:9)
@@ -213,7 +213,7 @@ Caused by: com.acme.trader.external.ExternalApiException: Error encountered when
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	... 1 more
-Caused by: com.acme.trader.external.ExternalApiException: com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required
+Caused by: com.acme.trader.external.ExternalApiException: com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'Risk_URN' is required
 	at com.acme.trader.external.dragon.DragonService.book(DragonService.java:38)
 	at sun.reflect.GeneratedMethodAccessor220.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -222,11 +222,11 @@ Caused by: com.acme.trader.external.ExternalApiException: com.acme.trader.marsha
 	at $Proxy18.book(Unknown Source)
 	at com.acme.trader.external.gr.GrService.book(GrService.java:29)
 	... 7 more
-Caused by: com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required
+Caused by: com.acme.trader.marshalling.UnmarshallingException: com.acme.trader.marshalling.MissingJsonException: field 'Risk_URN' is required
 	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.unmarshall(DragonResponseUnmarshaller.java:28)
 	at com.acme.trader.external.dragon.DragonService.book(DragonService.java:36)
 	... 13 more
-Caused by: com.acme.trader.marshalling.MissingJsonException: field 'GR_URN' is required
+Caused by: com.acme.trader.marshalling.MissingJsonException: field 'Risk_URN' is required
 	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.getGrUrnFrom(DragonResponseUnmarshaller.java:57)
 	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.getDragonResponseFrom(DragonResponseUnmarshaller.java:36)
 	at com.acme.trader.external.dragon.marshalling.DragonResponseUnmarshaller.unmarshall(DragonResponseUnmarshaller.java:26)

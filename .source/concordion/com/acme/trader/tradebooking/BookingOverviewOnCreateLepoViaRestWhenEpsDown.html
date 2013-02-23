@@ -176,7 +176,7 @@ ins {
     An Sell Asset / Buy LEPO transaction exists in the <b>REVIEWED</b> state
 </p>
 
-<p>EPS is unavailable and so the symbol of an equity can not be looked up as part of the GR booking.</p>
+<p>EPS is unavailable and so the symbol of an equity can not be looked up as part of the Risk booking.</p>
 
 <h2>When</h2>
 
@@ -194,7 +194,7 @@ ins {
 <div class="example">
 <p>The actual log message content is shown below <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
 <div class="details">
-<pre concordion:echo="logContents()">ERROR - Unable to perform booking with GR or other systems, Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000355, TransactionId=6b0201e9-f9cc-41f3-9936-1a1d16eea964, TD=1969-12-10, Qty=-7,963.78, Cashflow=48,472,948.54, Underlying equity: RIC=barf, ISIN=KYG0400P1037
+<pre concordion:echo="logContents()">ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=unknown, UbsId=000000355, TransactionId=6b0201e9-f9cc-41f3-9936-1a1d16eea964, TD=1969-12-10, Qty=-7,963.78, Cashflow=48,472,948.54, Underlying equity: RIC=barf, ISIN=KYG0400P1037
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6969 refused, Connection refused]
 </pre>
 </div>

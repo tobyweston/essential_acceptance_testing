@@ -161,22 +161,22 @@ ins {
   font-size: 8pt;
 }
 </style>
-    <title>Book IComp in GR</title>
+    <title>Book IComp in Risk</title>
     <meta name="iteration" content="Iteration 33" />
     <meta name="jira" content="TRADER-445" />
     <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
     <script src="../../../../jquery-1.7.2.js">.</script>
 </head>
 <body onload="$('.details').toggle('medium');"><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Tradebooking.html">Trade Booking Overview</a> &gt;</span>
-<h1>Book IComp in GR</h1>
+<h1>Book IComp in Risk</h1>
 
 <p>
-    An IComp instrument in GR will reflect the composition of the asset portfolio for a given ETF. It's used to represent
+    An IComp instrument in Risk will reflect the composition of the asset portfolio for a given ETF. It's used to represent
     the risk associated with the TRS AP leg (as it's the underlying instrument for that leg) although it is not part of
     the ETF Co-ordination desk's risk view (as they don't actually own the portfolio).
 </p>
 <p>
-    Nightly GR mark runs will value the IComp and this data is used in the subsequent reconciliation process (T+1). Failure
+    Nightly Risk mark runs will value the IComp and this data is used in the subsequent reconciliation process (T+1). Failure
     to keep the IComp in-sync with the portfolio will result in reconciliation failures and discrepancies in the ETF
     Co-ordination desk's P&amp;L.
 </p>
@@ -196,7 +196,7 @@ ins {
         <thead>
         <tr>
             <th width="150px">Equity Identifier</th>
-            <th width="250px">GR InstrTic (used as tradableInfoID)</th>
+            <th width="250px">Risk InstrTic (used as tradableInfoID)</th>
             <th width="150px">Type</th>
             <th width="150px">Effective Date</th>
             <th width="150px">Position</th>

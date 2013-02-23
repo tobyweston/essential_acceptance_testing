@@ -185,18 +185,18 @@ ins {
 <h2>Then</h2>
 
 <ol>
-    <li><span concordion:assertEquals="lepoTalliedInGr()" class="success">An existing LEPO instrument is tallied in GR with a negative quantity</span></li>
+    <li><span concordion:assertEquals="lepoTalliedInGr()" class="success">An existing LEPO instrument is tallied in Risk with a negative quantity</span></li>
     <li><span concordion:assertEquals="logContainsEmailError()" class="success">An error indicating an invalid email address was encountered was recorded in a log</span></li>
-    <li><span concordion:assertEquals="bookingChatMessageSent()" class="success">A chat message indicating the booking was made in GR is sent to MindAlign</span></li>
+    <li><span concordion:assertEquals="bookingChatMessageSent()" class="success">A chat message indicating the booking was made in Risk is sent to MindAlign</span></li>
     <li><span concordion:assertEquals="emailChatMessageNotSent()" class="success">A chat <font color="red">alert</font> indicated that an email was <b>not</b> sent to settlements is sent to MindAlign</span></li>
 </ol>
 
 <div class="example">
 <p>The actual log message content is shown below <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
 <div class="details">
-<pre concordion:echo="logContents()">ERROR - Unable to perform booking with GR or other systems, Corporate Action - failed to send email to OTC Settlements to book trade: URN=BKP350LDN000000001 (ubsId 000000287, transaction id c45deeed-bae9-4709-8157-88970a4acd01), TD=1970-01-17, Qty=5,311.94, Cashflow=-10,260,488.8, Underlying equity: RIC=kermit, ISIN=KYG0400P1037
+<pre concordion:echo="logContents()">ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to send email to OTC Settlements to book trade: URN=BKP350LDN000000001 (ubsId 000000287, transaction id c45deeed-bae9-4709-8157-88970a4acd01), TD=1970-01-17, Qty=5,311.94, Cashflow=-10,260,488.8, Underlying equity: RIC=kermit, ISIN=KYG0400P1037
 Exception messages : [invalid email god@heaven.com, recipient not found]
-ERROR - Unable to perform booking with GR or other systems, uncaught exception, 
+ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
 java.util.concurrent.ExecutionException: com.acme.trader.transport.mail.MailException: invalid email god@heaven.com, recipient not found
 	at java.util.concurrent.FutureTask$Sync.innerGet(FutureTask.java:232)
 	at java.util.concurrent.FutureTask.get(FutureTask.java:91)

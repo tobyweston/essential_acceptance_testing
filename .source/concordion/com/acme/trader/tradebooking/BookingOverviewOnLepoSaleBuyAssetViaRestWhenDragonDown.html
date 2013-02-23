@@ -185,23 +185,23 @@ ins {
 <h2>Then</h2>
 
 <ol>
-    <li><span concordion:assertEquals="logContainsGrConnectionError()" class="success">An error indicating that GR was unavailable was recorded in a log file</span></li>
+    <li><span concordion:assertEquals="logContainsGrConnectionError()" class="success">An error indicating that Risk was unavailable was recorded in a log file</span></li>
     <li><span concordion:assertEquals="logContainsTransactionIdentifier()" class="success">The log also indicates the transaction identifier</span></li>
-    <li><span concordion:assertEquals="bookingChatMessageNotSent()" class="success">A chat <font color="red">alert</font> indicating the booking was <b>not</b> made in GR is sent to MindAlign</span></li>
+    <li><span concordion:assertEquals="bookingChatMessageNotSent()" class="success">A chat <font color="red">alert</font> indicating the booking was <b>not</b> made in Risk is sent to MindAlign</span></li>
 </ol>
 
 <div class="example">
 <p>The actual log message content is shown below <img style="cursor:pointer" onclick="showDetails();" src="../../../../info.jpg" width="18px" height="18px" alt="Toggle Details" name="Toggle Details" /></p>
 <div class="details">
-<pre concordion:echo="logContents()">ERROR - Unable to perform booking with GR or other systems, Corporate Action - failed to book tally: Symbol=DGS=BLX, UbsId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=7,319.57, Cashflow=-12,851,211.61, Underlying equity: RIC=arrrh, ISIN=FR0000120172
+<pre concordion:echo="logContents()">ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: Symbol=DGS=BLX, UbsId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=7,319.57, Cashflow=-12,851,211.61, Underlying equity: RIC=arrrh, ISIN=FR0000120172
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6666 refused, Connection refused]
-ERROR - Unable to perform booking with GR or other systems, uncaught exception, 
-java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 6684979a-af6a-4060-af77-80d7e26fffb3
+ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
+java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 6684979a-af6a-4060-af77-80d7e26fffb3
 	at java.util.concurrent.FutureTask$Sync.innerGet(FutureTask.java:232)
 	at java.util.concurrent.FutureTask.get(FutureTask.java:91)
 	at com.acme.trader.transaction.lepo.SimpleThreadedLepoServicesLogger$1.run(SimpleThreadedLepoServicesLogger.java:16)
 	at java.lang.Thread.run(Thread.java:680)
-Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 6684979a-af6a-4060-af77-80d7e26fffb3
+Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 6684979a-af6a-4060-af77-80d7e26fffb3
 	at com.acme.trader.external.gr.GrService.book(GrService.java:37)
 	at com.acme.trader.transaction.lepo.BookAndSettleLepoTask.call(BookAndSettleLepoTask.java:25)
 	at com.acme.trader.transaction.lepo.BookAndSettleLepoTask.call(BookAndSettleLepoTask.java:9)
@@ -256,15 +256,15 @@ Caused by: java.net.ConnectException: Connection refused
 	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:123)
 	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:123)
 	... 33 more
-ERROR - Unable to perform booking with GR or other systems, Corporate Action - failed to book tally: UbsId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=-1, Cashflow=0, Underlying equity: RIC=arrrh, ISIN=FR0000120172
+ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: UbsId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=-1, Cashflow=0, Underlying equity: RIC=arrrh, ISIN=FR0000120172
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6666 refused, Connection refused]
-ERROR - Unable to perform booking with GR or other systems, uncaught exception, 
-java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 6684979a-af6a-4060-af77-80d7e26fffb3
+ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
+java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 6684979a-af6a-4060-af77-80d7e26fffb3
 	at java.util.concurrent.FutureTask$Sync.innerGet(FutureTask.java:232)
 	at java.util.concurrent.FutureTask.get(FutureTask.java:91)
 	at com.acme.trader.transaction.lepo.SimpleThreadedLepoServicesLogger$1.run(SimpleThreadedLepoServicesLogger.java:16)
 	at java.lang.Thread.run(Thread.java:680)
-Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 6684979a-af6a-4060-af77-80d7e26fffb3
+Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 6684979a-af6a-4060-af77-80d7e26fffb3
 	at com.acme.trader.external.gr.GrService.book(GrService.java:37)
 	at com.acme.trader.transaction.lepo.BookTask.call(BookTask.java:18)
 	at com.acme.trader.transaction.lepo.BookTask.call(BookTask.java:6)
@@ -319,15 +319,15 @@ Caused by: java.net.ConnectException: Connection refused
 	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:123)
 	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:123)
 	... 33 more
-ERROR - Unable to perform booking with GR or other systems, Corporate Action - failed to book tally: UbsId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=1, Cashflow=2,443,130.9, Underlying equity: RIC=arrrh, ISIN=FR0000120172
+ERROR - Unable to perform booking with Risk or other systems, Corporate Action - failed to book tally: UbsId=000000365, TransactionId=6684979a-af6a-4060-af77-80d7e26fffb3, TD=1969-12-27, Qty=1, Cashflow=2,443,130.9, Underlying equity: RIC=arrrh, ISIN=FR0000120172
 Exception messages : [java.lang.reflect.UndeclaredThrowableException, null, null, Connection to http://localhost:6666 refused, Connection refused]
-ERROR - Unable to perform booking with GR or other systems, uncaught exception, 
-java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 6684979a-af6a-4060-af77-80d7e26fffb3
+ERROR - Unable to perform booking with Risk or other systems, uncaught exception,
+java.util.concurrent.ExecutionException: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 6684979a-af6a-4060-af77-80d7e26fffb3
 	at java.util.concurrent.FutureTask$Sync.innerGet(FutureTask.java:232)
 	at java.util.concurrent.FutureTask.get(FutureTask.java:91)
 	at com.acme.trader.transaction.lepo.SimpleThreadedLepoServicesLogger$1.run(SimpleThreadedLepoServicesLogger.java:16)
 	at java.lang.Thread.run(Thread.java:680)
-Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to GR 6684979a-af6a-4060-af77-80d7e26fffb3
+Caused by: com.acme.trader.external.ExternalApiException: Error encountered when booking to Risk 6684979a-af6a-4060-af77-80d7e26fffb3
 	at com.acme.trader.external.gr.GrService.book(GrService.java:37)
 	at com.acme.trader.transaction.lepo.BookTask.call(BookTask.java:18)
 	at com.acme.trader.transaction.lepo.BookTask.call(BookTask.java:6)

@@ -161,21 +161,21 @@ ins {
   font-size: 8pt;
 }
 </style>
-    <title>Update InstrTic on Successful GR Booking</title>
+    <title>Update InstrTic on Successful Risk Booking</title>
     <meta name="iteration" content="Iteration 36" />
     <meta name="jira" content="TRADER-492" />
     <link rel="stylesheet" href="../../../../concordion.css" type="text/css" />
 </head>
 <body><span class="breadcrumbs"><a href="../Trader.html">Trader</a> &gt; <a href="Tradebooking.html">Trade Booking Overview</a> &gt;</span>
-<h1>Update InstrTic on Successful GR Booking</h1>
+<h1>Update InstrTic on Successful Risk Booking</h1>
 
 <h2>Given</h2>
 
-<p>A Sell Asset / Buy LEPO transaction has transitioned to the <b>EXECUTED</b> state and a 'Buy Lepo' trade has been created. The booking has been sent to GR.</p>
+<p>A Sell Asset / Buy LEPO transaction has transitioned to the <b>EXECUTED</b> state and a 'Buy Lepo' trade has been created. The booking has been sent to Risk.</p>
 
 <h2>When</h2>
 
-<p concordion:execute="#transactionIdentifier = executeTransaction(#instrTic)">GR responds with a URN and the instrTic <em concordion:set="#instrTic">38429541</em>.</p>
+<p concordion:execute="#transactionIdentifier = executeTransaction(#instrTic)">Risk responds with a URN and the instrTic <em concordion:set="#instrTic">38429541</em>.</p>
 
 <h2>Then</h2>
 
