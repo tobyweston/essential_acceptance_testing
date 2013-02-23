@@ -32,6 +32,7 @@ If you're interested in what's beyond the canon, part 2 may get you thinking. In
  - Communication barriers
  - Lack of shared memory
  - Lack of collective understanding of requirements
+ - Blurring the "what" with the "how"
  - Ambiguous language
  - Lack of structure and direction
 
@@ -44,7 +45,9 @@ If you're interested in what's beyond the canon, part 2 may get you thinking. In
  - Command and control structures
  - Construct validity
  - Artificial constraints
- - Common pitfalls
+
+**Common pitfalls**
+
  - Features hit production that the customer didn’t want
  - Users describe solutions not problems
  - Users can’t tell how the system is supposed to behave

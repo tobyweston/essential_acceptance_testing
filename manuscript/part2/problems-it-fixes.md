@@ -30,7 +30,7 @@ Writing acceptance criteria down in the form of tests isn't the only tool availa
 
 
 
-## Blurring of "what" from "how"
+## Blurring the "what" with the "how"
 
 This is really making the point that it's the "what" that's important and not the "how". At least, when it comes to the business goals (which are more than likely to include making money), focusing on the goal is very different than focusing on the details of how to achieve it. If these ideas are blurred, all kinds of problems can arise. It can be as simple as empowering the best placed people.
 
