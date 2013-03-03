@@ -11,7 +11,7 @@ W>
 
 The typical process described above encourages communication but it also formalises it. It places check points which are designed to ensure that key conversations take place and agreement is established.
 
-However, it can also encourage the team to focus on these as the only *required* conversations. If developer's find it hard to have conversations with the business, it may be that they'll make one token effort under the umbrella of "agreeing acceptance criteria" and forgo more ad-hoc conversations.
+However, it can also encourage the team to focus on these as the only *required* conversations. If developer's find it hard to have conversations with the business, it may be that they'll make one token effort under the umbrella of "agreeing acceptance criteria" and forgo more meaningful conversations.
 
 
 
@@ -21,7 +21,7 @@ In agreeing acceptance criteria, the whole team (testers, developers and busines
 
 For example, one team I worked with directed testing staff to speak with the business to define acceptance criteria and draft acceptance tests. These were then handed off to the development team who would alter the draft tests to fit in with the code structure and go off and implement the feature. When done, it would be demoed with the business but would often bear little resemblance to what they agreed with testers.
 
-The problem here was that each stage was accompanied with a hand off and a loss continuity. The hand off closely followed role divides within the team. Testers would hand off to developers. Developers would hand off to the business. It turns out that developer's didn't like talking to the business and so the process was shoehorned into mimicking the communication structures. There's an analogy to Conway's law here.
+The problem here was that each stage was accompanied with a hand off and a loss continuity. The hand off closely followed role divides within the team. Testers would hand off to developers. Developers would hand off to the business. It turns out that developer's didn't like talking to the business and so the process was shoehorned into mimicking the communication structures. There's parallels to Conway's law here.
 
 The intention behind having defined steps is around breaking down communication barriers but examples like this show that we can misuse the formalism to reinforce existing barriers.
 
@@ -29,13 +29,19 @@ The intention behind having defined steps is around breaking down communication 
 
 ## Technical over exposure
 
-If we're not careful, the business can end up knowing too much about the technology choices. It's really none of their concern. [more to come]
+If we're not careful, the business can end up knowing too much about the technology choices. The business may feel that they need to be aware of the system architecture or technical decisions in order to approve a working system. In reality, it's really none of their concern. The business should be concerned that their business goals can be met and should learn to trust the technical staff to deliver an architecture that can support that objective. This goes both ways though as the technical staff have to earn that trust.
+
+Business staff are not best placed to make technical decisions and knowing too much about technology empowers them to do so. It's the same for technical staff, technical staff are not best placed in making business decisions. That's not to say that business and technology staff should not collaborate but a healthy balance is required.
+
+If the business are acclimatised to focus on technology, it can be difficult to refocus on high-level business value. It can help to agree this point with the team so that they can be reminded when veering off track.
+
 
 
 ## Cargo cult
 
 One of the biggest problems with the traditional acceptance test process is the temptation to focus on the practices and not the reasons behind them. Just like a [cargo cult](http://en.wikipedia.org/wiki/Cargo_cult), practitioners can be lured into following behaviours in the hope that the benefits will magically manifest. It's a causal fallacy. Tests aren't the goal unto themselves.
 
+The best recourse is to continually evaluate the process. Having something to actually measure against makes this much less subjective but cumming up with meaningful heuristics is notoriously difficult.
 
 
 ## Command and control structures
@@ -57,4 +63,6 @@ Defining business "value" suffers from a kind of construct validity. Are the thi
 
 ## Artificial constraints
 
-We have to be careful not to constrain ourselves artificially. The given/when/then pattern advocated by BDD for example encourages a certain way to frame our thought process. This isn't always appropriate and we should avoid falling into assuming it is. At the heart of agile principles is the idea to adapt, we should always be mindful of this and continually review process. [more to come]
+We have to be careful not to constrain ourselves artificially. The given/when/then pattern advocated by BDD for example encourages a certain way to frame our thought process. This isn't always appropriate and we should avoid falling into assuming it is. At the heart of agile principles is the idea to adapt, we should always be mindful of this and continually review process.
+
+[more to come]
