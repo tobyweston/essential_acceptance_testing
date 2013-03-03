@@ -1,4 +1,4 @@
-# Typical Process Overview {#process-overview}
+# Typical process overview {#process-overview}
 
 ## The story delivery life cycle {#story-delivery-life-cycle}
 
@@ -68,11 +68,12 @@ Once you've written the criteria down, the next step is to formally agree them w
 
 Remember that all this is done before writing any production code.
 
-![An example of acceptance criteria documented and ready to be agreed agreement. It's loaded with domain specific terminology that also should be agreed](images/example_spec.png)
+![An example of acceptance criteria documented and ready to be agreed. It's loaded with domain specific terminology that also should be agreed](images/example_spec.png)
 
 
 A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
 A> Tick off these items as you go through the agree acceptance criteria phase.
+A>
 A> - Business analysis has been undertaken
 A> - Developers understand the business background, context and goals for a story
 A> - There is no ambiguity about business terms and everyone agrees on their definition
@@ -112,7 +113,7 @@ D>
 D> The whole purpose of the define, agree, develop, demo cycle is to spot problems early and adjust. In that spirit, it makes sense to prevent progress to the next step until previous steps have be completed. For example, don't start development until you have the full set of stickers. If this causes delays and 'blocked' work, missing stickers can help highlight where the bottleneck lies.
 
 
-There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of "sufficient" here is really down to the business. If the edge cases that unit tests would have picked up are unlikely ever to materialise and if the cost of fixing these once in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery (time to pay day). To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests. Acceptance tests have monetary value, unit tests have strategic value.
+There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of "sufficient" here is open for debate. If the edge cases that unit tests would have picked up are unlikely to materialise and if the cost of fixing these once in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery (time to pay day). To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests. Acceptance tests have monetary value, unit tests have design value.
 
 Your team's experiences and preferences will influence which approach you choose. Sometimes, the two compliment each other, other times they get in each others way and duplicate effort. Judicious testing takes practice.
 
@@ -122,9 +123,9 @@ Your team's experiences and preferences will influence which approach you choose
 
 This step is about proving to customers that their requirements have been realised. It's about giving them confidence. You can do this in whatever way works best for your team. A common approach is to run through a manual demo and walk through the passing acceptance tests huddled around a desk or with a projector.
 
-After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the life cycle again with the next story. If everyone doesn't agree or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
+After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the  cycle again with the next story. If everyone doesn't agree or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
 
-You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivering value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
+You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the delivery cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivering value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
 
 ![Acceptance criteria from above converted into a running acceptance test; an example of something you might demo](images/example_spec_passing.png)
 
