@@ -18,7 +18,7 @@ The acceptance tests document a shared (and agreed) understanding of features. A
 
 Tools like [Yatspec](http://code.google.com/p/yatspec/), [Concordion](http://concordion.org) and Concordion.NET, emphasise this aspect and can be used to create HTML documentation to share. You can organise this however you like. You might show features grouped by area, iteration and even use it for developer API documentation.
 
-![An example of a Concordion HTML overview. Tests are grouped under tabs and users can drill down into the test's detail.](images/concordion/overview-passing.png)
+![An example of a Concordion HTML overview. Tests are grouped under tabs and users can drill down into the test's detail.](images/concordion/overview_passing.png)
 
 
 
