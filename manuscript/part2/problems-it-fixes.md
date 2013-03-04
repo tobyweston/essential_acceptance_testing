@@ -16,7 +16,7 @@ When not using this approach, if you find that requirements are being misunderst
 
 The acceptance tests document a shared (and agreed) understanding of features. As time goes on, its easy to forget how a particular feature is supposed to behave. If acceptance tests are in a customer friendly format, they form reference documentation that will always be accurate; a live record of the system's behaviour.
 
-Tools like [Yatspec](http://code.google.com/p/yatspec/), [Concordion](http://concordion.org) and Concordion.NET, emphasise this aspect and can be used create HTML documentation to share. You can organise this however you like. You might show features grouped by area, iteration and even use it for developer API documentation.
+Tools like [Yatspec](http://code.google.com/p/yatspec/), [Concordion](http://concordion.org) and Concordion.NET, emphasise this aspect and can be used to create HTML documentation to share. You can organise this however you like. You might show features grouped by area, iteration and even use it for developer API documentation.
 
 ![An example of a Concordion HTML overview. Tests are grouped under tabs and users can drill down into the test's detail.](images/concordion/overview_passing.png)
 
@@ -57,7 +57,7 @@ By stability, I mean that the goal for the next week or so is well known and the
 
 Having an established process like the story delivery life cycle can give structure to delivery and contribute to sustainable pace. Such a process certainly offers clear boundaries and check points. Crossing them helps establish a rhythm or cadence and gives the team a chance to celebrate in what they've achieved. People know where they stand.
 
-Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Moral and discipline suffer. It goes against the the constancy of purpose Deming warns of when talking about the Seven Deadly Diseases.
+Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Morale and discipline suffer. It goes against the the constancy of purpose Deming warns of when talking about the Seven Deadly Diseases.
 
 This may well be a point more about decomposition than acceptance testing. People just handle small tasks better. There is a personal psychology aspect but there's also advantages for the business in dealing in small features. It reduces risk and allows for quicker change of direction. It's the cost of change curve.
 
