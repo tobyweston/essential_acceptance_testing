@@ -21,7 +21,7 @@ In agreeing acceptance criteria, the whole team (testers, developers and busines
 
 For example, one team I worked with directed testing staff to speak with the business to define acceptance criteria and draft acceptance tests. These were then handed off to the development team who would alter the draft tests to fit in with the code structure and go off and implement the feature. When done, it would be demoed with the business but would often bear little resemblance to what they agreed with testers.
 
-The problem here was that each stage was accompanied with a hand off and a loss continuity. The hand off closely followed role divides within the team. Testers would hand off to developers. Developers would hand off to the business. It turns out that developer's didn't like talking to the business and so the process was shoehorned into mimicking the communication structures. There's parallels to Conway's law here.
+The problem here was that each stage was accompanied with a hand off and a loss of continuity leading to a chinese whispers affect. Testers would hand off to developers. Developers would hand off to the business. It turns out that developer's didn't like talking to the business and so hijacked the process to avoid interacting with them directly. There's a parallel to Conway's law here where the use of the process is mirroring the communication structures.
 
 The intention behind having defined steps is around breaking down communication barriers but examples like this show that we can misuse the formalism to reinforce existing barriers.
 
