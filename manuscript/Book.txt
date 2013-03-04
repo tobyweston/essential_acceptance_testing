@@ -14,7 +14,7 @@ part2/problems-it-fixes.md
 part2/problems-it-causes.md
 part2/pitfalls-placeholder.md
 part2/alternatives.md
-part2/questions.md
+part2/questions-placeholder.md
 
 part3/preamble.md
 unavailable.md
