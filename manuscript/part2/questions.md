@@ -11,6 +11,7 @@ W>
 See the [introduction](#part1) section.
 
 
+
 ## How do I manage large numbers of acceptance tests?
 
 Easier answer for greenfield projects, much harder for existing code bases.
@@ -23,7 +24,9 @@ It can also be difficult to physically manage a large number of test artifacts. 
 ## How do you map acceptance tests to stories in say JIRA?
 
 
+
 ## How does applying acceptance testing techniques help us focus on reducing complexity?
+
 
 
 ## When would you not write stories? Acceptance criteria?
