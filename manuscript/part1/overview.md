@@ -142,9 +142,9 @@ To some degree, acceptance test suites address the need for regression testing. 
 
 ## Deliver
 
-An optional step in the lifecycle is to actually deliver the demoed feature. This may get less emphasis because it's usually associated with a release where multiple stories are deployed together. It's actually a crucial step though as its only after this point that potential story value is actually released. It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready.
+An optional step in the lifecycle is to actually deliver the demoed feature. This often gets less emphasis because it usually happens when multiple stories are batched up and deployed together, for example, at the end of an iteration. It's actually a crucial step though as its only after this point that potential story value can be released.
 
-It's a fairly extreme position to take and requires careful crafting of stories so that they add demonstrable value.
+It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready. It's a fairly extreme position to take and requires careful crafting of stories so that they add demonstrable value.
 
 
 ![The story delivery lifecycle](images/story-lifecycle-extended.png)
