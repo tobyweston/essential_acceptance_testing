@@ -1,11 +1,5 @@
 # Q&A
 
-W> ## This section is not yet finished
-W>
-W> This section is not yet finished. Feel free to contribute questions or answers via the [Leanpub page](https://leanpub.com/essential_acceptance_testing).
-W>
-
-
 ## What do we mean when we say "acceptance testing"
 
 See the [introduction](#part1) section.
