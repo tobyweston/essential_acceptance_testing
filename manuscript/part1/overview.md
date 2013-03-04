@@ -2,7 +2,7 @@
 
 ## The story delivery lifecycle {#story-delivery-life-cycle}
 
-A typical agile process used by many teams today revolves around the following steps (which [David Peterson](http://www.concordion.org/memo/StoryDeliveryLifecycle.pdf) refers to as the Story delivery lifecycle).
+A typical agile process used by many teams today revolves around the following steps ([David Peterson](http://www.concordion.org/memo/StoryDeliveryLifecycle.pdf) refers to this as the Story delivery lifecycle).
 
 | Story delivery lifecycle     |
 |-------------------------------|
