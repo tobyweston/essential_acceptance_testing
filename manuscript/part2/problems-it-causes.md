@@ -57,7 +57,7 @@ We shouldn't lose sight that the steps in any system should not be about targets
 
 The story life cycle is premised on a story having business "value". In practice, it can be very difficult to define this value. Often, we assume _real_ value (i.e. cash) will come later and _interim_ value (i.e. features) will come from stories. There is obvious tension between real value and theoretical value. For example, some business models adopt a "build it and they will come" approach. They may interpret business value in the story sense to mean incremental features but it's real value may well be in attracting users and capturing their life time value (revenue).
 
-Defining business "value" suffers from a kind of construct validity. Are the things we measure reflective of the underlying value we're postulating. Is the thing we're measuring representative of value? Are we creating a "value" construct that really models our goals?
+Defining business "value" can easily suffer from a lack of construct validity. Are the things we measure reflective of the underlying value we're postulating. Is the thing we're measuring representative of value? Are we creating a "value" construct that really models our goals?
 
 
 
