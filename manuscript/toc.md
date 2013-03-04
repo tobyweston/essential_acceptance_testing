@@ -24,7 +24,7 @@ The table of contents from the full version.
 {#overview.md}
 **Overview**
 
- * The story delivery life cycle
+ * The story delivery lifecycle
  * Agree acceptance criteria
  * Develop
  * Demonstrate

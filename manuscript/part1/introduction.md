@@ -92,7 +92,7 @@ Why is this discussion important? How we interpret the definition of user storie
 
 Sticking to the letter of the definition above can lead to ambiguous requirements. We need to work a little harder. The spirit of the definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). Articulating the goal will likely take more than a single sentence on an index card and that's where defining acceptance criteria comes in.
 
-Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story Delivery Life Cycle](#story-delivery-life-cycle). It underpins common agile processes and we'll take a look at it in the [process overview](#process-overview) section.
+Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [story delivery lifecycle](#story-delivery-life-cycle). It underpins common agile processes and we'll take a look at it in the [process overview](#process-overview) section.
 
 D>## A new acceptance test per story? {#a-new-acceptance-test-per-story-aside}
 D>

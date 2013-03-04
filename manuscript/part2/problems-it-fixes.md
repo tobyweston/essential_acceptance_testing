@@ -4,7 +4,7 @@
 
 The typical process described in [part 1](#part1) can be useful in encouraging communication. There's a formal vehicle (the acceptance test artifacts) that must be created and agreed and it puts checkpoints in place to emphasise the agreement (for example, see the [stickers as sign-off](#stickers-as-sign-off-aside) aside).
 
-It doesn't mean that the story delivery life cycle is a substitute for spontaneous and continued communication. It can be tempting to lean on formal mechanisms like this as the _only_ communication mechanism but this can lead to its own problems (discussed in the [problems section](#problems-it-can-cause)).
+It doesn't mean that the story delivery lifecycle is a substitute for spontaneous and continued communication. It can be tempting to lean on formal mechanisms like this as the _only_ communication mechanism but this can lead to its own problems (discussed in the [problems section](#problems-it-can-cause)).
 
 The spirit of the process is to encourage communication not to stifle it. You create artifacts that can be shared, referred back to and you demonstrate these executable artifacts to the stakeholders. It doesn't preclude speaking to them whenever you feel like it. If you discover new insight, you're free to adjust the acceptance criteria and tests; to go round the loop again.
 
@@ -55,7 +55,7 @@ Iterative development favours planning; iterations are planned ahead of time. Th
 
 By stability, I mean that the goal for the next week or so is well known and the team know where they're heading and why. They're free from process distraction. With it, scope creep and fire fighting can be kept to a minimum and the team is free to focus on multiple, small, achievable deliveries.
 
-Having an established process like the story delivery life cycle can give structure to delivery and contribute to sustainable pace. Such a process certainly offers clear boundaries and check points. Crossing them helps establish a rhythm or cadence and gives the team a chance to celebrate in what they've achieved. People know where they stand.
+Having an established process like the story delivery lifecycle can give structure to delivery and contribute to sustainable pace. Such a process certainly offers clear boundaries and check points. Crossing them helps establish a rhythm or cadence and gives the team a chance to celebrate in what they've achieved. People know where they stand.
 
 Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Morale and discipline suffer. It goes against the the constancy of purpose Deming warns of when talking about the Seven Deadly Diseases.
 

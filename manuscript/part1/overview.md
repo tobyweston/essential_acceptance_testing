@@ -1,19 +1,19 @@
 # Typical process overview {#process-overview}
 
-## The story delivery life cycle {#story-delivery-life-cycle}
+## The story delivery lifecycle {#story-delivery-life-cycle}
 
-A typical agile process used by many teams today revolves around the following steps.
+A typical agile process used by many teams today revolves around the following steps (which [David Peterson](http://www.concordion.org/memo/StoryDeliveryLifecycle.pdf) refers to as the Story delivery lifecycle).
 
-| Story delivery life cycle     |
+| Story delivery lifecycle     |
 |-------------------------------|
 | 1. Pick a story               |
 | 2. Agree acceptance criteria  |
 | 3. Develop functionality      |
 | 4. Demonstrate and sign off   |
-| 5. Repeat                     |
+| 6. Repeat                     |
 
 
-![The story delivery life cycle](images/story-lifecycle.png)
+![The story delivery lifecycle](images/story-lifecycle.png)
 
 
 
@@ -137,3 +137,11 @@ If you're lucky, there's plenty of people on hand willing to perform some explor
 Acceptance testing doesn't negate the need for manual, exploratory style testing. Lisa Crispin calls this kind of testing critiquing the product. Some product critique can be achieved using acceptance testing whilst others require a more manual approach or specialist tools. We'll look more at this later when we talk about Brian Marick's testing matrix and Crispin's elaboration.
 
 To some degree, acceptance test suites address the need for regression testing. That is to say that they can show that the specifications haven't changed over time.
+
+
+
+## Deliver
+
+An optional step in the lifecycle is to actually deliver the demoed feature. This may get less emphasis because it's usually associated with a release where multiple stories are deployed together. It's actually a crucial step though as its only after this point that potential story value is actually released. It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready. It's a fairly extreme position to take and requires careful crafting of stories so that they add demonstrable value.
+
+![The story delivery lifecycle](images/story-lifecycle-extended.png)
