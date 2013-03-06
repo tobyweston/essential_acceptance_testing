@@ -32,9 +32,9 @@ Writing acceptance criteria down in the form of tests isn't the only tool availa
 
 ## Blurring the "what" with the "how"
 
-This is really making the point that it's the "what" that's important and not the "how". At least, when it comes to the business goals (which are more than likely to include making money), focusing on the goal is very different than focusing on the details of how to achieve it. If these ideas are blurred, all kinds of problems can arise. It can be as simple as empowering the best placed people.
+This is really making the point that it's the "what" that's important and not the "how". At least, when it comes to the business goals (which are more than likely to include making money), focusing on the goal is very different than focusing on the details of how to achieve it. If these ideas are blurred, all kinds of problems can arise.
 
-Acceptance testing, at least in principle, aims to help separate goals from implementation. Goals are defined as acceptance criteria and the development team are left to implement and prove that the criteria have been met. In practice, technology choice can undermine this aspiration. For example, if a testing technology exposes too much detail about the system design or criteria are written in technical terms (rather than business terms), the business will acclimatise in the detail and may miss the high level objectives. Defining technically oriented stories (with little real value) can be another example of blurring the lines.
+Acceptance testing, at least in principle, aims to help separate goals from implementation. Goals are defined as acceptance criteria and the development team are left to implement and prove that the criteria have been met in whatever way is appropriate. The criteria describe the "what" and proving this is more important than "how". In practice, technology choice can undermine this aspiration. For example, if a testing technology exposes too much detail about the system design or criteria are written in technical terms (rather than business terms), the business will acclimatise in the detail and may miss the high level objectives. Defining technically oriented stories (with little real value) can be another example of blurring the lines.
 
 
 
@@ -44,25 +44,25 @@ Often customers and developers have their own language for things. When there's 
 
 For example, in finance, the noun _trade_ can mean very different things to different departments. The direction of a transaction, _buy_ or _sell_ can be inverted depending on what side of the fence you sit on. Getting this right in your system is obviously going to be important.
 
-Not assuming anything and defining terms clearly in acceptance tests can be a good way to ensure some consistency. This takes discipline though and relies on people bringing up inconsistent use of terminology as it happens. Individuals may also need to be brave and ask the "obvious" questions. The agreed use of terminology formalised in an acceptance test can solidify it's definition.
+Not assuming anything and defining terms clearly in acceptance tests can be a good way to ensure some consistency. This takes discipline though and relies on people bringing up inconsistent use of terminology as it happens. Individuals may also need to be brave and ask the "obvious" questions.
 
-The spirit here is to strive for a ubiquitous language.
+Common language is formalised in an acceptance test, solidify it's definition. The spirit here is to strive for a ubiquitous language.
 
 
 ## Lack of structure and direction
 
-Iterative development favours planning; iterations are planned ahead of time. The stories to deliver are fixed at the start of an iteration. Although the iterations are short, it still imposes some rigidity. The balance is in offering the delivery team stability as well as being responsive to changes in business priorities.
+Iterative development favours planning; iterations are planned ahead of time. The stories to deliver are fixed at the start of an iteration. Although the iterations are short, it still imposes  rigidity. The balance is in offering the delivery team stability as well as being responsive to changes in business priorities.
 
 By stability, I mean that the goal for the next week or so is well known and the team know where they're heading and why. They're free from process distraction. With it, scope creep and fire fighting can be kept to a minimum and the team is free to focus on multiple, small, achievable deliveries.
 
-Having an established process like the story delivery life cycle can give structure to delivery and contribute to sustainable pace. Such a process certainly offers clear boundaries and check points. Crossing them helps establish a rhythm or cadence and gives the team a chance to celebrate in what they've achieved. People know where they stand.
+Having an established process like the story delivery life cycle can give structure to delivery and contribute to sustainable pace. Such a process certainly offers clear boundaries and check points. Crossing them helps establish a rhythm or cadence and gives the team a chance to celebrate what they've achieved. People know where they stand.
 
 Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Morale and discipline suffer. It goes against the the constancy of purpose Deming warns of when talking about the Seven Deadly Diseases.
 
-This may well be a point more about decomposition than acceptance testing. People just handle small tasks better. There is a personal psychology aspect but there's also advantages for the business in dealing in small features. It reduces risk and allows for quicker change of direction. It's the cost of change curve.
+This may well be a point more about decomposition than acceptance testing. People just handle small tasks better. There is a personal psychology aspect but there's also advantages for the business in dealing in small features. It reduces risk and allows for quicker change of direction.
 
 
 ## Team engagement
 
-The story delivery cycle can give the entire team (developers, testers and the business) the opportunity to understand the motivations and contribute to the planning and execution of solutions. Along with creating a rhythm or cadence already mentioned, it can help galvanise a team around small, frequent delivery milestones. Compare this to teams that actively encourage "shelve stacking", where developers are spoon feed technical tasks with no real engagement and expected to simply stack the shelves without question.
+The story delivery cycle can give the entire team (developers, testers and the business) the opportunity to understand the motivations and contribute to the planning and execution of solutions. Along with creating a rhythm or cadence already mentioned, it can help galvanise the team around small, frequent delivery milestones. Compare this to teams that actively encourage "shelve stacking", where developers are spoon feed technical tasks with no real engagement and expected to simply stack the shelves without understanding why.
 
