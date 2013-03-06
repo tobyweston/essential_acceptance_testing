@@ -17,3 +17,8 @@
 |                   |                                                                                                         |
 |                   | Extended the story delivery lifecycle to include a 'deliver' step. Lots of spelling and grammar tweaks. |
 |                   |                                                                                                         |
+|-----------------------------------------------------------------------------------------------------------------------------|
+| 2013-xx-xx        |                                                                                                         |
+|                   |                                                                                                         |
+|                   | Various spelling and grammar tweaks.                                                                    |
+|                   |                                                                                                         |
