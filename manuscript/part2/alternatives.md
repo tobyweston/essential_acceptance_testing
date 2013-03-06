@@ -49,7 +49,7 @@ In the typical process, specification is done upfront. The acceptance criteria i
 
 Matt Savage coined the phrase "log don't specify" to capture the idea of writing acceptance tests in such a way as to capture and communicating key events during a test but without specifying these upfront. Using typical specification frameworks like Concordion or FIT, HTML "specifications" document important events, inputs and outputs of a test. The HTML is then instrumented and run with the framework to produce styled HTML artifacts indicating success or failure. These are the kind of artifacts you can share with business to verify requirements and document system behaviour. There's usually an setup cost in authoring then instrumenting these artifacts.
 
-You can flip this on its head if you skip the specification step and instrument your test code directly so that it documents runtime behaviour as it executes. In Java, the Yatspec framework does this.
+You can flip this on its head if you skip the specification step and instrument your test code directly so that it documents runtime behaviour as it executes. In Java, the Yatspec framework does this. It's aim is to reduce the setup cost of specification upfront but replaces this cost with constraints in the way you write the test code in order to instrument events to log. The aim is that this cost is lower than, for example, Concordion's upfront costs but that's something you'll have to see see for yourself.
 
 ![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/yatspec/yatspec-example.png)
 
