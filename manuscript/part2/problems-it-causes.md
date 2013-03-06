@@ -32,7 +32,7 @@ If the business are acclimatised to focus on technology, it can be difficult to 
 
 ## Cargo cult
 
-One of the biggest problems with the traditional acceptance test process is the temptation to focus on the practices and not the reasons behind them. Just like a [cargo cult](http://en.wikipedia.org/wiki/Cargo_cult), practitioners can be lured into following behaviours in the hope that the benefits will magically manifest. It's a causal fallacy. Tests aren't the goal unto themselves.
+One of the biggest problems with the traditional acceptance test process is the temptation to focus on the practices and not the reasons behind them. Just like a [cargo cult](http://en.wikipedia.org/wiki/Cargo_cult), practitioners can be lured into following behaviours in the hope that the benefits will magically manifest. It's a causal fallacy; tests aren't the goal unto themselves.
 
 The best recourse is to continually evaluate the process. Having something to actually measure against makes this much less subjective but cumming up with meaningful heuristics is notoriously difficult.
 

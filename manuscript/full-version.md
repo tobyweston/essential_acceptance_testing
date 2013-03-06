@@ -22,7 +22,7 @@ If you're interested in what's beyond the canon, part 2 may get you thinking. In
 
 **Typical Process Overview**
 
- - The story delivery life cycle
+ - The story delivery lifecycle
  - Examples
 
 ###Part 2 - Discussion and alternatives

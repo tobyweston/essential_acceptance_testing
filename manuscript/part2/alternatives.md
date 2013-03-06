@@ -17,13 +17,13 @@ If you genuinely don't have a customer or if you are your own customer, it's wor
 
 A big part of acceptance testing is ensuring you achieve what the customer intended. The customer is the audience and acceptance tests aim to give them confidence. Without that audience, testing confidence is more about supporting the development team and is typically technology focused. In Brian Marick's testing matrix, testing focus tends to shift from the upper to lower quadrants when you don't have a customer.
 
-![Brian Marick's testing matrix](images/testing_matrix.png)
+![Brian Marick's testing matrix](images/testing-matrix.png)
 
 You may shift emphasis onto coarse grained style testing, exercising large parts of the system with scenarios driven out by the development team and not the business. You can think of this as component testing if it helps. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours.
 
  The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision to not go through the story delivery lifecycle as it's described in part 1. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write. Something like the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp) may be a useful guide.
 
-![The testing triangle; fewer tests exist that exercise the UI than core services (behaviours) and components (units)](images/test-pyramid.jpg)
+![The testing triangle; fewer tests exist that exercise the UI than core services (behaviours) and components (units)](images/test-pyramid.png)
 
 
 ## Don't specify
