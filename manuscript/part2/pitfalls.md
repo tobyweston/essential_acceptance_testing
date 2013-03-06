@@ -22,7 +22,7 @@ Need to deconstruct.
 
 An alternative is to drive out specifications on production. If you can deliver features quickly and cheaply enough, you can iterate against production until done. You could even try multiple implementations at the same time. This does imply you need a concrete measure of success.
 
-Defining a specification upfront, albeit iteratively is still a form of big upfront design. It's an improvement over traditional waterfall big up front design.
+Defining a specification upfront, albeit iteratively is still a form of big upfront design. It's an improvement over traditional waterfall big upfront design.
 
 The only real acceptance criteria is "is it making money?".
 

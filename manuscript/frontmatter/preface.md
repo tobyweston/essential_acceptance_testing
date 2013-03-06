@@ -18,7 +18,7 @@ It does _not_ yet illustrate the process with an example project or Concordion c
 
 ## About this book
 
-Building software is hard. Building software that actually _does what's required_ is even harder. A huge part of this challenge is understanding what is actually required. Too much gets lost in translation or misunderstood in conversation. This gets even harder if traditional non-face-to-face communication or big up front system design takes place. Getting it right is therefore about getting the communication right. This book is about communication.
+Building software is hard. Building software that actually _does what's required_ is even harder. A huge part of this challenge is understanding what is actually required. Too much gets lost in translation or misunderstood in conversation. This gets even harder if traditional non-face-to-face communication or big upfront system design takes place. Getting it right is therefore about getting the communication right. This book is about communication.
 
 Being able to bridge this gap between specification and implementation is essential in getting it right. To this end, typical agile methodologies advocate a testing strategy that includes encoding your requirements as executable tests. Typically, we'll call these _acceptance tests_.
 
