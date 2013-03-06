@@ -54,6 +54,3 @@ You can flip this on its head if you skip the specification step and instrument 
 ![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/yatspec/yatspec-example.png)
 
 
-## Summary
-
-Not defining acceptance criteria upfront and getting agreement in favour of informal agreement and fast feedback against production.
