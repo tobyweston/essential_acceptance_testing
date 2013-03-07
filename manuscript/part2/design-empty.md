@@ -6,3 +6,4 @@ W> This section is not yet written. It may never be written or it may end up com
 W>
 W>If you have an opinion, get involved and make suggestions via the [Leanpub page](https://leanpub.com/essential_acceptance_testing).
 
+## Ports and adapters {#ports-and-adapters}

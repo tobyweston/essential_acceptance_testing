@@ -6,15 +6,16 @@ mainmatter:
 part1/preamble.md
 part1/introduction.md
 part1/overview.md
-part1/design.md
+part1/business-value-empty.md
 
 part2/preamble.md
 unfinished.md
 part2/problems-it-fixes.md
 part2/problems-it-causes.md
-part2/pitfalls-placeholder.md
 part2/alternatives.md
-part2/questions-placeholder.md
+part2/design-empty.md
+part2/pitfalls-empty.md
+part2/questions-empty.md
 
 part3/preamble.md
 unavailable.md

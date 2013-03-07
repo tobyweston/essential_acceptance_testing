@@ -2,8 +2,6 @@
 
 The idea of _business value_ is integral with the idea of acceptance testing. A user story is supposed to describe business value and an acceptance criteria is supposed to prove that value. But what is _business value_ really?
 
-I'm working on a section talking about what 'business value' actually is. It may go nowhere but I'm curious if it would be of interest to you? The question is: if stories are supposed to have business value, how can we define and measure this "value"? I suspect there's the idea of potential or speculative value as well as real value ($). I'm interested in exploring this and wonder if, as a peer group, we tend to do the former and never actually attempt to measure the success after delivery.
-
 
 ## Iterative vs incremental
 
