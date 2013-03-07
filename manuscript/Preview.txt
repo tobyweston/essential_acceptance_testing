@@ -1,1 +1,1 @@
-part1/example.md
+part2/design.md
