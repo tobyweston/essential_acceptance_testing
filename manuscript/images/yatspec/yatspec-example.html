@@ -228,20 +228,20 @@ dl.index-result {
 </head>
 <body>
 
-<h1>Reverse convertible coupon swap acceptance test</h1>
+<h1>Low Exercise Price Option (LEPO) acceptance test</h1>
 
 <div class="contents">
     <h2>Contents</h2>
 
     <ul class="contents">
 
-            <li class='test-passed'>Scenario 1: <a href="#reverseConvertibleSwapIsEnriched">Reverse convertible swap is enriched</a></li>
+            <li class='test-passed'>Scenario 1: <a href="#lowExercisePriceOptionIsEnriched">LEPO is enriched with details from trading</a></li>
         
             <li class='test-passed'>Scenario 2: <a href="#swapCanBeMappedToTradeGatewayPayload">Swap can be mapped to risk system XML payload</a></li>
         
-            <li class='test-passed'>Scenario 3: <a href="#reverseConvertibleIssuedByLondonBranch">Reverse convertible issued by london branch</a></li>
+            <li class='test-passed'>Scenario 3: <a href="#lowExercisePriceOptionIssuedByLondonBranch">LEPO issued by london branch</a></li>
         
-            <li class='test-passed'>Scenario 4: <a href="#reverseConvertibleIssuedByInternationalBranch">Reverse convertible issued by international branch</a></li>
+            <li class='test-passed'>Scenario 4: <a href="#lowExercisePriceOptionIssuedByInternationalBranch">LEPO issued by international branch</a></li>
         
     </ul>
 </div>
@@ -249,8 +249,8 @@ dl.index-result {
 
         <div class="testmethod">
 
-        <a id="reverseConvertibleSwapIsEnriched"></a>
-        <h2>Scenario 1: Reverse convertible swap is enriched</h2>
+        <a id="lowExercisePriceOptionIsEnriched"></a>
+        <h2>Scenario 1: LEPO is enriched with details from trading</h2>
 
             
 
@@ -260,7 +260,7 @@ dl.index-result {
                     <h2>Specification</h2>
                     <pre class="highlight specification">
 Given any product exists with basic features and the product is issued by LONDON BRANCH
-When a reverse convertible coupon swap is created based on the product
+When a Low Exercise Price Option (LEPO)  is created based on the product
 Then the swap is enriched with expected enrichments</pre>
                     <h2>Test results:</h2>
 
@@ -320,7 +320,7 @@ total: 16</div>
                     <a id=""></a>
                     <h2>Specification</h2>
                     <pre class="highlight specification">
-Given a reverse convertible coupon swap created from a product with basic features
+Given a Low Exercise Price Option (LEPO)  created from a product with basic features
 When risk system xml is generated
 Then risk system payload is xml equal to &quot;&lt;gatewayTrade&gt;&quot;
 &quot;&lt;Trader&gt;aTrader&lt;/Trader&gt;&quot;
@@ -390,8 +390,8 @@ Test passed</pre>
     
         <div class="testmethod">
 
-        <a id="reverseConvertibleIssuedByLondonBranch"></a>
-        <h2>Reverse convertible issued by london branch</h2>
+        <a id="lowExercisePriceOptionIssuedByLondonBranch"></a>
+        <h2>LEPO issued by london branch</h2>
 
             
 
@@ -401,7 +401,7 @@ Test passed</pre>
                     <h2>Specification</h2>
                     <pre class="highlight specification">
 Given any product exists with basic features and the product is issued by LONDON BRANCH
-When a reverse convertible coupon swap is created based on the product
+When a Low Exercise Price Option (LEPO)  is created based on the product
 Then the swap counterparty is counterparty LONDON ISSUANCE</pre>
                     <h2>Test results:</h2>
 
@@ -451,8 +451,8 @@ total: 16</div>
     
         <div class="testmethod">
 
-        <a id="reverseConvertibleIssuedByInternationalBranch"></a>
-        <h2>Reverse convertible issued by international branch</h2>
+        <a id="lowExercisePriceOptionIssuedByInternationalBranch"></a>
+        <h2>LEPO issued by international branch</h2>
 
             
 
@@ -462,7 +462,7 @@ total: 16</div>
                     <h2>Specification</h2>
                     <pre class="highlight specification">
 Given any product exists with basic features and the product is issued by ISSUER_CS_ INTERNATIONAL
-When a reverse convertible coupon swap is created based on the product
+When a Low Exercise Price Option (LEPO)  is created based on the product
 Then the swap counterparty is counterparty OTC_ISSUANCE_ BONY</pre>
                     <h2>Test results:</h2>
 
