@@ -2,7 +2,9 @@
 
 ## The story delivery lifecycle {#story-delivery-life-cycle}
 
-A typical agile process used by many teams today revolves around the following steps ([David Peterson](http://www.concordion.org/memo/StoryDeliveryLifecycle.pdf) refers to this as the Story delivery lifecycle).
+A typical agile process used by many teams today revolves around the following steps ([David Peterson](http://www.concordion.org/memo/StoryDeliveryLifecycle.pdf) refers to this as the _story delivery lifecycle_).
+
+![](images/part1/overview.md/story-lifecycle.png)
 
 | Story delivery lifecycle     |
 |-------------------------------|
@@ -11,9 +13,6 @@ A typical agile process used by many teams today revolves around the following s
 | 3. Develop functionality      |
 | 4. Demonstrate and sign off   |
 | 6. Repeat                     |
-
-
-![The story delivery lifecycle](images/part1/overview.md/story-lifecycle.png)
 
 
 
@@ -147,4 +146,4 @@ An optional step in the lifecycle is to actually deliver the demoed feature. Thi
 It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready. It's a fairly extreme position to take and requires careful crafting of stories so that they add demonstrable value.
 
 
-![The story delivery lifecycle](images/part1/overview.md/story-lifecycle-extended.png)
+![The expanded story delivery lifecycle](images/part1/overview.md/story-lifecycle-extended.png)
