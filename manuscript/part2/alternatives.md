@@ -45,7 +45,7 @@ We don't need to interact with all of these at once to verify the statement abov
  1. When the domain model receives the message from the previous test, it calls out to a market data service (for stock prices).
  	The response from the market data service is returned to the client in the agreed message format (which may be in a different form).
 
-    ![](images/ports-and-adapters/ports-and-adapters-1.png)
+    ![](images/ports-and-adapters/ports-and-adapters-2.png)
 
  1. An integration test may also be need to verify that the domain model's message makes the correct call to a real Yahoo service, verifying that the previous test is actually representative.
 
