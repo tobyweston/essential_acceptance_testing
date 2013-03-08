@@ -1,13 +1,5 @@
 
-# Alternatives (post acceptance tests)
-
-W> ## This section is not yet finished
-W>
-W> This section is not yet finished. It's a work in progress, a lean publishing effort. I try not to publish anything that's too sketchy but bear with me.
-W>
-W> Help set the direction, get involved and make suggestions via the [Leanpub page](https://leanpub.com/essential_acceptance_testing).
-W>
-
+# Alternatives (post acceptance tests) {#alternatives}
 
 ## Don't write acceptance tests
 
@@ -39,16 +31,27 @@ In order to replace a long running traditional style acceptance test with an equ
 
 > "when a asks for their portfolio value, today's stock price is retrieved from Yahoo, multiplied by the number of stocks the client owns and the total is displayed in the UI"
 
-There's essentially three components here, the UI, a business logic component (the "domain objects") and an external Yahoo stock price service. We don't need the test to interact directly with all of these to verify the statement above.
+There's essentially three components here, the UI, the business logic components (the "domain model") and an external Yahoo stock price service. The traditional view might interact with these like this.
 
-Instead, we can verify:
+![Coarse grained acceptance test](/images/ports-and-adapters/typical-acceptance-test.png)
 
- 1. When we ask for the portfolio value in the UI, a specific message is sent to the business logic component.
- 1. The response from the business logic component updates a specific field on the UI appropriately
- 1. When the business component receives a message, it calls out to a market data service (for stock prices).
- 1. The response from the market data service is returned to the client in the agreed message format (which may be in a different form).
+We don't need to interact with all of these at once to verify the statement above. Instead, we can verify the following.
 
-These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go.
+ 1. When we ask for the portfolio value in the UI, a specific message is sent to the domain model.
+	The response from the domain model updates a specific field on the UI appropriately
+
+	![](/images/ports-and-adapters/ports-and-adapters-1.png)
+
+ 1. When the domain model receives the message from the previous test, it calls out to a market data service (for stock prices).
+ 	The response from the market data service is returned to the client in the agreed message format (which may be in a different form).
+
+    ![](/images/ports-and-adapters/ports-and-adapters-1.png)
+
+ 1. An integration test may also be need to verify that the domain model's message makes the correct call to a real Yahoo service, verifying that the previous test is actually representative.
+
+These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go. Putting it all together it would look like the following.
+
+![](/images/ports-and-adapters/ports-and-adapters-combined.png)
 
 This is a slightly simplified example, for an expanded example, see the [ports and adapters section](#ports-and-adapters).
 
