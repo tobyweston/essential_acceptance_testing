@@ -87,7 +87,6 @@ Matt Savage coined the phrase "log don't specify" to capture the idea of writing
 
 You can flip this on its head if you skip the specification step and instrument your test code directly to document behaviour as it executes. The [Yatspec](http://code.google.com/p/yatspec/) framework does this when writing Java tests. It's aim is to reduce the cost of specification upfront but replaces this with constraints in the way you write the tests. You're forced to write test code adhering to certain conventions to be able to log events as they happen. This has a cost in itself as the natural language structure it requires may not come easily for all test problems. The theory though is that this instrumentation cost is lower than, for example, Concordion's upfront costs. That's something you'll have to judge for yourself however.
 
-![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/part2/alternatives.md/
-/yatspec-example.png)
+![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/part2/alternatives.md/yatspec-example.png)
 
 
