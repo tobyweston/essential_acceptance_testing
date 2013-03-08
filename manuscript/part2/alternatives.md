@@ -75,7 +75,7 @@ It's difficult though as it presupposes that the stories have demonstrable value
 
 Arguably the most important success criteria is if a feature directly affects your revenue. If a deployed feature is making or saving you money, it's a success. You may get additional feedback by virtue of being in a live environment. If you can move away from agreeing acceptance criteria and defining acceptance tests upfront towards understanding how features affect key business metrics, you can start to measure these and use them to course correct. This fits nicely into the plan, do, check, adjust cycle.
 
-![Identifying business metrics inputs directly into the check step of Deming's PCDA cycle](images/pdca.png)
+![Identifying business metrics inputs directly into the check step of Deming's PDCA cycle](images/pdca.png)
 
 
 
