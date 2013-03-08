@@ -24,7 +24,7 @@ Rather than verify the system using coarse grained, end-to-end style tests (as d
 
 So, rather than running tests the following.
 
-![Multiple coarse grained tests exercise the same parts of the system](missing.png)
+![Multiple coarse grained tests exercise the same parts of the system](images/part2/design.md/coarse-grained-tests-design.png)
 
 We'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence.
 
