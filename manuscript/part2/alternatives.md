@@ -9,13 +9,13 @@ If you genuinely don't have a customer or if you are your own customer, it's wor
 
 A big part of acceptance testing is ensuring you achieve what the customer intended. The customer is the audience and acceptance tests aim to give them confidence. Without that audience, testing confidence is more about supporting the development team and is typically technology focused. In Brian Marick's testing matrix, testing focus tends to shift from the upper to lower quadrants when you don't have a customer.
 
-![Brian Marick's testing matrix](images/testing-matrix.png)
+![Brian Marick's testing matrix](images/part2/alternatives.md//testing-matrix.png)
 
 You may shift emphasis onto coarse grained style testing, exercising large parts of the system with scenarios driven out by the development team and not the business. You can think of this as component testing if it helps. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours.
 
  The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision to not go through the story delivery lifecycle as it's described in Part 1. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write. Something like the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp) may be a useful guide.
 
-![The testing triangle; fewer tests exist that exercise the UI than core services (behaviours) and components (units)](images/test-pyramid.png)
+![The testing triangle; fewer tests exist that exercise the UI than core services (behaviours) and components (units)](images/part2/alternatives.md/test-pyramid.png)
 
 
 
@@ -33,7 +33,7 @@ In order to replace a long running traditional style acceptance test with an equ
 
 There's essentially three components here, the UI, the business logic components (the "domain model") and an external Yahoo stock price service. The traditional view might interact with these like this.
 
-![](images/ports-and-adapters/typical-acceptance-test.png)
+![](images/part2/alternatives.md/typical-acceptance-test.png)
 
 We don't need to interact with all of these at once to verify the statement above. Instead, we can verify the following.
 
@@ -43,20 +43,20 @@ We don't need to interact with all of these at once to verify the statement abov
 
     The shaded circle represents a test double; a stub or mock that we use in place of a real component.
 
-	![](images/ports-and-adapters/ports-and-adapters-1.png)
+	![](images/part2/alternatives.md/ports-and-adapters-1.png)
 
 
  1. When the domain model receives the message from the previous test, it calls out to a market data service (for stock prices).
 
 	The response from the market data service is returned to the client in the agreed message format.
 
-	![](images/ports-and-adapters/ports-and-adapters-2.png)
+	![](images/part2/alternatives.md/ports-and-adapters-2.png)
 
  1. An integration test may also be need to verify that the domain model's message makes the correct call to a real Yahoo service, verifying that the previous test is actually representative.
 
 These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go. Putting it all together it would look like the following. The dashed lines show how tests need to overlap to provide completeness. Shaded circles are fake components, unfilled circles are real components or services.
 
-![](images/ports-and-adapters/ports-and-adapters-combined.png)
+![](images/part2/alternatives.md/ports-and-adapters-combined.png)
 
 This is a slightly simplified description, for an expanded example, see the [Ports and adapters](#ports-and-adapters) section.
 
@@ -75,7 +75,7 @@ It's difficult though as it presupposes that the stories have demonstrable value
 
 Arguably the most important success criteria is if a feature directly affects your revenue. If a deployed feature is making or saving you money, it's a success. You may get additional feedback by virtue of being in a live environment. If you can move away from agreeing acceptance criteria and defining acceptance tests upfront towards understanding how features affect key business metrics, you can start to measure these and use them to course correct. This fits nicely into the plan, do, check, adjust cycle.
 
-![Identifying business metrics inputs directly into the check step of Deming's PDCA cycle](images/pdca.png)
+![Identifying business metrics inputs directly into the check step of Deming's PDCA cycle](images/part2/alternatives.md/pdca.png)
 
 
 
@@ -87,6 +87,7 @@ Matt Savage coined the phrase "log don't specify" to capture the idea of writing
 
 You can flip this on its head if you skip the specification step and instrument your test code directly to document behaviour as it executes. The [Yatspec](http://code.google.com/p/yatspec/) framework does this when writing Java tests. It's aim is to reduce the cost of specification upfront but replaces this with constraints in the way you write the tests. You're forced to write test code adhering to certain conventions to be able to log events as they happen. This has a cost in itself as the natural language structure it requires may not come easily for all test problems. The theory though is that this instrumentation cost is lower than, for example, Concordion's upfront costs. That's something you'll have to judge for yourself however.
 
-![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/yatspec/yatspec-example.png)
+![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/part2/alternatives.md/
+/yatspec-example.png)
 
 

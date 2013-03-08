@@ -13,7 +13,7 @@ A typical agile process used by many teams today revolves around the following s
 | 6. Repeat                     |
 
 
-![The story delivery lifecycle](images/story-lifecycle.png)
+![The story delivery lifecycle](images/part1/overview.md/story-lifecycle.png)
 
 
 
@@ -68,7 +68,7 @@ Once you've written the criteria down, the next step is to formally agree them w
 
 Remember that all this is done before writing any production code.
 
-![An example of acceptance criteria documented and ready to be agreed. It's loaded with domain specific terminology that also should be agreed](images/example-spec.png)
+![An example of acceptance criteria documented and ready to be agreed. It's loaded with domain specific terminology that also should be agreed](images/part1/overview.md/example-spec.png)
 
 
 A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
@@ -127,7 +127,7 @@ After the demo, if everyone agrees the implementation does what's expected, the 
 
 You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the delivery cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivering value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
 
-![Acceptance criteria from above converted into a running acceptance test; an example of something you might demo](images/example-spec-passing.png)
+![Acceptance criteria from above converted into a running acceptance test; an example of something you might demo](images/part1/overview.md/example-spec-passing.png)
 
 
 ### A note on manual testing
@@ -147,4 +147,4 @@ An optional step in the lifecycle is to actually deliver the demoed feature. Thi
 It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready. It's a fairly extreme position to take and requires careful crafting of stories so that they add demonstrable value.
 
 
-![The story delivery lifecycle](images/story-lifecycle-extended.png)
+![The story delivery lifecycle](images/part1/overview.md/story-lifecycle-extended.png)
