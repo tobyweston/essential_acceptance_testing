@@ -10,6 +10,14 @@ In iterative development, it's the iteration that has value and not the story. A
 With continuous delivery, where a story is released to production almost immediately, it has the opportunity to add value almost immediately. It also has the added ability to provide feedback early.
 
 
+
+## Defining "value"
+
+
+
+## Measuring "value"
+
+
 ## Examples
 
 Some examples of "value" might be

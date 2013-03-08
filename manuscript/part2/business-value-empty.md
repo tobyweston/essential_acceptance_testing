@@ -7,3 +7,7 @@ W>
 W> This section will explore these ideas as I'm curious that why, as a peer group, we tend to do speculate value and rarely attempt to actually measure it after delivery.
 W>
 W> This section may never be written but if you think it would make an interesting read, let me know. Make suggestions via the comments on the [Leanpub page](https://leanpub.com/essential_acceptance_testing).
+
+## Defining "value"
+
+## Measuring "value"
