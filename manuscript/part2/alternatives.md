@@ -33,7 +33,7 @@ In order to replace a long running traditional style acceptance test with an equ
 
 There's essentially three components here, the UI, the business logic components (the "domain model") and an external Yahoo stock price service. The traditional view might interact with these like this.
 
-![Coarse grained acceptance test](images/ports-and-adapters/typical-acceptance-test.png)
+![](images/ports-and-adapters/typical-acceptance-test.png)
 
 We don't need to interact with all of these at once to verify the statement above. Instead, we can verify the following.
 
@@ -41,20 +41,20 @@ We don't need to interact with all of these at once to verify the statement abov
 
 	The response from the domain model updates a specific field on the UI appropriately
 
+    The shaded circle represents a test double; a stub or mock that we use in place of a real component.
+
 	![](images/ports-and-adapters/ports-and-adapters-1.png)
 
-    The shaded circle represents a test double; a stub or mock that we use in place of a real component.
 
  1. When the domain model receives the message from the previous test, it calls out to a market data service (for stock prices).
 
- 	The response from the market data service is returned to the client in the agreed message format.
+	The response from the market data service is returned to the client in the agreed message format.
 
 	![](images/ports-and-adapters/ports-and-adapters-2.png)
 
  1. An integration test may also be need to verify that the domain model's message makes the correct call to a real Yahoo service, verifying that the previous test is actually representative.
 
-
-These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go. Putting it all together it would look like the following. The dashed lines show how tests need to overlap to provide completeness.
+These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go. Putting it all together it would look like the following. The dashed lines show how tests need to overlap to provide completeness. Shaded circles are fake components, unfilled circles are real components or services.
 
 ![](images/ports-and-adapters/ports-and-adapters-combined.png)
 
