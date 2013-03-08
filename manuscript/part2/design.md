@@ -26,9 +26,12 @@ Rather than verify the system using coarse grained, end-to-end style tests (as d
 We'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence. Before we do so, let's define some diagramming semantics.
 
 {title=Ports and adapter symbols}
-| A "real" component shown as an unfilled circle | ![](images/part2/design.md/circle.png) |
-| An interface (port) | ![](images/part2/design.md/port.png) |
 | An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
+| | |
+| An interface (port) | ![](images/part2/design.md/port.png) |
+| | |
+| A component (domain model or system) | ![](images/part2/design.md/circle.png) |
+| | |
 | Access components only via an interface (port) | ![](images/part2/design.md/port-line-circle.png) |
 | | ![](images/part2/design.md/port-line-adapter.png) |
 | A component can only communicate with ports | ![](images/part2/design.md/circle-arrow-port.png) |
