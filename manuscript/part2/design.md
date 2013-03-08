@@ -17,19 +17,25 @@ Lets imagine an investment portfolio system concerned with helping customers man
 We'll assume basic design of web front end (UI), decoupled back-end and a market data service provided by Yahoo.
 
 
-
 ## Ports and adapters {#ports-and-adapters}
 
-Rather than verify the system using coarse grained, end-to-end style tests (as described in the [Alternatives](#use-a-hexagonal-architecture) section), we'll describe how a ports and adapters technique can be used.
-
-So, rather than running tests the following.
+Rather than verify the system using coarse grained, end-to-end style tests (as described in the [Alternatives](#use-a-hexagonal-architecture) section), we'll describe how a ports and adapters technique can be used. Rather than running tests the following.
 
 ![Multiple coarse grained tests exercise the same parts of the system](images/part2/design.md/coarse-grained-tests-design.png)
 
-We'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence.
+We'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence. Before we do so, let's define some diagramming semantics.
+
+{title=Ports and adapter symbols}
+| A "real" component shown as an unfilled circle | ![](images/part2/design.md/circle.png) |
+| An interface (port) | ![](images/part2/design.md/port.png) |
+| An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
+| Access components only via an interface (port) | ![](images/part2/design.md/port-line-circle.png) |
+| | ![](images/part2/design.md/port-line-adapter.png) |
+| A component can only communicate with ports | ![](images/part2/design.md/circle-arrow-port.png) |
+| | ![](images/part2/design.md/adapter-arrow-port.png) |
 
 
-Let's describe the system architecture in terms of boundary interfaces (or ports), their implementations (or adapters) and core application logic (or domain model(s)).
+The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain model(s)). The UI could have multiple components, for example, a Swing UI or a web UI.
 
 ![](images/part2/design.md/ports-and-adapter-design.png)
 
