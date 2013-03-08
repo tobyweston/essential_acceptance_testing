@@ -19,7 +19,7 @@ You may shift emphasis onto coarse grained style testing, exercising large parts
 
 
 
-## Use a hexagonal architecture
+## Use a hexagonal architecture {#use-a-hexagonal-architecture}
 
 The traditional view of acceptance tests is that they are heavy weight, long running and coarse grained. This is because typically, they test multiple components, often repeatedly across scenarios. They'll often exercise the UI and database.
 
