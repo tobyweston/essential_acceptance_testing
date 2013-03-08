@@ -38,22 +38,27 @@ There's essentially three components here, the UI, the business logic components
 We don't need to interact with all of these at once to verify the statement above. Instead, we can verify the following.
 
  1. When we ask for the portfolio value in the UI, a specific message is sent to the domain model.
+
 	The response from the domain model updates a specific field on the UI appropriately
 
 	![](images/ports-and-adapters/ports-and-adapters-1.png)
 
- 1. When the domain model receives the message from the previous test, it calls out to a market data service (for stock prices).
- 	The response from the market data service is returned to the client in the agreed message format (which may be in a different form).
+    The shaded circle represents a test double; a stub or mock that we use in place of a real component.
 
-    ![](images/ports-and-adapters/ports-and-adapters-2.png)
+ 1. When the domain model receives the message from the previous test, it calls out to a market data service (for stock prices).
+
+ 	The response from the market data service is returned to the client in the agreed message format.
+
+	![](images/ports-and-adapters/ports-and-adapters-2.png)
 
  1. An integration test may also be need to verify that the domain model's message makes the correct call to a real Yahoo service, verifying that the previous test is actually representative.
 
-These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go. Putting it all together it would look like the following.
+
+These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go. Putting it all together it would look like the following. The dashed lines show how tests need to overlap to provide completeness.
 
 ![](images/ports-and-adapters/ports-and-adapters-combined.png)
 
-This is a slightly simplified example, for an expanded example, see the [ports and adapters section](#ports-and-adapters).
+This is a slightly simplified description, for an expanded example, see the [ports and adapters section](#ports-and-adapters).
 
 
 
