@@ -5,7 +5,7 @@
 
 There's always the option not to write acceptance tests.
 
-If you genuinely don't have a customer or if you are your own customer, it's worth thinking carefully about whether there is value in going through the steps described in [part 1](#[part1).
+If you genuinely don't have a customer or if you are your own customer, it's worth thinking carefully about whether there is value in going through the steps described in [Part 1](#[part1).
 
 A big part of acceptance testing is ensuring you achieve what the customer intended. The customer is the audience and acceptance tests aim to give them confidence. Without that audience, testing confidence is more about supporting the development team and is typically technology focused. In Brian Marick's testing matrix, testing focus tends to shift from the upper to lower quadrants when you don't have a customer.
 
@@ -13,7 +13,7 @@ A big part of acceptance testing is ensuring you achieve what the customer inten
 
 You may shift emphasis onto coarse grained style testing, exercising large parts of the system with scenarios driven out by the development team and not the business. You can think of this as component testing if it helps. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours.
 
- The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision to not go through the story delivery lifecycle as it's described in part 1. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write. Something like the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp) may be a useful guide.
+ The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision to not go through the story delivery lifecycle as it's described in Part 1. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write. Something like the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp) may be a useful guide.
 
 ![The testing triangle; fewer tests exist that exercise the UI than core services (behaviours) and components (units)](images/test-pyramid.png)
 
@@ -23,7 +23,7 @@ You may shift emphasis onto coarse grained style testing, exercising large parts
 
 The traditional view of acceptance tests is that they are heavy weight, long running and coarse grained. This is because typically, they test multiple components, often repeatedly across scenarios. They'll often exercise the UI and database.
 
-Alistair Cockburn's [Hexagonal](http://alistair.cockburn.us/Hexagonal+architecture) or _ports and adspters_ architecture talks about decoupling these components to provide a lightweight alternative. When you decompose to components that can be tested independently, you can be more flexible about composing test scenarios. That way, scenarios no longer have to contain repeated fragments.
+Alistair Cockburn's [Hexagonal](http://alistair.cockburn.us/Hexagonal+architecture) or _ports and adapters_ architecture talks about decoupling these components to provide a lightweight alternative. When you decompose to components that can be tested independently, you can be more flexible about composing test scenarios. That way, scenarios no longer have to contain repeated fragments.
 
 Cockburn's canonical example talks about decoupling the database and/or UI so that the core system can be tested with or without these components. Have a look at the [How testing can influence design](#how-testing-can-influence-design) section for a more in-depth look.
 
@@ -58,7 +58,7 @@ These verifications overlap each other to address to aggregated verification, th
 
 ![](images/ports-and-adapters/ports-and-adapters-combined.png)
 
-This is a slightly simplified description, for an expanded example, see the [ports and adapters section](#ports-and-adapters).
+This is a slightly simplified description, for an expanded example, see the [Ports and adapters](#ports-and-adapters) section.
 
 
 

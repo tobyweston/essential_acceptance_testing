@@ -2,7 +2,7 @@
 
 ## What do we mean when we say "acceptance testing"
 
-See the [introduction](#part1) section.
+See the [Introduction](#part1) section.
 
 
 

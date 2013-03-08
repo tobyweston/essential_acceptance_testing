@@ -2,9 +2,9 @@
 
 ## Communication barriers
 
-The typical process described in [part 1](#part1) can be useful in encouraging communication. There's a formal vehicle (the acceptance test artifacts) that must be created and agreed and it puts checkpoints in place to emphasise the agreement (for example, see the [stickers as sign-off](#stickers-as-sign-off-aside) aside).
+The typical process described in [Part 1](#part1) can be useful in encouraging communication. There's a formal vehicle (the acceptance test artifacts) that must be created and agreed and it puts checkpoints in place to emphasise the agreement (for example, see the [Stickers as sign-off](#stickers-as-sign-off-aside) aside).
 
-It doesn't mean that the story delivery lifecycle is a substitute for spontaneous and continued communication. It can be tempting to lean on formal mechanisms like this as the _only_ communication mechanism but this can lead to its own problems (discussed in the [problems section](#problems-it-can-cause)).
+It doesn't mean that the story delivery lifecycle is a substitute for spontaneous and continued communication. It can be tempting to lean on formal mechanisms like this as the _only_ communication mechanism but this can lead to its own problems (discussed in the [Problems acceptance testing can cause](#problems-it-can-cause)) section.
 
 The spirit of the process is to encourage communication not to stifle it. You create artifacts that can be shared, referred back to and you demonstrate these executable artifacts to the stakeholders. It doesn't preclude speaking to them whenever you feel like it. If you discover new insight, you're free to adjust the acceptance criteria and tests; to go round the loop again.
 
