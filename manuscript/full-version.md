@@ -35,6 +35,7 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - Blurring the "what" with the "how"
  - Ambiguous language
  - Lack of structure and direction
+ - Team engagement
 
 **Problems acceptance testing can cause**
 
@@ -46,6 +47,25 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - Construct validity
  - Artificial constraints
 
+**Business value**
+
+ - What is "value"?
+ - Measuring "value"
+
+**Alternatives to "acceptance tests"**
+
+ - Don’t write acceptance tests
+ - Use a hexagonal architecture
+ - Don’t specify
+ - Measure don’t agree
+ - Log don’t specify
+
+**How testing can influence design**
+
+ - Example problem
+ - Ports and adapters
+ - A thin slice of end-to-end
+
 **Common pitfalls**
 
  - Features hit production that the customer didn’t want
@@ -55,14 +75,6 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - Tests repeat themselves
  - The acceptance test suite takes forever to run
  - Intermittent failures in tests
-
-**Alternatives (post acceptance tests)**
-
- - Don’t write acceptance tests
- - Don’t specify
- - Measure don’t agree
- - Log don’t specify
- - Summary
 
 **Q&A**
 

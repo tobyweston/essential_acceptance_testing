@@ -1,5 +1,5 @@
 
-# Alternatives (post acceptance tests) {#alternatives}
+# Alternatives to "acceptance tests" {#alternatives}
 
 ## Don't write acceptance tests
 
