@@ -18,7 +18,10 @@
 |                   | Extended the story delivery lifecycle to include a 'deliver' step. Lots of spelling and grammar tweaks. |
 |                   |                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------|
-| 2013-xx-xx        |                                                                                                         |
+| 2013-xx-xx        | Added the suggestion to use an hexagonal architecture to the [Alternatives](#alternatives) section.     |
+|                   | This introduces a ports and adapters style of testing. It has a slightly simplified example which will  |
+|                   | be expanded in the [How testing can influence design](#design) section. This will have some concrete    |
+|                   | code examples.                                                                                          |
 |                   |                                                                                                         |
 |                   | Various spelling and grammar tweaks.                                                                    |
 |                   |                                                                                                         |
