@@ -10,20 +10,16 @@ Lets imagine an investment portfolio system concerned with helping customers man
 
 > "As a retail customer, when I ask for my portfolio's value, today's stock price is retrieved from the market, multiplied by the number of stocks I own and the total is displayed."
 
-
-
-### Current design
-
-We'll assume basic design of web front end (UI), decoupled back-end and a market data service provided by Yahoo.
+The system is composed of a web front end (UI), server side component accessed via HTTP (the back-end) and a market data service provided by Yahoo.
 
 
 ## Ports and adapters {#ports-and-adapters}
 
-Rather than verify the system using coarse grained, end-to-end style tests (as described in the [Alternatives](#use-a-hexagonal-architecture) section), we'll describe how a ports and adapters technique can be used. Rather than running tests the following.
+Rather than verify the system using coarse grained, end-to-end style tests (like in the [Alternatives](#use-a-hexagonal-architecture) section), we'll describe how a ports and adapters technique can be used. Rather than running several coarse grained tests, we'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence. 
 
-![Multiple coarse grained tests exercise the same parts of the system](images/part2/design.md/coarse-grained-tests-design.png)
+![Multiple coarse grained tests repeatidly exercise the same parts of the system](images/part2/design.md/coarse-grained-tests-design.png)
 
-We'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence. Before we do so, let's define some diagramming semantics.
+Before we do so, let's define some diagramming semantics.
 
 {title="Ports and adapter symbols"}
 | An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
