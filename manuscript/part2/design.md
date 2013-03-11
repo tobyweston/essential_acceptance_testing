@@ -19,20 +19,19 @@ Rather than verify the system using coarse grained, end-to-end style tests (like
 
 ![Multiple coarse grained tests repeatidly exercise the same parts of the system](images/part2/design.md/coarse-grained-tests-design.png)
 
-Before we do so, let's define some diagramming semantics.
-
-{title="Ports and adapter symbols"}
-| An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
-| | |
-| An interface (port) | ![](images/part2/design.md/port.png) |
-| | |
-| A component (domain model or system) | ![](images/part2/design.md/circle.png) |
-| | |
-| Access components only via ports | ![](images/part2/design.md/port-line-circle.png) |
-| | ![](images/part2/design.md/port-line-adapter.png) |
-| Components only communicate with ports | ![](images/part2/design.md/circle-arrow-port.png) |
-| | ![](images/part2/design.md/adapter-arrow-port.png) |
-
+A> ## Ports and adapter symbols
+A>
+A> | An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
+A> | | |
+A> | An interface (port) | ![](images/part2/design.md/port.png) |
+A> | | |
+A> | A component (domain model or system) | ![](images/part2/design.md/circle.png) |
+A> | | |
+A> | Access components only via ports | ![](images/part2/design.md/port-line-circle.png) |
+A> | | ![](images/part2/design.md/port-line-adapter.png) |
+A> | Components only communicate with ports | ![](images/part2/design.md/circle-arrow-port.png) |
+A> | | ![](images/part2/design.md/adapter-arrow-port.png) |
+A> 
 
 The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain model(s)). The UI could have multiple components, for example, a Swing UI or a web UI.
 
