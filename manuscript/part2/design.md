@@ -59,26 +59,22 @@ When you click the button, the UI asks for the current price and it's displayed 
 
 What does it mean to ask for the current price. When the UI asks for the current price (implying it the mechanism can be substituted, sometimes its a button, sometimes its a drop down with auto update) , a message is sent to the domain model (the port). Verified by expectation.
 
+The definition of 'UI asks for' is the same for each test. Test it once; it's defined _how_ you actually do it in subsequent tests.
 
 
 ### Test 2 - A UI transport test
 
-The previous test simply asserts that the UI can ask for the current portfolio value, it's an abstract question so it decouples the assertion from the mechanism. What it means to actually ask for the current value is described by this test. They overlap.
+The previous test simply asserts that the UI can ask for the current portfolio value, it's an abstract question; it decouples the assertion from the mechanism. What it means to actually ask for the current value is described by this test. They overlap.
 
 When the UI asks for the current value, a message is sent to the domain model (`Portfolio`). This test will use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format (for example, it's JSON). It's saying "when I click a button I expect a specific message to go over the wire".
 
-
-
-
-Even if we have different 'views', we only need to test this once because they view tests all ask the same question and this is verifying what happens when you ask the question.
-
-The definition of 'UI asks for' is the same for each test. Test it once; it's defined _how_ you actually do it in subsequent tests.
+Even if we have different 'views', we only need to test this once because the view tests will all ask the same question. This test is verifying what happens when you ask the question.
 
 
 
 ### Test 3 - ???
 
-When the Stocks component (adapter) receives a specific message (in terms of format, ie, json), we assert an expectation on the incoming port on the Stocks component. We're verifying the transport layer (JSON/HTTP) into API (interface). We're stubbing out the real Stocks component and setting an expectation instead.
+When the `Portfolio` component (adapter) receives a specific message (in terms of format, ie, json), we assert an expectation on the incoming port on the`Portfolio` component. We're verifying the transport layer (JSON/HTTP) into API (interface). We're stubbing out the real `Portfolio` component and setting an expectation instead.
 
 Tests JSON turns into Java (API)
 
@@ -86,7 +82,7 @@ Tests JSON turns into Java (API)
 
 ### Test 4 - A test against our market data API
 
-Testing our specific implementation of the port. When you ask for the current price, I'll go and get it from the Market Data port; I'll ask Market Data for the current price of stock for today's date. Expectation rather than a stub.
+Testing our implementation of the `Market Data` port. When the `Portfolio` asks `Market Data` for the current price, it'll go and get it from the Market Data port; I'll ask Market Data for the current price of stock for today's date. Expectation rather than a stub.
 
 Java (API) to Java (API).
 
@@ -94,10 +90,11 @@ Java (API) to Java (API).
 
 ### Test 5 - A test against Yahoo
 
-Next would be the Yahoo adapter, an integration test. When the adapter is asked for the current stock price (via port) for stock GOGL and date Tuesday, we expect the price to be 134.22.
+Next would be the Yahoo specific adapter; an integration* test. When the adapter is asked for the current stock price (via port) for stock GOGL and date Tuesday, we expect the price to be 134.22.
 
 Can't mock it because we're using real Yahoo. If Yahoo change their API, the test will fail. The previous test would still pass as our internal API is still working, it's just the adapter that's broken.
 
+*is this an itegration test? GOOS says if you don't own it, it's not an itegration test.
 
 
 ### A note on integration tests
