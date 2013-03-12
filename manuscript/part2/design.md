@@ -44,7 +44,7 @@ We've broken down the previous coarse grained architecture into a series of inte
 
 * Test 1 - A pure UI test
 * Test 2 - A UI transport test
-* Test 3 - Portfolio's HTTP adapter test
+* Test 3 - Portfolio's JSON/HTTP adapter test
 * Test 4 - A test against our market data API
 * Test 5 - Real test against Yahoo's version of market data
 
@@ -86,9 +86,11 @@ If we have different 'views', we would need to test each to define how they comm
 
 
 
-### Test 3 - Portfolio's HTTP adapter test
+### Test 3 - Portfolio's JSON/HTTP adapter test
 
 When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API. 
+
+![](images/part2/design.md/ports-and-adapter-design-test-3.png)
 
 For example, if the business API was a series of Java method calls, we could set the interaction up as a expectation on a mock version of the business interface. The HTTP adapter might be a RESTful server which collaborates with this business interface directly (in which case we'd inject the mock). We're testing that a JSON over HTTP message turns into a Java message.
 
