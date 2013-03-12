@@ -21,11 +21,11 @@ Rather than verify the system using coarse grained, end-to-end style tests (like
 
 A> ## Ports and adapter symbols {#port-and-adapters-symbols-aside}
 A>
-A> | An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
-A> | | |
 A> | An interface (port) | ![](images/part2/design.md/port.png) |
 A> | | |
-A> | A component (domain model or system) | ![](images/part2/design.md/circle.png) |
+A> | A component (application domain model) | ![](images/part2/design.md/circle.png) |
+A> | | |
+A> | An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
 A> | | |
 A> | Access components only via ports | ![](images/part2/design.md/port-line-circle.png) |
 A> | | ![](images/part2/design.md/port-line-adapter.png) |
@@ -42,7 +42,6 @@ Keep to the constraints shown in the [Ports and adapters symbols aside](#port-an
 We've broken down the previous coarse grained architecture into a series of interfaces (ports), their implementations (adapters) and domain model. The domain model is both the `Portfolio` and `Market Data` and we could have represented this as a single element.
 
 
-
 * Test 1 - A pure UI test
 * Test 2 - A UI transport test
 * Test 3 - Portfolio's HTTP adapter test
@@ -52,26 +51,36 @@ We've broken down the previous coarse grained architecture into a series of inte
 
 ### Test 1 - A pure UI test
 
-When a user requests the current price in the UI, the domain model is asked for the current price and responds accordingly, so that the user can see the latest value of their portfolio (Abstract tag line, what's happening)
+When a user requests the current portfolio value, the system is queried and the current value is displayed appropriately. It's a UI test so we can talk about the UI specifically;
 
-(Concrete in expectation, not in implementation) Examples; Given the current price is 99.9, when the current price button is clicked then 3 is displayed in the "foo" field. Additional examples might include when there are no prices, non-zero prices etc. It's a this point you define the tag line above.
+> "when the user clicks clicks the 'Request valuation' button"
 
----
+what the UI component does;
 
-When you click the button, the UI asks for the current price and it's displayed in the UI. Examples are special displays; -ve prices in red. UI Test. Real UI calls stub Stocks (port).
+> "the UI asks for the current price"
 
-What does it mean to ask for the current price. When the UI asks for the current price (implying it the mechanism can be substituted, sometimes its a button, sometimes its a drop down with auto update) , a message is sent to the domain model (the port). Verified by expectation.
+and what it does with it for certain cases;
 
-The definition of 'UI asks for' is the same for each test. Test it once; it's defined _how_ you actually do it in subsequent tests.
+> "when the number returned is negative, the `value` field it's displayed in red"
+
+> "when there is a technical problem and no number is available, the `value` field it's displayed with the phrase 'Unavailable'"
+
+This is a UI only test so we'd use a test double to stand in for the `Portfolio` port.
+
+![](images/part2/design.md/ports-and-adapter-design-test-1.png)
+
+We're using general language for the idea of what it means to "ask for the current price". We're implying the mechanism can be substituted; sometimes it might be a button on web page, sometimes a drop down or a widget on a rich client. In all cases the question is the same and a message is sent to the domain model (via the appropriate port).
+
+It's an important point so is worth stating again; the definition of 'UI asks for' is the same for each test. Test it once; it's defined _how_ you actually do it in subsequent tests.
 
 
 ### Test 2 - A UI transport test
 
 The previous test simply asserts that the UI can ask for the current portfolio value, it's an abstract question; it decouples the assertion from the mechanism. What it means to actually ask for the current value is described by this test. They overlap.
 
-When the UI asks for the current value, a message is sent to the domain model (`Portfolio`). This test will use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format (for example, it's JSON). It's saying "when I click a button I expect a specific message to go over the wire".
+When the UI asks for the current value, a message is sent to the domain model (`Portfolio`). This test will use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format (for example, it's JSON).
 
-Even if we have different 'views', we only need to test this once because the view tests will all ask the same question. This test is verifying what happens when you ask the question.
+Even if we have different 'views', we only need to test this once because the view tests all ask the same question. This test is verifying what happens when you ask the question.
 
 
 
@@ -79,7 +88,7 @@ Even if we have different 'views', we only need to test this once because the vi
 
 When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API. 
 
-For example, if the business API was a series of Java method calls, we could set the iteraction up as a expectation on a mock version of the business interface. The HTTP adapter might be a RESTful server which collaborates with this business interface directly (in which case we'd inject the mock). We're testing that a JSON over HTTP message turns into a Java message.
+For example, if the business API was a series of Java method calls, we could set the interaction up as a expectation on a mock version of the business interface. The HTTP adapter might be a RESTful server which collaborates with this business interface directly (in which case we'd inject the mock). We're testing that a JSON over HTTP message turns into a Java message.
 
 
 
@@ -97,7 +106,7 @@ Next would be the Yahoo specific adapter; an integration* test. When the adapter
 
 Can't mock it because we're using real Yahoo. If Yahoo change their API, the test will fail. The previous test would still pass as our internal API is still working, it's just the adapter that's broken.
 
-*is this an itegration test? GOOS says if you don't own it, it's not an itegration test.
+*is this an integration test? GOOS says if you don't own it, it's not anintegrationn test.
 
 
 ### A note on integration tests
@@ -108,5 +117,6 @@ We've verified that we make the right API calls to Yahoo but some combination of
 
 ## Thin slice of end-to-end
 
----
- Ameliorates the customer's concern...
+## Benefits using ports and adapters
+
+## Disadvantages using ports and adapters
