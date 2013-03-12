@@ -3,14 +3,13 @@
 If we decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This section describes the ports and adapters approach when applied to testing.
 
 
-
 ## Example problem
 
 Lets imagine an investment portfolio system concerned with helping customers manage their stock investments. The acceptance criteria for the next piece of work is as follows.
 
 > "As a retail customer, when I ask for my portfolio's value, today's stock price is retrieved from the market, multiplied by the number of stocks I own and the total is displayed."
 
-The system is composed of a web front end (UI), server side component accessed via HTTP (the back-end) and a market data service provided by Yahoo.
+The system is composed of a web front end (UI), server side component accessed via HTTP (the back-end) and a market data service provided by Yahoo. The code and tests can be found on [Github](https://github.com/tobyweston/essential_acceptance_testing_code).
 
 
 ## Ports and adapters {#ports-and-adapters}
