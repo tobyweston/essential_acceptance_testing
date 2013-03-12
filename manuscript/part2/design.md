@@ -17,9 +17,9 @@ The system is composed of a web front end (UI), server side component accessed v
 
 Rather than verify the system using coarse grained, end-to-end style tests (like in the [Alternatives](#use-a-hexagonal-architecture) section), we'll describe how a ports and adapters technique can be used. Rather than running several coarse grained tests, we'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence. 
 
-![Multiple coarse grained tests repeatidly exercise the same parts of the system](images/part2/design.md/coarse-grained-tests-design.png)
+![Multiple coarse grained tests repeatidly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-design.png)
 
-A> ## Ports and adapter symbols
+A> ## Ports and adapter symbols {#port-and-adapters-symbols-aside}
 A>
 A> | An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
 A> | | |
@@ -33,16 +33,19 @@ A> | Components only communicate with ports | ![](images/part2/design.md/circle-
 A> | | ![](images/part2/design.md/adapter-arrow-port.png) |
 A> 
 
-The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain model(s)). The UI could have multiple components, for example, a Swing UI or a web UI.
+The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain models). In the diagram below, multiple components are shown for the UI to demonstrate that it could have multiple types of UI, for example, a rich desktop client and a web UI.
 
 ![](images/part2/design.md/ports-and-adapter-design.png)
 
+Keep to the constraints shown in the [Ports and adapters symbols aside](#port-and-adapters-symbols-aside), all communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later. 
+
+We've broken down the previous coarse grained architecture into a series of interfaces (ports), their implementations (adapters) and domain model. The domain model is both the `Portfolio` and `Market Data` and we could have represented this as a single element.
 
 
 
 * Test 1 - A pure UI test
 * Test 2 - A UI transport test
-* Test 3 - ???
+* Test 3 - Portfolio's HTTP adapter test
 * Test 4 - A test against our market data API
 * Test 5 - Real test against Yahoo's version of market data
 
@@ -72,11 +75,11 @@ Even if we have different 'views', we only need to test this once because the vi
 
 
 
-### Test 3 - ???
+### Test 3 - Portfolio's HTTP adapter test
 
-When the `Portfolio` component (adapter) receives a specific message (in terms of format, ie, json), we assert an expectation on the incoming port on the`Portfolio` component. We're verifying the transport layer (JSON/HTTP) into API (interface). We're stubbing out the real `Portfolio` component and setting an expectation instead.
+When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API. 
 
-Tests JSON turns into Java (API)
+For example, if the business API was a series of Java method calls, we could set the iteraction up as a expectation on a mock version of the business interface. The HTTP adapter might be a RESTful server which collaborates with this business interface directly (in which case we'd inject the mock). We're testing that a JSON over HTTP message turns into a Java message.
 
 
 
