@@ -78,9 +78,11 @@ It's an important point so is worth stating again; the definition of 'UI asks fo
 
 The previous test simply asserts that the UI can ask for the current portfolio value, it's an abstract question; it decouples the assertion from the mechanism. What it means to actually ask for the current value is described by this test. They overlap.
 
+![](images/part2/design.md/ports-and-adapter-design-test-2.png)
+
 When the UI asks for the current value, a message is sent to the domain model (`Portfolio`). This test will use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format (for example, it's JSON).
 
-Even if we have different 'views', we only need to test this once because the view tests all ask the same question. This test is verifying what happens when you ask the question.
+If we have different 'views', we would need to test each to define how they commit to communicate with the port. For example, a test for a rich client must verify the JSON message and HTTP request as well as the web UI.
 
 
 
