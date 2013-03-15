@@ -73,3 +73,7 @@ Stories can be a necessary ceremony to overcome other system constraints or dysf
 
 
 ## How should I setup and tear down data?
+
+
+
+## What's the difference between unit, acceptance, integration and system tests?
