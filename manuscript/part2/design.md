@@ -1,6 +1,6 @@
 # How testing can influence design {#design}
 
-If we decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This section describes the ports and adapters approach when applied to testing.
+If we decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This section describes the ports and adapters approach when applied to testing. Code samples are in Java. Sorry.
 
 
 ## Example problem
@@ -79,16 +79,19 @@ public static class PortfolioSystemTestWithFakeYahoo {
 }
 ~~~~~~~
 
-Both tests exercise the happy path through the entire system. If we want to check what happens when no price is available from Yahoo or if Yahoo is down, we'd repeat the majority of the test to do so. If we want to test user errors on input, we'd startup the application unnecessarily. James Maggs likens this to taking a car for a test drive.
+Both tests exercise the happy path through the entire system. If we want to check what happens when no price is available from Yahoo or if Yahoo is down, we'd repeat the majority of the test to do so. If we want to test user errors on input, we'd startup the application unnecessarily.
+
+![Multiple coarse grained tests repeatedly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-repeating.png)
+
+This is something James Maggs likens to taking a car out for a test drive.
 
 > "You wouldn't visit a car showroom, take the car round the block then immediately go out again, this time with the windows down. Then again with the radio on and the windows up. So why do this when testing?"
 
 
 ## Decoupled architecture using ports and adapters {#ports-and-adapters}
 
-Rather than verify the system using coarse grained, end-to-end style tests (like in the [Alternatives](#use-a-hexagonal-architecture) section), we'll describe how a ports and adapters technique can be used. Rather than running several coarse grained tests, we'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence. 
+Rather than running several coarse grained tests, let's decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence.
 
-![Multiple coarse grained tests repeatedly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-design.png)
 
 A> ## Ports and adapter symbols {#port-and-adapters-symbols-aside}
 A>
@@ -108,7 +111,7 @@ The next step is to describe the system architecture in terms of boundary interf
 
 ![](images/part2/design.md/ports-and-adapter-design.png)
 
-Keep to the constraints shown in the [Ports and adapters symbols aside](#port-and-adapters-symbols-aside), all communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later. 
+Keeping to the constraints shown in the [Ports and adapters symbols aside](#port-and-adapters-symbols-aside), all communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later.
 
 We've broken down the previous coarse grained architecture into a series of interfaces (ports), their implementations (adapters) and domain model. The domain model is both the `Portfolio` and `Market Data` and we could have represented this as a single element.
 
