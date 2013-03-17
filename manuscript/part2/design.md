@@ -9,14 +9,86 @@ Lets imagine an investment portfolio system concerned with helping customers man
 
 > "As a retail customer, when I ask for my portfolio's value, today's stock price is retrieved from the market, multiplied by the number of stocks I own and the total is displayed."
 
-The system is composed of a web front end (UI), server side component accessed via HTTP (the back-end) and a market data service provided by Yahoo. The code and tests can be found on [Github](https://github.com/tobyweston/essential_acceptance_testing_code).
+The system is composed of a web front end (UI), server side component accessed via HTTP (the back-end) and a market data service provided by Yahoo. An example application along with corresponding tests is available on [Github](https://github.com/tobyweston/essential_acceptance_testing_code).
 
 
-## Ports and adapters {#ports-and-adapters}
+## Coupled architecture
+
+If the system is built with these components tightly coupled, pretty much the only way to test the scenario is as a coarse grained system test. In our [example application](https://github.com/tobyweston/essential_acceptance_testing_code), we could test against real Yahoo with something like this.
+
+{title="Example 1: Coarse grained test starting up the full stack", lang="java", line-numbers="on"}
+~~~~~~~
+public static class PortfolioSystemTestWithRealYahoo {
+    private final Server application = Fixture.applicationWithRealYahoo();
+    private final LandingPage ui = new LandingPage();
+
+    @Before
+    public void startServers() {
+        application.start();
+    }
+
+    @Test
+    public void shouldRetrieveValuation() {
+        ui.navigateToLandingPage().requestValuationForShares(100);
+        waitFor(assertion(portfolioValuationFrom(ui), is("91,203.83")), timeout(seconds(5)));
+    }
+
+    @After
+    public void stopServer() {
+        application.stop();
+        ui.quit();
+    }
+}
+~~~~~~~
+
+It's a very naive test as it relies on Yahoo being up and returning the expected result. It starts up the entire application in the `@Before` which in turn starts up the web container, initialises the UI and market data components. The browser is then fired up and "driven" (by `LandingPage`) to simulate the user's interaction and the result scraped.
+
+The assertion against the portfolio value is wrapped to poll the UI periodically because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service.
+
+We can improve on this test slightly by faking out Yahoo and forcing it to return a caned response.
+
+{title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
+~~~~~~~
+public static class PortfolioSystemTestWithFakeYahoo {
+    private final Server application = Fixture.applicationWithRealYahoo();
+    private final FakeYahoo fakeYahoo = new FakeYahoo();
+    private final LandingPage ui = new LandingPage();
+
+    @Before
+    public void startServers() {
+        application.start();
+        fakeYahoo.start();
+    }
+
+    @Test
+    public void coarseGrainedTestExercisingPortfolioValuation() {
+          String response = "{\"query\":{\"results\":{\"quote\":{\"Close\":\"200.10\"}}}}";
+          fakeYahoo.stub(
+                urlStartingWith("/v1/public/yql"),
+                aResponse().withBody(response));
+          ui.navigateToLandingPage().requestValuationForShares(100);
+          waitFor(assertion(portfolioValuationFrom(ui), is("20,010.00")), timeout(millis(500)));
+    }
+
+    @After
+    public void stopServers() {
+        application.stop();
+        fakeYahoo.stop();
+        ui.quit();
+    }
+}
+~~~~~~~
+
+Both tests exercise the happy path through the entire system. If we want to check what happens when no price is available from Yahoo or if Yahoo is down, we'd repeat the majority of the test to do so. If we want to test user errors on input, we'd startup the application unnecessarily. James Maggs likens this to taking a car for a test drive.
+
+> "You wouldn't visit a car showroom, take the car round the block then immediately go out again, this time with the windows down. Then again with the radio on and the windows up. So why do this when testing?"
+
+
+## Decoupled architecture using ports and adapters {#ports-and-adapters}
 
 Rather than verify the system using coarse grained, end-to-end style tests (like in the [Alternatives](#use-a-hexagonal-architecture) section), we'll describe how a ports and adapters technique can be used. Rather than running several coarse grained tests, we'll decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence. 
 
-![Multiple coarse grained tests repeatidly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-design.png)
+![Multiple coarse grained tests repeatedly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-design.png)
 
 A> ## Ports and adapter symbols {#port-and-adapters-symbols-aside}
 A>
