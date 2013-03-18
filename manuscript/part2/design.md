@@ -45,6 +45,21 @@ It's a very naive test as it relies on Yahoo being up and returning the expected
 
 The assertion against the portfolio value is wrapped to poll the UI periodically because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service.
 
+A> ##Page driver pattern {#page-driver-pattern-aside}
+A>
+A> Abstracting the business intent from the UI mechanics means that UI "driver" code isn't coupled to a specific UI. If done carefully, switching the UI would mean just implementing a new adapter. Notice how in the above we avoided the following.
+A> {:lang="java"}
+A> ~~~~~~~~
+A> ui.navigateToLandingPage().setNumberOfSharesTextBoxTo(100).clickRequestValuationButton();
+A> ~~~~~~~~
+A> and use the following instead.
+A> {:lang="java"}
+A> ~~~~~~~~
+A> ui.navigateToLandingPage().requestValuationForShares(100);
+A> ~~~~~~~~
+A> You can see in this way, the UI test code is just another example of a port (the UI driver interface) and it's adapters.
+A>
+
 We can improve on this test slightly by faking out Yahoo and forcing it to return a caned response.
 
 {title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
@@ -105,7 +120,7 @@ A> | Access components only via ports | ![](images/part2/design.md/port-line-cir
 A> | | ![](images/part2/design.md/port-line-adapter.png) |
 A> | Components only communicate with ports | ![](images/part2/design.md/circle-arrow-port.png) |
 A> | | ![](images/part2/design.md/adapter-arrow-port.png) |
-A> 
+A>
 
 The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain models). In the diagram below, multiple components are shown for the UI to demonstrate that it could have multiple types of UI, for example, a rich desktop client and a web UI.
 
@@ -162,7 +177,7 @@ If we have different 'views', we would need to test each to define how they comm
 
 ### Test 3 - Portfolio's JSON/HTTP adapter test
 
-When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API. 
+When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API.
 
 ![](images/part2/design.md/ports-and-adapter-design-test-3.png)
 
