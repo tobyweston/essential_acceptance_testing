@@ -100,7 +100,11 @@ Both tests exercise the happy path through the entire system. If we want to chec
 
 This is something James Maggs likens to taking a car out for a test drive.
 
-> "You wouldn't visit a car showroom, take the car round the block then immediately go out again, this time with the windows down. Then again with the radio on and the windows up. So why do this when testing?"
+> "Imagine purchasing a new car and taking it out for a test drive. When you return to the showroom, the car has performed flawlessly but just to be sure you take it out again, this time with the windows down. Then again with the glove compartment open. Then again with the seats fully reclined. 
+>
+> You could keep on testing the car in this way but there reaches a point when the cost of evaluating the car begins to outweigh the risk of something going wrong. You have to trust that all the individual parts have been tested during manufacture and that since you have actually driven the car it is safe to go ahead and buy it.
+>
+> It's the same with software. The cost of developing and maintaining high level tests should be weighed against the uncertainty and risk of something going wrong"
 
 
 ## Decoupled architecture using ports and adapters {#ports-and-adapters}
