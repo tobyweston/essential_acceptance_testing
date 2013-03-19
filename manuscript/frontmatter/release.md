@@ -19,9 +19,9 @@
 |                   |                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------|
 | 2013-xx-xx        | Added the suggestion to use an hexagonal architecture to the [Alternatives](#alternatives) section.     |
-|                   | This introduces a ports and adapters style of testing. It has a slightly simplified example which will  |
-|                   | be expanded in the [How testing can influence design](#design) section. This will have some concrete    |
-|                   | code examples.                                                                                          |
+|                   | This introduces a ports and adapters style of testing. It has a slightly simplified example which is    |
+|                   | expanded in the [How testing can influence design](#design) section along with some concrete code       |
+|                   | examples.                                                                                          |
 |                   |                                                                                                         |
 |                   | Various spelling and grammar tweaks.                                                                    |
 |                   |                                                                                                         |
