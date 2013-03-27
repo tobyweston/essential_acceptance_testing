@@ -195,6 +195,7 @@ Testing our implementation of the `Market Data` port. When the `Portfolio` asks 
 
 Java (API) to Java (API).
 
+![](images/part2/design.md/ports-and-adapter-design-test-4.png)
 
 
 ### Test 5 - A test against Yahoo
