@@ -50,7 +50,9 @@ A>
 A> Abstracting the business intent from the UI mechanics means that UI "driver" code isn't coupled to a specific UI. If done carefully, switching the UI would mean just implementing a new adapter. Notice how in the above we avoided the following.
 A> {:lang="java"}
 A> ~~~~~~~~
-A> ui.navigateToLandingPage().setNumberOfSharesTextBoxTo(100).clickRequestValuationButton();
+A> ui.navigateToLandingPage()
+A>   .setNumberOfSharesTextBoxTo(100)
+A>   .clickRequestValuationButton();
 A> ~~~~~~~~
 A> and use the following instead.
 A> {:lang="java"}
