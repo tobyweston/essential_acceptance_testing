@@ -25,21 +25,17 @@ Unfortunately, Cripin's definition talks specifically about _stories_ and busine
 
 
 
-## Acceptance criteria vs acceptance tests
+## What are acceptance criteria?
 
-We'll often use the terms acceptance criteria and acceptance test interchangeably but I tend to think about them as distinct.
+We'll often use the terms acceptance criteria and acceptance test interchangeably but I think about them as distinct.
 
-Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as expected. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing the analysis for a story and are typically concerned with the business functionality.
+Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as expected. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and are mostly concerned with the business functionality. Therefore, the customer is mostly best placed to define the criteria. I'm saying "mostly" because non-functional requirements, despite affecting the customer, are usually championed by technical stakeholders.
 
-The implication here is that the business are best placed to define the first set of criteria.
+Defining the criteria is a useful step in understanding what's required. It helps us define the scope of the feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding. Criteria should be implementation agnostic and written at a fairly high level. We then _implement_ the criteria in terms of one or more acceptance tests. A single criterion (for example, "the total basket value is displayed correctly") may require multiple examples to be comprehensive (for example, what _exactly_ does it mean to "display correctly" in our example?). That's where implementing the acceptance _criteria_ as executable acceptance _tests_ comes in.
 
-Defining the criteria is a useful step in understanding a story. It helps us define the scope of the feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding of the story. Criteria should be implementation agnostic and written at a fairly high level. You'd then _implement_ the criteria in terms of one or more acceptance tests. A single criterion (for example, "the total basket value is displayed correctly") may require multiple examples to be provable (for example, what exactly does "correct" mean here?). That's where the implementation as executable acceptance _tests_ comes in.
+Remembering our definition, we're emphasising that tests are executable and criteria are not. An acceptance test is a physical test artifact. It may be a xUnit test written in the language of choice, a test script that requires a human to step through, a record-replay style UI test or even a checklist on a scrap of paper.
 
-An acceptance test is the physical test artifact to be executed. It may be a test-test[^test-test], a test script that requires a human to step through, a record-replay style UI test or even a checklist on a scrap of paper. The acceptance test can be seen as the confirmation step in Ron Jefferies' [Three Cs of a user story](http://xprogramming.com/articles/expcardconversationconfirmation/).
-
-[^test-test]: any test written in the language of choice, typically using a unit testing framework or similar. It could be a Java test to run in JUnit, a piece of JavaScript to run with Jasmine, Ruby and RSpec, C# and NUnit or just a main method. Calling them _unit_ tests would be clumsy but you'd get the idea.
-
-Acceptance criteria _become_ acceptance tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_. Executing acceptances tests assert that the acceptance criteria have been met.
+Acceptance criteria _become_ acceptance tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_. Executing acceptance tests verify that the acceptance criteria have been met.
 
 {title="Attributes of acceptance criteria and tests"}
 | Acceptance Criteria           | Acceptance Tests              |
@@ -57,6 +53,8 @@ D>
 D> Many teams fall into the trap of thinking they need to start up the full stack in order to run an acceptance test. Apart from being expensive to say, start a web server and initialise the system, starting up the full stack doesn't automatically mean the test that runs will be an _acceptance test_. It just means it's running against a fully started system.
 D>
 D> An acceptance test is just as valid if it's run against a subset of the full system. In fact, this is an approach I prefer as it encourages a component based design. We'll look at this more in the [Ports and Adapters](#ports-and-adapters) section.
+
+
 
 ## What's a story?
 
