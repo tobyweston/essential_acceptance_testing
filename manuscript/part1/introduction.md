@@ -52,9 +52,9 @@ Acceptance criteria _become_ acceptance tests. Attributes that describe acceptan
 
 ## What's a story?
 
-Acceptance criteria are usually discussed in terms of _user stories_ so it may be worth while making sure we have a common understanding of what makes up a story. A typical agile process will focus on stories as a way of gathering requirements and organising them into deliverable chunks that, again, have _business value_. It's common then to associate acceptance tests with individual stories. Once the test is passing, we can infer that the story is finished. There's a close relationship between stories and acceptance testing.
+Acceptance criteria are usually discussed in terms of _user stories_ so it's worth while making sure we have a common understanding of what makes up a story. Agile processes often focus on stories as a way of gathering requirements and organising them into deliverable chunks that have _business value_. It's common to associate acceptance tests with individual stories. Once the test is passing, the story is considered finished. There's a close relationship between stories and acceptance testing.
 
-Mike Cohen [describes user stories](http://www.mountaingoatsoftware.com/topics/user-stories) as
+Mike Cohen [describes user stories](http://www.mountaingoatsoftware.com/topics/user-stories) as follows.
 
 > "User stories are short, simple description of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system."
 
@@ -62,9 +62,11 @@ He goes on to describe the typical template as something like
 
 > As a <type of user>, I want <some goal> so that <some reason>
 
-This is pretty much the accepted definition of a user story but I don't think it's the full story. In practice, teams settle on their own style of writing stories loosely based on this definition. Some stick to the style, others write abbreviated comments or even write out requirements long hand. Some write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in JIRA. Each team may use these to work out what to deliver and each team may think of these as "stories".
+This is the generally accepted definition of a user story. However, in practice, teams settle on their own style of writing stories loosely based on this definition. Sometimes a short description is not enough. Some teams stick to the template whilst others expand it to write requirements out long hand. Some teams abandon it completely and just write abbreviated notes.
 
-To adhere to the spirit of the definition, a link from story to acceptance criteria needs to be established.
+Whatever the choice, each team will likely think of these as "stories". To get the most out of the whole thing, a link from story to acceptance criteria needs to be established.
+
+To capture and track progress, some teams write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in JIRA.
 
 D> ## Tasks vs stories {#tasks-vs-stories-aside}
 D>
