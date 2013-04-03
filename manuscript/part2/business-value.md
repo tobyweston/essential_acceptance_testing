@@ -1,4 +1,4 @@
-# Business value
+# Business value {#business-value}
 
 The idea of _business value_ is integral with the idea of acceptance testing. A user story is supposed to describe business value and an acceptance criteria is supposed to prove that value. But what is _business value_ really?
 
