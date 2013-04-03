@@ -66,7 +66,7 @@ This is the generally accepted definition of a user story. In practice however, 
 
 Whatever the choice, each team will likely think of these as "stories" but it can be tricky to agree on exactly what is and what isn't a story. Stories should be short enough to be achievable but still provide some level of business "value". Stories help set the rhythm of development (see [later](#lack-of-structure-and-direction) and help orientate the team. However, it's easy to get confused by the difference between tasks and stories. It is useful to capture discrete tasks, things like "pay the suppliers" or "talk to Bob in Commodities about their new API", but if these don't add business "value", chances are they're not really stories.
 
-The reason this matters is because "business value" is supposed to enable the opportunity for profit. If we're not clear about the definition of the term story, it's easy to create and focus development on tasks which don't add value and so don't contribute towards profit. You can think of the idea of "business value" as simply "cash" or "profit". That way, you can ask yourself "would this story contribute to the bottom line?". To get the most out of the whole thing, a link from story to acceptance criteria needs to be established. That way, you can demonstrate when "value" has been added to the system.
+The reason this matters is because "business value" is supposed to enable the opportunity for profit. If we're not clear about the definition of the term story, it's easy to create and focus development on tasks which don't add value and so don't contribute towards profit. You can think of the idea of "business value" as simply "cash" or "profit". That way, you can ask yourself "would this story contribute to the bottom line?". To get the most out of the whole thing, a link from story to acceptance criteria needs to be established. That way, you can demonstrate when "value" has been added to the system and expand on the stories acceptance criteria.
 
 To capture and track progress, some teams write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in their issue tracking software or wiki.
 
@@ -76,15 +76,19 @@ D> It's easy to get confused with the difference between tasks and stories. The 
 D>
 D> David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
 
-Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to build, it's difficult to know when we've actually built it.
 
-Sticking to the letter of the definition above can lead to ambiguous requirements. We need to work a little harder. The spirit of the definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). Articulating the goal will likely take more than a single sentence on an index card and that's where defining acceptance criteria comes in.
+
+## Bringing it all together
+
+Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to develop, it's difficult to know when we've actually built it.
+
+Sticking to the letter of Cohen's definition above can lead to ambiguous requirements. We need to work a little harder. The definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). It's important to recognise that it's not a literal mantra. Articulating the goal will likely take more than a single sentence on an index card and that's where defining acceptance criteria comes in.
 
 Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story delivery lifecycle](#story-delivery-life-cycle). It underpins common agile processes and we'll take a look at it in the [Process overview](#process-overview) section.
 
 D>## A new acceptance test per story? {#a-new-acceptance-test-per-story-aside}
 D>
-D> Another pitfall teams often fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which will duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously, there is a balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
+D> A common pitfall teams fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which will duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously, there is a balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
 
 It's totally acceptable for a single acceptance test to demonstrate multiple stories. Acceptance tests should be revisited and leveraged when new stories are defined. When it comes to acceptance testing, duplicated test paths often lead to slower test runs. Designing your system and test infrastructure to be componentised also helps.  We'll look at this more in the [Ports and Adapters](#ports-and-adapters) section.
 
