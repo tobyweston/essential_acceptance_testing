@@ -62,17 +62,19 @@ He goes on to describe the typical template as something like
 
 > As a <type of user>, I want <some goal> so that <some reason>
 
-This is the generally accepted definition of a user story. However, in practice, teams settle on their own style of writing stories loosely based on this definition. Sometimes a short description is not enough. Some teams stick to the template whilst others expand it to write requirements out long hand. Some teams abandon it completely and just write abbreviated notes.
+This is the generally accepted definition of a user story. In practice however, teams tend to settle on their own style of writing stories loosely based on this definition. Sometimes a short description is not enough. Some teams stick to the template whilst others expand it to write requirements out long hand. Some teams abandon it completely and just write abbreviated notes.
 
-Whatever the choice, each team will likely think of these as "stories". To get the most out of the whole thing, a link from story to acceptance criteria needs to be established.
+Whatever the choice, each team will likely think of these as "stories" but it can be tricky to agree on exactly what is and what isn't a story. Stories should be short enough to be achievable but still provide some level of business "value". Stories help set the rhythm of development (see [later](#lack-of-structure-and-direction) and help orientate the team. However, it's easy to get confused by the difference between tasks and stories. It is useful to capture discrete tasks, things like "pay the suppliers" or "talk to Bob in Commodities about their new API", but if these don't add business "value", chances are they're not really stories.
 
-To capture and track progress, some teams write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in JIRA.
+The reason this matters is because "business value" is supposed to enable the opportunity for profit. If we're not clear about the definition of the term story, it's easy to create and focus development on tasks which don't add value and so don't contribute towards profit. You can think of the idea of "business value" as simply "cash" or "profit". That way, you can ask yourself "would this story contribute to the bottom line?". To get the most out of the whole thing, a link from story to acceptance criteria needs to be established. That way, you can demonstrate when "value" has been added to the system.
 
-D> ## Tasks vs stories {#tasks-vs-stories-aside}
+To capture and track progress, some teams write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in their issue tracking software or wiki.
+
+D> ## Team lead beware! {#team-lead-beware-aside}
 D>
-D> It's easy to get confused with the difference between tasks and stories. It's useful to capture discrete tasks, things like "pay the suppliers" or "talk to Bob in Commodities about their new API", but if these don't satisfy the "implementation _implies_ business value" proposition, chances are they're not stories.
+D> It's easy to get confused with the difference between tasks and stories. The team lead role can suffer from this especially but keeping track of todo items needn't muddy the waters when it comes to planning story delivery. It's important to realise that tasks or todo items fit more appropriately under project or team management activities and not story planning. That way, it's easier to pick the right tool to manage them.
 D>
-D> The team lead role can suffer from this a lot but keeping track of todo items needn't muddy the waters when it comes to planning the story delivery of the team. It's important to realise that tasks or todo items fit more appropriately under project or team management and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
+D> David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
 
 Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to build, it's difficult to know when we've actually built it.
 

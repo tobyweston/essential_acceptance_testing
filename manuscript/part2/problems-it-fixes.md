@@ -49,9 +49,9 @@ Not assuming anything and defining terms clearly in acceptance tests can be a go
 Common language is formalised in an acceptance test, solidify it's definition. The spirit here is to strive for a ubiquitous language.
 
 
-## Lack of structure and direction
+## Lack of structure and direction {#lack-of-structure-and-direction}
 
-Iterative development favours planning; iterations are planned ahead of time. The stories to deliver are fixed at the start of an iteration. Although the iterations are short, it still imposes  rigidity. The balance is in offering the delivery team stability as well as being responsive to changes in business priorities.
+Iterative development favours planning; iterations are planned ahead of time. The stories to deliver are fixed at the start of an iteration. Although the iterations are short, it still imposes rigidity. The balance is in offering the delivery team stability as well as being responsive to changes in business priorities.
 
 By stability, I mean that the goal for the next week or so is well known and the team know where they're heading and why. They're free from process distraction. With it, scope creep and fire fighting can be kept to a minimum and the team is free to focus on multiple, small, achievable deliveries.
 
