@@ -23,18 +23,21 @@ An important addendum to our definition then should be that acceptance tests don
 
 Unfortunately, Cripin's definition talks specifically about _stories_ and business _value_. I say unfortunate because acceptance tests may or may not have anything to do with user stories. We'll talk about stories later but in our definition, we're talking generally about system behaviour and brushing over the idea that stories can describe that behaviour. A story isn't necessarily a prerequisite for an acceptance test. Similarly, _business value_ is a tricky thing to quantify so measuring it in a test can be a challenge. We'll talk more about that later too.
 
-Adding the addendum to our definition then gives us the following.
+Applying the addendum to our definition gives us the following.
 
->  An acceptance test is a set of _executable_ criteria, examples or a specification that help the customer "accept" that the system behaves as intended. The test is used to specify required behaviour _before_ implementing functionality and then verify the behaviour against the completed implementation. Acceptance tests are not limited to confirming business behaviour but can also verify broader, non-functional objectives.
+>  An acceptance test is a set of _executable_ criteria, examples or a specification that help the customer "accept" that the system behaves as intended. The test is used to specify required behaviour _before_ implementing functionality and then verify the behaviour against the completed implementation. Acceptance tests are not limited to confirming business behaviour but can also verify broader, non-functional objectives have been met.
+
 
 
 ## What are acceptance criteria?
 
-We'll often use the terms acceptance criteria and acceptance test interchangeably but I think about them as distinct.
+We'll often use the terms acceptance criteria and acceptance test interchangeably but really they're distinct.
 
-Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as expected. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and are mostly concerned with the business functionality. Therefore, the customer is mostly best placed to define the criteria. I'm saying "mostly" because non-functional requirements, despite affecting the customer, are usually championed by technical stakeholders.
+Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as expected. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and are mostly concerned with the business functionality. Therefore, the customer is mostly best placed to define the criteria. I'm saying mostly because non-functional requirements, despite affecting the customer, are usually championed by technical stakeholders.
 
-Defining the criteria is a useful step in understanding what's required. It helps us define the scope of the feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding. Criteria should be implementation agnostic and written at a fairly high level. We then _implement_ the criteria in terms of one or more acceptance tests. A single criterion (for example, "the total basket value is displayed correctly") may require multiple examples to be comprehensive (for example, what _exactly_ does it mean to "display correctly" in our example?). That's where implementing the acceptance _criteria_ as executable acceptance _tests_ comes in.
+Defining the criteria is a useful step in really understanding what's required. It helps us define the scope of the feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding. Criteria should be implementation agnostic and written at a fairly high level. We then _implement_ the criteria in terms of one or more acceptance tests.
+
+A single criterion (for example, "the total basket value is displayed correctly") may require multiple examples to be comprehensive (for example, what _exactly_ does it mean to "display correctly" in our example?). That's where implementing the acceptance _criteria_ as executable acceptance _tests_ comes in.
 
 Remembering our definition, we're emphasising that tests are executable and criteria are not. An acceptance test is a physical test artifact. It may be a xUnit test written in the language of choice, a test script that requires a human to step through, a record-replay style UI test or even a checklist on a scrap of paper.
 
