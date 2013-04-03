@@ -86,11 +86,6 @@ Sticking to the letter of Cohen's definition above can lead to ambiguous require
 
 Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story delivery lifecycle](#story-delivery-life-cycle). It underpins common agile processes and we'll take a look at it in the [Process overview](#process-overview) section.
 
-D>## A new acceptance test per story? {#a-new-acceptance-test-per-story-aside}
-D>
-D> A common pitfall teams fall into is to automatically create new acceptance tests for a new story. This may be a reasonable choice to start with but can quickly lead to hundreds and hundreds of acceptance tests, many of which will duplicate parts of others. It's a far more scalable strategy to look for existing acceptance tests that exercise related areas and augment them. Obviously, there is a balance to be had and it makes sense to organise your tests so that you can quickly understand which stories they exercise (some suggestions are offered later).
-
-It's totally acceptable for a single acceptance test to demonstrate multiple stories. Acceptance tests should be revisited and leveraged when new stories are defined. When it comes to acceptance testing, duplicated test paths often lead to slower test runs. Designing your system and test infrastructure to be componentised also helps.  We'll look at this more in the [Ports and Adapters](#ports-and-adapters) section.
 
 
 
