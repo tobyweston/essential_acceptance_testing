@@ -93,11 +93,11 @@ W> It's important to realise that tasks or todo items fit more appropriately und
 
 ## Bringing it all together
 
-Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement an acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to develop, it's difficult to know when we've actually built it.
+Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement our acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to develop, it's difficult to know when we've actually built it.
 
-Sticking to the letter of Cohen's definition above can lead to ambiguous requirements. We need to work a little harder. The definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). It's important to recognise that the Connextra template is not a literal mantra. Articulating the goal will likely take more than a single sentence on an index card and that's where defining acceptance criteria comes in.
+Sticking to the letter of Cohen's story definition above can lead to ambiguous requirements. We need to work a little harder. His definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). It's important to recognise that the Connextra template is not a literal mantra. Articulating the goal will likely take more than a single sentence on an index card. That's where defining unambiguous acceptance criteria comes in.
 
-Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story delivery lifecycle](#story-delivery-life-cycle). It underpins common agile processes and we'll take a look at it in the [Process overview](#process-overview) section.
+Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story delivery lifecycle](#story-delivery-life-cycle). It brings together the ideas of stories, acceptance criteria and tests with a framework for iterative development that underpins common agile processes. We'll take a closer look at it in the [Process overview](#process-overview) section.
 
 
 
