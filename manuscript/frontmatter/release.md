@@ -21,7 +21,12 @@
 | 2013-xx-xx        | Added the suggestion to use an hexagonal architecture to the [Alternatives](#alternatives) section.     |
 |                   | This introduces a ports and adapters style of testing. It has a slightly simplified example which is    |
 |                   | expanded in the [How testing can influence design](#design) section along with some concrete code       |
-|                   | examples.                                                                                          |
+|                   | examples based on the example application available via Github.                                         |
+|                   |                                                                                                         |
+|                   | James joined as co-author.                                                                              |
+|                   |                                                                                                         |
+|                   | Reworked [Introduction](#introduction) section and our working definition of the term Acceptance Test.  |
+|                   | Pulled out a lot of the asides in this section, will find a home for them at a later point.             |
 |                   |                                                                                                         |
 |                   | Various spelling and grammar tweaks.                                                                    |
 |                   |                                                                                                         |
