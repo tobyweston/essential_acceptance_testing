@@ -108,7 +108,7 @@ Showing the customer running code builds trust. When you can associate running c
 
 This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves a feature is working correctly. The customer may also want to refer back to passing tests, perhaps to cross-reference a specific feature.
 
-Running your tests as part of your automated build and structuring the output in line with stories or iterations can help. It also forms a kind of 'live' system documentation. The majority of specification testing frameworks offer strategies for achieving this and we'll talk specifically about [Concordion](http://concordion.org) in [Part 3](#part3).
+Running your tests as part of your automated build and structuring the output in line with stories or iterations can help. It also forms a kind of live system documentation. The majority of specification testing frameworks offer strategies for organising output like this.
 
 D>## Technical vs business language {#technical-vs-business-language-aside}
 D>
