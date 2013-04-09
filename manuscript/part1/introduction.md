@@ -94,36 +94,10 @@ W> It's important to realise that tasks or todo items fit more appropriately und
 
 ## Bringing it all together
 
-Why is this discussion important? How we interpret the definition of user stories has a knock on affect on how we choose to implement our acceptance testing strategy. If the story definition is vague and sprawling, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be clear about what we're supposed to develop. Without understanding what we're supposed to develop, it's difficult to know when we've actually built it.
+Why is this discussion important? How we interpret the definition of user stories has a knock on effect on how we choose to implement our acceptance testing approach. Sticking to the letter of Cohen's story definition above can lead to ambiguous requirements. We need to think a little harder. His definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). It's important to recognise that the Connextra template is not a literal mantra. Articulating the goal will likely take more than a single sentence on an index card. That's where defining unambiguous acceptance criteria comes in.
 
-Sticking to the letter of Cohen's story definition above can lead to ambiguous requirements. We need to work a little harder. His definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). It's important to recognise that the Connextra template is not a literal mantra. Articulating the goal will likely take more than a single sentence on an index card. That's where defining unambiguous acceptance criteria comes in.
+If the story definition is vague, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be confident about what we're supposed to develop. Without understanding what we're supposed to develop, it's difficult to know when we've actually built it.
 
 Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story delivery lifecycle](#story-delivery-life-cycle). It brings together the ideas of stories, acceptance criteria and tests with a framework for iterative development that underpins common agile processes. We'll take a closer look at it in the [Process overview](#process-overview) section.
 
 
-
-
-## Confidence and trust
-
-Showing the customer running code builds trust. When you can associate running code to individual customer stories during an iteration, it gives confidence that the team can deliver and deliver the right thing. If we keep talking to the business whilst developing the acceptance criteria, we stand a better chance of discovering misunderstanding early and reduce the risk of critical failure.
-
-This confidence and trust doesn't come easy. Teams may have to talk at length about how a test actually proves a feature is working correctly. The customer may also want to refer back to passing tests, perhaps to cross-reference a specific feature.
-
-Running your tests as part of your automated build and structuring the output in line with stories or iterations can help. It also forms a kind of live system documentation. The majority of specification testing frameworks offer strategies for organising output like this.
-
-D>## Technical vs business language {#technical-vs-business-language-aside}
-D>
-D> It's a really good idea to aim for a ubiquitous language between development and the business. It helps make sure that when someone is talking about something, the whole team have a collective understanding of what that _thing_ is. As a silly example, is an "instrument" a violin or an equity derivative from the finance industry?
-D>
-D> When it comes to setting acceptance criteria, the language should favour the business camp. Write in terms of _business goals_ and not _test scripts_. The business shouldn't care how a test is implemented behind the scenes. It should be shown to go green in the language _they_ understand.
-D>
-D> It may be that whilst building trust, developers have to explain what components are being exercised or even show data in it's raw form but ultimately, the code is none of the business's concern. I see far too many teams fall into the trap where the business try to influence test infrastructure or how to go about testing some feature. This is always down to trust. Work hard at building trust and avoid the frustration.
-
-
-## Further reading
-
- * [User Stories Applied: For Agile Software Development](http://amzn.to/WLmrVy), Mike Cohn
- * [Succeeding with Agile: Software Development Using Scrum](http://amzn.to/11jVsrz), Mike Cohn
- * [Bridging the Communication Gap](http://amzn.to/14A3Cds), Gojko Adzic
- * [Specification by Example: How Successful Teams Deliver the Right Software](http://amzn.to/YOPrlo), Gojko Adzic
- * [ATDD by Example: A Practical Guide to Acceptance Test-driven Development](http://amzn.to/Yxr8V4), Markus Gartner

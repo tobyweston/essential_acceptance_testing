@@ -31,3 +31,15 @@ D> A common pitfall teams fall into is to automatically create new acceptance te
 D>
 D> It's totally acceptable for a single acceptance test to demonstrate multiple stories. Acceptance tests should be revisited and leveraged when new stories are defined. When it comes to acceptance testing, duplicated test paths often lead to slower test runs. Designing your system and test infrastructure to be componentised also helps.  We'll look at this more in the [Ports and Adapters](#ports-and-adapters) section.
 
+
+
+
+Originally at the end of the Introduction section (after Condidence and Trust).
+
+D>## Technical vs business language {#technical-vs-business-language-aside}
+D>
+D> It's a really good idea to aim for a ubiquitous language between development and the business. It helps make sure that when someone is talking about something, the whole team have a collective understanding of what that _thing_ is. As a silly example, is an "instrument" a violin or an equity derivative from the finance industry?
+D>
+D> When it comes to setting acceptance criteria, the language should favour the business camp. Write in terms of _business goals_ and not _test scripts_. The business shouldn't care how a test is implemented behind the scenes. It should be shown to go green in the language _they_ understand.
+D>
+D> It may be that whilst building trust, developers have to explain what components are being exercised or even show data in it's raw form but ultimately, the code is none of the business's concern. I see far too many teams fall into the trap where the business try to influence test infrastructure or how to go about testing some feature. This is always down to trust. Work hard at building trust and avoid the frustration.

@@ -22,4 +22,5 @@ unavailable.md
 
 backmatter:
 
+backmatter/reading-list.md
 backmatter/asides.md
