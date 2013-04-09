@@ -1,19 +1,19 @@
 # Introduction {#introduction}
 
 
-## What's an acceptance test?
+## What is an acceptance test?
 
 Before we start, we should agree on some working definitions. Deciding on a definition of acceptance test can be contentious. Different people have different interpretations. So what is an acceptance test?
 
-> An acceptance test is a set of examples or a specification that help the customer "accept" that the system behaves as intended.
+> An acceptance test is a set of examples or a specification that helps the customer "accept" that a system behaves as intended.
 
-What would help a customer "accept" a system works as intended? The customer gains confidence if they're able to define requirements and see how varying inputs affect the behaviour of a running system. For example, they may document, test against running code, watch a manual demo or explore an automated test. The important point here is that the customer's criteria for acceptance are recorded and verified against a running system.
+What would help a customer "accept" a system works as intended? The customer gains confidence if they're able to define requirements and see how varying inputs affect the behaviour of a running system. For example, the customer might document their expectations, verifying against running code or via a demo. The important point here is that the customer's criteria for acceptance are recorded and verified against a running system.
 
-Recording the runtime behaviour of a system after the fact is only half the story. Deciding _what_ that behaviour should be before starting work is the tricky part. Getting input from customers _before_ building out the system is useful in ensuring we build the _right_ system. Acceptance tests are a great vehicle for discussing and formalising these requirements.
+Recording the runtime behaviour of a system after the fact is only half the story. Deciding _what_ that behaviour should be before starting work is the tricky part. Getting input from customers before building out the system is useful in ensuring we build the _right_ system. Acceptance tests are a great vehicle for discussing and formalising these requirements.
 
->  An acceptance test is a set of examples or a specification that help the customer "accept" that the system behaves as intended. The test is used to specify required behaviour before verifying that behaviour against a running system.
+>  An acceptance test is a set of examples or a specification that helps the customer "accept" that a system behaves as intended. The test is used to specify required behaviour and to verify that behaviour against a running system.
 
-Many teams emphasize that acceptance tests should be customer authored. If we write software that nobody wants, there's not much point in writing it. The customer can express their requirements in the form of acceptance criteria forming a specification against which the system can be verified. Adding to our definition then would give us something like.
+Many teams emphasize that acceptance tests should be customer authored. If we write software that nobody wants, there's not much point in writing it. The customer can express their requirements in the form of acceptance criteria; a specification against which the system can be verified.
 
 In [Agile Testing](http://amzn.to/WKDYkq), Lisa Crispin and Janet Gregory describe acceptance tests as
 
@@ -25,7 +25,7 @@ Unfortunately, Cripin's definition talks specifically about _stories_ and busine
 
 Applying the addendum to our definition gives the following.
 
->  An acceptance test is a set of examples or a specification that help the customer "accept" that the system behaves as intended. The test is used to specify required behaviour before verifying that behaviour against a running system. Acceptance tests are not limited to confirming business behaviour but can also verify that broader, non-functional objectives have been met.
+>  An acceptance test is a set of examples or a specification that helps the customer "accept" that a system behaves as intended. The test is used to specify required behaviour and to verify that behaviour against a running system. Acceptance tests are not limited to confirming business behaviour but can also verify that broader, non-functional objectives have been met.
 
 
 
@@ -33,17 +33,17 @@ Applying the addendum to our definition gives the following.
 
 We'll often use the terms acceptance criteria and acceptance test interchangeably but really they're distinct.
 
-Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as expected. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and are mostly concerned with the business functionality. Therefore, the customer is mostly best placed to define the criteria. I'm saying mostly because non-functional requirements, despite affecting the customer, are usually championed by technical stakeholders.
+Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as intended. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and since they're mostly concerned with business requirements, the customer is best placed to define the business requirements. Non-functional requirements, despite affecting the customer, are usually end up being championed by technical stakeholders.
 
-Defining the criteria is a useful step in really understanding what's required. It helps us define the scope of the feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding. Criteria should be implementation agnostic and written at a fairly high level. We then _implement_ the criteria in terms of one or more acceptance tests.
+Defining the criteria is a useful step in really understanding what's required. It helps us define the scope of a feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding of the requirements. Criteria should be implementation independent and written at a fairly high level. We then _implement_ the criteria in terms of one or more acceptance tests.
 
-A single criterion (for example, "the total basket value is displayed correctly") may require multiple examples to be comprehensive (for example, what _exactly_ does it mean to "display correctly" in our example?). That's where implementing the acceptance _criteria_ as executable acceptance _tests_ comes in.
+A single criterion ("the total basket value is displayed correctly") may require multiple examples to be comprehensive (what _exactly_ does it mean to "display correctly"?). That's where implementing the acceptance _criteria_ as executable acceptance _tests_ comes in.
 
-Remembering our definition, we're emphasising that tests are executable and criteria are not. An acceptance test is a physical test artifact. It may be a xUnit test written in the language of choice, a test script that requires a human to step through, a record-replay style UI test or even a checklist on a scrap of paper.
+Referring back to our definition, we're emphasising that tests are executable and criteria are not. An acceptance test is a physical test artifact. It may be a xUnit test written in the language of choice, a test script that requires a human to step through, a record-replay style UI test or even a checklist on a scrap of paper.
 
 Adding this dimension to our definition gives us the following.
 
->  An acceptance test is a set of _executable_ criteria that help the customer "accept" that the system behaves as intended. The test is used to specify required behaviour before verifing that behaviour against a running system. Acceptance tests are not limited to confirming business behaviour but can also verify that broader, non-functional objectives have been met.
+>  An acceptance test is a set of _executable_ criteria that helps the customer "accept" that a system behaves as intended. The test is used to specify required behaviour and to verify that behaviour against a running system. Acceptance tests are not limited to confirming business behaviour but can also verify that broader, non-functional objectives have been met.
 
 
 Acceptance criteria _become_ acceptance tests. Attributes that describe acceptance tests also describe acceptance criteria with the additional fact that tests should be _executable_. Executing acceptance tests verify that the acceptance criteria have been met.
@@ -53,7 +53,8 @@ Acceptance criteria _become_ acceptance tests. Attributes that describe acceptan
 |-------------------------------|-------------------------------|
 |Document behaviour             |Document behaviour             |
 |Are specific                   |Are specific                   |
-|Are demonstrable and provable  |Are demonstrable and provable  |
+|Are illustrative               |Are illustrative               |
+|Are quantitative               |Are quantitative               |
 |Require discussion             |Require discussion             |
 |Are agreed                     |Are agreed                     |
 |                               |**Are executable**             |
@@ -61,25 +62,25 @@ Acceptance criteria _become_ acceptance tests. Attributes that describe acceptan
 
 
 
-## What's a story?
+## What is a story?
 
-Acceptance criteria are usually discussed in terms of _user stories_ so it's worth while making sure we have a common understanding of what makes up a story. Agile processes often focus on stories as a way of gathering requirements and organising them into deliverable chunks that have _business value_[^fowler-definition]. It's common to associate acceptance tests with individual stories. Once the test is passing, the story is considered finished. There's a close relationship between stories and acceptance testing.
+Acceptance criteria are usually discussed in terms of _user stories_ so it's worth while making sure we have a common understanding of what makes up a story. Agile processes often focus on stories as a way of gathering requirements and organising them into deliverable chunks that have _business value_[^fowler-definition]. It's common to associate acceptance tests with stories. Once the tests are passing, a story is considered finished. There's a close relationship between stories and acceptance testing.
 
 [^fowler-definition]: In [Planning Extreme Programming](http://amzn.to/14EflKC), Beck and Fowler describe a user story as "a chunk of functionality that is of value to the customer."
 
 Mike Cohen [describes user stories](http://www.mountaingoatsoftware.com/topics/user-stories) as follows.
 
-> "User stories are short, simple description of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system."
+> "User stories are short, simple description[s] of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system."
 
 He goes on to describe the typical template developed by Connextra
 
 > As a <type of user>, I want <some goal> so that <some reason>
 
-This is the generally accepted definition of a user story. In practice however, teams tend to settle on their own style of writing stories loosely based on this definition. Sometimes a short description is not enough. Some teams stick to the template whilst others expand it to write requirements out long hand. Some teams abandon it completely and just write abbreviated notes.
+Cohen's description is the generally accepted definition of a user story and so commonly discussed in terms of the Connextra structure that they two have become almost synonymous. In practice however, teams tend to settle on their own style of writing stories loosely based on the combination. Sometimes a short description is not enough. Some teams stick to the template whilst others expand it to write requirements out long hand. Some teams abandon it completely and just write abbreviated notes.
 
-Whatever the choice, each team will likely think of these as "stories" but it can be tricky to agree on exactly what is and what isn't a story. Stories should be short enough to be achievable but still provide some level of business "value". Stories help set the rhythm of development (see [later](#lack-of-structure-and-direction) and help orientate the team. However, it's easy to get confused by the difference between tasks and stories. It is useful to capture discrete tasks, things like "pay the suppliers" or "talk to Bob in Commodities about their new API", but if these don't add business "value", chances are they're not really stories.
+Settling on the appropriate scope for a story is also something teams often struggle with. Stories should be short enough to be achievable but still provide some level of business value. Stories help set the [rhythm of development](#lack-of-structure-and-direction) and help orientate the team. However, it's easy to get confused by the difference between tasks and stories. It is useful to capture discrete tasks, things like "pay the suppliers" or "talk to Bob in Commodities about their new API", but if these don't add business value, chances are they're not really stories.
 
-The reason this matters is because "business value" is supposed to enable the opportunity for profit. If we're not clear about the definition of the term story, it's easy to create and focus development on tasks which don't add value and so don't contribute towards profit. You can think of the idea of "business value" as simply "cash" or "profit". That way, you can ask yourself "would this story contribute to the bottom line?". To get the most out of the whole thing, a link from story to acceptance criteria needs to be established. That way, you can demonstrate when "value" has been added to the system and expand on the stories acceptance criteria.
+The reason this matters is because "business value" is supposed to enable the opportunity for profit. If we're not clear about the definition of the term story, it's easy to create and focus development on tasks which don't add value and so don't contribute towards profit. You can think of the idea of "business value" as simply "cash" or "profit". That way, you can ask yourself "would this story contribute to the bottom line?". To get the most out of acceptance testing, a link from story to acceptance criteria needs to be established. That way, you can demonstrate when real value has been added to the system and elaborate on the details of exactly how.
 
 To capture and track progress, some teams write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in their issue tracking software or wiki.
 
