@@ -136,7 +136,7 @@ The next step is to describe the system architecture in terms of boundary interf
 
 Keeping to the constraints shown in the [Ports and adapters symbols aside](#port-and-adapters-symbols-aside), all communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later. We've broken down the previous coarse grained architecture into a series of interfaces (ports), their implementations (adapters) and domain model.
 
-To create a comparable coverage, we'd design tests around the following.
+To create a comparable coverage, we'd design tests around the following using the decoupled ports and adapters approach.
 
 * UI to Portfolio Port
   * Portfolio value display tests
@@ -147,7 +147,7 @@ To create a comparable coverage, we'd design tests around the following.
 * Portfolio to Market Data Port
   * Market Data API tests
 
-Along with more focused system tests
+Along with more lightweight system tests
 
 * Fewer, more focused end-to-end (system) tests
 * Tests against real (Yahoo) Market Data
@@ -155,41 +155,51 @@ Along with more focused system tests
 These can be seen in more detail in the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code).
 
 
+### Portfolio value display tests
 
-### Test 1 - A pure UI test
+These tests are concerned with the display of the portfolio's valuation in the UI. When a user requests the current value in the UI, we'd like to be able to make assertions without having to test the backend. We'll focus on the real UI and the `Portfolio` port.
 
-When a user requests the current portfolio value, the system is queried and the current value is displayed appropriately. It's a UI test so we can talk about the UI specifically;
+![](images/part2/design.md/test-ui-only.png)
 
-> "when the user clicks clicks the 'Request valuation' button"
+The UI makes a HTTP `GET` call the `Portfolio` server. It's implemented in terms of a JQuery ajax call. In testing however, we'd prefer to use a test double and therefore just test that the UI displays whatever the port returns correctly. Specifically then, we'd
 
-what the UI component does;
+* Start up the web UI
+* Setup a fake `Portfolio` server with a canned response against specific HTTP GET calls
+* Use the UI to click the 'request valuation' button
+* Verify the canned response is displayed as intended within the UI
 
-> "the UI asks for the current price"
+For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `10,500.99 USD`. This exercises the UI logic to round and introduce commas. Other scenarios might include showing negative values in red or displaying alternate text when a value is unavailable.
 
-and what it does with it for certain cases;
+Note that the request itself is not verified (how it actually interacted with the `Portfolio`'s port. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request technicalities.
 
-> "when the number returned is negative, the `value` field it's displayed in red"
-
-> "when there is a technical problem and no number is available, the `value` field it's displayed with the phrase 'Unavailable'"
-
-This is a UI only test so we'd use a test double to stand in for the `Portfolio` port.
-
-![](images/part2/design.md/ports-and-adapter-design-test-1.png)
-
-We're using general language for the idea of what it means to "ask for the current price". We're implying the mechanism can be substituted; sometimes it might be a button on web page, sometimes a drop down or a widget on a rich client. In all cases the question is the same and a message is sent to the domain model (via the appropriate port).
-
-It's an important point so is worth stating again; the definition of 'UI asks for' is the same for each test. Test it once; it's defined _how_ you actually do it in subsequent tests.
+In these tests, we fake out the server (application) component so that the UI uses it's JQuery implementation to make a a real HTTP requests. An alternative would be to front the JQuery call behind our own JavaScript interface (port) and substitute this for testing. That way, we can exercise the port without making a real HTTP call.
 
 
-### Test 2 - A UI transport test
+### Request for portfolio value tests
 
-The previous test simply asserts that the UI can ask for the current portfolio value, it's an abstract question; it decouples the assertion from the mechanism. What it means to actually ask for the current value is described by this test. They overlap.
+In the previous set of tests, we made no verifications against the request mechanisms so that we could focus solely on display semantics. The next set of tests focus on the request mechanics. We're interested in exercising the interaction between the UI and the `Portfolio` port.
 
-![](images/part2/design.md/ports-and-adapter-design-test-2.png)
+The previous tests ask "when I ask for a portfolio value in the UI, what happens?", these tests are concerned with what it actually means to ask that question?
 
-When the UI asks for the current value, a message is sent to the domain model (`Portfolio`). This test will use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format (for example, it's JSON).
+![](images/part2/design.md/test-ui-to-portfolio.png)
 
-If we have different 'views', we would need to test each to define how they commit to communicate with the port. For example, a test for a rich client must verify the JSON message and HTTP request as well as the web UI.
+When the UI asks for a valuations, a specific message is sent over the wire. These test will verify the request and response formats. How the response is actually used is left to the previous tests. For example, if the request is sent as JSON, the JSON content may be verified. The response body may be verified against a specific JSON format and the HTTP response code verified to be 200 (OK).
+
+Specifically, we'd.
+
+* Start up the UI
+* Setup a fake `Portfolio` server with an expectation against a specific HTTP request
+* Force the UI to click the 'request valuation' button
+* Verify the request expectation and return a canned response
+* Verifies only that a response was received, not how it might be used in the UI
+
+When the UI asks for the current value, a message is sent to the domain model (Portfolio). These tests would use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format. If we have different UIs, we would need to test each to verify how they communicate with the port. For example, a test for a rich client must verify the JSON message and HTTP request as well as one for a web UI.
+
+
+
+
+IGNORE FROM HERE
+------
 
 
 
@@ -197,7 +207,7 @@ If we have different 'views', we would need to test each to define how they comm
 
 When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API.
 
-![](images/part2/design.md/ports-and-adapter-design-test-3.png)
+![](images/part2/design.md/est-portfolio-valuation.png)
 
 For example, if the business API was a series of Java method calls, we could set the interaction up as a expectation on a mock version of the business interface. The HTTP adapter might be a RESTful server which collaborates with this business interface directly (in which case we'd inject the mock). We're testing that a JSON over HTTP message turns into a Java message.
 
@@ -209,7 +219,7 @@ Testing our implementation of the `Market Data` port. When the `Portfolio` asks 
 
 Java (API) to Java (API).
 
-![](images/part2/design.md/ports-and-adapter-design-test-4.png)
+![](images/part2/design.md/test-market-data.png)
 
 
 ### Test 5 - A test against Yahoo
@@ -218,7 +228,12 @@ Next would be the Yahoo specific adapter; an integration* test. When the adapter
 
 Can't mock it because we're using real Yahoo. If Yahoo change their API, the test will fail. The previous test would still pass as our internal API is still working, it's just the adapter that's broken.
 
-*is this an integration test? GOOS says if you don't own it, it's not anintegrationn test.
+*is this an integration test? GOOS says if you don't own it, it's not an integrationn test.
+
+
+
+
+
 
 
 ### A note on integration tests
