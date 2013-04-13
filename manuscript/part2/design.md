@@ -134,16 +134,26 @@ The next step is to describe the system architecture in terms of boundary interf
 
 ![](images/part2/design.md/ports-and-adapter-design.png)
 
-Keeping to the constraints shown in the [Ports and adapters symbols aside](#port-and-adapters-symbols-aside), all communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later.
+Keeping to the constraints shown in the [Ports and adapters symbols aside](#port-and-adapters-symbols-aside), all communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later. We've broken down the previous coarse grained architecture into a series of interfaces (ports), their implementations (adapters) and domain model.
 
-We've broken down the previous coarse grained architecture into a series of interfaces (ports), their implementations (adapters) and domain model. The domain model is both the `Portfolio` and `Market Data` and we could have represented this as a single element.
+To create a comparable coverage, we'd design tests around the following.
 
+* UI to Portfolio Port
+  * Portfolio value display tests
+  * Request for portfolio value tests
+* Portfolio HTTP Adapter
+  * HTTP Adapter to Java message tests
+  * Portfolio calculation tests
+* Portfolio to Market Data Port
+  * Market Data API tests
 
-* Test 1 - A pure UI test
-* Test 2 - A UI transport test
-* Test 3 - Portfolio's JSON/HTTP adapter test
-* Test 4 - A test against our market data API
-* Test 5 - Real test against Yahoo's version of market data
+Along with more focused system tests
+
+* Fewer, more focused end-to-end (system) tests
+* Tests against real (Yahoo) Market Data
+
+These can be seen in more detail in the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code).
+
 
 
 ### Test 1 - A pure UI test
