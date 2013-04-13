@@ -30,7 +30,8 @@ public static class PortfolioSystemTestWithRealYahoo {
     @Test
     public void shouldRetrieveValuation() {
         ui.navigateToLandingPage().requestValuationForShares(100);
-        waitFor(assertion(portfolioValuationFrom(ui), is("91,203.83")), timeout(seconds(5)));
+        waitFor(assertion(portfolioValuationFrom(ui), is("91,203.83")),
+            timeout(seconds(5)));
     }
 
     @After
@@ -41,9 +42,9 @@ public static class PortfolioSystemTestWithRealYahoo {
 }
 ~~~~~~~
 
-It's a very naive test as it relies on Yahoo being up and returning the expected result. It starts up the entire application in the `@Before` which in turn starts up the web container, initialises the UI and market data components. The browser is then fired up and "driven" (by `LandingPage`) to simulate the user's interaction and the result scraped.
+It's a very naive test as it relies on Yahoo being up and returning the expected result. It starts up the entire application in the `@Before` which in turn starts up the web container, initialises the UI and market data components. The browser is then fired up and "driven" (by `LandingPage`) to simulate the user's interaction and the result is scraped.
 
-The assertion against the portfolio value is wrapped to poll the UI periodically because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service.
+The assertion against the portfolio value is wrapped to poll the UI periodically because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service without a service level agreement.
 
 A> ##Page driver pattern {#page-driver-pattern-aside}
 A>
@@ -54,7 +55,7 @@ A> ui.navigateToLandingPage()
 A>   .setNumberOfSharesTextBoxTo(100)
 A>   .clickRequestValuationButton();
 A> ~~~~~~~~
-A> and use the following instead.
+A> and used the following instead.
 A> {:lang="java"}
 A> ~~~~~~~~
 A> ui.navigateToLandingPage().requestValuationForShares(100);
@@ -62,7 +63,7 @@ A> ~~~~~~~~
 A> You can see in this way, the UI test code is just another example of a port (the UI driver interface) and it's adapters.
 A>
 
-We can improve on this test slightly by faking out Yahoo and forcing it to return a caned response.
+We can improve on this test slightly by faking out Yahoo and forcing it to return a caned response (a price of `200.10` for each request).
 
 {title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -79,12 +80,13 @@ public static class PortfolioSystemTestWithFakeYahoo {
 
     @Test
     public void coarseGrainedTestExercisingPortfolioValuation() {
-          String response = "{\"query\":{\"results\":{\"quote\":{\"Close\":\"200.10\"}}}}";
-          fakeYahoo.stub(
-                urlStartingWith("/v1/public/yql"),
-                aResponse().withBody(response));
-          ui.navigateToLandingPage().requestValuationForShares(100);
-          waitFor(assertion(portfolioValuationFrom(ui), is("20,010.00")), timeout(millis(500)));
+        String response = "{\"quote\":{\"Close\":\"200.10\"}}";
+        fakeYahoo.stub(
+              urlStartingWith("/v1/public/yql"),
+              aResponse().withBody(response));
+        ui.navigateToLandingPage().requestValuationForShares(100);
+        waitFor(assertion(portfolioValuationFrom(ui), is("20,010.00")),
+            timeout(millis(500)));
     }
 
     @After
@@ -100,13 +102,13 @@ Both tests exercise the happy path through the entire system. If we want to chec
 
 ![Multiple coarse grained tests repeatedly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-repeating.png)
 
-This is something James Maggs likens to taking a car out for a test drive.
+This is something James likens to taking a car out for a test drive.
 
 > "Imagine purchasing a new car and taking it out for a test drive. When you return to the showroom, the car has performed flawlessly but just to be sure you take it out again, this time with the windows down. Then again with the glove compartment open. Then again with the seats fully reclined. 
 >
-> You could keep on testing the car in this way but there reaches a point when the cost of evaluating the car begins to outweigh the risk of something going wrong. You have to trust that all the individual parts have been tested during manufacture and that since you have actually driven the car it is safe to go ahead and buy it.
+> You could keep on testing the car in this way but there reaches a point when the cost of evaluating the car begins to outweigh the risk of something going wrong. You have to trust that all the individual parts have been tested during manufacture and that since you have actually driven the car, it is safe to go ahead and buy it.
 >
-> It's the same with software. The cost of developing and maintaining high level tests should be weighed against the uncertainty and risk of something going wrong"
+> It's the same with software. The cost of developing and maintaining high level tests should be weighed against the uncertainty and risk of something going wrong."
 
 
 ## Decoupled architecture using ports and adapters {#ports-and-adapters}
@@ -128,7 +130,7 @@ A> | Components only communicate with ports | ![](images/part2/design.md/circle-
 A> | | ![](images/part2/design.md/adapter-arrow-port.png) |
 A>
 
-The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain models). In the diagram below, multiple components are shown for the UI to demonstrate that it could have multiple types of UI, for example, a rich desktop client and a web UI.
+The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain models).
 
 ![](images/part2/design.md/ports-and-adapter-design.png)
 
