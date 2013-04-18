@@ -104,7 +104,7 @@ Both tests exercise the happy path through the entire system. If we want to chec
 
 This is something James likens to taking a car out for a test drive.
 
-> "Imagine purchasing a new car and taking it out for a test drive. When you return to the showroom, the car has performed flawlessly but just to be sure you take it out again, this time with the windows down. Then again with the glove compartment open. Then again with the seats fully reclined. 
+> "Imagine purchasing a new car and taking it out for a test drive. When you return to the showroom, the car has performed flawlessly but just to be sure you take it out again, this time with the windows down. Then again with the glove compartment open. Then again with the seats fully reclined.
 >
 > You could keep on testing the car in this way but there reaches a point when the cost of evaluating the car begins to outweigh the risk of something going wrong. You have to trust that all the individual parts have been tested during manufacture and that since you have actually driven the car, it is safe to go ahead and buy it.
 >
@@ -161,18 +161,79 @@ These tests are concerned with the display of the portfolio's valuation in the U
 
 ![](images/part2/design.md/test-ui-only.png)
 
-The UI makes a HTTP `GET` call the `Portfolio` server. It's implemented in terms of a JQuery ajax call. In testing however, we'd prefer to use a test double and therefore just test that the UI displays whatever the port returns correctly. Specifically then, we'd
+The UI makes a HTTP `GET` call to the `Portfolio` server. It's implemented in terms of a JQuery ajax call inside a HTML page. In testing however, we'd prefer to use a test double and therefore just test that the UI displays whatever the port returns correctly. Specifically then, we'd
 
 * Start up the web UI
 * Setup a fake `Portfolio` server with a canned response against specific HTTP GET calls
 * Use the UI to click the 'request valuation' button
 * Verify the canned response is displayed as intended within the UI
 
-For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `10,500.99 USD`. This exercises the UI logic to round and introduce commas. Other scenarios might include showing negative values in red or displaying alternate text when a value is unavailable.
+For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `10,500.99 USD`. This exercises the UI logic to round the result and introduce commas. Other scenarios might include showing negative values in red or displaying alternate text when a value is unavailable.
 
-Note that the request itself is not verified (how it actually interacted with the `Portfolio`'s port. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request technicalities.
+Note that the request itself is not verified (how it actually interacted with the `Portfolio`'s port). This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request technicalities.
 
-In these tests, we fake out the server (application) component so that the UI uses it's JQuery implementation to make a a real HTTP requests. An alternative would be to front the JQuery call behind our own JavaScript interface (port) and substitute this for testing. That way, we can exercise the port without making a real HTTP call.
+In these tests, we fake out the server (application) component so that the UI uses it's JQuery implementation to make a a real HTTP requests. An alternative approach would be to front the JQuery call behind our own JavaScript interface (port) and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
+
+
+#### Example
+
+In this example, we've opted for a HTML based specification to describe the requirements.
+
+> When I ask for a portfolio value in the UI, it's displayed as intended.
+>
+> Given
+>
+> A portfolio value of 10500.988
+>
+> When
+>
+> A user refreshes the portfolio page
+>
+> Then
+>
+> The portfolio value is requested and displayed on the UI as **10,500.99**
+
+In the [sample application](https://github.com/tobyweston/essential_acceptance_testing_code), we use [Concordion](http://www.concordion.org) as the framework which will interpret an instrumented HTML file and call into a fixture class in order to interact with our application and make assertions. To that end, our fixture for the above might look like the following
+
+{title="Example 3: Test fixture for use with scenarios described in HTML specifications", lang="java", line-numbers="on"}
+~~~~~~~
+@RunWith(ConcordionRunner.class)
+@ExpectedToPass
+public class UiPortfolioValueDisplayTest {
+
+    private final HttpServer client = new WebUi();
+    private final FakeHttpServer application = new FakeHttpServer(8000);
+    private final LandingPage ui = new LandingPage();
+
+    @Before
+    public void start() {
+        client.start();
+        application.start();
+    }
+
+    public void requestPortfolioValue(String body) {
+        application.stub(
+            urlEndingWith("/portfolio/0001"),
+            aResponse().withHeader("Access-Control-Allow-Origin", "*").withBody(body));
+        ui.navigateToLandingPage().requestValuationForShares(100);
+    }
+
+    public String getPortfolioValue() throws InterruptedException {
+        return ui.getPortfolioValue();
+    }
+
+    @After
+    public void stop() {
+        client.stop();
+        application.stop();
+        ui.quit();
+    }
+}
+~~~~~~~
+
+When running the test, the canned response returned by the fake server is set in HTML as `10500.988` and passed into the `requestPortfolioValue` method. When the test then continues to `getPortfolioValue()`, an instance of the browser is controlled to click on a button that makes the `GET` request using JQuery. The canned response is returned to JQuery for display. The HTML specification is the part that describes the assertion and after running, would look like the following.
+
+![](images/part2/design.md/test-ui-only-specification-result.png)
 
 
 ### Request for portfolio value tests
@@ -195,6 +256,17 @@ Specifically, we'd.
 
 When the UI asks for the current value, a message is sent to the domain model (Portfolio). These tests would use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format. If we have different UIs, we would need to test each to verify how they communicate with the port. For example, a test for a rich client must verify the JSON message and HTTP request as well as one for a web UI.
 
+
+
+### HTTP Adapter to Java message tests
+
+
+
+### Portfolio calculation tests
+
+
+
+### Market Data API tests
 
 
 
@@ -243,6 +315,9 @@ We've verified that we make the right API calls to Yahoo but some combination of
 
 
 ## Thin slice of end-to-end
+
+* Fewer, more focused end-to-end (system) tests
+* Tests against real (Yahoo) Market Data
 
 ## Benefits using ports and adapters
 
