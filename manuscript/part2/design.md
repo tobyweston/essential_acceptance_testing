@@ -321,11 +321,59 @@ Like the previous example, a canned response is setup (line 17) only this time, 
 
 Notice that in the specification result below, that the specifics of what it means for a request to be valid is ommitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the specification language from the implementation and attempts to move towards a more business appropriate use of langauge.
 
-![](images/part2/design.md/test-portfolio-valuation-specification-result.png)
+![](images/part2/design.md/test-ui-to-portfolio-specification-result.png)
+
 
 
 ### HTTP Adapter to Java message tests
 
+Once we're satisfied about the communication between UI and `Portfolio`, we can look at the behaviour of the `Portfolio` part of the domain model. This part of the domain model is responsible for exposing the valuation request port. This port is implemented by a HTTP adapter to create a RESTful endpoint. It turns the HTTP call into a Java API call so our tests should exercise this adaptation.
+
+![](images/part2/design.md/test-portfolio-valuation.png)
+
+An important point to make right off the bat is that these tests will assume that the RESTful infrastructure is or will be tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes).
+
+In concrete Java terms, you can think of this as not testing a JEE container's servlet configuration but instead testing a `Servlet` directly. We assume the web containers work and thin slices of configuration will be tested in subsequent tests (see later). Starting up a full container for multiple business scenarios can be wasteful when they exercise the same infrastructure scenarios again and again.
+
+
+
+#### Example
+
+So, our example specification might look like this.
+
+A> When a HTTP request for a valuation is received
+A>
+A> Then the total portfolio valuation will be returned to the requester
+
+With a corresponding fixture used to verify the HTTP adapter works with domain model components as intended.
+
+{title="Example 5: Test fixture for the Portfolio's port HTTP adapter", lang="java", line-numbers="on"}
+~~~~~~~
+@RunWith(ConcordionRunner.class)
+@ExpectedToPass
+public class PortfolioValuationTest {
+    private final Mockery context = new JUnit4Mockery();
+
+    private final Valuation valuation = context.mock(Valuation.class);
+    private final PortfolioResource portfolio = new PortfolioResource(valuation);
+
+    public boolean verifyValuationResponse() {
+        context.checking(new Expectations() {{
+            oneOf(valuation).value(); will(returnValue(new Money("100000.00")));
+        }});
+
+        Response response = portfolio.value(null);
+        assertThat(response.entity().toString(), is("100000.00"));
+        return true;
+    }
+}
+~~~~~~~
+
+The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) (HTTP) server. Either way, we're not interested in testing these frameworks or their configuration in these tests.
+
+We're use JMock to implement our test double and simply verify that an object responsible for valuing a portfolio (`valuation`) is accessed and it's monetary return type is bundled in the HTTP `response` body. This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
+
+![](images/part2/design.md/test-portfolio-valuation-specification-result.png)
 
 
 ### Portfolio calculation tests
