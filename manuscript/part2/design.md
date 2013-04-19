@@ -279,7 +279,7 @@ IGNORE FROM HERE
 
 When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API.
 
-![](images/part2/design.md/est-portfolio-valuation.png)
+![](images/part2/design.md/test-portfolio-valuation.png)
 
 For example, if the business API was a series of Java method calls, we could set the interaction up as a expectation on a mock version of the business interface. The HTTP adapter might be a RESTful server which collaborates with this business interface directly (in which case we'd inject the mock). We're testing that a JSON over HTTP message turns into a Java message.
 
