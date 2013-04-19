@@ -359,11 +359,11 @@ public class PortfolioValuationTest {
 
     public boolean verifyValuationResponse() {
         context.checking(new Expectations() {{
-            oneOf(valuation).value(); will(returnValue(new Money("1000.00")));
+            oneOf(valuation).value(); will(returnValue(new Money("89.99")));
         }});
 
         Response response = portfolio.value(null);
-        assertThat(response.entity().toString(), is("1000.00"));
+        assertThat(response.entity().toString(), is("89.99"));
         return true;
     }
 }
@@ -376,7 +376,55 @@ We're using JMock to implement our test double and simply verify that an object 
 ![](images/part2/design.md/test-portfolio-valuation-specification-result.png)
 
 
+
 ### Portfolio calculation tests
+
+These tests are concerned with the calculation logic of the domain model. How does the `Portfolio` actually go about summing the stocks and where does it get their prices? Given the previous test shows that a HTTP request is translated into a Java message to get a valuation, these tests go into more detail as to what is involved in valuing the portfolio. Scenarios might include summing the prices of various stocks on a customer's book, how the system responds when prices can not be retrieved or if a customer has no stocks.
+
+![](images/part2/design.md/test-market-data.png)
+
+The calculation must interact with `Market Data` in order to price any stocks the customer holds. So the test will need work with a real `Portfolio` component but use a test double for the `Market Data` port.
+
+
+#### Example
+
+An example scenario might look like this.
+
+A> Given a customer book containing `100` shares in `AMZN` and yesterday's stock price in the market data system for `AMZN` of `261.82`
+A>
+A> When a request for a valuation is received
+A>
+A> Then the total portfolio valuation will be `26182.00`
+
+with a corresponding fixture.
+
+{title="Example 6: Test fixture for the Portfolio's calculation logic", lang="java", line-numbers="on"}
+~~~~~~~
+@RunWith(ConcordionRunner.class)
+@ExpectedToPass
+public class PortfolioValuationCalculationTest {
+    private final StubMarketData marketData = new StubMarketData();
+    private final StubBook book = new StubBook();
+    private final Valuation portfolio = new Portfolio(book, marketData);
+
+    public void setBook(String symbol, Integer quantity) {
+        book.add(new NumberOfStocks(fromSymbol(symbol), quantity));
+    }
+
+    public void setMarketDataPrice(String symbol, String price) {
+        marketData.add(fromSymbol(symbol), new Money(price));
+    }
+
+    public String getTotalPortfolioValue() {
+        return portfolio.value().toString();
+    }
+
+}
+~~~~~~~
+
+The previous test mocked out the valuation component whereas this test uses a real version which collaborates with the customer's `Book` and the external `Market Data` component. Given test doubles for these components, we can setup stocks on a customer book along with corresponding prices in this fixture and verify different scenarios using differing HTML specifications.
+
+![](images/part2/design.md/test-portfolio-valuation-calculation-specification-result.png)
 
 
 
@@ -386,16 +434,6 @@ We're using JMock to implement our test double and simply verify that an object 
 
 IGNORE FROM HERE
 ------
-
-
-
-### Test 3 - Portfolio's JSON/HTTP adapter test
-
-When the `Portfolio` HTTP adapter receives a specific message, we expect a specific interaction with the `Portfolio` component. We're verifying the transport layer (JSON/HTTP) is translated into our business API.
-
-![](images/part2/design.md/test-portfolio-valuation.png)
-
-For example, if the business API was a series of Java method calls, we could set the interaction up as a expectation on a mock version of the business interface. The HTTP adapter might be a RESTful server which collaborates with this business interface directly (in which case we'd inject the mock). We're testing that a JSON over HTTP message turns into a Java message.
 
 
 
