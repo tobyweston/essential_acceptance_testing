@@ -331,9 +331,9 @@ Once we're satisfied about the communication between UI and `Portfolio`, we can 
 
 ![](images/part2/design.md/test-portfolio-valuation.png)
 
-An important point to make right off the bat is that these tests will assume that the RESTful infrastructure is or will be tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes).
+An important point to make right off the bat is that these tests will assume that the RESTful infrastructure is, or will be, tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests.
 
-In concrete Java terms, you can think of this as not testing a JEE container's servlet configuration but instead testing a `Servlet` directly. We assume the web containers work and thin slices of configuration will be tested in subsequent tests (see later). Starting up a full container for multiple business scenarios can be wasteful when they exercise the same infrastructure scenarios again and again.
+In Java terms, you can think of this as not testing the servlet container's configuration but instead testing the `Servlet` directly. We assume the web container works and that thin slices of configuration will be tested in subsequent tests. Starting up a full container for multiple business scenarios can be wasteful when they exercise the same infrastructure scenarios again and again.
 
 
 
@@ -359,19 +359,19 @@ public class PortfolioValuationTest {
 
     public boolean verifyValuationResponse() {
         context.checking(new Expectations() {{
-            oneOf(valuation).value(); will(returnValue(new Money("100000.00")));
+            oneOf(valuation).value(); will(returnValue(new Money("1000.00")));
         }});
 
         Response response = portfolio.value(null);
-        assertThat(response.entity().toString(), is("100000.00"));
+        assertThat(response.entity().toString(), is("1000.00"));
         return true;
     }
 }
 ~~~~~~~
 
-The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) (HTTP) server. Either way, we're not interested in testing these frameworks or their configuration in these tests.
+The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) HTTP server. Either way, we're not interested in testing these frameworks or their configuration.
 
-We're use JMock to implement our test double and simply verify that an object responsible for valuing a portfolio (`valuation`) is accessed and it's monetary return type is bundled in the HTTP `response` body. This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
+We're using JMock to implement our test double and simply verify that an object responsible for valuing a portfolio (`valuation`) is accessed and it's monetary return type is bundled in the HTTP `response` body. This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
 
 ![](images/part2/design.md/test-portfolio-valuation-specification-result.png)
 
