@@ -148,8 +148,8 @@ Using the decoupled ports and adapters approach to create comparable coverage, w
   * Request for portfolio value tests
 * Portfolio HTTP Adapter
   * HTTP Adapter to Java message tests
-  * Portfolio calculation tests
 * Portfolio to Market Data Port
+  * Portfolio calculation tests
   * Market Data API tests
 
 Along with more lightweight system tests
@@ -430,6 +430,44 @@ The previous test mocked out the valuation component whereas this test uses a re
 
 ### Market Data API tests
 
+These tests are concerned with the `Market Data` API. They use expectations rather than a stubs to represent the port and exercise the port, not how the results from the port are used (like in the previous tests). They give the opportunity to document how the interaction works.
+
+![](images/part2/design.md/test-market-data.png)
+
+
+#### Example
+
+{title="Example 7: Test fixture market data", lang="java", line-numbers="on"}
+~~~~~~~
+@RunWith(ConcordionRunner.class)
+@ExpectedToPass
+public class MarketDataTest {
+    private final Mockery context = new JUnit4Mockery();
+
+    private final MarketData marketData = context.mock(MarketData.class);
+    private final StubBook book = new StubBook();
+    private final Portfolio portfolio = new Portfolio(book, marketData);
+
+    public MultiValueResult verifySymbolCheckedWas(final String firstSymbol, final String secondSymbol) {
+        book.add(fromSymbol(firstSymbol)).add(fromSymbol(secondSymbol));
+        context.checking(new Expectations() {{
+            oneOf(marketData).getPrice(fromSymbol(firstSymbol));
+                will(returnValue(new Money(100)));
+            oneOf(marketData).getPrice(fromSymbol(secondSymbol));
+                will(returnValue(new Money(200)));
+        }});
+        portfolio.value();
+        context.assertIsSatisfied();
+        return multiValueResult()
+            .with("firstSymbol", firstSymbol)
+            .with("secondSymbol", secondSymbol);
+    }
+}
+~~~~~~~
+
+![](images/part2/design.md/test-market-data-specification-result.png)
+
+
 
 
 IGNORE FROM HERE
@@ -437,14 +475,10 @@ IGNORE FROM HERE
 
 
 
-### Test 4 - A test against our market data API
+## Thin slice of end-to-end
 
-Testing our implementation of the `Market Data` port. When the `Portfolio` asks `Market Data` for the current price, it'll go and get it from the Market Data port; I'll ask Market Data for the current price of stock for today's date. Expectation rather than a stub.
-
-Java (API) to Java (API).
-
-![](images/part2/design.md/test-market-data.png)
-
+* Fewer, more focused end-to-end (system) tests
+* Tests against real (Yahoo) Market Data
 
 ### Test 5 - A test against Yahoo
 
@@ -454,22 +488,10 @@ Can't mock it because we're using real Yahoo. If Yahoo change their API, the tes
 
 *is this an integration test? GOOS says if you don't own it, it's not an integrationn test.
 
-
-
-
-
-
-
 ### A note on integration tests
 
 We've verified that we make the right API calls to Yahoo but some combination of tests may want to use a fake Yahoo. You'll still be using the Yahoo adapter but talking to a different service (which you own, for example, a running HTTP server with canned responses). When you get into this situation, you'll want to run a test now and again to verify your fake and real Yahoo services are in sync.
 
-
-
-## Thin slice of end-to-end
-
-* Fewer, more focused end-to-end (system) tests
-* Tests against real (Yahoo) Market Data
 
 ## Benefits using ports and adapters
 
