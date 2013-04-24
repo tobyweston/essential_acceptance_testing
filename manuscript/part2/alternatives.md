@@ -77,11 +77,18 @@ If you can deliver features quickly enough and cheaply enough, you can agree beh
 It's a difficult technique to pull off though as it presupposes that the stories have demonstrable value and can be small enough to deliver cheaply. In some domains it may just not be possible to deliver "work in progress" if it isn't technically correct. Finance applications for example may not be able to tolerate imprecise calculations. Domains may also be constrained by regulatory requirements.
 
 
-## Measure don't agree
+## Measure, don't agree
 
-Arguably the most important success criteria is if a feature directly affects your revenue. If a deployed feature is making or saving you money, it's a success. You may get additional feedback by virtue of being in a live environment. If you can move away from agreeing acceptance criteria and defining acceptance tests upfront towards understanding how features affect key business metrics, you can start to measure these and use them to course correct. This fits nicely into the plan, do, check, adjust cycle.
+Arguably the most important success criterion is whether a feature directly affects your revenue. If a deployed feature is making or saving you money, it's a success. You may get additional feedback by deploying often to a live environment. If you can move away from agreeing acceptance criteria and defining acceptance tests upfront towards understanding how features affect key business metrics, you can start to measure these and use them to course correct.
+
+William Deming popularised the ideas of solving problems using a critical thinking framework based on Walter Shewhart's work on statistical process control at Bell Labs in the 1930's. The Shewhart Cycle, later known as the Plan Do Check Adjust (or Act) Cycle emphasises continuous improvement based on careful planning, execution, reflection and adjustments. If you can gather meaningful statistics about deployed features, you can start to apply Deming's principles and act (or adjust) based on the measurements. The aim is to take speculation out of it and make genuinely informed decisions.
+
 
 ![Identifying business metrics inputs directly into the check step of Deming's PDCA cycle](images/part2/alternatives.md/pdca.png)
+
+A trivial example might be to gather information about how much a partially complete feature is actually being used. If there's no uptake after a few days in production, you'll have more information to go on when deciding to continue work on the feature. Taking it further, if you then realise the partial feature is actually costing more money that it's generating, you might make the call to drop it.
+
+In short, start measuring meaningful indicators and show the business. Rather than agree with the business what _might_ be valuable upfront, prove to them what _is_ valuable against production.
 
 
 
