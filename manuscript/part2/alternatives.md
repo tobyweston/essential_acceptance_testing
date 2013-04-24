@@ -5,7 +5,7 @@
 
 There's always the option not to write acceptance tests.
 
-If you genuinely don't have a customer or if you are your own customer, it's worth thinking carefully about whether there's value in following the story delivery lifecycle described in [Part 1](#[part1).
+If you genuinely don't have a customer or if you are your own customer, it's worth thinking carefully about whether there's value in following the story delivery lifecycle in full.
 
 A big part of acceptance testing is ensuring you achieve what the customer intended. The customer is the audience and acceptance tests aim to give them confidence. Without a business customer, testing is more about supporting the development team and is typically technology focused. Brian Marick developed these ideas back in 2003 in a [series of posts](http://www.exampler.com/old-blog/2003/08/21/#agile-testing-project-1) where he discussed tests in terms of their position along two axis; if they support the development team or critique the product (the x axis) and if they're more technology focused or customer facing (the y axis).
 
@@ -15,7 +15,7 @@ In Brian Marick's testing matrix, testing focus tends to shift from the upper to
 
 You may shift emphasis onto coarse grained style testing, exercising large parts of the system with scenarios driven out by the development team and not the business. You can think of this as component testing if it helps. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours.
 
- The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision to not go through the steps in Part 1. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write.
+ The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision about defining acceptance criteria upfront. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write.
 
  Something like the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp) may be a useful guide.
 
