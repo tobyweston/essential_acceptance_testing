@@ -54,13 +54,16 @@ The assertion against the portfolio value is wrapped to poll the UI periodically
 A> ##Page driver pattern {#page-driver-pattern-aside}
 A>
 A> Abstracting the business intent from the UI mechanics means that UI "driver" code isn't coupled to a specific UI. If done carefully, switching the UI would mean just implementing a new adapter. Notice how in the above we avoided the following.
+A>
 A> {:lang="java"}
 A> ~~~~~~~~
 A> ui.navigateToLandingPage()
 A>   .setNumberOfSharesTextBoxTo(100)
 A>   .clickRequestValuationButton();
 A> ~~~~~~~~
+A>
 A> and used the following instead.
+A>
 A> {:lang="java"}
 A> ~~~~~~~~
 A> ui.navigateToLandingPage().requestValuationForShares(100);
