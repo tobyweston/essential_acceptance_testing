@@ -15,9 +15,9 @@ In Brian Marick's testing matrix, testing focus tends to shift from the upper to
 
 You may shift emphasis onto coarse grained style testing, exercising large parts of the system with scenarios driven out by the development team and not the business. You can think of this as component testing if it helps. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours.
 
- The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision about defining acceptance criteria upfront. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write.
+The key to this point is that you should understand if you really need to write customer focused, business facing tests. You can then make a deliberate decision about defining acceptance criteria upfront. You'll understand where to spend effort in terms of the testing matrix above and can make decisions about the types of test to write.
 
- Something like the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp) may be a useful guide.
+Another way to visualise your testing is to use consider where your tests fit in terms of the testing pyramid developed by Mike Cohn in [Succeeding in Agile](http://amzn.to/YnXRdp). Cohen suggests a balance of testing types; write fewer tests that exercise the UI than tests that exercise core services (behaviours) and components (unit tests). This is just one approach though and not gospel. It's certainly possible to invert the triangle and still have an effective testing strategy (we touched on this in the previous [overview section](#process-overview)).
 
 ![The testing triangle; fewer tests exist that exercise the UI than core services (behaviours) and components (units)](images/part2/alternatives.md/test-pyramid.png)
 
