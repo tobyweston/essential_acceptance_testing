@@ -3,11 +3,13 @@
 | Version           | Notes                                                                                                   |
 |-------------------|---------------------------------------------------------------------------------------------------------|
 | 2013-02-17        | First published                                                                                         |
+|                   |                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------|
 | 2012-02-22        | Minor grammatical changes to the [Introduction](#introduction) section.                                 |
 |                   |                                                                                                         |
 |                   | [Process overview](#process-overview) section is no longer prefixed as unfinished. It's still likely to |
 |                   | change but it more or less complete. Added to the sample PDF.                                           |
+|                   |                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------|
 | 2013-03-04        | Removed examples section, I'm aiming to complete this later and put it back in.                         |
 |                   |                                                                                                         |
@@ -16,6 +18,8 @@
 |                   | OK. Feel free to comment in the mean time on the comments section of the Leanpub page.                  |
 |                   |                                                                                                         |
 |                   | Extended the story delivery lifecycle to include a 'deliver' step. Lots of spelling and grammar tweaks. |
+|                   |                                                                                                         |
+|                   | Currently 39 pages (7,956 words) long.                                                                  |
 |                   |                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------|
 | 2013-xx-xx        | Added the suggestion to use an hexagonal architecture to the [Alternatives](#alternatives) section.     |
@@ -29,4 +33,6 @@
 |                   | Pulled out a lot of the asides in this section, will find a home for them at a later point.             |
 |                   |                                                                                                         |
 |                   | Various spelling and grammar tweaks.                                                                    |
+|                   |                                                                                                         |
+|                   | Currently xx pages (xxx words) long.                                                                  |
 |                   |                                                                                                         |
