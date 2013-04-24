@@ -70,11 +70,11 @@ This is a slightly simplified description, for an expanded example, see the [How
 
 ## Don't specify
 
-We've talked a lot about specifying upfront but defining a specification upfront, albeit incrementally, is still a form of upfront design. It's an improvement over traditional waterfall "big upfront design" but it may be an option to eliminate it all together.
+We've talked about specifying upfront but defining a specification upfront, albeit incrementally, is still a form of upfront design and has an inherent cost associated with it. It's an improvement over traditional waterfall "big upfront design" but it may be that you're able to eliminate it all together.
 
-If you can deliver features quickly enough and cheaply enough, you can agree behaviour with the customer against the deployed, live features. To do this effectively, it makes sense to have very small requirements or stories and to be talking to the business constantly. You should expect to deploy several iterations of features before getting it right. Google have apparently practiced these ideas by deploying experimental features to a subset of their environment to gather feedback.
+If you can deliver features quickly enough and cheaply enough, you can agree behaviour with the customer against the deployed, live features. To do this effectively, it makes sense to have very small requirements or stories and to be talking to the business constantly. You should expect to deploy several iterations of a feature before getting it right and so it may not be appropriate for all businesses. Google practice these ideas by deploying experimental features to a subset of their environment to gather feedback.
 
-It's difficult though as it presupposes that the stories have demonstrable value and can be small enough to deliver cheaply. In some domains it may just not be possible to deliver "work in progress" that isn't quite technically correct. Finance applications for example may not be able to tolerate incorrect calculations. Domains may also be constrained by regulatory requirements.
+It's a difficult technique to pull off though as it presupposes that the stories have demonstrable value and can be small enough to deliver cheaply. In some domains it may just not be possible to deliver "work in progress" if it isn't technically correct. Finance applications for example may not be able to tolerate imprecise calculations. Domains may also be constrained by regulatory requirements.
 
 
 ## Measure don't agree
