@@ -92,13 +92,17 @@ In short, start measuring meaningful indicators and show the business. Rather th
 
 
 
-## Log don't specify
+## Log, don't specify
 
-In the typical process, specification is done upfront. The acceptance criteria is agreed and formalised in an acceptance test that remains unimplemented. Stakeholders get together to agree these artifacts and then development gets underway. When done, everyone gets together and confirms that the tests verify the criteria (through demos and reviewing the acceptance tests). If the formalising acceptance criteria step becomes onerous, you can drop this in favour of a more lightweight approach.
+As described in [Part 1](#part1), when agreeing acceptance criteria, stakeholders get together to agree the specification and then development gets underway. When done, everyone gets together and confirms that the tests verify the criteria.
 
-Matt Savage coined the phrase "log don't specify" to capture the idea of writing acceptance tests in such a way as to capture and communicating key events during a test but without specifying these upfront. Using typical specification frameworks like Concordion or FIT, HTML "specifications" document important events, inputs and outputs of a test. The HTML is then instrumented and run with the framework to produce styled HTML artifacts indicating success or failure. These are the kind of artifacts you can share with business to verify requirements and document system behaviour. There's usually an setup cost in authoring then instrumenting these artifacts.
+Using traditional specification frameworks like Concordion or FIT, HTML "specifications" document important events, inputs and outputs of a test. The HTML is then instrumented and run with the framework to produce styled HTML artifacts indicating success or failure. These are the kind of artifacts you can share with business to verify requirements and document system behaviour. There's usually a setup cost in authoring then instrumenting these artifacts.
 
-You can flip this on its head if you skip the specification step and instrument your test code directly to document behaviour as it executes. The [Yatspec](http://code.google.com/p/yatspec/) framework does this when writing Java tests. It's aim is to reduce the cost of specification upfront but replaces this with constraints in the way you write the tests. You're forced to write test code adhering to certain conventions to be able to log events as they happen. This has a cost in itself as the natural language structure it requires may not come easily for all test problems. The theory though is that this instrumentation cost is lower than, for example, Concordion's upfront costs. That's something you'll have to judge for yourself however.
+You can flip this on its head if you skip the specification step and instrument your test code directly to document behaviour as it executes. Matt Savage coined the phrase "log, don't specify" to capture the idea of writing acceptance tests in such a way as to capture and communicate key events during a test but without specifying an upfront "specification". The idea is to use a more lightweight approach when the upfront formalisation of acceptance criteria becomes too onerous.
+
+The [Yatspec](http://code.google.com/p/yatspec/) framework does this for the Java community. It logs events in HTML as they happen based on conventions and constraints to the way you write your tests. This has a cost in itself as the natural language structure it requires may not come easily for all test problems. The theory though is that this instrumentation cost is lower than, for example, Concordion's upfront costs. That's something you'll have to judge for yourself however.
+
+
 
 ![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/part2/alternatives.md/yatspec-example.png)
 
