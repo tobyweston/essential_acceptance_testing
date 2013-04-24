@@ -5,9 +5,11 @@
 
 There's always the option not to write acceptance tests.
 
-If you genuinely don't have a customer or if you are your own customer, it's worth thinking carefully about whether there is value in going through the steps described in [Part 1](#[part1).
+If you genuinely don't have a customer or if you are your own customer, it's worth thinking carefully about whether there's value in following the story delivery lifecycle described in [Part 1](#[part1).
 
-A big part of acceptance testing is ensuring you achieve what the customer intended. The customer is the audience and acceptance tests aim to give them confidence. Without that audience, testing confidence is more about supporting the development team and is typically technology focused. In Brian Marick's testing matrix, testing focus tends to shift from the upper to lower quadrants when you don't have a customer.
+A big part of acceptance testing is ensuring you achieve what the customer intended. The customer is the audience and acceptance tests aim to give them confidence. Without a business customer, testing confidence is more about supporting the development team and is typically technology focused. Brian Marick developed these ideas back in 2003 in a [series of posts](http://www.exampler.com/old-blog/2003/08/21/#agile-testing-project-1) where he discusses tests in terms of their position along two axis; from technology focused to customer facing (the y axis) and if they aim to support the development team or critique the product (the x axis).
+
+In Brian Marick's testing matrix, testing focus tends to shift from the upper to lower quadrants when you don't have a customer.
 
 ![Brian Marick's testing matrix](images/part2/alternatives.md//testing-matrix.png)
 
