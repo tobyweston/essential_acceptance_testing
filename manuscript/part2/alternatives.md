@@ -25,11 +25,11 @@ Another way to visualise your testing is to use consider where your tests fit in
 
 ## Use a hexagonal architecture {#use-a-hexagonal-architecture}
 
-The traditional view of acceptance tests is that they are heavy weight, long running and coarse grained. This is because typically, they test multiple components, often repeatedly across scenarios. They'll often exercise the UI and database.
+The traditional view of acceptance tests is that they are heavy weight, long running and coarse grained. This is because they usually test multiple components, often repeatedly over different scenarios. They'll often exercise the UI and database and start up the full stack.
 
 Alistair Cockburn's [Hexagonal](http://alistair.cockburn.us/Hexagonal+architecture) or _ports and adapters_ architecture talks about decoupling these components to provide a lightweight alternative. When you decompose to components that can be tested independently, you can be more flexible about composing test scenarios. That way, scenarios no longer have to contain repeated fragments.
 
-Cockburn's canonical example talks about decoupling the database and/or UI so that the core system can be tested with or without these components. Have a look at the [How testing can influence design](#how-testing-can-influence-design) section for a more in-depth look.
+Cockburn's canonical example talks about decoupling the database and/or UI so that the core system can be tested with or without these components. You can apply the principle to a much finer degree however if you build you're application in such a way as to clearly demarcate component boundaries and allow alternate components to be be plugged in at these boundaries.
 
 In order to replace a long running traditional style acceptance test with an equivalent ports and adapters style test, you need to overlap tests to replicate the coverage. For example, lets assume we need to verify the following;
 
@@ -39,30 +39,32 @@ There's essentially three components here, the UI, the business logic components
 
 ![](images/part2/alternatives.md/typical-acceptance-test.png)
 
-We don't need to interact with all of these at once to verify the statement above. Instead, we can verify the following.
+We don't need to interact with all of these at once to verify the statement above. Instead, we can verify the following in separate tests with overlapping concerns.
 
  1. When we ask for the portfolio value in the UI, a specific message is sent to the domain model.
 
 	The response from the domain model updates a specific field on the UI appropriately
 
-    The shaded circle represents a test double; a stub or mock that we use in place of a real component.
+    We can test the UI independently by using a test double for the domain model; a stub or mock that we use in place of a real component. The test double is represented as a shaded circle below.
 
 	![](images/part2/alternatives.md/ports-and-adapters-1.png)
 
 
- 1. When the domain model receives the message from the previous test, it calls out to a market data service (for stock prices).
+ 1. When the domain model receives a message from the UI, it calls out to a market data service (for stock prices).
 
 	The response from the market data service is returned to the client in the agreed message format.
 
+    Again, we can test the domain model without the real market data service using a test double.
+
 	![](images/part2/alternatives.md/ports-and-adapters-2.png)
 
- 1. An integration test may also be need to verify that the domain model's message makes the correct call to a real Yahoo service, verifying that the previous test is actually representative.
+ 1. An integration test is also needed to verify that the domain model's message makes the correct call to a real Yahoo service, verifying that the previous test is actually representative.
 
-These verifications overlap each other to address to aggregated verification, they just do it in a series of steps rather than in one big go. Putting it all together it would look like the following. The dashed lines show how tests need to overlap to provide completeness. Shaded circles are fake components, unfilled circles are real components or services.
+These verifications overlap each other to verify the overall behaviour in a series of steps rather than in one big go. Putting it all together it would look like the following. The dashed lines show how tests need to overlap to provide completeness. Shaded circles are fake components, unfilled circles are real components or services.
 
 ![](images/part2/alternatives.md/ports-and-adapters-combined.png)
 
-This is a slightly simplified description, for an expanded example, see the [Ports and adapters](#ports-and-adapters) section.
+This is a slightly simplified description, for an expanded example, see the [How testing can influence design](#design) section.
 
 
 
