@@ -11,7 +11,7 @@ A big part of acceptance testing is ensuring you achieve what the customer inten
 
 In Brian Marick's testing matrix, testing focus tends to shift from the upper to lower quadrants when you don't have a customer.
 
-![Brian Marick's testing matrix](images/part2/alternatives.md//testing-matrix.png)k
+![Brian Marick's testing matrix](images/part2/alternatives.md//testing-matrix.png)
 
 You may shift emphasis onto coarse grained style testing, exercising large parts of the system with scenarios driven out by the development team and not the business. You can think of this as component testing if it helps. Test whatever you feel needs testing. Start the stack up, drive the application through it's UI or test multiple components using a ports and adapters style. The choice is yours.
 
