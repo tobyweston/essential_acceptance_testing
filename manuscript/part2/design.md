@@ -1,17 +1,20 @@
 # How testing can influence design {#design}
 
-If we decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This section describes the ports and adapters approach when applied to testing. Code samples are in Java. Sorry.
-
+How you design your architecture will directly affect how easy your application is to test. If you decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This section describes how a ports and adapters style architecture can make testing easier and more efficient.
 
 ## Example problem
 
-Lets imagine an investment portfolio system concerned with helping customers manage their stock investments. The acceptance criteria for the next piece of work is as follows.
+Lets imagine a system concerned with helping customers manage their stock portfolio. It displays details about stocks owned and and allows the customer to buy and sell directly with an exchange. The system is made up of a browser based UI and a RESTful backend server. The backend uses a market data service provided by Yahoo to retrieve stock prices and would connect to an exchange to execute trades. This section uses a sample Java application and tests available [online](https://github.com/tobyweston/essential_acceptance_testing_code) to demonstrate the ideas.
 
-> "As a retail customer, when I ask for my portfolio's value, today's stock price is retrieved from the market, multiplied by the number of stocks I own and the total is displayed."
+One important design aspect of the sample application to understand is that the UI is a separate app from the RESTful server. The UI is a deployable HTTP server in it's own right. It mostly serves static HTML so you can think of it like an Apache server. The RESTful backend is also a HTTP server that performs the business logic and is called by the UI. This separation decouples the UI logic from business logic and allows us to develop the two independently and potentially with differing technologies.
 
-The system is composed of a web front end (UI), server side component accessed via HTTP (the back-end) and a market data service provided by Yahoo. An example application along with corresponding tests is available on [Github](https://github.com/tobyweston/essential_acceptance_testing_code).
+Currently, only basic information is displayed about a customer's stocks so stakeholders have decided on the next piece of work and have described it as follows.
 
-A mock up of the UI for the next piece of work might look something like this.
+> "As a retail customer, when I ask for my portfolio's value, today's stock prices are retrieved from the market and the total valuation of my stocks is calculated and displayed."
+
+In further discussion, the stakeholder clarifies that the calculation is done by multiplying a stock's current price by the quantity that the user holds. If the user holds 10,000 Google shares, each worth $810 each then their portfolio would be worth $8.1m.
+
+A mock up of the UI might look something like this.
 
 ![](images/part2/design.md/ui-mock-up.png)
 
