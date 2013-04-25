@@ -23,7 +23,7 @@ Another way to visualise your testing is to use consider where your tests fit in
 
 
 
-## Use a hexagonal architecture {#use-a-hexagonal-architecture}
+## Use a ports and adapters architecture
 
 The traditional view of acceptance tests is that they are heavy weight, long running and coarse grained. This is because they usually test multiple components, often repeatedly over different scenarios. They'll often exercise the UI and database and start up the full stack.
 
@@ -77,6 +77,7 @@ If you can deliver features quickly enough and cheaply enough, you can agree beh
 It's a difficult technique to pull off though as it presupposes that the stories have demonstrable value and can be small enough to deliver cheaply. In some domains it may just not be possible to deliver "work in progress" if it isn't technically correct. Finance applications for example may not be able to tolerate imprecise calculations. Domains may also be constrained by regulatory requirements.
 
 
+
 ## Measure, don't agree
 
 Arguably the most important success criterion is whether a feature directly affects your revenue. If a deployed feature is making or saving you money, it's a success. You may get additional feedback by deploying often to a live environment. If you can move away from agreeing acceptance criteria and defining acceptance tests upfront towards understanding how features affect key business metrics, you can start to measure these and use them to course correct.
@@ -101,7 +102,6 @@ Using traditional specification frameworks like Concordion or FIT, HTML "specifi
 You can flip this on its head if you skip the specification step and instrument your test code directly to document behaviour as it executes. Matt Savage coined the phrase "log, don't specify" to capture the idea of writing acceptance tests in such a way as to capture and communicate key events during a test but without specifying an upfront "specification". The idea is to use a more lightweight approach when the upfront formalisation of acceptance criteria becomes too onerous.
 
 The [Yatspec](http://code.google.com/p/yatspec/) framework does this for the Java community. It logs events in HTML as they happen based on conventions and constraints to the way you write your tests. This has a cost in itself as the natural language structure it requires may not come easily for all test problems. The theory though is that this instrumentation cost is lower than, for example, Concordion's upfront costs. That's something you'll have to judge for yourself however.
-
 
 
 ![Example of Yatspec output documenting system behaviour. The test code logs runtime behaviour](images/part2/alternatives.md/yatspec-example.png)
