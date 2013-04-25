@@ -1,20 +1,20 @@
 # How testing can influence design {#design}
 
-How you design your architecture will directly affect how easy your application is to test. If you decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This section describes how a ports and adapters style architecture can make testing easier and more efficient.
+How you design your architecture will directly affect how easy your application is to test. If you decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters architecture can make testing easier and more efficient using the sample Java application available [online](https://github.com/tobyweston/essential_acceptance_testing_code).
 
-## Example problem
+## Sample application
 
-Lets imagine a system concerned with helping customers manage their stock portfolio. It displays details about stocks owned and and allows the customer to buy and sell directly with an exchange. The system is made up of a browser based UI and a RESTful backend server. The backend uses a market data service provided by Yahoo to retrieve stock prices and would connect to an exchange to execute trades. This section uses a sample Java application and tests available [online](https://github.com/tobyweston/essential_acceptance_testing_code) to demonstrate the ideas.
+Lets imagine a system concerned with helping customers manage their stock portfolio. It displays details about stocks owned and and allows the customer to buy and sell directly with an exchange. The system is made up of a browser based UI and a RESTful backend server. The backend uses a market data service provided by Yahoo to retrieve stock prices and connects directly to an exchange to execute trades.
 
-One important design aspect of the sample application to understand is that the UI is a separate app from the RESTful server. The UI is a deployable HTTP server in it's own right. It mostly serves static HTML so you can think of it like an Apache server. The RESTful backend is also a HTTP server that performs the business logic and is called by the UI. This separation decouples the UI logic from business logic and allows us to develop the two independently and potentially with differing technologies.
+One important aspect of the sample application to understand is that the UI is a separate app from the RESTful server. The UI is a deployable HTTP server in it's own right. It mostly serves static HTML so you can think of it like an Apache server. The RESTful backend is also a HTTP server but this one performs the business logic and is called by the UI. This separation decouples the UI logic from the business logic and allows us to develop the two independently and potentially with differing technologies.
 
 Currently, only basic information is displayed about a customer's stocks so stakeholders have decided on the next piece of work and have described it as follows.
 
-> "As a retail customer, when I ask for my portfolio's value, today's stock prices are retrieved from the market and the total valuation of my stocks is calculated and displayed."
+> "As a retail customer, when I ask for my portfolio's value, current stock prices are retrieved from the market and the total value of my stocks is calculated and displayed."
 
 In further discussion, the stakeholder clarifies that the calculation is done by multiplying a stock's current price by the quantity that the user holds. If the user holds 10,000 Google shares, each worth $810 each then their portfolio would be worth $8.1m.
 
-A mock up of the UI might look something like this.
+A mock up of the proposed UI might look something like this.
 
 ![](images/part2/design.md/ui-mock-up.png)
 
