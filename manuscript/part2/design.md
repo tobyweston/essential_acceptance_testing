@@ -22,11 +22,11 @@ A mock up of the proposed UI might look something like this.
 
 ## Coupled architecture
 
-If the system is built with these components tightly coupled, pretty much the only way to test the scenario is as a coarse grained system test. In our [example application](https://github.com/tobyweston/essential_acceptance_testing_code), we could test against real Yahoo with something like this.
+If a system is built with components tightly coupled, pretty much the only way to test a scenario is with a coarse grained system test. In our [example application](https://github.com/tobyweston/essential_acceptance_testing_code), we could test against real Yahoo with something like this.
 
 {title="Example 1: Coarse grained test starting up the full stack", lang="java", line-numbers="on"}
 ~~~~~~~
-public static class PortfolioSystemTestWithRealYahoo {
+public class PortfolioSystemTestWithRealYahoo {
     private final Server application = Fixture.applicationWithRealYahoo();
     private final LandingPage ui = new LandingPage();
 
@@ -50,9 +50,9 @@ public static class PortfolioSystemTestWithRealYahoo {
 }
 ~~~~~~~
 
-It's a very naive test as it relies on Yahoo being up and returning the expected result. It starts up the entire application in the `@Before` which in turn starts up the web container, initialises the UI and market data components. The browser is then fired up and "driven" (by `LandingPage`) to simulate the user's interaction and the result is scraped.
+It exercises all of the components but it's naive as it relies on Yahoo being up and returning the expected result. It starts up the entire application in the `@Before` which in turn starts up the web container, initialises the UI and market data components. The browser is then fired up and used to simulate the user's interaction (line 12). The result is scraped directly from the browser (line 13).
 
-The assertion against the portfolio value is wrapped to poll the UI periodically because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service without a service level agreement.
+The assertion that the scraped result is as expected is wrapped in a call to poll the UI periodically (with the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It's another error prone aspect to this test.
 
 A> ##Page driver pattern {#page-driver-pattern-aside}
 A>
@@ -74,11 +74,11 @@ A> ~~~~~~~~
 A> You can see in this way, the UI test code is just another example of a port (the UI driver interface) and it's adapters.
 A>
 
-We can improve on this test slightly by faking out Yahoo and forcing it to return a caned response (a price of `200.10` for each request).
+We can improve on this test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request).
 
 {title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
 ~~~~~~~
-public static class PortfolioSystemTestWithFakeYahoo {
+public class PortfolioSystemTestWithFakeYahoo {
     private final Server application = Fixture.applicationWithRealYahoo();
     private final FakeYahoo fakeYahoo = new FakeYahoo();
     private final LandingPage ui = new LandingPage();
