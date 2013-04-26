@@ -228,20 +228,20 @@ dl.index-result {
 </head>
 <body>
 
-<h1>Low Exercise Price Option (LEPO) acceptance test</h1>
+<h1>Portfolio Valuation Display Acceptance Test</h1>
 
 <div class="contents">
     <h2>Contents</h2>
 
     <ul class="contents">
 
-            <li class='test-passed'>Scenario 1: <a href="#lowExercisePriceOptionIsEnriched">LEPO is enriched with details from trading</a></li>
+            <li class='test-passed'>Scenario 1: <a href="#lowExercisePriceOptionIsEnriched">Portfolio value is displayed with commas for large numbers</a></li>
         
-            <li class='test-passed'>Scenario 2: <a href="#swapCanBeMappedToTradeGatewayPayload">Swap can be mapped to risk system XML payload</a></li>
+            <li class='test-passed'>Scenario 2: <a href="#swapCanBeMappedToTradeGatewayPayload">Portfolio valuae is displayed as rounded</a></li>
         
-            <li class='test-passed'>Scenario 3: <a href="#lowExercisePriceOptionIssuedByLondonBranch">LEPO issued by london branch</a></li>
+            <li class='test-passed'>Scenario 3: <a href="#lowExercisePriceOptionIssuedByLondonBranch">Negative values are displayed in red</a></li>
         
-            <li class='test-passed'>Scenario 4: <a href="#lowExercisePriceOptionIssuedByInternationalBranch">LEPO issued by international branch</a></li>
+            <li class='test-passed'>Scenario 4: <a href="#lowExercisePriceOptionIssuedByInternationalBranch">Informational text is displayed on error</a></li>
         
     </ul>
 </div>
@@ -250,7 +250,7 @@ dl.index-result {
         <div class="testmethod">
 
         <a id="lowExercisePriceOptionIsEnriched"></a>
-        <h2>Scenario 1: LEPO is enriched with details from trading</h2>
+        <h2>Scenario 1: Portfolio value is displayed with commas for large numbers</h2>
 
             
 
@@ -259,9 +259,10 @@ dl.index-result {
                     <a id=""></a>
                     <h2>Specification</h2>
                     <pre class="highlight specification">
-Given any product exists with basic features and the product is issued by LONDON BRANCH
-When a Low Exercise Price Option (LEPO)  is created based on the product
-Then the swap is enriched with expected enrichments</pre>
+Given a portfolio value of <code>10500.988</code>
+When a user refreshes the portfolio page
+Then the portfolio value is requested and displayed on the UI as <code>10,500.99</code>
+</pre>
                     <h2>Test results:</h2>
 
 
