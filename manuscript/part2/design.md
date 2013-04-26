@@ -162,24 +162,27 @@ Along with more lightweight system tests
 Lets have a closer look at each of these next. You can also refer to the source code of the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code) for more details.
 
 
+
 ### Portfolio value display tests
 
-These tests are concerned with the display of the portfolio's valuation in the UI. When a user requests the current value in the UI, we'd like to be able to make assertions without having to test the backend. We'll focus on the real UI and the `Portfolio` port.
+Tests in this group are concerned with the display of the portfolio's valuation in the UI. For example, we may want to test that currencies are displayed, rounding occurs, commas are displayed in large numbers, negative numbers show up in red or informational text is displayed in the event that no value is available.
+
+These tests start with the user asking for the current value in the UI but we'd like to be able to make assertions without having to go through the backend. We'll need a real UI but the tests should work with the Portfolio's port.
 
 ![](images/part2/design.md/test-ui-only.png)
 
-The UI makes a HTTP `GET` call to the `Portfolio` server. It's implemented in terms of a JQuery ajax call inside a HTML page. In testing however, we'd prefer to use a test double and therefore just test that the UI displays whatever the port returns correctly. Specifically then, we'd
+The UI makes a HTTP `GET` call to the Portfolio server. It's implemented by a JQuery ajax call inside a HTML page. In testing however, we'd prefer to use a test double to replace the Portfolio and therefore just test that the UI correctly displays whatever the port returns. Specifically then, we'd
 
-* Start up the web UI
-* Setup a fake `Portfolio` server with a canned response against specific HTTP GET calls
+* Start up the web UI server (remember this is like an Apache server serving static HTML)
+* Setup a fake Portfolio server with a canned response against specific HTTP GET calls
 * Use the UI to click the 'request valuation' button
 * Verify the canned response is displayed as intended within the UI
 
-For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `$10,500.99`. This exercises the UI logic to round the result, introduce commas and add a currency symbol. Other scenarios might include showing negative values in red or displaying alternate text when a value is unavailable.
+For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `$10,500.99`. This exercises the UI logic to round the result, introduce commas and add a currency symbol.
 
-Note that the request itself is not verified (how it actually interacted with the `Portfolio`'s port). This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request technicalities.
+Note that how the request actually interacts with the Portfolio port would not be verified. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request details. If we didn't do this, any changes to the request API would cause changes to this test even though it's only about display logic.
 
-In these tests, we fake out the server (application) component so that the UI uses it's JQuery implementation to make a a real HTTP requests. An alternative approach would be to front the JQuery call behind our own JavaScript interface (port) and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
+In this test, we'd fake out the server component and the UI would use JQuery to make a real HTTP request. An alternative approach would be to front the JQuery call behind our own JavaScript interface (port) and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
 
 
 
