@@ -113,7 +113,7 @@ Both tests exercise the happy path through the entire system. If we want to chec
 
 ![Multiple coarse grained tests repeatedly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-repeating.png)
 
-This is something James likens to taking a car out for a test drive.
+On the surface, we're testing different behaviours but we're actually exercising the same code over and over again. It's something James likens to taking a car out for a test drive.
 
 > "Imagine purchasing a new car and taking it out for a test drive. When you return to the showroom, the car has performed flawlessly but just to be sure you take it out again, this time with the windows down. Then again with the glove compartment open. Then again with the seats fully reclined.
 >
