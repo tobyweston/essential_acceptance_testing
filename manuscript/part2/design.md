@@ -117,35 +117,31 @@ On the surface, we're testing different behaviours but we're actually exercising
 
 > "Imagine purchasing a new car and taking it out for a test drive. When you return to the showroom, the car has performed flawlessly but just to be sure you take it out again, this time with the windows down. Then again with the glove compartment open. Then again with the seats fully reclined.
 >
-> You could keep on testing the car in this way but there reaches a point when the cost of evaluating the car begins to outweigh the risk of something going wrong. You have to trust that all the individual parts have been tested during manufacture and that since you have actually driven the car, it is safe to go ahead and buy it.
->
-> It's the same with software. The cost of developing and maintaining high level tests should be weighed against the uncertainty and risk of something going wrong."
+> You could keep on testing the car in this way but there comes a point when the cost of evaluating the car begins to outweigh the risk of something going wrong. It's the same with software. The cost of developing and maintaining high level tests should be weighed against the uncertainty and risk of something going wrong."
 
 
 ## Decoupled architecture using ports and adapters {#ports-and-adapters}
 
-Rather than running several coarse grained tests, let's decouple the system using explicit boundaries (interfaces) and design a set of tests to exercise the iteration between those boundaries. These should compliment each other to provide the same level of confidence.
+Rather than running several coarse grained tests, let's decouple the system by defining explicit boundaries between components using interfaces and design a set of tests to exercise the interaction between those boundaries. Each interface represents a port in the architecture. The tests should compliment each other to provide the same level of confidence.
 
 
 A> ## Ports and adapter symbols {#port-and-adapters-symbols-aside}
 A>
-A> | An interface (port) | ![](images/part2/design.md/port.png) |
+A> | A port (interface) | ![](images/part2/design.md/port.png) |
 A> | | |
-A> | A component (application domain model) | ![](images/part2/design.md/circle.png) |
+A> | A component | ![](images/part2/design.md/circle.png) |
 A> | | |
-A> | An implementation (adapter) | ![](images/part2/design.md/adapter.png) |
+A> | An adapter | ![](images/part2/design.md/adapter.png) |
 A> | | |
-A> | Access components only via ports | ![](images/part2/design.md/port-line-circle.png) |
-A> | | ![](images/part2/design.md/port-line-adapter.png) |
+A> | Access components only via ports | ![](images/part2/design.md/port-line-adapter.png) |
 A> | Components only communicate with ports | ![](images/part2/design.md/circle-arrow-port.png) |
-A> | | ![](images/part2/design.md/adapter-arrow-port.png) |
 A>
 
-The next step is to describe the system architecture in terms of boundary interfaces (ports), their implementations (adapters) and core application logic (domain models).
+The next step is to describe the system architecture in terms of boundary ports (interfaces), their adapters (implementations) and core application logic components. For our application, it might look something like this.
 
 ![](images/part2/design.md/ports-and-adapter-design.png)
 
-Using the symbols from the [Ports and adapters symbols aside](#port-and-adapters-symbols-aside), all communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later. We've broken down the previous coarse grained architecture into a series of interfaces (ports), their implementations (adapters) and domain model.
+All communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later. We've broken down the previous coarse grained architecture into a series of ports, their adapters and domain components.
 
 Using the decoupled ports and adapters approach to create comparable coverage, we'd design tests around the following.
 
@@ -163,7 +159,7 @@ Along with more lightweight system tests
 * Fewer, more focused end-to-end (system) tests
 * Tests against real (Yahoo) Market Data
 
-These can be seen in more detail in the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code).
+Lets have a closer look at each of these next. You can also refer to the source code of the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code) for more details.
 
 
 ### Portfolio value display tests
