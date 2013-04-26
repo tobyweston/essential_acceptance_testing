@@ -190,7 +190,7 @@ In this test, we'd fake out the server component and the UI would use JQuery to 
 
 In this example, we've opted for a HTML based specification to describe the requirements.
 
-A> #### When I ask for a portfolio value in the UI, it's displayed as intended.
+A> #### When I ask for the portfolio value in the UI, it's formatted with commas.
 A>
 A> Given a portfolio value of `10500.988`
 A>
@@ -198,14 +198,14 @@ A> When a user refreshes the portfolio page
 A>
 A> Then the portfolio value is requested and displayed on the UI as **`10,500.99`**
 
-In the [sample application](https://github.com/tobyweston/essential_acceptance_testing_code), we use [Concordion](http://www.concordion.org) as the framework that will interpret an instrumented HTML file and call into a fixture class to call our application logic and make assertions. To that end, our fixture for the above might look like the following
+We'll use [Concordion](http://www.concordion.org) as the framework that will interpret an instrumented HTML file and call into a fixture class to call our application logic and make assertions. We use the HTML to document the specification _and_ use Concordion as a way to execute it like a regular JUnit test. Our fixture for the above might look like the following.
 
 {title="Example 3: Test fixture for use with scenarios described in HTML specifications", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
 public class UiPortfolioValueDisplayTest {
-    private final HttpServer client = new WebUi();
+    private final WebUi client = new WebUi();
     private final FakeHttpServer application = new FakeHttpServer(8000);
     private final LandingPage ui = new LandingPage();
 
@@ -235,7 +235,7 @@ public class UiPortfolioValueDisplayTest {
 }
 ~~~~~~~
 
-When running the test, the canned response returned by the fake server is set in HTML as `10500.988` and passed into the `requestPortfolioValue` method. When the test continues to `getPortfolioValue`, an instance of the browser is controlled to click on a button that makes the `GET` request using JQuery. We control the web browser using [Selenium](http://docs.seleniumhq.org/). The canned response is returned to JQuery for display. The HTML specification is the part that describes the assertion and after running, would look like the following.
+When running the test, the canned response returned by the fake server is set in HTML as `10500.988` and passed into the `requestPortfolioValue` method. When the test continues to `getPortfolioValue`, an instance of the browser is controlled to click on a button that makes the `GET` request using JQuery. We control the web browser using [Selenium](http://docs.seleniumhq.org/). The canned response is returned for display. It's JavaScript in the browser that introduces the commas and rounds the response. The HTML specification is the part that describes the assertion and after running, would look like the following.
 
 ![](images/part2/design.md/test-ui-only-specification-result.png)
 
