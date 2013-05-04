@@ -52,7 +52,7 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - What is "value"?
  - Measuring "value"
 
-**Alternatives to "acceptance tests"**
+**Alternatives to acceptance tests**
 
  - Don’t write acceptance tests
  - Use a hexagonal architecture
@@ -60,7 +60,7 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - Measure don’t agree
  - Log don’t specify
 
-**How testing can influence design**
+**How design can influence testing**
 
  - Example problem
  - Ports and adapters

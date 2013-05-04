@@ -1,4 +1,4 @@
-# How testing can influence design {#design}
+# How design can influence testing {#design}
 
 How you design your architecture will directly affect how easy your application is to test. If you decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters architecture can make testing easier and more efficient using the sample Java application available [online](https://github.com/tobyweston/essential_acceptance_testing_code).
 
