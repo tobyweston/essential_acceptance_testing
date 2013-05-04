@@ -1,12 +1,12 @@
 # How design can influence testing {#design}
 
-How you design your architecture will directly affect how easy your application is to test. If you decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters architecture can make testing easier and more efficient using the sample Java application available [online](https://github.com/tobyweston/essential_acceptance_testing_code).
+How you design your architecture will directly affect how easy your application is to test. If you decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters approach can make testing easier and more efficient. We introduce a sample application (available [online](https://github.com/tobyweston/essential_acceptance_testing_code)) and show how testing is complicated by a coupled design and how the de-coupled alternative can be tested.
 
 ## Sample application
 
-Lets imagine a system concerned with helping customers manage their stock portfolio. It displays details about stocks owned and and allows the customer to buy and sell directly with an exchange. The system is made up of a browser based UI and a RESTful backend server. The backend uses a market data service provided by Yahoo to retrieve stock prices and connects directly to an exchange to execute trades.
+Lets imagine a system concerned with helping customers manage their stock portfolio. It displays details about stocks owned and allows the customer to buy and sell directly with an exchange. The system is made up of a browser based UI and a RESTful backend server. The backend uses a market data service provided by Yahoo to retrieve stock prices and connects directly to an exchange to execute trades.
 
-One important aspect of the sample application to understand is that the UI is a separate app from the RESTful server. The UI is a deployable HTTP server in it's own right. It mostly serves static HTML so you can think of it like an Apache server. The RESTful backend is also a HTTP server but this one performs the business logic and is called by the UI. This separation decouples the UI logic from the business logic and allows us to develop the two independently and potentially with differing technologies.
+One important aspect of the sample application is that the UI is a separate app from the RESTful server. The UI is a deployable HTTP server in it's own right. It serves the static HTML and JavaScript that makes up the UI. The RESTful backend is also a HTTP server but this one performs the business logic and is called by the UI. This separation decouples the UI logic from the business logic and allows us to develop the two independently and potentially with differing technologies.
 
 Currently, only basic information is displayed about a customer's stocks so stakeholders have decided on the next piece of work and have described it as follows.
 
@@ -14,7 +14,7 @@ Currently, only basic information is displayed about a customer's stocks so stak
 
 In further discussion, the stakeholder clarifies that the calculation is done by multiplying a stock's current price by the quantity that the user holds. If the user holds 10,000 Google shares, each worth $810 each then their portfolio would be worth $8.1m.
 
-A mock up of the proposed UI might look something like this.
+The UI might look something like this.
 
 ![](images/part2/design.md/ui-mock-up.png)
 
@@ -52,7 +52,7 @@ public class PortfolioSystemTestWithRealYahoo {
 
 It exercises all of the components but it's naive as it relies on Yahoo being up and returning the expected result. It starts up the entire application in the `@Before` which in turn starts up the web container, initialises the UI and market data components. The browser is then fired up and used to simulate the user's interaction (line 12). The result is scraped directly from the browser (line 13).
 
-The assertion that the scraped result is as expected is wrapped in a call to poll the UI periodically (with the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It's another error prone aspect to this test.
+The assertion on the result is wrapped in a call to poll the UI periodically (the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It may take this long or longer to respond. It's another brittle aspect to this test.
 
 A> ##Page driver pattern {#page-driver-pattern-aside}
 A>
