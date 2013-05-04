@@ -173,7 +173,7 @@ These tests start with the user asking for the current value in the UI but we'd 
 
 The UI makes a HTTP `GET` call to the Portfolio server. It's implemented by a JQuery ajax call inside a HTML page. In testing however, we'd prefer to use a test double to replace the Portfolio and therefore just test that the UI correctly displays whatever the port returns. Specifically then, we'd
 
-* Start up the web UI server (remember this is like an Apache server serving static HTML)
+* Start up the UI server (remember this is basically serving static HTML but is started as it's own app)
 * Setup a fake Portfolio server with a canned response against specific HTTP GET calls
 * Use the UI to click the 'request valuation' button
 * Verify the canned response is displayed as intended within the UI
@@ -240,25 +240,26 @@ When running the test, the canned response returned by the fake server is set in
 ![](images/part2/design.md/test-ui-only-specification-result.png)
 
 
+
 ### Request for portfolio value tests
 
 In the previous set of tests, we made no verifications against the request mechanisms so that we could focus solely on display semantics. The next set of tests focus on the request mechanics. We're interested in exercising the interaction between the UI and the `Portfolio` port.
 
-The previous tests ask "when I ask for a portfolio value in the UI, what happens?", this set of tests are concerned with what it actually means to ask that question?
+The previous tests ask "when I ask for a portfolio value in the UI, what happens?", this set of tests are concerned with what it actually means to ask for a portfolio's value?
 
 ![](images/part2/design.md/test-ui-to-portfolio.png)
 
-When the UI asks for a valuations, a specific message is sent over the wire. These test will verify the request and response formats. How the response is actually used is left to the previous tests. For example, if the request is sent as JSON, the JSON content may be verified. The response body may be verified against a specific JSON format and the HTTP response code verified to be 200 (OK).
+When the UI asks for a valuation, a specific message is sent over the wire. These test will verify the request and response formats. How the response is actually used is left to the previous tests. For example, if the request is sent as JSON, the JSON content may be verified. The response body may be verified against a specific JSON format and the HTTP response code verified to be 200 (OK).
 
 Specifically, we'd.
 
-* Start up the UI
-* Setup a fake `Portfolio` server with an expectation against a specific HTTP request
+* Start up the UI server
+* Setup a fake Portfolio server with an expectation against a specific HTTP request
 * Force the UI to click the 'request valuation' button
 * Verify the request expectation and return a canned response
 * Verifies only that a response was received, not how it might be used in the UI
 
-When the UI asks for the current value, a message is sent to the domain model (`Portfolio`). These tests would use a real UI to call the `Portfolio`s port (represented by a test double) so that we can assert expectations on the message format. If we have different UIs, we would need to test each to verify how they communicate with the port. For example, a test for a rich client must verify the JSON message and HTTP request as well as one for a web UI.
+When the UI asks for the current value, a message is sent to the Portfolio component. These tests would use a real UI to call the Portfolio's port (represented by a test double) so that we can assert expectations on the message format. If we have different UIs, we would need to test each to verify how they communicate with the port. For example, a test for a rich client must verify the JSON message and HTTP request as well as one for a web UI.
 
 
 
