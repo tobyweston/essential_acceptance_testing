@@ -290,21 +290,21 @@ The previous tests ask "when I ask for a portfolio value in the UI, what happens
 
 ![](images/part2/design.md/test-ui-to-portfolio.png)
 
-When the UI asks for a valuation, a specific message is sent over the wire. These test will verify the request and response formats. How the response is actually used is left to the previous tests. For example, if the request is sent as JSON, the JSON content may be verified. The response body may be verified against a specific JSON format and the HTTP response code verified to be 200 (OK).
+When the UI asks for a valuation, a specific message is sent over the wire. These tests would verify the request and response formats. How the response is actually used is left to the previous tests. For example, if the request is sent as JSON, the JSON content may be verified. The response body may be verified against a specific JSON format and the HTTP response code verified to be 200 (OK).
 
-Specifically, we'd.
+Specifically, we'd
 
 * Start up the UI server
 * Setup a fake Portfolio server with an expectation against a specific HTTP request
 * Force the UI to click the 'request valuation' button
 * Verify the request expectation and return a canned response
-* Verifies only that a response was received, not how it might be used in the UI
+* Verify that a response was received but not how it is used in the UI
 
-When the UI asks for the current value, a message is sent to the Portfolio component. These tests would use a real UI to call the Portfolio's port (represented by a test double) so that we can assert expectations on the message format. If we have different UIs, we would need to test each to verify how they communicate with the port. For example, a test for a rich client must verify the JSON message and HTTP request as well as one for a web UI.
+When the UI asks for the current value, a message is sent to the Portfolio component. These tests would use a real UI to call the Portfolio's port (represented by a test double) so that we can assert expectations on the message format. If we have different UIs, we would need to test each to verify how they communicate with the port. For example, a test for a desktop client would also verify the JSON message and HTTP request.
 
 
 
-#### Example
+#### Example test
 
 An example specification might look like this.
 
@@ -366,7 +366,7 @@ public class UiPortfolioValueRequestTest {
 
 Like the previous example, a canned response is setup (line 17) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was access using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 34). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
 
-Notice that in the specification result below, that the specifics of what it means for a request to be valid is omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the specification language from the implementation and attempts to move towards a more business appropriate use of language.
+Notice that in the specification result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the language in the test specification from it's implementation.
 
 ![](images/part2/design.md/test-ui-to-portfolio-specification-result.png)
 
@@ -374,7 +374,7 @@ Notice that in the specification result below, that the specifics of what it mea
 
 ### HTTP Adapter to Java message tests
 
-Once we're satisfied about the communication between UI and `Portfolio`, we can look at the behaviour of the `Portfolio` part of the domain model. This part of the domain model is responsible for exposing the valuation request port. This port is implemented by a HTTP adapter to create a RESTful endpoint. It turns the HTTP call into a Java API call so our tests should exercise this adaptation.
+Once we're satisfied about the communication between UI and `Portfolio`, we can look at the behaviour of the Portfolio part of the domain model. This part of the domain model is responsible for exposing the valuation request interface. This is implemented by a HTTP adapter to create a RESTful endpoint. It turns the HTTP call into a Java API call so our tests should exercise this adaptation.
 
 ![](images/part2/design.md/test-portfolio-valuation.png)
 
