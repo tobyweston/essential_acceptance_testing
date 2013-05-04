@@ -74,7 +74,7 @@ A> ~~~~~~~~
 A> You can see in this way, the UI test code is just another example of a port (the UI driver interface) and it's adapters.
 A>
 
-We can improve on this test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request).
+We can improve on this test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request). Lines 15-17 below sets up any HTTP call to the URL `/v1/public/yql` to respond with an valid HTTP response containing the response string from line 14.
 
 {title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -178,15 +178,15 @@ The UI makes a HTTP `GET` call to the Portfolio server. It's implemented by a JQ
 
 For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `$10,500.99`. This exercises the UI logic to round the result, introduce commas and add a currency symbol.
 
-Note that how the request actually interacts with the Portfolio port would not be verified. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request details. If we didn't do this, any changes to the request API would cause changes to this test even though it's only about display logic.
+Note that we don't verify how the request actually interacts with the Portfolio. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request details. If we were to verify the request, any changes to the request API would cause changes to this test even though it's only about display logic.
 
-In this test, we'd fake out the server component and the UI would use JQuery to make a real HTTP request. An alternative approach would be to front the JQuery call behind our own JavaScript interface (port) and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
+In these kinds of tests, we'd fake out the server component and the UI would use JQuery to make a real HTTP request. An alternative approach would be to front the JQuery call behind our own JavaScript interface (port) and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
 
 
 
-#### Example
+#### Example test
 
-In this example, we've opted for a HTML based specification to describe the requirements.
+As a specific example from this group, lets look at verifying monetary values are displayed with thousands separated using commas. We've opted for a HTML based specification to describe the requirements.
 
 A> #### When I ask for the portfolio value in the UI, it's formatted with commas.
 A>
@@ -196,7 +196,9 @@ A> When a user refreshes the portfolio page
 A>
 A> Then the portfolio value is requested and displayed on the UI as **`10,500.99`**
 
-We'll use [Concordion](http://www.concordion.org) as the framework that will interpret an instrumented HTML file and call into a fixture class to call our application logic and make assertions. We use the HTML to document the specification _and_ use Concordion as a way to execute it like a regular JUnit test. Our fixture for the above might look like the following.
+We'll use [Concordion](http://www.concordion.org) as the framework that will interpret an instrumented HTML file and call into a test fixture class to call our application logic and make assertions. We use the HTML to document the specification and use Concordion as a way to execute it like a regular JUnit test. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer in their own language.
+
+Our fixture for the above might look like the following.
 
 {title="Example 3: Test fixture for use with scenarios described in HTML specifications", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -233,7 +235,48 @@ public class UiPortfolioValueDisplayTest {
 }
 ~~~~~~~
 
-When running the test, the canned response returned by the fake server is set in HTML as `10500.988` and passed into the `requestPortfolioValue` method. When the test continues to `getPortfolioValue`, an instance of the browser is controlled to click on a button that makes the `GET` request using JQuery. We control the web browser using [Selenium](http://docs.seleniumhq.org/). The canned response is returned for display. It's JavaScript in the browser that introduces the commas and rounds the response. The HTML specification is the part that describes the assertion and after running, would look like the following.
+
+By annotating the test with `@RunWith(ConcordionRunner.class)`, the class can be run like a regular JUnit test. It will use [Concordion](http://www.concordion.org) runner to find and parse the HTML specification calling into the fixture as appropriate. For example, our specification looks like the following.
+
+
+{title="Example 4: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
+~~~~~~~
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<body>
+<h1>Portfolio Valuation </h1>
+
+<h2>Given</h2>
+<p>
+    A portfolio value of <b>10500.988</b>
+</p>
+
+<div class="details hidden">
+    <div class="example">
+        <p>
+            The response from the server contains the body of
+        </p>
+        <pre concordion:set="#body">10500.988</pre>
+    </div>
+</div>
+
+<h2>When</h2>
+<p concordion:execute="requestPortfolioValue(#body)">
+    A user refreshes the portfolio page
+</p>
+
+<h2>Then</h2>
+<p>
+    The portfolio value is requested and displayed on the UI as
+    <b concordion:assertEquals="getPortfolioValue()">10,500.99</b>
+</p>
+
+</body>
+</html>
+~~~~~~~
+
+The HTML sets up the fake server to respond with `10500.988` by setting a "variable" on line 15 which is passed into the `requestPortfolioValue()` method of the fixture. As the HTML is interpreted, when it reaches line 20, it'll actually call the method on the fixture. At this point, the fixture will control an instance of the browser to click on a refresh button triggering a `GET` request using JQuery.
+
+The `GET` request will trigger the canned response to be returned ready for display. It's JavaScript in the UI that receives this response and introduces the commas. It's this that we're really trying to test so we make an assertion in Concordion parlance at line 27. This line will get the actual value from the UI using the fixture's method and compare it with the HTML element. After running, it'd look like the the following with a positive assertion shown in green.
 
 ![](images/part2/design.md/test-ui-only-specification-result.png)
 
@@ -241,7 +284,7 @@ When running the test, the canned response returned by the fake server is set in
 
 ### Request for portfolio value tests
 
-In the previous set of tests, we made no verifications against the request mechanisms so that we could focus solely on display semantics. The next set of tests focus on the request mechanics. We're interested in exercising the interaction between the UI and the `Portfolio` port.
+In the previous section, we made no verifications against the request mechanisms so that we could focus solely on display semantics. The next set of tests focuses on the request mechanics. We're interested in exercising the interaction between the UI and the `Portfolio` port.
 
 The previous tests ask "when I ask for a portfolio value in the UI, what happens?", this set of tests are concerned with what it actually means to ask for a portfolio's value?
 
@@ -273,7 +316,7 @@ A> Then a request for the portfolio value is made to the application and the res
 
 With a corresponding fixture as follows.
 
-{title="Example 4: Test fixture for working with UI to Portfolio requests", lang="java", line-numbers="on"}
+{title="Example 5: Test fixture for working with UI to Portfolio requests", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -323,7 +366,7 @@ public class UiPortfolioValueRequestTest {
 
 Like the previous example, a canned response is setup (line 17) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was access using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 34). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
 
-Notice that in the specification result below, that the specifics of what it means for a request to be valid is ommitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the specification language from the implementation and attempts to move towards a more business appropriate use of langauge.
+Notice that in the specification result below, that the specifics of what it means for a request to be valid is omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the specification language from the implementation and attempts to move towards a more business appropriate use of language.
 
 ![](images/part2/design.md/test-ui-to-portfolio-specification-result.png)
 
@@ -351,7 +394,7 @@ A> Then the total portfolio valuation will be returned to the requester
 
 With a corresponding fixture used to verify the HTTP adapter works with domain model components as intended.
 
-{title="Example 5: Test fixture for the Portfolio's port HTTP adapter", lang="java", line-numbers="on"}
+{title="Example 6: Test fixture for the Portfolio's port HTTP adapter", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -402,7 +445,7 @@ A> Then the total portfolio valuation will be `26182.00`
 
 with a corresponding fixture.
 
-{title="Example 6: Test fixture for the Portfolio's calculation logic", lang="java", line-numbers="on"}
+{title="Example 7: Test fixture for the Portfolio's calculation logic", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -441,7 +484,7 @@ These tests are concerned with the `Market Data` API. They use expectations rath
 
 #### Example
 
-{title="Example 7: Test fixture market data", lang="java", line-numbers="on"}
+{title="Example 8: Test fixture market data", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -490,7 +533,7 @@ Next would be the Yahoo specific adapter; an integration* test. When the adapter
 
 Can't mock it because we're using real Yahoo. If Yahoo change their API, the test will fail. The previous test would still pass as our internal API is still working, it's just the adapter that's broken.
 
-*is this an integration test? GOOS says if you don't own it, it's not an integrationn test.
+*is this an integration test? GOOS says if you don't own it, it's not an integration test.
 
 ### A note on integration tests
 
