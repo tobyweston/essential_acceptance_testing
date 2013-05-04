@@ -111,8 +111,6 @@ public class PortfolioSystemTestWithFakeYahoo {
 
 Both tests exercise the happy path through the entire system. If we want to check what happens when no price is available from Yahoo or if Yahoo is down, we'd repeat the majority of the test to do so. If we want to test user errors on input, we'd startup the application unnecessarily.
 
-![Multiple coarse grained tests repeatedly exercise the same parts of the system architecture](images/part2/design.md/coarse-grained-tests-repeating.png)
-
 On the surface, we're testing different behaviours but we're actually exercising the same code over and over again. It's something James likens to taking a car out for a test drive.
 
 > "Imagine purchasing a new car and taking it out for a test drive. When you return to the showroom, the car has performed flawlessly but just to be sure you take it out again, this time with the windows down. Then again with the glove compartment open. Then again with the seats fully reclined.
