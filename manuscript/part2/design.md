@@ -38,8 +38,8 @@ public class PortfolioSystemTestWithRealYahoo {
     @Test
     public void shouldRetrieveValuation() {
         browser.navigateToSummaryPage().requestValuationForShares(100);
-        waitFor(assertion(portfolioValuationFrom(browser), is("91,203.83")),
-            timeout(seconds(5)));
+        waitFor(assertion(portfolioValuationFrom(browser),
+            is("91,203.83")), timeout(seconds(5)));
     }
 
     @After
@@ -54,14 +54,6 @@ It exercises all of the components but it's naive as it relies on Yahoo being up
 
 The assertion on the result is wrapped in a call to poll the UI periodically (the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It may take this long or longer to respond. It's another brittle aspect to this test.
 
-The `waitFor` is shown inline above for pedagogical purposes, a more object-oriented approach would be to push this into the browser object and hide the asynchronousity and timeout details from the client.
-
-{title="Pushing the asynchronous handing into the browser model", lang="java", line-numbers="off"}
-~~~~~~~
-    browser.navigateToSummaryPage()
-        .requestValuationForShares(100)
-        .assertThatPortfolioValue(is("91,203.83"));
-~~~~~~~
 
 A> ##Page driver pattern {#page-driver-pattern-aside}
 A>
@@ -83,7 +75,16 @@ A> ~~~~~~~~
 A> You can see in this way, the UI test code is just another example of a port (the UI driver interface) and it's adapters.
 A>
 
-We can improve on this test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request). Lines 15-17 below sets up any HTTP call to the URL `/v1/public/yql` to respond with an valid HTTP response containing the response string from line 14.
+The `waitFor` is shown inline above for pedagogical purposes, a more object-oriented approach would be to push this into the browser object and hide the asynchronousity and timeout details from the client.
+
+{title="Pushing the asynchronous handing into the browser model", lang="java", line-numbers="off"}
+~~~~~~~
+    browser.navigateToSummaryPage()
+        .requestValuationForShares(100)
+        .assertThatPortfolioValue(is("91,203.83"));
+~~~~~~~
+
+We can also improve the test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request). Lines 15-17 below set up any HTTP call to the URL `/v1/public/yql` to respond with a valid HTTP response containing the response string from line 14.
 
 {title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -105,8 +106,8 @@ public class PortfolioSystemTestWithFakeYahoo {
               urlStartingWith("/v1/public/yql"),
               aResponse().withBody(response));
         browser.navigateToSummaryPage().requestValuationForShares(100);
-        waitFor(assertion(portfolioValuationFrom(browser), is("20,010.00")),
-            timeout(millis(500)));
+        waitFor(assertion(portfolioValuationFrom(browser),
+            is("20,010.00")), timeout(millis(500)));
     }
 
     @After
@@ -360,7 +361,9 @@ public class UiPortfolioValueRequestTest {
     }
 
     public boolean verifyResponseReturned() throws InterruptedException {
-        browser.navigateToSummaryPage().assertThatPortfolioValue(not(isEmptyOrNullString()));
+        browser
+            .navigateToSummaryPage()
+            .assertThatPortfolioValue(not(isEmptyOrNullString()));
         return true;
     }
 
@@ -373,7 +376,7 @@ public class UiPortfolioValueRequestTest {
 }
 ~~~~~~~
 
-Like the previous example, a canned response is setup (line 17) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was access using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 34). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
+Like the previous example, a canned response is setup (lines 17-19) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was access using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 36). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
 
 Notice that in the specification result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the language in the test specification from it's implementation.
 
@@ -411,15 +414,16 @@ public class PortfolioValuationTest {
     private final Mockery context = new JUnit4Mockery();
 
     private final Valuation valuation = context.mock(Valuation.class);
-    private final PortfolioResource portfolio = new PortfolioResource(valuation);
+    private final PortfolioResource portfolio =
+        new PortfolioResource(valuation);
 
     public boolean verifyValuationResponse() {
         context.checking(new Expectations() {{
-            oneOf(valuation).value(); will(returnValue(new Money("89.99")));
+            oneOf(valuation).value(); will(returnValue(new Money("9.99")));
         }});
 
         Response response = portfolio.value(null);
-        assertThat(response.entity().toString(), is("89.99"));
+        assertThat(response.entity().toString(), is("9.99"));
         return true;
     }
 }
@@ -504,7 +508,8 @@ public class MarketDataTest {
     private final StubBook book = new StubBook();
     private final Portfolio portfolio = new Portfolio(book, marketData);
 
-    public MultiValueResult verifySymbolCheckedWas(final String firstSymbol, final String secondSymbol) {
+    public MultiValueResult verifySymbolCheckedWas(
+            final String firstSymbol, final String secondSymbol) {
         book.add(fromSymbol(firstSymbol)).add(fromSymbol(secondSymbol));
         context.checking(new Expectations() {{
             oneOf(marketData).getPrice(fromSymbol(firstSymbol));
