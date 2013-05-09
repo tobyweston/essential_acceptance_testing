@@ -54,9 +54,9 @@ It exercises all of the components but it's naive as it relies on Yahoo being up
 
 The assertion on the result is wrapped in a call to poll the UI periodically (the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It may take this long or longer to respond. It's another brittle aspect to this test.
 
-The `waitFor` is shown inline in the test for pedagogical purposes, a more object-oriented approach would be to push this into the browser object and hide the asynchronousity and timeout details from the client. For example,
+The `waitFor` is shown inline above for pedagogical purposes, a more object-oriented approach would be to push this into the browser object and hide the asynchronousity and timeout details from the client.
 
-{title="Pushing the asynchronous handing into the browser model", lang="java", line-numbers="on"}
+{title="Pushing the asynchronous handing into the browser model", lang="java", line-numbers="off"}
 ~~~~~~~
     browser.navigateToSummaryPage()
         .requestValuationForShares(100)
@@ -252,7 +252,7 @@ By annotating the test with `@RunWith(ConcordionRunner.class)`, the class can be
 ~~~~~~~
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <body>
-<h1>Portfolio Valuation </h1>
+<h1>Portfolio Valuation</h1>
 
 <h2>Given</h2>
 <p>
@@ -330,7 +330,7 @@ With a corresponding fixture as follows.
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
 public class UiPortfolioValueRequestTest {
-    private final HttpServer client = new WebUi();
+    private final HttpServer ui = new UiServer();
     private final FakeHttpServer application = new FakeHttpServer(8000);
     private final Browser browser = new Browser();
 
@@ -338,7 +338,7 @@ public class UiPortfolioValueRequestTest {
 
     @Before
     public void start() {
-        client.start();
+        ui.start();
         application.start();
     }
 
@@ -366,7 +366,7 @@ public class UiPortfolioValueRequestTest {
 
     @After
     public void stop() {
-        client.stop();
+        ui.stop();
         application.stop();
         browser.quit();
     }
