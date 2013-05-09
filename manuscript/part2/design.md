@@ -28,7 +28,7 @@ If a system is built with components tightly coupled, pretty much the only way t
 ~~~~~~~
 public class PortfolioSystemTestWithRealYahoo {
     private final Server application = Fixture.applicationWithRealYahoo();
-    private final LandingPage ui = new LandingPage();
+    private final Browser browser = new Browser();
 
     @Before
     public void startServers() {
@@ -37,15 +37,15 @@ public class PortfolioSystemTestWithRealYahoo {
 
     @Test
     public void shouldRetrieveValuation() {
-        ui.navigateToLandingPage().requestValuationForShares(100);
-        waitFor(assertion(portfolioValuationFrom(ui), is("91,203.83")),
+        browser.navigateToSummaryPage().requestValuationForShares(100);
+        waitFor(assertion(portfolioValuationFrom(browser), is("91,203.83")),
             timeout(seconds(5)));
     }
 
     @After
     public void stopServer() {
         application.stop();
-        ui.quit();
+        browser.quit();
     }
 }
 ~~~~~~~
@@ -54,13 +54,22 @@ It exercises all of the components but it's naive as it relies on Yahoo being up
 
 The assertion on the result is wrapped in a call to poll the UI periodically (the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It may take this long or longer to respond. It's another brittle aspect to this test.
 
+The `waitFor` is shown inline in the test for pedagogical purposes, a more object-oriented approach would be to push this into the browser object and hide the asynchronousity and timeout details from the client. For example,
+
+{title="Pushing the asynchronous handing into the browser model", lang="java", line-numbers="on"}
+~~~~~~~
+    browser.navigateToSummaryPage()
+        .requestValuationForShares(100)
+        .assertThatPortfolioValue(is("91,203.83"));
+~~~~~~~
+
 A> ##Page driver pattern {#page-driver-pattern-aside}
 A>
 A> Abstracting the business intent from the UI mechanics means that UI "driver" code isn't coupled to a specific UI. If done carefully, switching the UI would mean just implementing a new adapter. Notice how in the above we avoided the following.
 A>
 A> {:lang="java"}
 A> ~~~~~~~~
-A> ui.navigateToLandingPage()
+A> browser.navigateToSummaryPage()
 A>   .setNumberOfSharesTextBoxTo(100)
 A>   .clickRequestValuationButton();
 A> ~~~~~~~~
@@ -69,7 +78,7 @@ A> and used the following instead.
 A>
 A> {:lang="java"}
 A> ~~~~~~~~
-A> ui.navigateToLandingPage().requestValuationForShares(100);
+A> browser.navigateToSummaryPage().requestValuationForShares(100);
 A> ~~~~~~~~
 A> You can see in this way, the UI test code is just another example of a port (the UI driver interface) and it's adapters.
 A>
@@ -81,7 +90,7 @@ We can improve on this test slightly by faking out Yahoo and forcing it to retur
 public class PortfolioSystemTestWithFakeYahoo {
     private final Server application = Fixture.applicationWithRealYahoo();
     private final FakeYahoo fakeYahoo = new FakeYahoo();
-    private final LandingPage ui = new LandingPage();
+    private final Browser browser = new Browser();
 
     @Before
     public void startServers() {
@@ -95,8 +104,8 @@ public class PortfolioSystemTestWithFakeYahoo {
         fakeYahoo.stub(
               urlStartingWith("/v1/public/yql"),
               aResponse().withBody(response));
-        ui.navigateToLandingPage().requestValuationForShares(100);
-        waitFor(assertion(portfolioValuationFrom(ui), is("20,010.00")),
+        browser.navigateToSummaryPage().requestValuationForShares(100);
+        waitFor(assertion(portfolioValuationFrom(browser), is("20,010.00")),
             timeout(millis(500)));
     }
 
@@ -104,7 +113,7 @@ public class PortfolioSystemTestWithFakeYahoo {
     public void stopServers() {
         application.stop();
         fakeYahoo.stop();
-        ui.quit();
+        browser.quit();
     }
 }
 ~~~~~~~
@@ -205,13 +214,13 @@ Our fixture for the above might look like the following.
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
 public class UiPortfolioValueDisplayTest {
-    private final WebUi client = new WebUi();
+    private final HttpServer ui = new UiServer();
     private final FakeHttpServer application = new FakeHttpServer(8000);
-    private final LandingPage ui = new LandingPage();
+    private final Browser browser = new Browser();
 
     @Before
     public void start() {
-        client.start();
+        ui.start();
         application.start();
     }
 
@@ -219,18 +228,18 @@ public class UiPortfolioValueDisplayTest {
         application.stub(
             urlEndingWith("/portfolio/0001"),
             aResponse().withBody(body));
-        ui.navigateToLandingPage().requestValuationForShares(100);
+        browser.navigateToSummaryPage().requestValuationForShares(100);
     }
 
     public String getPortfolioValue() throws InterruptedException {
-        return ui.getPortfolioValue();
+        return browser.navigateToSummaryPage().getPortfolioValue();
     }
 
     @After
     public void stop() {
-        client.stop();
+        ui.stop();
         application.stop();
-        ui.quit();
+        browser.quit();
     }
 }
 ~~~~~~~
@@ -323,7 +332,7 @@ With a corresponding fixture as follows.
 public class UiPortfolioValueRequestTest {
     private final HttpServer client = new WebUi();
     private final FakeHttpServer application = new FakeHttpServer(8000);
-    private final LandingPage ui = new LandingPage();
+    private final Browser browser = new Browser();
 
     private final static String expectedUrl = "/portfolio/0001";
 
@@ -337,7 +346,7 @@ public class UiPortfolioValueRequestTest {
         application.stub(
             urlEndingWith("/portfolio/0001"),
             aResponse().withBody("1000"));
-        ui.navigateToLandingPage().requestValuationForShares(100);
+        browser.navigateToSummaryPage().requestValuationForShares(100);
         return expectedUrl;
     }
 
@@ -351,7 +360,7 @@ public class UiPortfolioValueRequestTest {
     }
 
     public boolean verifyResponseReturned() throws InterruptedException {
-        ui.assertThatPortfolioValue(not(isEmptyOrNullString()));
+        browser.navigateToSummaryPage().assertThatPortfolioValue(not(isEmptyOrNullString()));
         return true;
     }
 
@@ -359,7 +368,7 @@ public class UiPortfolioValueRequestTest {
     public void stop() {
         client.stop();
         application.stop();
-        ui.quit();
+        browser.quit();
     }
 }
 ~~~~~~~
