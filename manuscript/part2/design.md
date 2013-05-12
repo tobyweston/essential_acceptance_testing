@@ -532,16 +532,18 @@ public class MarketDataTest {
 
 ## Thin slice of end-to-end
 
-If it's not already clear, the above sections talk about tests grouped to make it easier to discuss. For example, the 'Portfolio value display tests' cover various scenarios in and around the UI display. They overlap to give a broad coverage of functionality but are executed within reduced environment. This avoid duplicate effort but means we're never running all the components together at the same time.
+If it's not already clear, the above sections talk about tests grouped to make it easier to discuss. For example, the 'Portfolio value display tests' cover various scenarios in and around the UI display. They overlap to give a broad coverage of functionality but are executed within reduced environment. This avoids duplicate effort but means that, so far, we've never run all the components together at the same time.
 
-To address this, we still need to run some end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points.
+To address this, we still need to run some form of end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points.
 
 * Fewer, more focused end-to-end (system) tests
 * Tests against real (Yahoo) Market Data
 
-In our definition, the few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as a smoke test to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios through as we've already tested edge-case scenarios and now we're just sense checking that the application is assembled correctly. This test is more about infrastructure that functionality.
+In our definition, the few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as a smoke test to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios through as we've already tested the edge-cases and now we're just sense checking that the application is assembled correctly. This test is more about infrastructure that functionality.
 
-People often get hung up on these kinds of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate business behaviour. You really should need hardly any of these heaver weight end-to-end tests.
+People often get hung up on these kinds of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really should need hardly any of these heaver weight end-to-end tests.
+
+### Yahoo!
 
 That just leaves some kind of test to ensure that the real Yahoo market data API operates as expected. We've already built our market data adapter which we fake out in the tests but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
 
