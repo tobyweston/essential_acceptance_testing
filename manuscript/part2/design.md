@@ -530,24 +530,24 @@ public class MarketDataTest {
 
 
 
-
-IGNORE FROM HERE
-------
-
-
-
 ## Thin slice of end-to-end
+
+If it's not already clear, the above sections talk about tests grouped to make it easier to discuss. For example, the 'Portfolio value display tests' cover various scenarios in and around the UI display. They overlap to give a broad coverage of functionality but are executed within reduced environment. This avoid duplicate effort but means we're never running all the components together at the same time.
+
+To address this, we still need to run some end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points.
 
 * Fewer, more focused end-to-end (system) tests
 * Tests against real (Yahoo) Market Data
 
-### Test 5 - A test against Yahoo
+In our definition, the few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as a smoke test to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios through as we've already tested edge-case scenarios and now we're just sense checking that the application is assembled correctly. This test is more about infrastructure that functionality.
 
-Next would be the Yahoo specific adapter; an integration* test. When the adapter is asked for the current stock price (via port) for stock GOGL and date Tuesday, we expect the price to be 134.22.
+People often get hung up on these kinds of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate business behaviour. You really should need hardly any of these heaver weight end-to-end tests.
 
-Can't mock it because we're using real Yahoo. If Yahoo change their API, the test will fail. The previous test would still pass as our internal API is still working, it's just the adapter that's broken.
+That just leaves some kind of test to ensure that the real Yahoo market data API operates as expected. We've already built our market data adapter which we fake out in the tests but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
 
-*is this an integration test? GOOS says if you don't own it, it's not an integration test.
+For example, if we've built our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually say. Working from a specificaiton is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync. If Yahoo change their API, we'd want a test to fail. The previous faked out tests would still pass as our internal API is still working, it's just the adapter that's broken.
+
+
 
 ### A note on integration tests
 
