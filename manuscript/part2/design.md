@@ -198,7 +198,7 @@ In these kinds of tests, we'd fake out the server component and the UI would use
 
 As a specific example from this group, lets look at verifying monetary values are displayed with thousands separated using commas. We've opted for a HTML based specification to describe the requirements.
 
-A> #### When I ask for the portfolio value in the UI, it's formatted with commas.
+A> #### When I ask for the portfolio value in the UI, it's formatted with commas
 A>
 A> Given a portfolio value of `10500.988`
 A>
@@ -386,23 +386,26 @@ Notice that in the specification result below, the specifics of what it means fo
 
 ### HTTP Adapter to Java message tests
 
-Once we're satisfied about the communication between UI and `Portfolio`, we can look at the behaviour of the Portfolio part of the domain model. This part of the domain model is responsible for exposing the valuation request interface. This is implemented by a HTTP adapter to create a RESTful endpoint. It turns the HTTP call into a Java API call so our tests should exercise this adaptation.
+Once we're satisfied about the communication between UI and Portfolio, we can look at the behaviour of the Portfolio part of the domain model in more detail. This part is responsible for exposing an interface for requesting valuations and then processing that request. The interface is implemented as a HTTP adapter to accept incoming requests. It turns the HTTP call (the external API) into a Java call (the internal API). Tests in this group should therefore exercise this adaptation.
 
 ![](images/part2/design.md/test-portfolio-valuation.png)
 
-An important point to make right off the bat is that these tests will assume that the RESTful infrastructure is, or will be, tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests.
+An important point to appreciate is that these tests will assume that the RESTful infrastructure is, or will be, tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests.
 
-In Java terms, you can think of this as not testing the servlet container's configuration but instead testing the `Servlet` directly. We assume the web container works and that thin slices of configuration will be tested in subsequent tests. Starting up a full container for multiple business scenarios can be wasteful when they exercise the same infrastructure scenarios again and again.
+In Java terms, you can think of this as not testing the servlet container's configuration but instead testing the `Servlet` directly. We assume the web container works and that thin slices of configuration will be tested in subsequent tests. Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
 
 
 
-#### Example
+#### Example test
 
-So, our example specification might look like this.
+An example specification to test against might look like this.
 
+A> #### Valuations are returned in response the HTTP requests
+A>
 A> When a HTTP request for a valuation is received
 A>
 A> Then the total portfolio valuation will be returned to the requester
+
 
 With a corresponding fixture used to verify the HTTP adapter works with domain model components as intended.
 
@@ -429,9 +432,32 @@ public class PortfolioValuationTest {
 }
 ~~~~~~~
 
-The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) HTTP server. Either way, we're not interested in testing these frameworks or their configuration.
+The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. It's the external API mentioned above. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running in an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) HTTP server. Either way, we're not interested in testing these frameworks or their configuration here. We're assuming that when up and running a HTTP `GET` is relayed to the `PortfolioResource` class and the `value` method (simulated by line 15).
 
-We're using JMock to implement our test double and simply verify that an object responsible for valuing a portfolio (`valuation`) is accessed and it's monetary return type is bundled in the HTTP `response` body. This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
+If we look at the implementation of `PortfolioResource`, you can see this to be the case. The class uses an instance of `Valuation` as a collaborator to perform the actual calculation and sets the result in the HTTP response body (at line 12).
+
+{title="The PortfolioResource class represents the HTTP adapter", lang="java", line-numbers="on"}
+~~~~~~~
+public class PortfolioResource {
+    private final Valuation valuation;
+
+    public PortfolioResource(Valuation valuation) {
+        this.valuation = valuation;
+    }
+
+    @GET
+    @Path("/portfolio/{id}")
+    public Response value(@PathParam("id") String id) {
+        return response(OK)
+            .entity(valuation.value())
+            .header("Access-Control-Allow-Origin", "*")
+            .build();
+    }
+}
+~~~~~~~
+
+
+We use JMock in the test to implement our test double and simply verify that the `Valuation` object is used to calculate the valuation and it's monetary return type is bundled in the HTTP `response` body (at line 16). This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
 
 ![](images/part2/design.md/test-portfolio-valuation-specification-result.png)
 
