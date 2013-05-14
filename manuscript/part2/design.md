@@ -527,7 +527,8 @@ The previous test example mocked out the valuation component (at line 12 in Exam
     containing <b concordion:set="#quantity">100</b> shares in
     <b concordion:set="#symbol">AMZN</b></span> and a stock price in the
     <span concordion:execute="setMarketDataPrice(#symbol, #price)"> market
-    data system for <b>AMZN</b> of <b concordion:set="#price">261.82</b></span>
+    data system for <b>AMZN</b> of <b concordion:set="#price">261.82</b>
+    </span>
 </p>
 
 <h2>When</h2>
