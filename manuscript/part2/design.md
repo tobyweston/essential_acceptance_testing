@@ -394,11 +394,12 @@ An important point to appreciate is that these tests will assume that the RESTfu
 
 In Java terms, you can think of this as not testing the servlet container's configuration but instead testing the `Servlet` directly. We assume the web container works and that thin slices of configuration will be tested in subsequent tests. Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
 
+Example tests in this group might include verifying the HTTP response body and codes for happy and sad path scenarios. For example, verifying response codes of HTTP `500` or `404` or JSON structures in the message bodies.
 
 
 #### Example test
 
-An example specification to test against might look like this.
+A specific example specification to test against might look like this.
 
 A> #### Valuations are returned in response the HTTP requests
 A>
@@ -465,17 +466,21 @@ We use JMock in the test to implement our test double and simply verify that the
 
 ### Portfolio calculation tests
 
-These tests are concerned with the calculation logic of the domain model. How does the `Portfolio` actually go about summing the stocks and where does it get their prices? Given the previous test shows that a HTTP request is translated into a Java message to get a valuation, these tests go into more detail as to what is involved in valuing the portfolio. Scenarios might include summing the prices of various stocks on a customer's book, how the system responds when prices can not be retrieved or if a customer has no stocks.
+These tests are concerned with the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous group of tests show that HTTP requests are translated into a Java messages to get a valuation, these tests go into more detail as to what is involved in valuing the portfolio.
+
+For example, scenarios in this group might include summing the prices of various stocks on a customer's book, how the system responds when prices can not be retrieved or if a customer has no stocks to value.
 
 ![](images/part2/design.md/test-market-data.png)
 
-The calculation must interact with `Market Data` in order to price any stocks the customer holds. So the test will need work with a real `Portfolio` component but use a test double for the `Market Data` port.
+The calculation must interact with `Market Data` in order to price any stocks the customer holds. So the test will need work with a real Portfolio component but use a test double for the Market Data interface.
 
 
-#### Example
+#### Example test
 
 An example scenario might look like this.
 
+A> #### Calculating the value of a single stock with a closing price
+A>
 A> Given a customer book containing `100` shares in `AMZN` and yesterday's stock price in the market data system for `AMZN` of `261.82`
 A>
 A> When a request for a valuation is received
@@ -508,7 +513,39 @@ public class PortfolioValuationCalculationTest {
 }
 ~~~~~~~
 
-The previous test mocked out the valuation component whereas this test uses a real version which collaborates with the customer's `Book` and the external `Market Data` component. Given test doubles for these components, we can setup stocks on a customer book along with corresponding prices in this fixture and verify different scenarios using differing HTML specifications.
+The previous test example mocked out the valuation component (at line 12 in Example 6.) whereas this test uses the real class to calculate prices (defined at line 6 and executed at line 17. It that works with the customer's `Book` and the external `Market Data` to get the information it needs and these are stubbed at lines 4 and 5. Given these test doubles, we can setup stocks on a customer book along with corresponding prices in this fixture and verify different scenarios using HTML specifications like the following.
+
+{title="Example 8: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
+~~~~~~~
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<body>
+<h1>Portfolio Valuation</h1>
+
+<h2>Given</h2>
+<p>
+    A customer book <span concordion:execute="setBook(#symbol, #quantity)">
+    containing <b concordion:set="#quantity">100</b> shares in
+    <b concordion:set="#symbol">AMZN</b></span> and a stock price in the
+    <span concordion:execute="setMarketDataPrice(#symbol, #price)"> market
+    data system for <b>AMZN</b> of <b concordion:set="#price">261.82</b></span>
+</p>
+
+<h2>When</h2>
+<p>
+    A request for a valuation is received
+</p>
+
+<h2>Then</h2>
+<p>
+    The total portfolio valuation will be
+    <b concordion:assertEquals="getTotalPortfolioValue()">26182.00</b>
+</p>
+</body>
+</html>
+~~~~~~~
+
+
+As before, the HTML interacts with the fixture to setup the stubs, execute the function under test and verify the results. The result would look something like this.
 
 ![](images/part2/design.md/test-portfolio-valuation-calculation-specification-result.png)
 
@@ -516,14 +553,14 @@ The previous test mocked out the valuation component whereas this test uses a re
 
 ### Market Data API tests
 
-These tests are concerned with the `Market Data` API. They use expectations rather than a stubs to represent the port and exercise the port, not how the results from the port are used (like in the previous tests). They give the opportunity to document how the interaction works.
+These tests are concerned with the Market Data API. They use expectations rather than a stubs to represent the interface and not how the results from the port are used (like in the previous tests). They give the opportunity to document how the interaction works.
 
 ![](images/part2/design.md/test-market-data.png)
 
 
-#### Example
+#### Example test
 
-{title="Example 8: Test fixture market data", lang="java", line-numbers="on"}
+{title="Example 9: Test fixture market data", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
