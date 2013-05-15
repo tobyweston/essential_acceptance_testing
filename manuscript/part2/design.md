@@ -141,7 +141,7 @@ A> | A component | ![](images/part2/design.md/circle.png) |
 A> | | |
 A> | An adapter | ![](images/part2/design.md/adapter.png) |
 A> | | |
-A> | Access components only via ports | ![](images/part2/design.md/port-line-adapter.png) |
+A> | Access adapters only via ports | ![](images/part2/design.md/port-line-adapter.png) |
 A> | Components only communicate with ports | ![](images/part2/design.md/circle-arrow-port.png) |
 A>
 
@@ -183,7 +183,7 @@ The UI makes a HTTP `GET` call to the Portfolio server. It's implemented by a JQ
 
 * Start up the UI server (remember this is basically serving static HTML but is started as it's own app)
 * Setup a fake Portfolio server with a canned response against specific HTTP GET calls
-* Use the UI to click the 'request valuation' button
+* Use the UI to click the refresh valuation control
 * Verify the canned response is displayed as intended within the UI
 
 For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `$10,500.99`. This exercises the UI logic to round the result, introduce commas and add a currency symbol.
@@ -306,7 +306,7 @@ Specifically, we'd
 
 * Start up the UI server
 * Setup a fake Portfolio server with an expectation against a specific HTTP request
-* Force the UI to click the 'request valuation' button
+* Use the UI to click refresh valuation control
 * Verify the request expectation and return a canned response
 * Verify that a response was received but not how it is used in the UI
 
@@ -376,9 +376,9 @@ public class UiPortfolioValueRequestTest {
 }
 ~~~~~~~
 
-Like the previous example, a canned response is setup (lines 17-19) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was access using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 36). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
+Like the previous example, a canned response is setup (lines 17-19) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was accessed using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 36). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
 
-Notice that in the specification result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the language in the test specification from it's implementation.
+Notice that in the result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the language in the test specification from it's implementation.
 
 ![](images/part2/design.md/test-ui-to-portfolio-specification-result.png)
 
@@ -390,9 +390,9 @@ Once we're satisfied about the communication between UI and Portfolio, we can lo
 
 ![](images/part2/design.md/test-portfolio-valuation.png)
 
-An important point to appreciate is that these tests will assume that the RESTful infrastructure is, or will be, tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests.
+An important point to appreciate is that these tests will assume that the RESTful infrastructure is, or will be, tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests. We'll defer the infrastructure tests until later (see [A thin slice of end-to-end](#thin-slice-of-end-to-end)).
 
-In Java terms, you can think of this as not testing the servlet container's configuration but instead testing the `Servlet` directly. We assume the web container works and that thin slices of configuration will be tested in subsequent tests. Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
+In Java terms, you can think of this as starting up a servlet container and testing a servlet along with it's configuration in the `web.xml` versus testing the `Servlet` directly. We assume the web container works and that thin slices of configuration will be tested in subsequent tests. Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
 
 Example tests in this group might include verifying the HTTP response body and codes for happy and sad path scenarios. For example, verifying response codes of HTTP `500` or `404` or JSON structures in the message bodies.
 
@@ -408,7 +408,7 @@ A>
 A> Then the total portfolio valuation will be returned to the requester
 
 
-With a corresponding fixture used to verify the HTTP adapter works with domain model components as intended.
+With a corresponding fixture used to verify the HTTP adapter works as intended.
 
 {title="Example 6: Test fixture for the Portfolio's port HTTP adapter", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -433,11 +433,11 @@ public class PortfolioValuationTest {
 }
 ~~~~~~~
 
-The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. It's the external API mentioned above. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running in an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) HTTP server. Either way, we're not interested in testing these frameworks or their configuration here. We're assuming that when up and running a HTTP `GET` is relayed to the `PortfolioResource` class and the `value` method (simulated by line 15).
+The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. It's the external API mentioned above. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running in an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) HTTP server. Either way, we're not interested in testing these frameworks or their configuration here. We're assuming that a HTTP `GET` is relayed to the `PortfolioResource` class and the `value` method (simulated by line 15).
 
 If we look at the implementation of `PortfolioResource`, you can see this to be the case. The class uses an instance of `Valuation` as a collaborator to perform the actual calculation and sets the result in the HTTP response body (at line 12).
 
-{title="The PortfolioResource class represents the HTTP adapter", lang="java", line-numbers="on"}
+{title="The `PortfolioResource` class represents the HTTP adapter", lang="java", line-numbers="on"}
 ~~~~~~~
 public class PortfolioResource {
     private final Valuation valuation;
@@ -458,7 +458,9 @@ public class PortfolioResource {
 ~~~~~~~
 
 
-We use JMock in the test to implement our test double and simply verify that the `Valuation` object is used to calculate the valuation and it's monetary return type is bundled in the HTTP `response` body (at line 16). This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
+We use [JMock](http://www.jmock.org) in the test to implement our test double and simply verify that the `Valuation` object is used to calculate the valuation and it's result is bundled in the HTTP `response` body (at line 16 of Example 6.).
+
+This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
 
 ![](images/part2/design.md/test-portfolio-valuation-specification-result.png)
 
@@ -466,13 +468,13 @@ We use JMock in the test to implement our test double and simply verify that the
 
 ### Portfolio calculation tests
 
-These tests are concerned with the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous group of tests show that HTTP requests are translated into a Java messages to get a valuation, these tests go into more detail as to what is involved in valuing the portfolio.
+This group of tests are concerned with the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous group show that HTTP requests are translated into a Java messages to get a valuation, these tests go into more detail as to what is involved in valuing the portfolio.
 
 For example, scenarios in this group might include summing the prices of various stocks on a customer's book, how the system responds when prices can not be retrieved or if a customer has no stocks to value.
 
 ![](images/part2/design.md/test-market-data.png)
 
-The calculation must interact with `Market Data` in order to price any stocks the customer holds. So the test will need work with a real Portfolio component but use a test double for the Market Data interface.
+The calculation must interact with Market Data in order to price the stocks the customer holds. The test will need work with a real Portfolio component but use a test double for the Market Data interface.
 
 
 #### Example test
@@ -481,7 +483,7 @@ An example scenario might look like this.
 
 A> #### Calculating the value of a single stock with a closing price
 A>
-A> Given a customer book containing `100` shares in `AMZN` and yesterday's stock price in the market data system for `AMZN` of `261.82`
+A> Given a customer book containing `100` shares in `AMZN` and a stock price for `AMZN` of `261.82`
 A>
 A> When a request for a valuation is received
 A>
@@ -513,7 +515,7 @@ public class PortfolioValuationCalculationTest {
 }
 ~~~~~~~
 
-The previous test example mocked out the valuation component (at line 12 in Example 6.) whereas this test uses the real class to calculate prices (defined at line 6 and executed at line 17. It that works with the customer's `Book` and the external `Market Data` to get the information it needs and these are stubbed at lines 4 and 5. Given these test doubles, we can setup stocks on a customer book along with corresponding prices in this fixture and verify different scenarios using HTML specifications like the following.
+The previous test example mocked out the valuation component (at line 12 in Example 6.) whereas this test uses the real class to calculate prices (defined at line 6 and executed at line 17). It that works with the customer's `MarketData` and `Book` components to get the information it needs. These are stubbed at lines 4 and 5. Given these test doubles, we can setup stocks on a customer book along with corresponding prices in this fixture and verify different scenarios using HTML specifications like the following.
 
 {title="Example 8: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
 ~~~~~~~
@@ -546,7 +548,7 @@ The previous test example mocked out the valuation component (at line 12 in Exam
 ~~~~~~~
 
 
-As before, the HTML interacts with the fixture to setup the stubs, execute the function under test and verify the results. The result would look something like this.
+As before, the HTML interacts with the fixture to setup the stubs (lines 7 and 10), execute the function under test and verify the results (line 23). The result would look something like this.
 
 ![](images/part2/design.md/test-portfolio-valuation-calculation-specification-result.png)
 
@@ -594,7 +596,7 @@ public class MarketDataTest {
 
 
 
-## Thin slice of end-to-end
+## Thin slice of end-to-end {#thin-slice-of-end-to-end}
 
 If it's not already clear, the above sections talk about tests grouped to make it easier to discuss. For example, the 'Portfolio value display tests' cover various scenarios in and around the UI display. They overlap to give a broad coverage of functionality but are executed within reduced environment. This avoids duplicate effort but means that, so far, we've never run all the components together at the same time.
 
