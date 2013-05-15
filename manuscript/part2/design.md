@@ -556,12 +556,16 @@ As before, the HTML interacts with the fixture to setup the stubs (lines 7 and 1
 
 ### Market Data API tests
 
-These tests are concerned with the Market Data API. They use expectations rather than a stubs to represent the interface and not how the results from the port are used (like in the previous tests). They give the opportunity to document how the interaction works.
+These tests are concerned with the Market Data API. The previous group was concerned with calculation logic given stocks and stock prices, these tests are concerned with how stock prices are actually retrieved. They would still approach it from the perspective of the portfolio; what affect does it have on the portfolio but use expectations rather than a stubs.
+
+Examples might include verifying what happens when stock prices are queries or stock prices are unavailable and do so in more detail than the previous group of tests.
 
 ![](images/part2/design.md/test-market-data.png)
 
 
 #### Example test
+
+An example, setting expectations against the market data API might look like this. Notice the verification is in the form of expectations. We're saying here that we expect a certain interaction between the `portfolio` and the `marketData` components but not verifying how any return values might be used by the `portfolio`.
 
 {title="Example 9: Test fixture market data", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -579,9 +583,7 @@ public class MarketDataTest {
         book.add(fromSymbol(firstSymbol)).add(fromSymbol(secondSymbol));
         context.checking(new Expectations() {{
             oneOf(marketData).getPrice(fromSymbol(firstSymbol));
-                will(returnValue(new Money(100)));
             oneOf(marketData).getPrice(fromSymbol(secondSymbol));
-                will(returnValue(new Money(200)));
         }});
         portfolio.value();
         context.assertIsSatisfied();
@@ -591,6 +593,8 @@ public class MarketDataTest {
     }
 }
 ~~~~~~~
+
+The result would look something like this. Again, notice how no results are explicitly stated, only that the market data "is queried for AMZN and GOOG".
 
 ![](images/part2/design.md/test-market-data-specification-result.png)
 
