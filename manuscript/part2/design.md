@@ -697,9 +697,9 @@ The assertion against a specific HTTP message is defined in the HTML specificati
 
 ### A note on integration tests
 
-We've verified that we make the right API calls to Yahoo but some combination of tests may want to use a fake Yahoo. You'll still be using the Yahoo adapter but talking to a different service (which you own, for example, a running HTTP server with canned responses). When you get into this situation, you'll want to run a test now and again to verify your fake and real Yahoo services are in sync.
+We've verified that we make the right API calls to Yahoo but used a fake Yahoo to do so. The tests go through the production Yahoo class adapter but talk to a different end points which we own. There's a danger that the behaviour we set on these fake services can get out of sync with the real services. If Yahoo change their API, we'd want a test to fail. Faked out tests could still pass .
 
-For example, if we've built our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually say. Working from a specification is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync. If Yahoo change their API, we'd want a test to fail. The previous faked out tests would still pass as our internal API is still working, it's just the adapter that's broken.
+For example, if we've build our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually return. Working from a specification is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync.
 
 
 ## Benefits using ports and adapters
