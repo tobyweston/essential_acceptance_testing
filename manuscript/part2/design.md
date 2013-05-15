@@ -702,6 +702,18 @@ We've verified that we make the right API calls to Yahoo but used a fake Yahoo t
 For example, if we've build our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually return. Working from a specification is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync.
 
 
+
 ## Benefits using ports and adapters
 
+Getting the design of your tests right using ports and adapters means you wont be duplicating effort, you'll have created a efficient test suite that runs quickly. In a similar way that TDD gives you a flexible design, a ports and adapters design will encourage loosely coupled components with very flexible composability. You'll have built a very adaptable architecture.
+
+
+
 ## Disadvantages using ports and adapters
+
+Decomposing a system into discrete but overlapping areas is actually quite difficult. It often feels like a protracted process and once done, it's difficult to keep all the overlapping parts in your head. When you come to write a new set of tests, you've got to first understand a whole bunch of previous tests and how they interconnect. Reasoning about where new ones might fit in is hard and its difficult to get feedback if you've got it wrong. Build times may go up but you'll probably just not notice that you're duplicating effort.
+
+It can also be hard to win over business stakeholders, testers and developers. It's much more natural for people to accept the system is working a certain way if they see if running in it's entirety. Despite logical arguments that a decoupled testing approach can yield equivalent coverage, it's just human nature to accept the empirical over the intellectual argument.
+
+Introducing this stuff late in a project lifecycle is arguably less likely to succeed. If you've already got a slow and duplication heavy build, it's probably not the right technique for a quick fix. It takes sustained effort to get right
+and is easier to introduce right from the start of a new project. If you're willing to retrofit to an existing system, be prepared to rearchitect large parts of the system.
