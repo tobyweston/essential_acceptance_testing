@@ -64,7 +64,7 @@ These verifications overlap each other to verify the overall behaviour in a seri
 
 ![](images/part2/alternatives.md/ports-and-adapters-combined.png)
 
-This is a slightly simplified description, for an expanded example, see the [How testing can influence design](#design) section.
+This is a slightly simplified description. See the [How design can influence testing](#design) section for more details.
 
 
 

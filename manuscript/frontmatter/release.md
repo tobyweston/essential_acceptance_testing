@@ -24,7 +24,7 @@
 |-----------------------------------------------------------------------------------------------------------------------------|
 | 2013-xx-xx        | Added the suggestion to use an hexagonal architecture to the [Alternatives](#alternatives) section.     |
 |                   | This introduces a ports and adapters style of testing. It has a slightly simplified example which is    |
-|                   | expanded in the new [How testing can influence design](#design) section. This section also includes     |
+|                   | expanded in the new [How design can influence testing](#design) section. This section also includes     |
 |                   | code samples taken from on the example application available via Github.                                |
 |                   |                                                                                                         |
 |                   | James joined as co-author.                                                                              |
