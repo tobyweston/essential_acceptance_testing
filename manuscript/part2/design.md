@@ -565,7 +565,17 @@ Examples might include verifying what happens when stock prices are queries or s
 
 #### Example test
 
-An example, setting expectations against the market data API might look like this. Notice the verification is in the form of expectations. We're saying here that we expect a certain interaction between the `portfolio` and the `marketData` components but not verifying how any return values might be used by the `portfolio`.
+An example specification might look like this
+
+A> #### Market data API
+A>
+A> When a request for a valuation is received for a book containing `AMZN` and `GOOG` stocks
+A>
+A> Then market data is queried for `AMZN` and `GOOG`
+
+
+With a corresponding fixture Setting expectations against the market data API. Notice the verification is in the form of expectations. We're saying here that we expect a certain interaction between the `portfolio` and the `marketData` components but not verifying how any return values might be used by the `portfolio`. It's saying that when when prices are queried for Amazon and Google, the market data component is accessed using the `getPrice` method of the API.
+
 
 {title="Example 9: Test fixture market data", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -617,13 +627,79 @@ People often get hung up on these kinds of test. They worry that without exercis
 
 That just leaves some kind of test to ensure that the real Yahoo market data API operates as expected. We've already built our market data adapter which we fake out in the tests but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
 
-For example, if we've built our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually say. Working from a specificaiton is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync. If Yahoo change their API, we'd want a test to fail. The previous faked out tests would still pass as our internal API is still working, it's just the adapter that's broken.
+We've shown that when the market data API is queried for say, Amazon or Google, that a specific API method is called, now we need to show what happens when it's called.
+
+![](images/part2/design.md/test-yahoo.png)
+
+
+#### Example tests
+
+An example, specifying that a specific request should be made to Yahoo when a price is requested might look like this.
+
+A> #### Specific HTTP message to Yahoo
+A>
+A> When the price for `AMZN` is requested by the portfolio for the date `March 26, 2013`
+A>
+A> Then the following HTTP `GET` request to Yahoo is made [a specific HTTP message]
+
+
+With a fixture as below.
+
+{title="Example 10: Test Yahoo's query endpoint", lang="java", line-numbers="on"}
+~~~~~~~
+@RunWith(ConcordionRunner.class)
+@ExpectedToPass
+public class YahooTest {
+
+    private Date date;
+    private final FakeYahoo yahoo = new FakeYahoo();
+    private final String host = "http://localhost:" + FakeYahoo.port;
+    private final Yahoo client = new YqlWebService(anApacheClient(), host);
+    private final Clock clock = new FrozenClock(date) {
+        @Override
+        public Date now() {
+            return date;
+        }
+    };
+    private MarketData marketData = new YahooMarketData(client, clock);
+
+    @Before
+    public void start() {
+        yahoo.start();
+    }
+
+    public String getPriceFromYahoo(String symbol, String date) {
+        String response = "{\"quote\":{\"Close\":\"200.10\"}}";
+        this.date = new Date(date);
+        yahoo.stub(
+                urlStartingWith("/v1/public/yql"),
+                aResponse().withBody(response));
+        marketData.getPrice(fromSymbol(symbol));
+        List<LoggedRequest> requests
+            = yahoo.requestsForHttpGet(urlStartingWith("/v1/public/yql"));
+        return new WiremockLoggedRequest(requests).toString();
+    }
+
+    @After
+    public void stop() {
+        yahoo.stop();
+    }
+}
+~~~~~~~
+
+There's a fair bit of setup in this test. The main thing to note is that a fake Yahoo server is setup (line 6) and the internal component that acts as the client (at line 8) is setup to point to it. The client uses a real HTTP client to call to the fake server. The fake server allows us to interrogate the messages it received for the purposes of the test (line 29).
+
+The assertion against a specific HTTP message is defined in the HTML specification. The result looks like this.
+
+![](images/part2/design.md/test-yahoo-specification-result.png)
 
 
 
 ### A note on integration tests
 
 We've verified that we make the right API calls to Yahoo but some combination of tests may want to use a fake Yahoo. You'll still be using the Yahoo adapter but talking to a different service (which you own, for example, a running HTTP server with canned responses). When you get into this situation, you'll want to run a test now and again to verify your fake and real Yahoo services are in sync.
+
+For example, if we've built our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually say. Working from a specification is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync. If Yahoo change their API, we'd want a test to fail. The previous faked out tests would still pass as our internal API is still working, it's just the adapter that's broken.
 
 
 ## Benefits using ports and adapters
