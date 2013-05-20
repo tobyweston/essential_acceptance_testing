@@ -1,12 +1,12 @@
 # How design can influence testing {#design}
 
-How you design your architecture will directly affect how easy your application is to test. If you decouple the system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters approach can make testing easier and more efficient. We introduce a sample application (available [online](https://github.com/tobyweston/essential_acceptance_testing_code)) and show how testing is complicated by a coupled design and how the de-coupled alternative can be tested.
+How you design your architecture will directly affect how easy your application is to test. If you decouple a system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters approach can make testing easier and more efficient. We introduce a sample application (available [online](https://github.com/tobyweston/essential_acceptance_testing_code)) and show how testing is complicated by a coupled design and how the de-coupled alternative can be tested more easily.
 
 ## Sample application
 
 Lets imagine a system concerned with helping customers manage their stock portfolio. It displays details about stocks owned and allows the customer to buy and sell directly with an exchange. The system is made up of a browser based UI and a RESTful backend server. The backend uses a market data service provided by Yahoo to retrieve stock prices and connects directly to an exchange to execute trades.
 
-One important aspect of the sample application is that the UI is a separate app from the RESTful server. The UI is a deployable HTTP server in it's own right. It serves the static HTML and JavaScript that makes up the UI. The RESTful backend is also a HTTP server but this one performs the business logic and is called by the UI. This separation decouples the UI logic from the business logic and allows us to develop the two independently and potentially with differing technologies.
+One important aspect of the sample application is that the UI is deployed as a separate app from the RESTful server. It's made up of static HTML and JavaScript and is served by an embedded HTTP server. The RESTful backend is deployed separately with an embedded HTTP server and is called by the UI to perform the business logic. This separation decouples the UI logic from the business logic and allows us to develop the two independently, potentially with differing technologies.
 
 Currently, only basic information is displayed about a customer's stocks so stakeholders have decided on the next piece of work and have described it as follows.
 
