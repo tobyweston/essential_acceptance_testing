@@ -201,9 +201,53 @@ A> Then the portfolio value is requested and displayed on the UI as **`10,500.99
 
 We'll use [Concordion](http://www.concordion.org) as the framework for automating this specification as a test. We use HTML to document the specification and use Concordion as a way to execute it like a regular JUnit test. You markup the HTML to encode instructions which Concordion interprets at runtime to call application logic and make assertions. After it's done, it outputs a modified version of the specification as a human readable result. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer in their own language.
 
-Our fixture for the above might look like the following.
+The HTML specification for example would like the following.
 
-{title="Listing 1.1: Test fixture for use with scenarios described in HTML specifications", lang="java", line-numbers="on"}
+
+{title="Listing 1.1: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
+~~~~~~~
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<body>
+<h1>Portfolio Valuation</h1>
+
+<h2>Given</h2>
+<p>
+    A portfolio value of <b>10500.988</b>
+</p>
+
+<div class="details hidden">
+    <div class="example">
+        <p>
+            The response from the server contains the body of
+        </p>
+        <pre concordion:set="#body">10500.988</pre>
+    </div>
+</div>
+
+<h2>When</h2>
+<p concordion:execute="requestPortfolioValue(#body)">
+    A user refreshes the portfolio page
+</p>
+
+<h2>Then</h2>
+<p>
+    The portfolio value is requested and displayed on the UI as
+    <b concordion:assertEquals="getPortfolioValue()">10,500.99</b>
+</p>
+
+</body>
+</html>
+~~~~~~~
+
+
+
+It uses a JUnit like fixture to match up the specification to an executable test and create a reusable resource for testing related scenarios consistently. In science, a fixture is often physical apparatus used to support a test specimen during an experiment. The experiment or test is distinct from the apparatus that supports it. JUnit often muddles this idea because a JUnit test will typically include test support code (the fixture part) as well as actual test scenarios.
+
+When we use a HTML specification like Listing 1.1, we can create fixtures which are more about supporting the test and the test scenarios themselves are encoded in the specification. We can create differing scenarios but reuse the same fixture. Our fixture for the above might look like the following.
+
+
+
+{title="Listing 1.2: Test fixture for use with scenarios described in HTML specifications", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -242,40 +286,7 @@ public class UiPortfolioValueDisplayTest {
 By annotating the test with `@RunWith(ConcordionRunner.class)`, the class can be run like a regular JUnit test. It will use [Concordion](http://www.concordion.org) runner to find and parse the HTML specification calling into the fixture as appropriate. For example, our specification looks like the following.
 
 
-{title="Listing 1.2: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
-~~~~~~~
-<html xmlns:concordion="http://www.concordion.org/2007/concordion">
-<body>
-<h1>Portfolio Valuation</h1>
 
-<h2>Given</h2>
-<p>
-    A portfolio value of <b>10500.988</b>
-</p>
-
-<div class="details hidden">
-    <div class="example">
-        <p>
-            The response from the server contains the body of
-        </p>
-        <pre concordion:set="#body">10500.988</pre>
-    </div>
-</div>
-
-<h2>When</h2>
-<p concordion:execute="requestPortfolioValue(#body)">
-    A user refreshes the portfolio page
-</p>
-
-<h2>Then</h2>
-<p>
-    The portfolio value is requested and displayed on the UI as
-    <b concordion:assertEquals="getPortfolioValue()">10,500.99</b>
-</p>
-
-</body>
-</html>
-~~~~~~~
 
 The HTML sets up the fake server to respond with `10500.988` by setting a "variable" on line 15 which is passed into the `requestPortfolioValue()` method of the fixture. As the HTML is interpreted, when it reaches line 20, it'll actually call the method on the fixture. At this point, the fixture will control an instance of the browser to click on a refresh button triggering a `GET` request using JQuery.
 
