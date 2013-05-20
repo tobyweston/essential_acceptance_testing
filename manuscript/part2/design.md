@@ -24,7 +24,7 @@ The UI might look something like this.
 
 If a system is built with components tightly coupled, the only way to test a scenario is with a coarse grained system test. In our [example application](https://github.com/tobyweston/essential_acceptance_testing_code), we could test against real Yahoo with something like this.
 
-{title="Example 1: Coarse grained test starting up the full stack", lang="java", line-numbers="on"}
+{title="Listing 1: Coarse grained test starting up the full stack", lang="java", line-numbers="on"}
 ~~~~~~~
 public class PortfolioSystemTestWithRealYahoo {
     private final Server application = Fixture.applicationWithRealYahoo();
@@ -87,7 +87,7 @@ The `waitFor` is shown inline above for illustrative purposes, a more object-ori
 
 We can improve the test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request). Lines 15-17 below set up any HTTP call to the URL `/v1/public/yql` to respond with a valid HTTP response containing the response string from line 14.
 
-{title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
+{title="Listing 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
 ~~~~~~~
 public class PortfolioSystemTestWithFakeYahoo {
     private final Server application = Fixture.applicationWithRealYahoo();
@@ -154,17 +154,11 @@ All communication to the domain model is done via a port and adapter pair. The e
 
 Using the decoupled ports and adapters approach to create comparable coverage, we'd design tests around the following.
 
-* UI to Portfolio Port
-  * Portfolio value display tests
-  * Request for portfolio value tests
-* Portfolio HTTP Adapter
-  * HTTP Adapter to Java message tests
-* Portfolio to Market Data Port
-  * Portfolio calculation tests
-  * Market Data API tests
-
-Along with more lightweight system tests
-
+* Testing the UI display and behaviour
+* Request for portfolio value tests
+* HTTP Adapter to Java message tests
+* Portfolio calculation tests
+* Market Data API tests
 * Fewer, more focused end-to-end (system) tests
 * Tests against real (Yahoo) Market Data
 
@@ -172,32 +166,30 @@ Lets have a closer look at each of these next. You can also refer to the source 
 
 
 
-### Portfolio value display tests
+### Example 1: Testing the UI display and behaviour
 
-Tests in this group are concerned with the display of the portfolio's valuation in the UI. For example, we may want to test that currencies are displayed, rounding occurs, commas are displayed in large numbers, negative numbers show up in red or informational text is displayed in the event that no value is available.
-
-These tests start with the user asking for the current value in the UI but we'd like to be able to make assertions without having to go through the backend. We'll need a real UI but the tests should work with the Portfolio's port.
+Testing the UI display is about verifying the UI behaviour without exercising backend components. For example, we might want to verify that if the user asks for the current portfolio's value in the UI that it's displayed with correct rounding and with commas. You might also be interested if currencies are displayed, negative numbers are shown in red or informational text is displayed in the event that no value is available. We'd like to be able to make assertions without having to go through the backend so we'll use a real UI but a fake backend (we'll be faking out the "port" in the diagram below).
 
 ![](images/part2/design.md/test-ui-only.png)
 
-The UI makes a HTTP `GET` call to the Portfolio server. It's implemented by a JQuery ajax call inside a HTML page. In testing however, we'd prefer to use a test double to replace the Portfolio and therefore just test that the UI correctly displays whatever the port returns. Specifically then, we'd
+In terms of our sample application, the UI makes a HTTP `GET` call to the backend. It's implemented by a ajax call inside a HTML page. In testing however, we'll replace the Portfolio with a test double and therefore just test that the UI correctly displays whatever the test double returns. Specifically then, we'd
 
 * Start up the UI server (remember this is basically serving static HTML but is started as it's own app)
 * Setup a fake Portfolio server with a canned response against specific HTTP GET calls
-* Use the UI to click the refresh valuation control
+* Use the browser in the test to click the refresh valuation control
 * Verify the canned response is displayed as intended within the UI
 
-For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `$10,500.99`. This exercises the UI logic to round the result, introduce commas and add a currency symbol.
+For example, we could setup the fake server to respond with a value of `10500.988` for a `GET` against `/portfolio/0001`. When the UI is used to make the request, we can verify the response is shown as `$10,500.99`. This would exercise the UI logic to round the result, introduce commas and add a currency symbol.
 
 Note that we don't verify how the request actually interacts with the Portfolio. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request details. If we were to verify the request, any changes to the request API would cause changes to this test even though it's only about display logic.
 
-In these kinds of tests, we'd fake out the server component and the UI would use JQuery to make a real HTTP request. An alternative approach would be to front the JQuery call behind our own JavaScript interface (port) and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
+We'd fake out the server component and the UI would make a real HTTP request. An alternative approach would be to put the ajax call behind our own JavaScript interface and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
 
 
 
-#### Example test
+#### Example 1: Code listings
 
-As a specific example from this group, lets look at verifying monetary values are displayed with thousands separated using commas. We've opted for a HTML based specification to describe the requirements.
+Lets look at some code verifying monetary values are displayed with thousands separated using commas. We'll opt for a HTML based specification to describe the requirements;
 
 A> #### When I ask for the portfolio value in the UI, it's formatted with commas
 A>
@@ -207,11 +199,11 @@ A> When a user refreshes the portfolio page
 A>
 A> Then the portfolio value is requested and displayed on the UI as **`10,500.99`**
 
-We'll use [Concordion](http://www.concordion.org) as the framework that will interpret an instrumented HTML file and call into a test fixture class to call our application logic and make assertions. We use the HTML to document the specification and use Concordion as a way to execute it like a regular JUnit test. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer in their own language.
+We'll use [Concordion](http://www.concordion.org) as the framework for automating this specification as a test. We use HTML to document the specification and use Concordion as a way to execute it like a regular JUnit test. You markup the HTML to encode instructions which Concordion interprets at runtime to call application logic and make assertions. After it's done, it outputs a modified version of the specification as a human readable result. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer in their own language.
 
 Our fixture for the above might look like the following.
 
-{title="Example 3: Test fixture for use with scenarios described in HTML specifications", lang="java", line-numbers="on"}
+{title="Listing 1.1: Test fixture for use with scenarios described in HTML specifications", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -250,7 +242,7 @@ public class UiPortfolioValueDisplayTest {
 By annotating the test with `@RunWith(ConcordionRunner.class)`, the class can be run like a regular JUnit test. It will use [Concordion](http://www.concordion.org) runner to find and parse the HTML specification calling into the fixture as appropriate. For example, our specification looks like the following.
 
 
-{title="Example 4: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
+{title="Listing 1.2: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
 ~~~~~~~
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <body>
