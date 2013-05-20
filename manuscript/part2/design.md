@@ -22,7 +22,7 @@ The UI might look something like this.
 
 ## Coupled architecture
 
-If a system is built with components tightly coupled, pretty much the only way to test a scenario is with a coarse grained system test. In our [example application](https://github.com/tobyweston/essential_acceptance_testing_code), we could test against real Yahoo with something like this.
+If a system is built with components tightly coupled, the only way to test a scenario is with a coarse grained system test. In our [example application](https://github.com/tobyweston/essential_acceptance_testing_code), we could test against real Yahoo with something like this.
 
 {title="Example 1: Coarse grained test starting up the full stack", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -52,7 +52,6 @@ public class PortfolioSystemTestWithRealYahoo {
 
 It exercises all of the components but it's naive as it relies on Yahoo being up and returning the expected result. It starts up the entire application in the `@Before` which in turn starts up the web container, initialises the UI and market data components. The browser is then fired up and used to simulate the user's interaction (line 12). The result is scraped directly from the browser (line 13).
 
-The assertion on the result is wrapped in a call to poll the UI periodically (the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It may take this long or longer to respond. It's another brittle aspect to this test.
 
 
 A> ##Page driver pattern {#page-driver-pattern-aside}
@@ -72,10 +71,12 @@ A> {:lang="java"}
 A> ~~~~~~~~
 A> browser.navigateToSummaryPage().requestValuationForShares(100);
 A> ~~~~~~~~
-A> You can see in this way, the UI test code is just another example of a port (the UI driver interface) and it's adapters.
 A>
 
-The `waitFor` is shown inline above for pedagogical purposes, a more object-oriented approach would be to push this into the browser object and hide the asynchronousity and timeout details from the client.
+
+The assertion on the result is wrapped in a call to poll the UI periodically (the call to `waitFor` on line 13) because the request from the browser to the application is asynchronous. Notice the long timeout value of five seconds because Yahoo is a publicly available service with no guarantees of responsiveness. It may take this long or longer to respond. It's another brittle aspect to this test.
+
+The `waitFor` is shown inline above for illustrative purposes, a more object-oriented approach would be to push this into the browser object and hide the asynchronousity and timeout details from the client.
 
 {title="Pushing the asynchronous handing into the browser model", lang="java", line-numbers="off"}
 ~~~~~~~
@@ -84,7 +85,7 @@ The `waitFor` is shown inline above for pedagogical purposes, a more object-orie
         .assertThatPortfolioValue(is("91,203.83"));
 ~~~~~~~
 
-We can also improve the test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request). Lines 15-17 below set up any HTTP call to the URL `/v1/public/yql` to respond with a valid HTTP response containing the response string from line 14.
+We can improve the test slightly by faking out Yahoo and forcing it to return a canned response (a price of `200.10` for each request). Lines 15-17 below set up any HTTP call to the URL `/v1/public/yql` to respond with a valid HTTP response containing the response string from line 14.
 
 {title="Example 2: Same test but with a faked out market data service", lang="java", line-numbers="on"}
 ~~~~~~~
