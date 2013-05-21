@@ -155,7 +155,7 @@ All communication to the domain model is done via a port and adapter pair. The e
 Using the decoupled ports and adapters approach to create comparable coverage, we'd design tests around the following.
 
 * Testing the UI display and behaviour
-* Request for portfolio value tests
+* Testing the outgoing messages
 * HTTP Adapter to Java message tests
 * Portfolio calculation tests
 * Market Data API tests
@@ -189,7 +189,7 @@ We'd fake out the server component and the UI would make a real HTTP request. An
 
 #### Example 1: Code listings
 
-Lets look at some code verifying monetary values are displayed with thousands separated using commas. We'll opt for a HTML based specification to describe the requirements;
+Lets look at an example to verify monetary values are displayed with thousands separated by commas (`1,000,000` and not `1000000`). We'll opt for a HTML based specification to describe the requirements;
 
 A> #### When I ask for the portfolio value in the UI, it's formatted with commas
 A>
@@ -293,37 +293,38 @@ The `GET` request will trigger the canned response to be returned ready for disp
 
 
 
-### Request for portfolio value tests
+### Example 2: Testing the outgoing messages
 
-In the previous section, we made no verifications against the request mechanisms so that we could focus solely on display semantics. The next set of tests focuses on the request mechanics. We're interested in exercising the interaction between the UI and the `Portfolio` port.
+In the previous example, we made no verifications against the request mechanism so that we could focus solely on display semantics. The next set of tests focuses on the request mechanics. We're interested in exercising the interaction between the UI and the Portfolio port.
 
-The previous tests ask "when I ask for a portfolio value in the UI, what happens?", this set of tests are concerned with what it actually means to ask for a portfolio's value?
+The previous test asks "when I ask for a portfolio value in the UI, how is it displayed?", this example is concerned with what it actually means to ask for a portfolio's value?
 
 ![](images/part2/design.md/test-ui-to-portfolio.png)
 
-When the UI asks for a valuation, a specific message is sent over the wire. These tests would verify the request and response formats. How the response is actually used is left to the previous tests. For example, if the request is sent as JSON, the JSON content may be verified. The response body may be verified against a specific JSON format and the HTTP response code verified to be 200 (OK).
+When the UI asks for a valuation, a specific message is sent over the wire. This example would verify the request and response formats. For example, if the request is sent as JSON, the JSON content could be verified. The response body could also be verified against a specific JSON format and the HTTP response code verified to be 200 (OK). How the response is actually used is left to other tests.
 
 Specifically, we'd
 
 * Start up the UI server
 * Setup a fake Portfolio server with an expectation against a specific HTTP request
-* Use the UI to click refresh valuation control
+* Use the browser to refresh the valuation
 * Verify the request expectation and return a canned response
 * Verify that a response was received but not how it is used in the UI
 
-When the UI asks for the current value, a message is sent to the Portfolio component. These tests would use a real UI to call the Portfolio's port (represented by a test double) so that we can assert expectations on the message format. If we have different UIs, we would need to test each to verify how they communicate with the port. For example, a test for a desktop client would also verify the JSON message and HTTP request.
+When the UI asks for the current value, a message is sent to the Portfolio component. Testing the outgoing messages would use a real UI to call a test double (representing the Portfolio's port) so that we can assert expectations on the message format. If we had multiple UIs (for example a desktop client), we'd need to test how each of them communicate with the port. The port represents the API and the outgoing messages from each UI should be tested against the API specification.
 
 
 
-#### Example test
+#### Example 2: Code listings
 
-An example specification might look like this.
+An example specification interested in the Portfolio's API might look like this.
 
 A> #### What does it mean to ask for a portfolio value in the UI?
 A>
 A> When the user asks for the current portfolio valuation in the UI
 A>
 A> Then a request for the portfolio value is made to the application and the response is returned
+
 
 With a corresponding fixture as follows.
 
