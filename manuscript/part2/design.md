@@ -199,9 +199,9 @@ A> When a user refreshes the portfolio page
 A>
 A> Then the portfolio value is requested and displayed on the UI as **`10,500.99`**
 
-We'll use [Concordion](http://www.concordion.org) as the framework for automating this specification as a test. We use HTML to document the specification and use Concordion as a way to execute it like a regular JUnit test. You markup the HTML to encode instructions which Concordion interprets at runtime to call application logic and make assertions. After it's done, it outputs a modified version of the specification as a human readable result. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer in their own language.
+We'll use [Concordion](http://www.concordion.org) as the framework for automating this as a test. We use HTML to document the specification and use Concordion as a way to execute it like a regular JUnit test. You markup the HTML to encode instructions that Concordion interprets at runtime to call application logic and make assertions. After it's done, it outputs the result as a modified version of the specification. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer.
 
-The HTML specification for example would like the following.
+The HTML specification for our example would like the following.
 
 
 {title="Listing 1.1: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
@@ -241,9 +241,9 @@ The HTML specification for example would like the following.
 
 
 
-It uses a JUnit like fixture to match up the specification to an executable test and create a reusable resource for testing related scenarios consistently. In science, a fixture is often physical apparatus used to support a test specimen during an experiment. The experiment or test is distinct from the apparatus that supports it. JUnit often muddles this idea because a JUnit test will typically include test support code (the fixture part) as well as actual test scenarios.
+Concordion uses a test fixture to match the specification to an executable test. In science, a fixture is often physical apparatus used to support a test specimen during an experiment. The experiment or test is distinct from the apparatus that supports it. JUnit often muddles this idea because a JUnit test will typically include test support code (the fixture part) as well as actual test scenarios.
 
-When we use a HTML specification like Listing 1.1, we can create fixtures which are more about supporting the test and the test scenarios themselves are encoded in the specification. We can create differing scenarios but reuse the same fixture. Our fixture for the above might look like the following.
+When we use a HTML specification like Listing 1.1, we can create fixtures which are more about supporting the test and the test scenarios themselves are encoded in the specification. We can create differing scenarios in HTML but reuse the same fixture. Our fixture for the above might look like the following.
 
 
 
@@ -283,14 +283,11 @@ public class UiPortfolioValueDisplayTest {
 ~~~~~~~
 
 
-By annotating the test with `@RunWith(ConcordionRunner.class)`, the class can be run like a regular JUnit test. It will use [Concordion](http://www.concordion.org) runner to find and parse the HTML specification calling into the fixture as appropriate. For example, our specification looks like the following.
+By annotating the fixture with `@RunWith(ConcordionRunner.class)`, the class can be run like a regular JUnit test. It will use the [Concordion](http://www.concordion.org) runner to find and parse the HTML specification calling into the fixture as appropriate. Notice that there is not `@Test` methods, the fixture is run using the JUnit framework but it's the HTML specification that acts as the test.
 
+The HTML sets up the fake server to respond with `10500.988` by setting a "variable" on line 15 (Listing 1.1) which is passed into the `requestPortfolioValue()` method of the fixture. As the HTML is interpreted, when it reaches line 20, it'll actually call the method on the fixture. At this point, the fixture will control an instance of the browser to refresh, triggering a `GET` request using JQuery.
 
-
-
-The HTML sets up the fake server to respond with `10500.988` by setting a "variable" on line 15 which is passed into the `requestPortfolioValue()` method of the fixture. As the HTML is interpreted, when it reaches line 20, it'll actually call the method on the fixture. At this point, the fixture will control an instance of the browser to click on a refresh button triggering a `GET` request using JQuery.
-
-The `GET` request will trigger the canned response to be returned ready for display. It's JavaScript in the UI that receives this response and introduces the commas. It's this that we're really trying to test so we make an assertion in Concordion parlance at line 27. This line will get the actual value from the UI using the fixture's method and compare it with the HTML element. After running, it'd look like the the following with a positive assertion shown in green.
+The `GET` request will trigger the canned response to be returned ready for display. It's JavaScript in the UI that receives this response and introduces the commas. It's this that we're really trying to test so we add an assertion in the Concordion markup at line 27 (Listing 1.1). This line will get the actual value from the UI using the fixture's method and compare it with the HTML element. After running, Concordion updates the specification with a successful result shown in green.
 
 ![](images/part2/design.md/test-ui-only-specification-result.png)
 
