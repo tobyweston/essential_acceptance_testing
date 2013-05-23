@@ -295,9 +295,9 @@ The `GET` request will trigger the canned response to be returned ready for disp
 
 ### Example 2: Testing the outgoing messages
 
-In the previous example, we made no verifications against the request mechanism so that we could focus solely on display semantics. The next set of tests focuses on the request mechanics. We're interested in exercising the interaction between the UI and the Portfolio port.
+In the previous example, we made no verifications against the request mechanism so that we could focus solely on display semantics. The next example focuses on the request mechanics. We're interested in exercising the interaction between the UI and the Portfolio port.
 
-The previous test asks "when I ask for a portfolio value in the UI, how is it displayed?", this example is concerned with what it actually means to ask for a portfolio's value?
+The previous test asks "when I ask for a portfolio value in the UI, how is it displayed?", this test is concerned with what it actually means to ask for a portfolio's value?
 
 ![](images/part2/design.md/test-ui-to-portfolio.png)
 
@@ -319,7 +319,7 @@ When the UI asks for the current value, a message is sent to the Portfolio compo
 
 An example specification interested in the Portfolio's API might look like this.
 
-A> #### What does it mean to ask for a portfolio value in the UI?
+A> #### What does it mean to ask for a portfolio value?
 A>
 A> When the user asks for the current portfolio valuation in the UI
 A>
@@ -328,7 +328,7 @@ A> Then a request for the portfolio value is made to the application and the res
 
 With a corresponding fixture as follows.
 
-{title="Example 5: Test fixture for working with UI to Portfolio requests", lang="java", line-numbers="on"}
+{title="Listing 2.1: Test fixture for working with UI to Portfolio requests", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -380,7 +380,7 @@ public class UiPortfolioValueRequestTest {
 
 Like the previous example, a canned response is setup (lines 17-19) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was accessed using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 36). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
 
-Notice that in the result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made"). This decouples the language in the test specification from it's implementation.
+Notice that in the result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made and the valuation is returned"). This decouples the language in the test specification from it's implementation.
 
 ![](images/part2/design.md/test-ui-to-portfolio-specification-result.png)
 
