@@ -156,7 +156,7 @@ Using the decoupled ports and adapters approach to create comparable coverage, w
 
 * Testing the UI display and behaviour
 * Testing the outgoing messages
-* HTTP Adapter to Java message tests
+* Testing the Portfolio HTTP API
 * Portfolio calculation tests
 * Market Data API tests
 * Fewer, more focused end-to-end (system) tests
@@ -386,24 +386,22 @@ Notice that in the result below, the specifics of what it means for a request to
 
 
 
-### HTTP Adapter to Java message tests
+### Example 3: Testing the Portfolio HTTP API
 
-Once we're satisfied about the communication between UI and Portfolio, we can look at the behaviour of the Portfolio part of the domain model in more detail. This part is responsible for exposing an interface for requesting valuations and then processing that request. The interface is implemented as a HTTP adapter to accept incoming requests. It turns the HTTP call (the external API) into a Java call (the internal API). Tests in this group should therefore exercise this adaptation.
+Once we're satisfied about the communication between UI and Portfolio, we can look at the behaviour of the Portfolio in more detail. This part is responsible for exposing an interface for requesting valuations and processing any valuation requests. The interface is implemented as a HTTP adapter to accept incoming requests. It turns the HTTP call (the external API) into a Java call (the internal API) and a Java result into a HTTP response.
 
 ![](images/part2/design.md/test-portfolio-valuation.png)
 
-An important point to appreciate is that these tests will assume that the RESTful infrastructure is, or will be, tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests. We'll defer the infrastructure tests until later (see [A thin slice of end-to-end](#thin-slice-of-end-to-end)).
+An important point to note is that these tests will assume that the RESTful infrastructure is tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests. We'll defer the infrastructure tests until later (see [A thin slice of end-to-end](#thin-slice-of-end-to-end)). Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
 
-In Java terms, you can think of this as starting up a servlet container and testing a servlet along with it's configuration in the `web.xml` versus testing the `Servlet` directly. We assume the web container works and that thin slices of configuration will be tested in subsequent tests. Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
-
-Example tests in this group might include verifying the HTTP response body and codes for happy and sad path scenarios. For example, verifying response codes of HTTP `500` or `404` or JSON structures in the message bodies.
+In Java terms, you can think of this as starting up a servlet container and testing a servlet along with it's configuration in the `web.xml` versus testing the `Servlet` directly. We don't really need to test a servlet running within the container, we can safely assume the web container works and that thin slices of configuration will be tested in subsequent tests.
 
 
-#### Example test
+#### Example 3: Code listings
 
-A specific example specification to test against might look like this.
+An example specification might look like this.
 
-A> #### Valuations are returned in response the HTTP requests
+A> #### Valuations are returned in response to HTTP requests
 A>
 A> When a HTTP request for a valuation is received
 A>
@@ -412,7 +410,7 @@ A> Then the total portfolio valuation will be returned to the requester
 
 With a corresponding fixture used to verify the HTTP adapter works as intended.
 
-{title="Example 6: Test fixture for the Portfolio's port HTTP adapter", lang="java", line-numbers="on"}
+{title="Listing 3.1: Test fixture for the Portfolio's port HTTP adapter", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -435,11 +433,11 @@ public class PortfolioValuationTest {
 }
 ~~~~~~~
 
-The `PortfolioResource` class is the business logic component that should be accessed when a HTTP request is received. It's the external API mentioned above. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running in an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) running in an embedded [Jetty](http://www.eclipse.org/jetty/) HTTP server. Either way, we're not interested in testing these frameworks or their configuration here. We're assuming that a HTTP `GET` is relayed to the `PortfolioResource` class and the `value` method (simulated by line 15).
+The `PortfolioResource` class is the adapter that's accessed when a HTTP request is received. It's the external API mentioned above. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running in an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) and [Jetty](http://www.eclipse.org/jetty/). Either way, we're not interested in testing these frameworks or their configuration here. We're assuming that a HTTP `GET` is relayed to the `PortfolioResource` class and the `value` method is executed. Line 15 above calls the method directly in the test simulating this.
 
 If we look at the implementation of `PortfolioResource`, you can see this to be the case. The class uses an instance of `Valuation` as a collaborator to perform the actual calculation and sets the result in the HTTP response body (at line 12).
 
-{title="The `PortfolioResource` class represents the HTTP adapter", lang="java", line-numbers="on"}
+{title="Listing 3.2: The `PortfolioResource` class represents the HTTP adapter", lang="java", line-numbers="on"}
 ~~~~~~~
 public class PortfolioResource {
     private final Valuation valuation;
