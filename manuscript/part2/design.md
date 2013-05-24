@@ -154,19 +154,19 @@ All communication to the domain model is done via a port and adapter pair. The e
 
 Using the decoupled ports and adapters approach to create comparable coverage, we'd design tests around the following.
 
-* Testing the UI display and behaviour
-* Testing the outgoing messages
-* Testing the Portfolio HTTP API
-* Testing the Portfolio valuation calculation
-* Testing the Market Data API
-* Testing real Yahoo! Market Data
+* Testing the UI display and behaviour (see [Example 1](#example-1))
+* Testing the outgoing messages (see [Example 2](#example-2))
+* Testing the Portfolio HTTP API (see [Example 3](#example-3))
+* Testing the Portfolio valuation calculation (see [Example 4](#example-4))
+* Testing the Market Data API (see [Example 5](#example-5))
+* Testing real Yahoo! Market Data (see [Example 6](#example-6))
 * Testing end-to-end (system tests)
 
 Lets have a closer look at each of these next. You can also refer to the source code of the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code) for more details.
 
 
 
-### Example 1: Testing the UI display and behaviour
+### Example 1: Testing the UI display and behaviour {#example-1}
 
 Testing the UI display is about verifying the UI behaviour without exercising backend components. For example, we might want to verify that if the user asks for the current portfolio's value in the UI that it's displayed with correct rounding and with commas. You might also be interested if currencies are displayed, negative numbers are shown in red or informational text is displayed in the event that no value is available. We'd like to be able to make assertions without having to go through the backend so we'll use a real UI but a fake backend (we'll be faking out the "port" in the diagram below).
 
@@ -289,7 +289,7 @@ The `GET` request will trigger the canned response to be returned ready for disp
 
 
 
-### Example 2: Testing the outgoing messages
+### Example 2: Testing the outgoing messages {#example-2}
 
 In the previous example, we made no verifications against the request mechanism so that we could focus solely on display semantics. The next example focuses on the request mechanics. We're interested in exercising the interaction between the UI and the Portfolio port.
 
@@ -378,7 +378,7 @@ Notice that in the result below, the specifics of what it means for a request to
 
 
 
-### Example 3: Testing the Portfolio HTTP API
+### Example 3: Testing the Portfolio HTTP API {#example-3}
 
 Once we're satisfied about the communication between UI and Portfolio, we can look at the behaviour of the Portfolio in more detail. This part is responsible for exposing an interface for requesting valuations and processing any valuation requests. The interface is implemented as a HTTP adapter to accept incoming requests. It turns the HTTP call (the external API) into a Java call (the internal API) and a Java result into a HTTP response.
 
@@ -454,7 +454,7 @@ This may seem very much like a unit style test. That's because it is. It focuses
 
 
 
-### Example 4: Testing the Portfolio valuation calculation
+### Example 4: Testing the Portfolio valuation calculation {#example-4}
 
 One or more tests would be needed to verify the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous example shows that HTTP requests are translated into a Java messages to get a valuation, these tests would go into more detail as to what is involved in valuing the portfolio.
 
@@ -539,7 +539,7 @@ As before, the HTML interacts with the fixture to setup the stubs (lines 7 and 1
 
 
 
-### Example 5: Testing the Market Data API
+### Example 5: Testing the Market Data API {#example-5}
 
 The previous example was concerned with calculation logic once we have stock quantities and prices but we still need to test how stock prices are actually retrieved. Stock prices change daily and are typically supplied by large institutions like [Bloomberg](http://www.bloomberg.com/markets/) as data feeds. In production, we're using a free data feed supplied by Yahoo!
 
@@ -596,7 +596,7 @@ The result would look something like this. Again, notice that no results are exp
 
 
 
-### Example 6: Testing real Yahoo! Market Data
+### Example 6: Testing real Yahoo! Market Data {#example-6}
 
 We'd also need some kind of test to ensure that the real Yahoo market data component operates as expected. We've already built our market data adapter that we fake out in the previous tests (Example 5.) but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
 
