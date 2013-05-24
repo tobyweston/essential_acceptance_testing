@@ -54,7 +54,7 @@ It exercises all of the components but it's naive as it relies on Yahoo being up
 
 
 
-A> ##Page driver pattern {#page-driver-pattern-aside}
+A> ## Page driver pattern {#page-driver-pattern-aside}
 A>
 A> Abstracting the business intent from the UI mechanics means that UI "driver" code isn't coupled to a specific UI. If done carefully, switching the UI would mean just implementing a new adapter. Notice how in the above we avoided the following.
 A>
@@ -159,8 +159,8 @@ Using the decoupled ports and adapters approach to create comparable coverage, w
 * Testing the Portfolio HTTP API
 * Testing the Portfolio valuation calculation
 * Testing the Market Data API
-* Fewer, more focused end-to-end (system) tests
-* Tests against real (Yahoo) Market Data
+* Testing real Yahoo! Market Data
+* Testing end-to-end (system tests)
 
 Lets have a closer look at each of these next. You can also refer to the source code of the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code) for more details.
 
@@ -384,7 +384,7 @@ Once we're satisfied about the communication between UI and Portfolio, we can lo
 
 ![](images/part2/design.md/test-portfolio-valuation.png)
 
-An important point to note is that these tests will assume that the RESTful infrastructure is tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests. We'll defer the infrastructure tests until later (see [A thin slice of end-to-end](#thin-slice-of-end-to-end)). Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
+An important point to note is that these tests will assume that the RESTful infrastructure is tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests. We'll defer the infrastructure tests until later (see [A thin slice of end-to-end](#testing-end-to-end)). Starting up a full container for multiple business scenarios can be wasteful when they inadvertently exercise the same infrastructure scenarios again and again.
 
 In Java terms, you can think of this as starting up a servlet container and testing a servlet along with it's configuration in the `web.xml` versus testing the `Servlet` directly. We don't really need to test a servlet running within the container, we can safely assume the web container works and that thin slices of configuration will be tested in subsequent tests.
 
@@ -596,30 +596,16 @@ The result would look something like this. Again, notice that no results are exp
 
 
 
-## Thin slice of end-to-end {#thin-slice-of-end-to-end}
+### Example 6: Testing real Yahoo! Market Data
 
-The previous examples focus on specific scenarios, interacting with a limited number of components. None of the previous tests interact with more than couple of components but they overlap to simulate the broader path through the system. The run within a reduced context (for example, not within a fully started application stack) and avoid duplication. This does however mean that so far, we've never run all the components together at the same time.
-
-To address this, we still need to write some additional end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points. I'm describing these as end-to-end as it reflects the notion of multiple components working together. It doesn't mean that we'll use real external systems though, the tests would be entirely within our own system boundary.
-
-![](images/part2/design.md/test-end-to-end.png)
-
-The few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as litmus tests to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios as we will have already tested the edge-cases and are just sense checking that the application is assembled correctly. These tests would be more about infrastructure that functionality.
-
-People often get hung up on this kind of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really shouldn't need many of these heavier, end-to-end tests.
-
-### Yahoo!
-
-That just leaves some kind of test to ensure that the real Yahoo market data API operates as expected. We've already built our market data adapter which we fake out in the tests but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
+We'd also need some kind of test to ensure that the real Yahoo market data component operates as expected. We've already built our market data adapter that we fake out in the previous tests (Example 5.) but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
 
 We've shown that when the market data API is queried for say, Amazon or Google, that a specific API method is called, now we need to show what happens when it's called.
 
 ![](images/part2/design.md/test-yahoo.png)
 
 
-#### Example tests
-
-An example, specifying that a specific request should be made to Yahoo when a price is requested might look like this.
+For example, specifying that a specific request should be made to Yahoo when a price is requested might look like this.
 
 A> #### Specific HTTP message to Yahoo
 A>
@@ -630,7 +616,7 @@ A> Then the following HTTP `GET` request to Yahoo is made [a specific HTTP messa
 
 With a fixture as below.
 
-{title="Example 10: Test Yahoo's query endpoint", lang="java", line-numbers="on"}
+{title="Listing 6.1: Test Yahoo's query endpoint", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -672,7 +658,7 @@ public class YahooTest {
 }
 ~~~~~~~
 
-There's a fair bit of setup in this test. The main thing to note is that a fake Yahoo server is setup (line 6) and the internal component that acts as the client (at line 8) is setup to point to it. The client uses a real HTTP client to call to the fake server. The fake server allows us to interrogate the messages it received for the purposes of the test (line 29).
+There's a fair bit of setup in this test. The main thing to note is that a fake Yahoo server is setup (line 6) and the internal component that acts as the client (at line 8) is setup to point to it. The client will make a real HTTP request to the fake server. The fake server allows us to interrogate the messages it received for the purposes of the test (line 29).
 
 The assertion against a specific HTTP message is defined in the HTML specification. The result looks like this.
 
@@ -680,11 +666,26 @@ The assertion against a specific HTTP message is defined in the HTML specificati
 
 
 
-### A note on integration tests
+A> ## Keeping fakes in sync with real services {#keeping-fakes-in-sync-with-real-services-aside}
+A>
+A>We've verified that we make the right API calls to Yahoo but used a fake Yahoo to do so. The tests go through the production Yahoo class adapter but talk to a different end points which we own. There's a danger that the behaviour we set on these fake services can get out of sync with the real services. If Yahoo change their API, we'd want a test to fail. Faked out tests could still pass.
+A>
+A>For example, if we've build our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually return. Working from a specification is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync.
+A>
 
-We've verified that we make the right API calls to Yahoo but used a fake Yahoo to do so. The tests go through the production Yahoo class adapter but talk to a different end points which we own. There's a danger that the behaviour we set on these fake services can get out of sync with the real services. If Yahoo change their API, we'd want a test to fail. Faked out tests could still pass .
 
-For example, if we've build our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually return. Working from a specification is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync.
+
+## Testing end-to-end (system tests) {#testing-end-to-end}
+
+The previous examples focus on specific scenarios, interacting with a limited number of components. None of the previous tests interact with more than couple of components but they overlap to simulate the broader path through the system. The run within a reduced context (for example, not within a fully started application stack) and avoid duplication. This does however mean that so far, we've never run all the components together at the same time.
+
+To address this, we still need to write some additional end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points. I'm describing these as end-to-end as it reflects the notion of multiple components working together. It doesn't mean that we'll use real external systems though, the tests would be entirely within our own system boundary.
+
+![](images/part2/design.md/test-end-to-end.png)
+
+The few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as litmus tests to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios as we will have already tested the edge-cases and are just sense checking that the application is assembled correctly. These tests would be more about infrastructure that functionality.
+
+People often get hung up on this kind of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really shouldn't need many of these heavier, end-to-end tests.
 
 
 
