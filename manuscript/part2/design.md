@@ -598,16 +598,15 @@ The result would look something like this. Again, notice that no results are exp
 
 ## Thin slice of end-to-end {#thin-slice-of-end-to-end}
 
-If it's not already clear, the above sections talk about tests grouped to make it easier to discuss. For example, the 'Portfolio value display tests' cover various scenarios in and around the UI display. They overlap to give a broad coverage of functionality but are executed within reduced environment. This avoids duplicate effort but means that, so far, we've never run all the components together at the same time.
+The previous examples focus on specific scenarios, interacting with a limited number of components. None of the previous tests interact with more than couple of components but they overlap to simulate the broader path through the system. The run within a reduced context (for example, not within a fully started application stack) and avoid duplication. This does however mean that so far, we've never run all the components together at the same time.
 
-To address this, we still need to run some form of end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points.
+To address this, we still need to write some additional end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points. I'm describing these as end-to-end as it reflects the notion of multiple components working together. It doesn't mean that we'll use real external systems though, the tests would be entirely within our own system boundary.
 
-* Fewer, more focused end-to-end (system) tests
-* Tests against real (Yahoo) Market Data
+![](images/part2/design.md/test-end-to-end.png)
 
-In our definition, the few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as a smoke test to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios through as we've already tested the edge-cases and now we're just sense checking that the application is assembled correctly. This test is more about infrastructure that functionality.
+The few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as litmus tests to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios as we will have already tested the edge-cases and are just sense checking that the application is assembled correctly. These tests would be more about infrastructure that functionality.
 
-People often get hung up on these kinds of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really should need hardly any of these heaver weight end-to-end tests.
+People often get hung up on this kind of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really shouldn't need many of these heavier, end-to-end tests.
 
 ### Yahoo!
 
