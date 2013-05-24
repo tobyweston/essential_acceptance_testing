@@ -435,7 +435,7 @@ public class PortfolioValuationTest {
 
 The `PortfolioResource` class is the adapter that's accessed when a HTTP request is received. It's the external API mentioned above. The RESTful framework used to route the `GET` call to this class is a JSR-311 framework called [Utterlyidle](https://code.google.com/p/utterlyidle/) running in an embedded HTTP server. A common alternative is to use [Jersey](http://jersey.java.net/) and [Jetty](http://www.eclipse.org/jetty/). Either way, we're not interested in testing these frameworks or their configuration here. We're assuming that a HTTP `GET` is relayed to the `PortfolioResource` class and the `value` method is executed. Line 15 above calls the method directly in the test simulating this.
 
-If we look at the implementation of `PortfolioResource`, you can see this to be the case. The class uses an instance of `Valuation` as a collaborator to perform the actual calculation and sets the result in the HTTP response body (at line 12).
+The `PortfolioResource` class shown below uses an instance of `Valuation` as a collaborator to perform the actual calculation and at line 12, sets the result in the HTTP response body. We use [JMock](http://www.jmock.org) in the test to implement a test double for `Valuation` and simply verify that it's used and it's result is bundled in the HTTP `response` body in Listing 3.1 at line 16.
 
 {title="Listing 3.2: The `PortfolioResource` class represents the HTTP adapter", lang="java", line-numbers="on"}
 ~~~~~~~
@@ -451,14 +451,12 @@ public class PortfolioResource {
     public Response value(@PathParam("id") String id) {
         return response(OK)
             .entity(valuation.value())
-            .header("Access-Control-Allow-Origin", "*")
             .build();
     }
 }
 ~~~~~~~
 
 
-We use [JMock](http://www.jmock.org) in the test to implement our test double and simply verify that the `Valuation` object is used to calculate the valuation and it's result is bundled in the HTTP `response` body (at line 16 of Example 6.).
 
 This may seem very much like a unit style test. That's because it is. It focuses narrowly on specific questions and can only be called an acceptance test because of the way its used (to give customer's confidence via the HTML output). There's nothing in our definition of an acceptance test that precludes it being written as a unit style test.
 
@@ -716,4 +714,4 @@ Decomposing a system into discrete but overlapping areas is actually quite diffi
 It can also be hard to win over business stakeholders, testers and developers. It's much more natural for people to accept the system is working a certain way if they see if running in it's entirety. Despite logical arguments that a decoupled testing approach can yield equivalent coverage, it's just human nature to accept the empirical over the intellectual argument.
 
 Introducing this stuff late in a project lifecycle is arguably less likely to succeed. If you've already got a slow and duplication heavy build, it's probably not the right technique for a quick fix. It takes sustained effort to get right
-and is easier to introduce right from the start of a new project. If you're willing to retrofit to an existing system, be prepared to rearchitect large parts of the system.
+and is easier to introduce right from the start of a new project. If you're willing to retrofit to an existing system, be prepared to re-architect large parts of the system.
