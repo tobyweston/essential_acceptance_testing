@@ -157,7 +157,7 @@ Using the decoupled ports and adapters approach to create comparable coverage, w
 * Testing the UI display and behaviour
 * Testing the outgoing messages
 * Testing the Portfolio HTTP API
-* Portfolio calculation tests
+* Testing the Portfolio valuation calculation
 * Market Data API tests
 * Fewer, more focused end-to-end (system) tests
 * Tests against real (Yahoo) Market Data
@@ -184,10 +184,6 @@ For example, we could setup the fake server to respond with a value of `10500.98
 Note that we don't verify how the request actually interacts with the Portfolio. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request details. If we were to verify the request, any changes to the request API would cause changes to this test even though it's only about display logic.
 
 We'd fake out the server component and the UI would make a real HTTP request. An alternative approach would be to put the ajax call behind our own JavaScript interface and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
-
-
-
-#### Example 1: Code listings
 
 Lets look at an example to verify monetary values are displayed with thousands separated by commas (`1,000,000` and not `1000000`). We'll opt for a HTML based specification to describe the requirements;
 
@@ -313,10 +309,6 @@ Specifically, we'd
 
 When the UI asks for the current value, a message is sent to the Portfolio component. Testing the outgoing messages would use a real UI to call a test double (representing the Portfolio's port) so that we can assert expectations on the message format. If we had multiple UIs (for example a desktop client), we'd need to test how each of them communicate with the port. The port represents the API and the outgoing messages from each UI should be tested against the API specification.
 
-
-
-#### Example 2: Code listings
-
 An example specification interested in the Portfolio's API might look like this.
 
 A> #### What does it mean to ask for a portfolio value?
@@ -397,8 +389,6 @@ An important point to note is that these tests will assume that the RESTful infr
 In Java terms, you can think of this as starting up a servlet container and testing a servlet along with it's configuration in the `web.xml` versus testing the `Servlet` directly. We don't really need to test a servlet running within the container, we can safely assume the web container works and that thin slices of configuration will be tested in subsequent tests.
 
 
-#### Example 3: Code listings
-
 An example specification might look like this.
 
 A> #### Valuations are returned in response to HTTP requests
@@ -464,18 +454,15 @@ This may seem very much like a unit style test. That's because it is. It focuses
 
 
 
-### Portfolio calculation tests
+### Example 4: Testing the Portfolio valuation calculation
 
-This group of tests are concerned with the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous group show that HTTP requests are translated into a Java messages to get a valuation, these tests go into more detail as to what is involved in valuing the portfolio.
+One or more tests would be needed to verify the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous example shows that HTTP requests are translated into a Java messages to get a valuation, these tests would go into more detail as to what is involved in valuing the portfolio.
 
-For example, scenarios in this group might include summing the prices of various stocks on a customer's book, how the system responds when prices can not be retrieved or if a customer has no stocks to value.
+For example, you might include tests to verify the summing of stock prices a customer owns, how the system responds when prices can not be retrieved or if a customer has no stocks to value. Our example is going to look the simple case of how a single stock is valued, which is done by looking up the price in the Market Data component.
 
 ![](images/part2/design.md/test-market-data.png)
 
-The calculation must interact with Market Data in order to price the stocks the customer holds. The test will need work with a real Portfolio component but use a test double for the Market Data interface.
-
-
-#### Example test
+The test must interact with Market Data in order to price the stocks the customer holds so the test will use a real Portfolio component but use a test double for the Market Data interface. We talk about a customers _book_ as a way as the to record what stock quantities a customer holds. So for example, we might say that a customer has a position of 100 against Google on their book.
 
 An example scenario might look like this.
 
@@ -489,7 +476,7 @@ A> Then the total portfolio valuation will be `26182.00`
 
 with a corresponding fixture.
 
-{title="Example 7: Test fixture for the Portfolio's calculation logic", lang="java", line-numbers="on"}
+{title="Listing 4.1: Test fixture for the Portfolio's calculation logic", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -513,9 +500,9 @@ public class PortfolioValuationCalculationTest {
 }
 ~~~~~~~
 
-The previous test example mocked out the valuation component (at line 12 in Example 6.) whereas this test uses the real class to calculate prices (defined at line 6 and executed at line 17). It that works with the customer's `MarketData` and `Book` components to get the information it needs. These are stubbed at lines 4 and 5. Given these test doubles, we can setup stocks on a customer book along with corresponding prices in this fixture and verify different scenarios using HTML specifications like the following.
+The previous example mocked out the valuation component (at line 12 in Listing 3.1) whereas this test uses the real class to calculate prices (defined at line 6 and executed at line 17). It works with the `MarketData` and `Book` components to get the information it needs. These are stubbed at lines 4 and 5. Given these test doubles, we can setup stocks on a customer book along with corresponding prices in this fixture and verify different scenarios using HTML specifications like the following.
 
-{title="Example 8: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
+{title="Listing 4.2: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
 ~~~~~~~
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <body>
