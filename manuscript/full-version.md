@@ -14,16 +14,20 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
 
 **Introduction**
 
- - What’s an Acceptance Test?
- - Acceptance Criteria vs Acceptance Tests
- - What’s a story?
- - Confidence and Trust
- - Further reading
+ - What is an Acceptance Test?
+ - What are Acceptance Criteria?
+ - What is a story?
+ - Bring it all together
 
 **Typical Process Overview**
 
  - The story delivery lifecycle
- - Examples
+ - Pick a story
+ - Agree acceptance criteria
+ - Develop
+ - Demonstrate
+ - Deliver
+
 
 ###Part 2 - Discussion and alternatives
 
@@ -47,7 +51,7 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - Construct validity
  - Artificial constraints
 
-**Business value**
+**Business value** (not yet written)
 
  - What is "value"?
  - Measuring "value"
@@ -55,18 +59,21 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
 **Alternatives to acceptance tests**
 
  - Don’t write acceptance tests
- - Use a hexagonal architecture
+ - Use a ports and adapters architecture
  - Don’t specify
  - Measure don’t agree
  - Log don’t specify
 
 **How design can influence testing**
 
- - Example problem
- - Ports and adapters
- - A thin slice of end-to-end
+ - Sample application
+ - Coupled architecture
+ - Decoupled architecture using ports and adapters
+ - Testing end-to-end (system tests)
+ - Benefits using ports and adapters
+ - Disadvantages using ports and adapters
 
-**Common pitfalls**
+**Common pitfalls** (not yet written)
 
  - Features hit production that the customer didn’t want
  - Users describe solutions not problems
@@ -76,7 +83,7 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - The acceptance test suite takes forever to run
  - Intermittent failures in tests
 
-**Q&A**
+**Q&A** (not yet written)
 
  - What do we mean when we say “acceptance testing”
  - How do I manage large numbers of acceptance tests?
@@ -93,3 +100,13 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
  - Can I run acceptance tests in parallel?
  - How can I run acceptance tests which exercise business processes than span multiple business days?
  - How should I setup and tear down data?
+
+
+
+###Part 3 - Specification testing frameworks
+
+**The frameworks** (not yet written)
+
+ - Concordion/.NET
+ - Yatspec
+ - Fit
