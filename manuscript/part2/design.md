@@ -158,7 +158,7 @@ Using the decoupled ports and adapters approach to create comparable coverage, w
 * Testing the outgoing messages
 * Testing the Portfolio HTTP API
 * Testing the Portfolio valuation calculation
-* Market Data API tests
+* Testing the Market Data API
 * Fewer, more focused end-to-end (system) tests
 * Tests against real (Yahoo) Market Data
 
@@ -539,18 +539,15 @@ As before, the HTML interacts with the fixture to setup the stubs (lines 7 and 1
 
 
 
-### Market Data API tests
+### Example 5: Testing the Market Data API
 
-These tests are concerned with the Market Data API. The previous group was concerned with calculation logic given stocks and stock prices, these tests are concerned with how stock prices are actually retrieved. They would still approach it from the perspective of the portfolio; what affect does it have on the portfolio but use expectations rather than a stubs.
+The previous example was concerned with calculation logic once we have stock quantities and prices but we still need to test how stock prices are actually retrieved. Stock prices change daily and are typically supplied by large institutions like [Bloomberg](http://www.bloomberg.com/markets/) as data feeds. In production, we're using a free data feed supplied by Yahoo!
 
-Examples might include verifying what happens when stock prices are queries or stock prices are unavailable and do so in more detail than the previous group of tests.
+We have a Market Data API to get the prices, so we're naturally focusing on testing this here. Examples scenarios might include verifying what happens when stock prices are queried or when stock prices are unavailable.
 
 ![](images/part2/design.md/test-market-data.png)
 
-
-#### Example test
-
-An example specification might look like this
+The example specification below outlines what we expect to happen, in terms of interaction with the Market Data component, when a valuation is requested.
 
 A> #### Market data API
 A>
@@ -559,10 +556,10 @@ A>
 A> Then market data is queried for `AMZN` and `GOOG`
 
 
-With a corresponding fixture Setting expectations against the market data API. Notice the verification is in the form of expectations. We're saying here that we expect a certain interaction between the `portfolio` and the `marketData` components but not verifying how any return values might be used by the `portfolio`. It's saying that when when prices are queried for Amazon and Google, the market data component is accessed using the `getPrice` method of the API.
+With a corresponding fixture Setting expectations against the market data API.
 
 
-{title="Example 9: Test fixture market data", lang="java", line-numbers="on"}
+{title="Listing 5.1: Test fixture for the market data API", lang="java", line-numbers="on"}
 ~~~~~~~
 @RunWith(ConcordionRunner.class)
 @ExpectedToPass
@@ -589,7 +586,11 @@ public class MarketDataTest {
 }
 ~~~~~~~
 
-The result would look something like this. Again, notice how no results are explicitly stated, only that the market data "is queried for AMZN and GOOG".
+Notice the verification is in the form of expectations. We're saying here that we expect a certain interaction between the `portfolio` and the `marketData` components but not verifying how any return values might be used by the `portfolio`.
+
+It's saying that when when prices are queried for Amazon and Google, the market data component is accessed using the `getPrice` method of the API and that's all.
+
+The result would look something like this. Again, notice that no results are explicitly stated, only that the market data "is queried for AMZN and GOOG".
 
 ![](images/part2/design.md/test-market-data-specification-result.png)
 
