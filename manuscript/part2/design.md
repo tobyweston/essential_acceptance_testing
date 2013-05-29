@@ -545,9 +545,9 @@ As before, the HTML interacts with the fixture to setup the stubs (lines 7 and 1
 
 ### Example 5: Testing the Market Data API {#example-5}
 
-The previous example was concerned with calculation logic once we have stock quantities and prices but we still need to test how stock prices are actually retrieved. Stock prices change daily and are typically supplied by large institutions like [Bloomberg](http://www.bloomberg.com/markets/) as data feeds. In production, we're using a free data feed supplied by Yahoo!
+The previous example was concerned with calculation logic once we have stock quantities and prices but we still need to test how stock prices are actually retrieved. Stock prices change frequently and are typically supplied by large institutions like [Bloomberg](http://www.bloomberg.com/markets/) for a fee. In production, we're using a free data feed supplied by Yahoo!
 
-We have a Market Data API to get the prices, so we're naturally focusing on testing this here. Examples scenarios might include verifying what happens when stock prices are queried or when stock prices are unavailable.
+We have a Market Data API to get the prices, so we focus on testing this here. For example, we might verify what happens when stock prices are happily retrieved or what happens when stock prices are unavailable.
 
 ![](images/part2/design.md/test-market-data.png)
 
@@ -592,9 +592,9 @@ public class MarketDataTest {
 
 Notice the verification is in the form of expectations. We're saying here that we expect a certain interaction between the `portfolio` and the `marketData` components but not verifying how any return values might be used by the `portfolio`.
 
-It's saying that when when prices are queried for Amazon and Google, the market data component is accessed using the `getPrice` method of the API and that's all.
+We're saying that when when prices are queried for Amazon and Google, the market data component is accessed using the `getPrice` method of the API and that's all.
 
-The result would look something like this. Again, notice that no results are explicitly stated, only that the market data "is queried for AMZN and GOOG".
+The result would look something like this. Again, notice that no results are explicitly stated, only that the market data "is queried for `AMZN` and `GOOG`".
 
 ![](images/part2/design.md/test-market-data-specification-result.png)
 
@@ -602,20 +602,20 @@ The result would look something like this. Again, notice that no results are exp
 
 ### Example 6: Testing real Yahoo! Market Data {#example-6}
 
-We'd also need some kind of test to ensure that the real Yahoo market data component operates as expected. We've already built our market data adapter that we fake out in the previous tests (Example 5.) but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
+We'd also need tests to ensure that the real Yahoo market data component operates as expected. We've already built our market data adapter that we fake out in the previous tests (Example 5.) but now we need to make sure that how we expect fake market data components to behave in tests is actually how they behave with real Yahoo.
 
 We've shown that when the market data API is queried for say, Amazon or Google, that a specific API method is called, now we need to show what happens when it's called.
 
 ![](images/part2/design.md/test-yahoo.png)
 
 
-For example, specifying that a specific request should be made to Yahoo when a price is requested might look like this.
+For example, testing that a specific request should be made to Yahoo when a price is requested might look like this.
 
 A> #### Specific HTTP message to Yahoo
 A>
 A> When the price for `AMZN` is requested by the portfolio for the date `March 26, 2013`
 A>
-A> Then the following HTTP `GET` request to Yahoo is made [a specific HTTP message]
+A> Then the correct Yahoo! HTTP `GET` request is made
 
 
 With a fixture as below.
@@ -662,17 +662,18 @@ public class YahooTest {
 }
 ~~~~~~~
 
-There's a fair bit of setup in this test. The main thing to note is that a fake Yahoo server is setup (line 6) and the internal component that acts as the client (at line 8) is setup to point to it. The client will make a real HTTP request to the fake server. The fake server allows us to interrogate the messages it received for the purposes of the test (line 29).
+There's a lot of setup in this test. The main thing to note is that a fake Yahoo server is setup (line 6) and the internal component that acts as the client (at line 8) is configured to point to it. The client will make a real HTTP request to the fake server. The fake server allows us to interrogate the messages it received for the purposes of the test (line 29).
 
 The assertion against a specific HTTP message is defined in the HTML specification. The result looks like this.
 
 ![](images/part2/design.md/test-yahoo-specification-result.png)
 
+In theory, the same test should be runnable against a real instance of Yahoo or out locally controlled fake Yahoo.
 
 
 A> ## Keeping fakes in sync with real services {#keeping-fakes-in-sync-with-real-services-aside}
 A>
-A>We've verified that we make the right API calls to Yahoo but used a fake Yahoo to do so. The tests go through the production Yahoo class adapter but talk to a different end points which we own. There's a danger that the behaviour we set on these fake services can get out of sync with the real services. If Yahoo change their API, we'd want a test to fail. Faked out tests could still pass.
+A>We've verified that we make the right API calls to Yahoo but used a fake Yahoo to do so. The tests go through the production Yahoo class but talk to a different end point which we own. There's a danger that the behaviour we set on these fake services can get out of sync with the real services. If Yahoo change their API, we'd want a test to fail. Faked out tests could still pass.
 A>
 A>For example, if we've build our tests expecting market data to respond with a HTTP response code of 404 (Not Found) for a price that isn't yet available, we should prove that's what Yahoo would actually return. Working from a specification is one thing but we'd prefer to have a test fail if our mocks and real market data components get out of sync.
 A>
