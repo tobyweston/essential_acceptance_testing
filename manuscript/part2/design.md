@@ -388,7 +388,7 @@ Once we're satisfied with the communication between UI and Portfolio, we can loo
 
 ![](images/part2/design.md/test-portfolio-valuation.png)
 
-An important point to note is that these tests will assume that the RESTful infrastructure is tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests. We'll defer the infrastructure tests until later (see [A thin slice of end-to-end](#testing-end-to-end)). Starting up the full stack and exercising the same path through the system for different business scenarios is wasteful when only a small proportion of the test varies.
+An important point to note is that these tests will assume that the RESTful infrastructure is tested elsewhere. Rather than start up a HTTP server, configure RESTful endpoints and make a real HTTP client request, the tests will work with underlying components directly. This separates the configuration and infrastructure (of the HTTP server) from the behaviour (the business logic classes) tests. We'll defer the infrastructure tests until later (see [Testing end to end](#testing-end-to-end)). Starting up the full stack and exercising the same path through the system for different business scenarios is wasteful when only a small proportion of the test varies.
 
 In Java terms, you can think of this as starting up a servlet container and testing a servlet along with it's configuration in the `web.xml` versus testing the `Servlet` directly. We don't really need to test a servlet running within the container, we can safely assume the web container works and that configuration will be tested elsewhere.
 
@@ -668,7 +668,7 @@ The assertion against a specific HTTP message is defined in the HTML specificati
 
 ![](images/part2/design.md/test-yahoo-specification-result.png)
 
-In theory, the same test should be runnable against a real instance of Yahoo or out locally controlled fake Yahoo.
+In principle, tests like this should be runnable against a real instance of Yahoo or our locally controlled fake Yahoo.
 
 
 A> ## Keeping fakes in sync with real services {#keeping-fakes-in-sync-with-real-services-aside}
@@ -682,13 +682,13 @@ A>
 
 ## Testing end-to-end (system tests) {#testing-end-to-end}
 
-The previous examples focus on specific scenarios, interacting with a limited number of components. None of the previous tests interact with more than couple of components but they overlap to simulate the broader path through the system. The run within a reduced context (for example, not within a fully started application stack) and avoid duplication. This does however mean that so far, we've never run all the components together at the same time.
+The previous examples focus on specific scenarios, interacting with a limited number of components but they overlap to simulate the broader path through the system. They run within a reduced context (for example, not within a fully started application stack) and avoid duplication. This does however mean that so far, we've never run all the components together at the same time.
 
-To address this, we still need to write some additional end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points. I'm describing these as end-to-end as it reflects the notion of multiple components working together. It doesn't mean that we'll use real external systems though, the tests would be entirely within our own system boundary.
+To address this, we still need to write some additional end-to-end tests. From the introduction of the decoupled architecture above, we still need to address the following points. I'm describing these as end-to-end as it reflects the notion of multiple components working together. It doesn't mean that we'll use real external systems though, the tests will be entirely within our own system boundary.
 
 ![](images/part2/design.md/test-end-to-end.png)
 
-The few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as litmus tests to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios as we will have already tested the edge-cases and are just sense checking that the application is assembled correctly. These tests would be more about infrastructure that functionality.
+The few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as litmus tests to ensure the production configuration of components is correct. We'd only run one or two test scenarios as we will have already tested the edge-cases and are just checking that the application is assembled correctly. These tests would be more about infrastructure that functionality.
 
 People often get hung up on this kind of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really shouldn't need many of these heavier, end-to-end tests.
 
@@ -711,13 +711,17 @@ People often get hung up on this kind of test. They worry that without exercisin
 
 Getting the design of your tests right using ports and adapters means you wont be duplicating effort, you'll have created a efficient test suite that runs quickly. In a similar way that TDD gives you a flexible design, a ports and adapters design will encourage loosely coupled components with very flexible composability. You'll have built a very adaptable architecture.
 
+Applying ports and adapters to your test code; creating a composable architecture and abstracting your test language, means that you'll have created tests narrowly focused on business requirements. A change to a small piece of production code shouldn't break dozens of acceptance tests. Applying these ideas should get you someway there.
+
+A lot of these ideas are really just about abstraction. If you apply any abstraction correctly, you should see decoupling. Ports and adapters allows you to decouple your architecture, empowering you to test small groups of components in isolation. This frees you up to use abstract language in your specifications, insulating them against implementation changes.
+
 
 
 ## Disadvantages using ports and adapters
 
-Decomposing a system into discrete but overlapping areas is actually quite difficult. It often feels like a protracted process and once done, it's difficult to keep all the overlapping parts in your head. When you come to write a new set of tests, you've got to first understand a whole bunch of previous tests and how they interconnect. Reasoning about where new ones might fit in is hard and its difficult to get feedback if you've got it wrong. Build times may go up but you'll probably just not notice that you're duplicating effort.
+Decomposing a system into discrete but overlapping areas is actually quite difficult. It often feels like a protracted process and once done, it's difficult to keep all the overlapping parts in your head. When you come to write a new set of tests, you've got to first understand previous tests and how they interconnect. Reasoning about where new ones might fit in is hard and its difficult to get feedback if you've got it wrong. Build times may go up but you probably won't notice that you're duplicating effort.
 
 It can also be hard to win over business stakeholders, testers and developers. It's much more natural for people to accept the system is working a certain way if they see if running in it's entirety. Despite logical arguments that a decoupled testing approach can yield equivalent coverage, it's just human nature to accept the empirical over the intellectual argument.
 
-Introducing this stuff late in a project lifecycle is arguably less likely to succeed. If you've already got a slow and duplication heavy build, it's probably not the right technique for a quick fix. It takes sustained effort to get right
-and is easier to introduce right from the start of a new project. If you're willing to retrofit to an existing system, be prepared to re-architect large parts of the system.
+Introducing these ideas late in a project lifecycle is less likely to succeed. If you've already got a slow and duplication heavy build, it's probably not the right technique for a quick fix. It takes sustained effort to get right
+and is easier to introduce right from the start of a new project. If you're willing to retrofit to an existing system, be prepared to re-architect large parts of it.
