@@ -361,7 +361,7 @@ public class UiPortfolioValueRequestTest {
     public boolean verifyResponseReturned() throws InterruptedException {
         browser
             .navigateToSummaryPage()
-            .assertThatPortfolioValue(not(isEmptyOrNullString()));
+            .assertThatPortfolioValue(isRenderedInTheUi());
         return true;
     }
 
@@ -374,9 +374,9 @@ public class UiPortfolioValueRequestTest {
 }
 ~~~~~~~
 
-Like the previous example, a canned response is setup (lines 17-19) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was accessed using the HTTP `GET` method and that any required headers were supplied. The test can then go on to verify the response is correct (line 36). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
+Like the previous example, a canned response is setup (lines 17-19) only this time, the fixture can verify that the UI made the correct type of request (line 26). It asserts that the correct URL was accessed using the HTTP `GET` method. The test can then go on to verify the response is correct (line 36). In this case, it just verifies that the response makes it's way onto the UI but doesn't test anything specific.
 
-Notice that in the result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made and the valuation is returned"). This decouples the language in the test specification from it's implementation.
+In the result below, the specifics of what it means for a request to be valid are omitted. The language in the test talks in abstract terms about the request ("a request for the portfolio value is made and the valuation is returned"). This decouples the language in the test from it's implementation. That way, this test should be insulated against changes to the response or rendering formats.
 
 ![](images/part2/design.md/test-ui-to-portfolio-specification-result.png)
 
