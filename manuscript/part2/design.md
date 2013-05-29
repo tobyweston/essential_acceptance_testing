@@ -693,16 +693,13 @@ The few end-to-end tests required would startup the full stack and fake out exte
 People often get hung up on this kind of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really shouldn't need many of these heavier, end-to-end tests.
 
 
-## Summary
+## Summary of test coverage
 
-![](images/part2/design.md/test-ui-only.png)
-![](images/part2/design.md/test-ui-to-portfolio.png)
-![](images/part2/design.md/test-ui-to-portfolio.png)
-![](images/part2/design.md/test-portfolio-valuation.png)
-![](images/part2/design.md/test-market-data.png)
-![](images/part2/design.md/test-market-data.png)
-![](images/part2/design.md/test-yahoo.png)
-![](images/part2/design.md/test-end-to-end.png)
+When all the examples are run together they give a sensible amount of coverage without the duplication. The tests are meant to be demonstrative rather than exhaustive; they don't represent the full suite of tests you'd write in a production system but give you an idea of what component interactions should be tested. You may or may not choose to include addition business scenarios or interactions.
+
+The diagram below visualises the overall coverage offered by the examples.
+
+![The examples combine for overall coverage](images/part2/design.md/test-all.png)
 
 
 
