@@ -67,8 +67,6 @@ Once you've written the criteria down, the next step is to formally agree them w
 
 Remember that all this is done before writing any production code.
 
-![An example of acceptance criteria documented and ready to be agreed. It's loaded with domain specific terminology that also should be agreed](images/part1/overview.md/example-spec.png)
-
 
 A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
 A> Tick off these items as you go through the agree acceptance criteria phase.
