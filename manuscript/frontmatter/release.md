@@ -25,14 +25,14 @@
 | 2013-xx-xx        | Added the suggestion to use an hexagonal architecture to the [Alternatives](#alternatives) section.     |
 |                   | This introduces a ports and adapters style of testing. It has a slightly simplified example which is    |
 |                   | expanded in the new [How design can influence testing](#design) section. This section also includes     |
-|                   | code samples taken from on the example application available via Github.                                |
+|                   | code samples taken from the example application available via Github.                                   |
 |                   |                                                                                                         |
 |                   | James joined as co-author.                                                                              |
 |                   |                                                                                                         |
 |                   | Reworked [Introduction](#introduction) section and our working definition of the term Acceptance Test.  |
-|                   | Pulled out a lot of the asides in this section, will find a home for them at a later point.             |
+|                   | Pulled out a lot of the asides in this section, we'll find a home for them at a later point.            |
 |                   |                                                                                                         |
 |                   | Various spelling and grammar tweaks.                                                                    |
 |                   |                                                                                                         |
-|                   | Currently 68 pages (14,421 words) long.                                                                  |
+|                   | Currently 68 pages (14,421 words) long.                                                                 |
 |                   |                                                                                                         |
