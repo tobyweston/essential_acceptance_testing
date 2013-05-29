@@ -460,13 +460,13 @@ This may seem very much like a unit test. That's because it is. It focuses narro
 
 ### Example 4: Testing the Portfolio valuation calculation {#example-4}
 
-One or more tests would be needed to verify the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous example shows that HTTP requests are translated into a Java messages to get a valuation, these tests would go into more detail as to what is involved in valuing the portfolio.
+One or more tests will be needed to verify the calculation logic of the domain model. How does the Portfolio actually go about summing the stocks and where does it get their prices? Given the previous example shows that HTTP requests are translated into a Java messages to get a valuation, these tests will go into more detail as to what is involved in valuing the portfolio.
 
-For example, you might include tests to verify the summing of stock prices a customer owns, how the system responds when prices can not be retrieved or if a customer has no stocks to value. Our example is going to look the simple case of how a single stock is valued, which is done by looking up the price in the Market Data component.
+For example, you might include tests to verify the summing of stock prices a customer owns, how the system responds when prices can not be retrieved or if a customer has no stocks to value. Our example is going to look at the simple case of how a single stock is valued, which is done by looking up the price in the Market Data component.
 
 ![](images/part2/design.md/test-market-data.png)
 
-The test must interact with Market Data in order to price the stocks the customer holds so the test will use a real Portfolio component but use a test double for the Market Data interface. We talk about a customers _book_ as a way as the to record what stock quantities a customer holds. So for example, we might say that a customer has a position of 100 against Google on their book.
+The test must interact with Market Data in order to price the stocks the customer holds so the test will use a real Portfolio component but use a test double for the Market Data interface. We talk about a customers _book_ as a way to record what stock quantities a customer holds. So for example, we might say that a customer has a position of 100 against Google on their book.
 
 An example scenario might look like this.
 
