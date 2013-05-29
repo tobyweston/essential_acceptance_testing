@@ -1,6 +1,6 @@
 # How design can influence testing {#design}
 
-How you design your architecture will directly affect how easy your application is to test. If you decouple a system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters approach can make testing easier and more efficient. We introduce a sample application (available [online](https://github.com/tobyweston/essential_acceptance_testing_code)) and show how testing is complicated by a coupled design and how the de-coupled alternative can be tested more easily.
+How you design your architecture will directly affect how easy your application is to test. If you decouple a system's components, it makes them easier to test in isolation. This has the additional benefit of creating a more flexible architecture. This chapter describes how a ports and adapters approach can make testing easier and more efficient. We introduce a sample application and show how testing is complicated by a coupled design and how the de-coupled alternative is easier to test. The sample application is available on [Github](https://github.com/tobyweston/essential_acceptance_testing_code).
 
 ## Sample application
 
@@ -131,7 +131,7 @@ On the surface, we're testing different behaviours but we're actually exercising
 
 ## Decoupled architecture using ports and adapters {#ports-and-adapters}
 
-Rather than running several coarse grained tests, let's decouple the system by defining explicit boundaries between components using interfaces and design a set of tests to exercise the interaction between those boundaries. Each interface represents a port in the architecture. The tests should compliment each other to provide the same level of confidence.
+Rather than running several coarse grained tests, let's decouple the system by defining explicit boundaries between components using interfaces and design a set of tests to exercise the interaction between those boundaries. The tests should compliment each other to provide the same level of confidence as coarse grained tests (for example, tests like Listing 1).
 
 
 A> ## Ports and adapter symbols {#port-and-adapters-symbols-aside}
@@ -152,14 +152,14 @@ The next step is to describe the system architecture in terms of boundary ports 
 
 All communication to the domain model is done via a port and adapter pair. The exception, Yahoo, is explained later. We've broken down the previous coarse grained architecture into a series of ports, their adapters and domain components.
 
-Using the decoupled ports and adapters approach to create comparable coverage, we'd design tests around the following.
+Using the decoupled ports and adapters approach to create comparable coverage to the earlier coarse grained tests, we'd design tests around the following.
 
-* Testing the UI display and behaviour (see [Example 1](#example-1))
-* Testing the outgoing messages (see [Example 2](#example-2))
-* Testing the Portfolio HTTP API (see [Example 3](#example-3))
-* Testing the Portfolio valuation calculation (see [Example 4](#example-4))
-* Testing the Market Data API (see [Example 5](#example-5))
-* Testing real Yahoo! Market Data (see [Example 6](#example-6))
+* Testing the UI display and behaviour ([Example 1](#example-1))
+* Testing the outgoing messages ([Example 2](#example-2))
+* Testing the Portfolio HTTP API ([Example 3](#example-3))
+* Testing the Portfolio valuation calculation ([Example 4](#example-4))
+* Testing the Market Data API ([Example 5](#example-5))
+* Testing real Yahoo! Market Data ([Example 6](#example-6))
 * Testing end-to-end (system tests)
 
 Lets have a closer look at each of these next. You can also refer to the source code of the [sample application](http://github.com/tobyweston/essential_acceptance_testing_code) for more details.
@@ -168,9 +168,11 @@ Lets have a closer look at each of these next. You can also refer to the source 
 
 ### Example 1: Testing the UI display and behaviour {#example-1}
 
-Testing the UI display is about verifying the UI behaviour without exercising backend components. For example, we might want to verify that if the user asks for the current portfolio's value in the UI that it's displayed with correct rounding and with commas. You might also be interested if currencies are displayed, negative numbers are shown in red or informational text is displayed in the event that no value is available. We'd like to be able to make assertions without having to go through the backend so we'll use a real UI but a fake backend (we'll be faking out the "port" in the diagram below).
+Testing the UI display is about verifying the UI behaviour without exercising backend components. For example, we might want to verify that if the user asks for the current portfolio's value in the UI that it's displayed with correct rounding and with commas. You might also be interested if currencies are displayed, negative numbers are shown in red or informational text is displayed in the event that no value is available.
 
-![](images/part2/design.md/test-ui-only.png)
+We'd like to be able to make assertions without having to go through the backend so we'll use a real UI but a fake backend. Taking our system component diagram from earlier, we'll be faking out the first port below. We're interested in exercising the components within the dotted line only and as you'll see as we progress, all the components will eventually be covered in overlapping dotted boundaries.
+
+![](images/part2/design.md/test-ui-to-portfolio.png)
 
 In terms of our sample application, the UI makes a HTTP `GET` call to the backend. It's implemented by a ajax call inside a HTML page. In testing however, we'll replace the Portfolio with a test double and therefore just test that the UI correctly displays whatever the test double returns. Specifically then, we'd
 
@@ -183,9 +185,11 @@ For example, we could setup the fake server to respond with a value of `10500.98
 
 Note that we don't verify how the request actually interacts with the Portfolio. This is a subtle omission but decouples the details of the request from how a response is used leaving us to test more display scenarios without worrying about request details. If we were to verify the request, any changes to the request API would cause changes to this test even though it's only about display logic.
 
-We'd fake out the server component and the UI would make a real HTTP request. An alternative approach would be to put the ajax call behind our own JavaScript interface and substitute this during testing. That way, we can exercise the port without making a real HTTP call.
+We'll fake out the server component and the UI would make a real HTTP request. An alternative approach would be to put the ajax call behind our own JavaScript interface and substitute this during testing. That way, we can exercise the UI without making a real HTTP call. In this case, the test diagram would look like the following.
 
-Lets look at an example to verify monetary values are displayed with thousands separated by commas (`1,000,000` and not `1000000`). We'll opt for a HTML based specification to describe the requirements;
+![](images/part2/design.md/test-ui-only.png)
+
+Lets look at an example to verify monetary values are displayed with thousands separated by commas (`1,000,000` and not `1000000`). We'll describe the requirements with the following specification;
 
 A> #### When I ask for the portfolio value in the UI, it's formatted with commas
 A>
@@ -195,9 +199,9 @@ A> When a user refreshes the portfolio page
 A>
 A> Then the portfolio value is requested and displayed on the UI as **`10,500.99`**
 
-We'll use [Concordion](http://www.concordion.org) as the framework for automating this as a test. We use HTML to document the specification and use Concordion as a way to execute it like a regular JUnit test. You markup the HTML to encode instructions that Concordion interprets at runtime to call application logic and make assertions. After it's done, it outputs the result as a modified version of the specification. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer.
+We'll use [Concordion](http://www.concordion.org) as the framework for automating this as a test. We use HTML to document the specification and use Concordion to execute it like a regular JUnit test. You markup the HTML to encode instructions that Concordion interprets at runtime to call application logic and make assertions. After it's done, it outputs the result as a modified version of the specification. It's not important that we're using Concordion. What is important is that we're producing readable artifacts for the customer.
 
-The HTML specification for our example would like the following.
+The HTML specification for our example would look like the following.
 
 
 {title="Listing 1.1: HTML Specification marked up with Concordion instrumentation", lang="html", line-numbers="on"}
@@ -237,7 +241,7 @@ The HTML specification for our example would like the following.
 
 
 
-Concordion uses a test fixture to match the specification to an executable test. In science, a fixture is often physical apparatus used to support a test specimen during an experiment. The experiment or test is distinct from the apparatus that supports it. JUnit often muddles this idea because a JUnit test will typically include test support code (the fixture part) as well as actual test scenarios.
+Concordion uses a test fixture to match the specification to an executable test. In science, a fixture is often physical apparatus used to support a test specimen during an experiment. The experiment or test is distinct from the apparatus that supports it. Unit testing frameworks often muddy this idea because they expect tests to include test support code (the fixture part) as well as the actual test scenarios (the experiment part).
 
 When we use a HTML specification like Listing 1.1, we can create fixtures which are more about supporting the test and the test scenarios themselves are encoded in the specification. We can create differing scenarios in HTML but reuse the same fixture. Our fixture for the above might look like the following.
 
@@ -279,11 +283,11 @@ public class UiPortfolioValueDisplayTest {
 ~~~~~~~
 
 
-By annotating the fixture with `@RunWith(ConcordionRunner.class)`, the class can be run like a regular JUnit test. It will use the [Concordion](http://www.concordion.org) runner to find and parse the HTML specification calling into the fixture as appropriate. Notice that there is not `@Test` methods, the fixture is run using the JUnit framework but it's the HTML specification that acts as the test.
+By annotating the fixture with `@RunWith(ConcordionRunner.class)`, the class can be run like a regular JUnit test. It will use the [Concordion](http://www.concordion.org) runner to find and parse the HTML specification calling into the fixture as appropriate. Notice that there is no `@Test` methods, the fixture is run using the JUnit framework but it's the HTML specification that acts as the test.
 
-The HTML sets up the fake server to respond with `10500.988` by setting a "variable" on line 15 (Listing 1.1) which is passed into the `requestPortfolioValue()` method of the fixture. As the HTML is interpreted, when it reaches line 20, it'll actually call the method on the fixture. At this point, the fixture will control an instance of the browser to refresh, triggering a `GET` request using JQuery.
+The HTML sets up the fake server to respond with `10500.988` by setting a "variable" on line 15 (Listing 1.1) which is passed into the `requestPortfolioValue()` method of the fixture. As the HTML is interpreted and when it reaches line 20, it'll call the method on the fixture. At this point, the fixture will control an instance of the browser, refresh the page and cause a `GET` request to be made.
 
-The `GET` request will trigger the canned response to be returned ready for display. It's JavaScript in the UI that receives this response and introduces the commas. It's this that we're really trying to test so we add an assertion in the Concordion markup at line 27 (Listing 1.1). This line will get the actual value from the UI using the fixture's method and compare it with the HTML element. After running, Concordion updates the specification with a successful result shown in green.
+The `GET` request causes the canned response to be returned ready for display. It's JavaScript in the UI that receives this response and introduces the commas. It's this that we're really trying to test so we add an assertion in the Concordion markup at line 27 (Listing 1.1). This line will get the actual value from the UI using the fixture's method and compare it with the HTML element. After running, Concordion updates the specification with a successful result shown in green.
 
 ![](images/part2/design.md/test-ui-only-specification-result.png)
 
@@ -686,6 +690,19 @@ To address this, we still need to write some additional end-to-end tests. From t
 The few end-to-end tests required would startup the full stack and fake out external systems. They'd probably use the UI for input and are really there as litmus tests to ensure the production-like configuration of components is wired up correctly. We'd only run one or two test scenarios as we will have already tested the edge-cases and are just sense checking that the application is assembled correctly. These tests would be more about infrastructure that functionality.
 
 People often get hung up on this kind of test. They worry that without exercising many scenarios through a fully assembled application, the system may not work in production. You have to have confidence in the previous tests and that they demonstrate the system's behaviour. You really shouldn't need many of these heavier, end-to-end tests.
+
+
+## Summary
+
+![](images/part2/design.md/test-ui-only.png)
+![](images/part2/design.md/test-ui-to-portfolio.png)
+![](images/part2/design.md/test-ui-to-portfolio.png)
+![](images/part2/design.md/test-portfolio-valuation.png)
+![](images/part2/design.md/test-market-data.png)
+![](images/part2/design.md/test-market-data.png)
+![](images/part2/design.md/test-yahoo.png)
+![](images/part2/design.md/test-end-to-end.png)
+
 
 
 
