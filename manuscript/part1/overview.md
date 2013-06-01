@@ -125,7 +125,7 @@ This step is about proving to customers that their requirements have been realis
 
 After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the  cycle again with the next story. If there is disagreement or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
 
-You might choose to do go round the loop again with a new story related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the delivery cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivering value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to building a product out until the point it can start to sell (iterating).
+If you discover _incremental_ improvements could be made, you might create a new story and go round the loop with that. This is different from going through the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively building value piece by piece before finally releasing. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to building a product out until the point it can start to sell (iterating).
 
 
 
@@ -133,17 +133,17 @@ You might choose to do go round the loop again with a new story related to the s
 
 If you're lucky, there's plenty of people on hand willing to perform some exploratory testing. This doesn't have to wait until the end of an iteration, it can start as soon as a story is stable enough to test. Usually this would be when the story is finished and acceptance tests are passing. It's useful to have a stable deployment environment for this.
 
-Acceptance testing doesn't negate the need for manual, exploratory style testing. Lisa Crispin calls this kind of testing critiquing the product. Some product critique can be achieved using acceptance testing whilst others require a more manual approach or specialist tools. We'll look more at this later when we talk about Brian Marick's testing matrix and Crispin's elaboration.
+Acceptance testing doesn't negate the need for manual, exploratory style testing. Lisa Crispin calls this kind of testing critiquing the product. Some critiquing can be achieved using acceptance testing whilst more may require a manual approach or specialist tools. We'll look more at this later when we talk about Brian Marick's testing matrix and Crispin's elaboration.
 
-To some degree, acceptance test suites address the need for regression testing. That is to say that they can show that the specifications haven't changed over time.
+To some degree, acceptance test suites address the need for regression testing. That is to say that derivation of behaviour hasn't been introduced if the acceptance tests still pass.
 
 
 
 ## Deliver
 
-An optional step in the lifecycle is to actually deliver the demoed feature. This often gets less emphasis because it usually happens when multiple stories are batched up and deployed together, for example, at the end of an iteration. It's actually a crucial step though as its only after this point that potential story value can be released.
+When a story is finished, you may go round the loop again with a new story or choose to deliver the functionality directly to your production environment. This often gets less emphasis because it usually happens when multiple stories are batched up and deployed together, for example, at the end of an iteration. It's actually a crucial step though as its only after this point that potential story value can be realised.
 
-It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready. It's a fairly extreme position to take and requires careful crafting of stories so that they add demonstrable value.
+It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready. It's a fairly sophisticated position to take and requires careful crafting of stories so that they add demonstrable value. It also implies a well groomed and automated build and deployment procedure.
 
 
 ![The expanded story delivery lifecycle](images/part1/overview.md/story-lifecycle-extended.png)
