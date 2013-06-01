@@ -67,7 +67,7 @@ By stability, I mean that the goal for the next week or so is well known and the
 
 Having an established process like the story delivery lifecycle can give structure to delivery and contribute to sustainable pace. Such a process certainly offers clear boundaries and check points. Crossing them helps establish a rhythm or cadence and gives the team a chance to celebrate what they've achieved. People know where they stand.
 
-Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Morale and discipline suffer. Edward Deming talked about this when discussing the Seven Deadly Diseases to effective management. He described what he considered the most serious barriers to business. Specifically, a lack of structure and direction goes against the constancy of purpose Deming holds to be paramount.
+Compare this to the prospect of working on a large multi-feature chunk of work with no clear goals and no end in sight. Morale and discipline suffer. Edward Deming talked about this when discussing the Seven Deadly Diseases to effective management. He described what he considered the most serious barriers to business. Specifically, a lack of structure and direction implies a lack of constancy of purpose to plan and so encourages short term thinking.
 
 This point may well be more about decomposition than adopting an acceptance testing process. People just handle small tasks better. There is a personal psychology aspect but there's also advantages for the business in dealing in small features. It reduces risk and allows for quicker change of direction.
 
