@@ -2,7 +2,7 @@
 
 ## The story delivery lifecycle {#story-delivery-life-cycle}
 
-A typical agile process used by many teams today revolves around the following steps ([David Peterson](http://www.concordion.org/memo/StoryDeliveryLifecycle.pdf) refers to this as the _story delivery lifecycle_).
+A typical agile process used by many teams today revolves around the following steps.
 
 ![](images/part1/overview.md/story-lifecycle.png)
 
@@ -15,20 +15,23 @@ A typical agile process used by many teams today revolves around the following s
 | 6. Repeat                     |
 
 
+Let's go through these steps in more detail.
+
+
 
 ## Pick a story
 
-Picking the next story to play should be as simple as taking the next highest priority story from the list of options. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals (cash). In the corporate environment, this is typically business analysts working out candidate features for a given project.
+Picking the next story to play should be as simple as taking the next highest priority story from the list of options. Creating the option list or backlog is a little more interesting. Ideally, there should be ongoing work to identify concepts that, if realised, would help achieve business goals (cash). In the corporate environment, it's typically the responsibility of the business analysts to come up with candidate features for a project.
 
-D> ## What's a Story? {#whats-a-story-aside}
-D>
-D> There is often some debate about the definition of the term "story". For the purpose of this discussion, lets assume that a story is just a way to decompose the requirements into achievable chunks that, if implemented, would add _business value_.
-D>
-D> It's common to physically write the story description on an index card. Teams might then use this as a token on the team's project board to visualise it's life, moving from left to right to indicate progress.
+A> ## What's a Story? {#whats-a-story-aside}
+A>
+A> There is often some debate about the definition of the term "story". For the purpose of this discussion, lets assume that a story is just a way to decompose the requirements into achievable chunks that, if implemented, would add _business value_.
+A>
+A> It's common to physically write the story description on an index card. Teams might then use this as a token on the team's project board to visualise it's life, moving from left to right to indicate progress.
 
-It would usually fall to the iteration planning of a Scrum-like process to move a set of stories from the backlog to the planned iteration. The team would then attempt to deliver these stories when starting the iteration. In a Kanban-like process, the backlog becomes the pool of candidate stories that are drawn from at any given time; it becomes the input queue for subsequent activities (such as agreeing acceptance criteria). In both cases, it helps if when picking up a story to work on, there is a good understanding of the business objective it realises. In other words, what's the _real value_ this story would deliver.
+It would usually fall to the iteration planning of a Scrum process to move a set of stories from the backlog to the planned iteration. The team would then attempt to deliver these stories when starting the iteration. In a Kanban process, the backlog becomes the pool of candidate stories that are drawn from at any given time; it becomes the input queue for subsequent activities (such as agreeing acceptance criteria). In both cases, it helps if when picking up a story to work on, there is a good understanding of the business objective it realises. In other words, what's the _real value_ this story would deliver.
 
-The next step is to nail this down as acceptance criteria.
+The next step is to express this value in the form of acceptance criteria.
 
 
 
@@ -38,7 +41,7 @@ A> ## Inputs and outputs {#agree-acceptance-criteria-inputs-outputs-aside}
 A> **Inputs:**
 A>
 A> - Story
-A> - Additional information and communication
+A> - Additional conversations, analysis and information
 A>
 A> **Outputs:**
 A>
@@ -51,31 +54,29 @@ A>
 A> - Implementation details
 
 
-It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you can formalise the acceptance criteria. Capture example scenarios, edge cases and outcomes. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals. When you can prove these have been met, you know the story is done.
+It may be that the story you pick up lacks sufficient detail to answer the question "how do we know it's done?". To figure this out, you define the acceptance criteria and in doing so, better understand what's really needed. You  might explore example scenarios, edge cases and outcomes to help. The idea here is to describe the requirements not in terms of a series of instructions to follow (a traditional test script) but as an english description of the business goals. When you can prove these have been met, you know the story is done.
 
 When you describe the high level business scenarios like this, you implicitly create a specification accessible to business and technical staff. You're not concerned with the details of how things will be implemented. It's a chance to focus on the business intent and make sure everyone involved understands what's expected, the terminology and the business context.
 
 This is best done with the business or customer. Get together and make sure everyone has a common understanding of what's needed. Expect lots of discussion about the specifics and come up with concrete examples and scenarios. What questions, if answered, will convince the customer that the system is behaving as they specified?
 
-D> ## Do we need a meeting to agree acceptance criteria?
-D>
-D> No. You don't need a meeting to define acceptance criteria, in fact, its great if you can keep discussing and clarifying them as you need to. You may find it useful however, to have a kick-off meeting where you can discuss a story's background, context and goals.
-D>
-D> Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the teams understanding of a story. To be most efficient, some analysis work should have already been undertaken.
+A> ## Do we need a meeting to agree acceptance criteria?
+A>
+A> No. You don't need a meeting to define acceptance criteria, in fact, its great if you can keep discussing and clarifying them as you need to. You may find it useful however, to have a kick-off meeting where you can discuss a story's background, context and goals.
+A>
+A> Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the teams understanding of a story. To be most efficient, some analysis work should have already been undertaken.
 
-Once you've written the criteria down, the next step is to formally agree them with interested parties. We'll brush over how best to physically record the criteria but aim to have them in a format that will help you later when it comes to converting them into executable tests. For arguments sake, you might record these on a Wiki, HTML pages stored with the source code or just on the back of the story card. The point is that after this step, everyone involved has agreed that the list of criteria is a reasonable effort at documenting the intent. It's not set in stone but it captures the current understanding.
+Once you've written the criteria down, the next step is to formally agree them with interested parties. We'll brush over how best to physically record the criteria but aim to have them in a format that will help you later when it comes to converting them into executable tests. You might record these on a Wiki, HTML pages stored with the source code or just on the back of the story card. The point is that after this step, everyone involved has agreed that the list of criteria is a reasonable effort at documenting the intent. It's not set in stone but it captures the current understanding.
 
 Remember that all this is done before writing any production code.
 
+Tick off these items as you go through the agree acceptance criteria phase.
 
-A> ## Define acceptance criteria check list {#define-acceptance-criteria-check-list-aside}
-A> Tick off these items as you go through the agree acceptance criteria phase.
-A>
-A> - Business analysis has been undertaken
-A> - Developers understand the business background, context and goals for a story
-A> - There is no ambiguity about business terms and everyone agrees on their definition
-A> - Acceptance criteria have been discussed and documented
-A> - Agreement has been reached on the acceptance criteria
+- Business analysis has been undertaken
+- Developers understand the business background, context and goals for a story
+- There is no ambiguity about business terms and everyone agrees on their definition
+- Acceptance criteria have been discussed and documented
+- Agreement has been reached on the acceptance criteria
 
 
 ## Develop
@@ -88,7 +89,7 @@ A> - Agreed acceptance criteria
 A>
 A> **Outputs:**
 A>
-A> - Implemented story functionality (deployable)
+A> - Implemented (and potentially deployable) story functionality
 A> - Acceptance tests (converted from acceptance criteria)
 A>
 A> **Avoid:**
@@ -98,9 +99,9 @@ A> - Implementing anything unrelated to the story
 
 As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase. It may be that tests are written early in the development phase, before any real work has gone on and they'll continue fail until the story is completed. Or, it may be that the majority of development is undertaken before work on implementing the acceptance tests start.
 
-Which approach you choose has interesting influences on developer testing. For example, if the coarse grained acceptance test is left until the end, there's more scope to focus on unit tests and adopt a TDD approach. TDD in this sense can be used as a _design aid_. When it comes to implementing the acceptance test, there'll be very little left unknown. It can be a bit like test-confirm where you back fill the details to get a green test.
+Which approach you choose has interesting affects on developer testing. For example, if the coarse grained acceptance test is left until the end, you might focus on unit tests and use TDD to drive out design. TDD in this sense is a tool to aid _design_. When it comes to implementing the acceptance test, there'll be very little left unknown. It can be a bit like test-confirm where you back fill the details to get a green test.
 
-When developer's start with failing acceptance tests, the focus shifts a little. Acceptance tests can be used to drive out coarse grained behaviour like unit tests drive out local design choices. The tests themselves may change more frequently with more discussion with the customer taking place. The emphasis is on requirements (the story) and in this sense, the tests become more of a _requirements aid_. This ATDD approach puts acceptance tests in the position that TDD puts unit tests in; at the beginning.
+In contrast, when developers start with failing acceptance tests, the focus shifts. Acceptance tests are used to drive out coarse grained behaviour like unit tests drive out low level design choices. The acceptance tests themselves may change more frequently with more discussion with the customer taking place. The emphasis is on requirements (the story) and in this sense, the tests become more of a tool to help build _requirements_. This ATDD approach puts acceptance tests in the position that TDD puts unit tests in; at the beginning.
 
 
 D> ## Stickers as sign-off {#stickers-as-sign-off-aside}
