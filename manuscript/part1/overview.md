@@ -103,14 +103,6 @@ Which approach you choose has interesting affects on developer testing. For exam
 
 In contrast, when developers start with failing acceptance tests, the focus shifts. Acceptance tests are used to drive out coarse grained behaviour like unit tests drive out low level design choices. The acceptance tests themselves may change more frequently with more discussion with the customer taking place. The emphasis is on requirements (the story) and in this sense, the tests become more of a tool to help build _requirements_. This ATDD approach puts acceptance tests in the position that TDD puts unit tests in; at the beginning.
 
-
-A> ## Stickers as sign-off {#stickers-as-sign-off-aside}
-A>
-A> A great technique to visualise progress of a story is to use stickers to represent agreement or sign-off at the various stages. For example, when business analysts agree to the acceptance criteria, a story's index card might get a green sticker. When testers agree, a blue sticker and when developers agree, a yellow one. You can have as many stickers as you like. As an alternative, you could use columns on your board and move stories across columns to indicate agreement.
-A>
-A> The whole purpose of the story delivery lifecycle is to spot problems early and adjust. In that spirit, it makes sense to prevent progress to the next step until previous steps have be completed. For example, don't start development until you have the full set of stickers. If this causes delays and 'blocked' work, missing stickers can help highlight where the bottleneck lies.
-
-
 There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of "sufficient" here is open for debate. If the edge cases that unit tests would have picked up are unlikely to materialise and if the cost of fixing these once in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery (and by extension your profits). To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests.
 
 Unit tests give confidence in the low level but if the overall system behaviour doesn't deliver the business proposition, you still won't be making any money. The right answer to the wrong question is still the wrong answer. Acceptance tests should demonstrate the business proposition and so have monetary value whereas unit tests have design value.
