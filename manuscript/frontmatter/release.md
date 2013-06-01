@@ -34,5 +34,5 @@
 |                   |                                                                                                         |
 |                   | Various spelling and grammar tweaks.                                                                    |
 |                   |                                                                                                         |
-|                   | Currently 68 pages (14,459 words) long.                                                                 |
+|                   | Currently 66 pages (14,625 words) long.                                                                 |
 |                   |                                                                                                         |
