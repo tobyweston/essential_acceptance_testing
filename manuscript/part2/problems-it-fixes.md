@@ -1,4 +1,4 @@
-# Problems acceptance testing tries to fix
+# Problems acceptance testing can fix
 
 ## Communication barriers
 

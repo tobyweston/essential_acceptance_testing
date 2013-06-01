@@ -31,7 +31,7 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
 
 ###Part 2 - Discussion and alternatives
 
-**Problems acceptance testing tries to fix**
+**Problems acceptance testing can fix**
 
  - Communication barriers
  - Lack of shared memory
