@@ -35,7 +35,7 @@ We'll often use the terms acceptance criteria and acceptance test interchangeabl
 
 Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as intended. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and since they're mostly concerned with business requirements, the customer is best placed to define the business requirements. Non-functional requirements, despite affecting the customer, are usually end up being championed by technical stakeholders.
 
-Defining the criteria is a useful step in really understanding what's required. It helps us define the scope of a feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding of the requirements. Criteria should be implementation independent and written at a fairly high level. We then _implement_ the criteria in terms of one or more acceptance tests.
+Defining the criteria is a useful step in really understanding what's required. It helps us define the scope of a feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding of the requirements. Criteria should be implementation independent and written at a high level. We then _implement_ the criteria in terms of one or more acceptance tests.
 
 A single criterion ("the total basket value is displayed correctly") may require multiple examples to be comprehensive (what _exactly_ does it mean to "display correctly"?). That's where implementing the acceptance _criteria_ as executable acceptance _tests_ comes in.
 
@@ -64,9 +64,7 @@ Acceptance criteria _become_ acceptance tests. Attributes that describe acceptan
 
 ## What is a story?
 
-Acceptance criteria are usually discussed in terms of _user stories_ so it's worth while making sure we have a common understanding of what makes up a story. Agile processes often focus on stories as a way of gathering requirements and organising them into deliverable chunks that have _business value_[^fowler-definition]. It's common to associate acceptance tests with stories. Once the tests are passing, a story is considered finished. There's a close relationship between stories and acceptance testing.
-
-[^fowler-definition]: In [Planning Extreme Programming](http://amzn.to/14EflKC), Beck and Fowler describe a user story as "a chunk of functionality that is of value to the customer."
+Acceptance criteria are usually discussed in terms of _user stories_ so it's worth while making sure we have a common understanding of what makes up a story. Agile processes often focus on stories as a way of gathering requirements and organising them into deliverable chunks that have _business value_. In [Planning Extreme Programming](http://amzn.to/14EflKC), Kent Beck and Martin Fowler describe a user story as "a chunk of functionality that is of value to the customer". It's common to associate acceptance tests with stories. Once the tests are passing, a story is considered finished. There's a close relationship between stories and acceptance testing.
 
 Mike Cohen [describes user stories](http://www.mountaingoatsoftware.com/topics/user-stories) as follows.
 
@@ -84,11 +82,11 @@ The reason this matters is because "business value" is supposed to enable an opp
 
 To capture and track progress, some teams write stories on index cards, others write tasks or work items on post-its. Others still write up analysis in their issue tracking software or wiki.
 
-W> ## Tasks vs stories {#tasks-vs-stories-aside}
-W>
-W> It's easy to get confused with the difference between tasks and stories. The team lead role can suffer from this especially but keeping track of todo items needn't muddy the waters when it comes to planning story delivery.
-W>
-W> It's important to realise that tasks or todo items fit more appropriately under project or team management activities and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
+A> ## Tasks vs stories {#tasks-vs-stories-aside}
+A>
+A> It's easy to get confused with the difference between tasks and stories. The team lead role can suffer from this especially but keeping track of todo items needn't muddy the waters when it comes to planning story delivery.
+A>
+A> It's important to realise that tasks or todo items fit more appropriately under project or team management activities and not story planning. That way, it's easier to pick the right tool to manage them. David Allen's [Getting Things Done](http://amzn.to/YwwTSX) is a great way to manage your todo pile.
 
 
 
@@ -98,6 +96,6 @@ Why is this discussion important? How we interpret the definition of user storie
 
 If the story definition is vague, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be confident about what we're supposed to develop. Without understanding what we're supposed to develop, it's difficult to know when we've actually built it.
 
-Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story delivery lifecycle](#story-delivery-life-cycle). It brings together the ideas of stories, acceptance criteria and tests with a framework for iterative development that underpins common agile processes. We'll take a closer look at it in the [Process overview](#process-overview) section.
+Working from story definition through defining acceptance criteria to delivery is something [David Peterson](http://blog.davidpeterson.co.uk) calls the [Story delivery lifecycle](#story-delivery-life-cycle). It brings together the ideas of stories, acceptance criteria and tests with a framework for iterative development that underpins common agile processes. We'll take a closer look at it next.
 
 
