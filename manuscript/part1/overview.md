@@ -113,7 +113,7 @@ A> The whole purpose of the story delivery lifecycle is to spot problems early a
 
 There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of "sufficient" here is open for debate. If the edge cases that unit tests would have picked up are unlikely to materialise and if the cost of fixing these once in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery (and by extension your profits). To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests.
 
-Unit tests give confidence in the low level but if the overall system behaviour doesn't match the business proposition, you still won't be making any money. The right answer to the wrong question is still the wrong answer. Acceptance tests should demonstrate the business proposition and so have monetary value whereas unit tests have design value.
+Unit tests give confidence in the low level but if the overall system behaviour doesn't deliver the business proposition, you still won't be making any money. The right answer to the wrong question is still the wrong answer. Acceptance tests should demonstrate the business proposition and so have monetary value whereas unit tests have design value.
 
 Your team's experiences and preferences will influence which approach you choose. Sometimes, the two compliment each other, other times they get in each others way and duplicate effort. Judicious testing takes care and practice.
 
@@ -121,11 +121,11 @@ Your team's experiences and preferences will influence which approach you choose
 
 ## Demonstrate
 
-This step is about proving to customers that their requirements have been realised. It's about giving them confidence. You can do this in whatever way works best for your team. A common approach is to run through a manual demo and walk through the passing acceptance tests huddled around a desk or with a projector.
+This step is about proving to customers that their requirements have been realised. It's about giving them confidence. You can do this in whatever way works best for your team. A common approach is to run through a manual demo and walk through the passing acceptance tests huddled around a desk.
 
-After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the  cycle again with the next story. If everyone doesn't agree or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
+After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the  cycle again with the next story. If there is disagreement or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
 
-You might choose to do this against a new story, related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the delivery cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivering value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to tweaking a product enough that it will actually sell in the first place (iterating).
+You might choose to do go round the loop again with a new story related to the same area if you discover _incremental_ improvements that could be made. This is different from going round the delivery cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively delivering value. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to building a product out until the point it can start to sell (iterating).
 
 
 
