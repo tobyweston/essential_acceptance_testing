@@ -33,7 +33,7 @@ Applying the addendum to our definition gives the following.
 
 We'll often use the terms acceptance criteria and acceptance test interchangeably but really they're distinct.
 
-Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as intended. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and since they're mostly concerned with business requirements, the customer is best placed to define the business requirements. Non-functional requirements, despite affecting the customer, are usually end up being championed by technical stakeholders.
+Acceptance criteria are the set of criteria that, when verified against a running system, give confidence to the customer that the system behaves as intended. They represent the requirements or specification for a small set of functionality and are written in such a way as to be quantifiable. They're typically defined when doing analysis and since they're mostly concerned with business requirements, the customer is best placed to define them. Non-functional requirements, despite affecting the customer, usually end up being championed by technical stakeholders.
 
 Defining the criteria is a useful step in really understanding what's required. It helps us define the scope of a feature so developers know when to stop. Importantly, it also helps the team to drive out a shared understanding of the requirements. Criteria should be implementation independent and written at a high level. We then _implement_ the criteria in terms of one or more acceptance tests.
 
@@ -92,7 +92,9 @@ A> It's important to realise that tasks or todo items fit more appropriately und
 
 ## Bringing it all together
 
-Why is this discussion important? How we interpret the definition of user stories has a knock on effect on how we choose to implement our acceptance testing approach. Sticking to the letter of Cohen's story definition above can lead to ambiguous requirements. We need to think a little harder. His definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause). It's important to recognise that the Connextra template is not a literal mantra. Articulating the goal will likely take more than a single sentence on an index card. That's where defining unambiguous acceptance criteria comes in.
+Why is this discussion important? How we interpret the definition of user stories has a knock on effect on how we choose to implement our acceptance testing approach. Sticking to the letter of Cohen's story definition above can lead to ambiguous requirements. We need to think a little harder. His definition should encourage us to think about requirements from the customer's perspective, clearly articulate the goal and solidify _why_ it's important (the _so that_ clause).
+
+It's also important to recognise that the Connextra template is not a literal mantra. Articulating the goal will likely take more than a single sentence on an index card. That's where defining unambiguous acceptance criteria comes in.
 
 If the story definition is vague, it's difficult to define concise acceptance criteria. Without clear acceptance criteria, it's difficult to be confident about what we're supposed to develop. Without understanding what we're supposed to develop, it's difficult to know when we've actually built it.
 
