@@ -7,7 +7,7 @@ Before we start, we should agree on some working definitions. Deciding on a defi
 
 > An acceptance test is a set of examples or a specification that helps the customer "accept" that a system behaves as intended.
 
-What would help a customer "accept" a system works as intended? The customer gains confidence if they're able to define requirements and see how varying inputs affect the behaviour of a running system. For example, the customer might document their expectations, verifying against running code or via a demo. The important point here is that the customer's criteria for acceptance are recorded and verified against a running system.
+What would help a customer "accept" a system works as intended? The customer gains confidence if they're able to define requirements and see those requirements manifest as behaviour in a running system. For example, the customer might define their expectations and verify these against running code in a demo. The important point here is that the customer's criteria for acceptance are recorded and verified against a running system.
 
 Recording the runtime behaviour of a system after the fact is only half the story. Deciding _what_ that behaviour should be before starting work is the tricky part. Getting input from customers before building out the system is useful in ensuring we build the _right_ system. Acceptance tests are a great vehicle for discussing and formalising these requirements.
 
