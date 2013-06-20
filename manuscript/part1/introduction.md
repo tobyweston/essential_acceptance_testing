@@ -17,7 +17,7 @@ Many teams emphasize that acceptance tests should be customer authored. If we wr
 
 In [Agile Testing](http://amzn.to/WKDYkq), Lisa Crispin and Janet Gregory describe acceptance tests as
 
-> "Tests that define the business value each story must deliver. They may verify functional requirements or nonfunctional requirements such as performance or reliability ... Acceptance test is a broad term that may include both business facing and technology facing tests."
+> "Tests that define the business value each story must deliver. They may verify functional requirements or non-functional requirements such as performance or reliability ... Acceptance test is a broad term that may include both business facing and technology facing tests."
 
 An important addendum to our definition then should be that acceptance tests don't have to be about just business behaviour, they can also be about broader system qualities such as non-functional requirements and usability. It's still about customer confidence.
 
@@ -64,7 +64,7 @@ Acceptance criteria _become_ acceptance tests. Attributes that describe acceptan
 
 ## What is a story?
 
-Acceptance criteria are usually discussed in terms of _user stories_ so it's worth while making sure we have a common understanding of what makes up a story. Agile processes often focus on stories as a way of gathering requirements and organising them into deliverable chunks that have _business value_. In [Planning Extreme Programming](http://amzn.to/14EflKC), Kent Beck and Martin Fowler describe a user story as "a chunk of functionality that is of value to the customer". It's common to associate acceptance tests with stories. Once the tests are passing, a story is considered finished. There's a close relationship between stories and acceptance testing.
+Acceptance criteria are usually discussed in terms of _user stories_ so it's worthwhile making sure we have a common understanding of what makes up a story. Agile processes often focus on stories as a way of gathering requirements and organising them into deliverable chunks that have _business value_. In [Planning Extreme Programming](http://amzn.to/14EflKC), Kent Beck and Martin Fowler describe a user story as "a chunk of functionality that is of value to the customer". It's common to associate acceptance tests with stories. Once the tests are passing, a story is considered finished. There's a close relationship between stories and acceptance testing.
 
 Mike Cohen [describes user stories](http://www.mountaingoatsoftware.com/topics/user-stories) as follows.
 

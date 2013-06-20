@@ -64,13 +64,13 @@ A> ## Do we need a meeting to agree acceptance criteria?
 A>
 A> No. You don't need a meeting to define acceptance criteria, in fact, its great if you can keep discussing and clarifying them as you need to. You may find it useful however, to have a kick-off meeting where you can discuss a story's background, context and goals.
 A>
-A> Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the teams understanding of a story. To be most efficient, some analysis work should have already been undertaken.
+A> Note that I'm not talking about an _iteration planning_ meeting here, more like a story definition meeting. The difference is that we're not trying to _plan_ which stories are being played in an iteration. Instead we want to work up the team's understanding of a story. To be most efficient, some analysis work should have already been undertaken.
 
 Once you've written the criteria down, the next step is to formally agree them with interested parties. We'll brush over how best to physically record the criteria but aim to have them in a format that will help you later when it comes to converting them into executable tests. You might record these on a Wiki, HTML pages stored with the source code or just on the back of the story card. The point is that after this step, everyone involved has agreed that the list of criteria is a reasonable effort at documenting the intent. It's not set in stone but it captures the current understanding.
 
 Remember that all this is done before writing any production code.
 
-Tick off these items as you go through the agree acceptance criteria phase.
+Tick off these items as you go through the Agree acceptance criteria phase.
 
 - Business analysis has been undertaken
 - Developers understand the business background, context and goals for a story
@@ -97,7 +97,7 @@ A>
 A> - Implementing anything unrelated to the story
 
 
-As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase. It may be that tests are written early in the development phase, before any real work has gone on and they'll continue fail until the story is completed. Or, it may be that the majority of development is undertaken before work on implementing the acceptance tests start.
+As well as implementing the underlying features, the developers should be converting acceptance criteria into runnable tests during this phase. It may be that tests are written early in the development phase, before any real work has gone on and they'll continue to fail until the story is completed. Or, it may be that the majority of development is undertaken before work on implementing the acceptance tests start.
 
 Which approach you choose has interesting affects on developer testing. For example, if the coarse grained acceptance test is left until the end, you might focus on unit tests and use TDD to drive out design. TDD in this sense is a tool to aid _design_. When it comes to implementing the acceptance test, there'll be very little left unknown. It can be a bit like test-confirm where you back fill the details to get a green test.
 
@@ -105,7 +105,7 @@ In contrast, when developers start with failing acceptance tests, the focus shif
 
 There's an argument in claiming that unit tests may not even be needed with sufficient acceptance tests in place. The meaning of "sufficient" here is open for debate. If the edge cases that unit tests would have picked up are unlikely to materialise and if the cost of fixing these once in production is low, then why test upfront? Especially, if this upfront cost affects the time to delivery (and by extension your profits). To put the argument in the extreme, you could say that you're not really doing ATDD if you're still writing unit tests.
 
-Unit tests give confidence in the low level but if the overall system behaviour doesn't deliver the business proposition, you still won't be making any money. The right answer to the wrong question is still the wrong answer. Acceptance tests should demonstrate the business proposition and so have monetary value whereas unit tests have design value.
+Unit tests give confidence at a low level but if the overall system behaviour doesn't deliver the business proposition, you still won't be making any money. The right answer to the wrong question is still the wrong answer. Acceptance tests should demonstrate the business proposition and so have monetary value whereas unit tests have design value.
 
 Your team's experiences and preferences will influence which approach you choose. Sometimes, the two compliment each other, other times they get in each others way and duplicate effort. Judicious testing takes care and practice.
 
@@ -117,7 +117,7 @@ This step is about proving to customers that their requirements have been realis
 
 After the demo, if everyone agrees the implementation does what's expected, the story can be marked as done and you can go round the  cycle again with the next story. If there is disagreement or if new issues come up, it's ok to go round the loop again with the same story. Agree, develop, demo and deliver.
 
-If you discover _incremental_ improvements could be made, you might create a new story and go round the loop with that. This is different from going through the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively building value piece by piece before finally releasing. It's like tweaking an already selling product in order to sell more (incremental improvement) as apposed to building a product out until the point it can start to sell (iterating).
+If you discover _incremental_ improvements could be made, you might create a new story and go round the loop with that. This is different from going through the cycle again with the same story which would be more _iterative_. Think of it like incrementally adding value rather than iteratively building value piece by piece before finally releasing. It's like tweaking an already selling product in order to sell more (incremental improvement) as opposed to building a product out until the point it can start to sell (iterating).
 
 
 
@@ -133,7 +133,7 @@ To some degree, acceptance test suites address the need for regression testing. 
 
 ## Deliver
 
-When a story is finished, you may go round the loop again with a new story or choose to deliver the functionality directly to your production environment. This often gets less emphasis because it usually happens when multiple stories are batched up and deployed together, for example, at the end of an iteration. It's actually a crucial step though as its only after this point that potential story value can be realised.
+When a story is finished, you may go round the loop again with a new story or choose to deliver the functionality directly to your production environment. This often gets less emphasis because it usually happens when multiple stories are batched up and deployed together, for example, at the end of an iteration. It's actually a crucial step though as it is only after this point that potential story value can be realised.
 
 It can be incorporated into the story delivery lifecycle when continuous delivery ideas are applied with the aim to deploy individual stories as they're ready. It's a fairly sophisticated position to take and requires careful crafting of stories so that they add demonstrable value. It also implies a well groomed and automated build and deployment procedure.
 

@@ -45,7 +45,7 @@ If you're interested in what's beyond the canon, Part 2 may get you thinking. In
 
  - Communication crutch
  - Hand off behaviour
- - Technical over exposure
+ - Technical overexposure
  - Cargo cult
  - Command and control structures
  - Construct validity

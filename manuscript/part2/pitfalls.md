@@ -8,7 +8,7 @@
 
 ## Users describe solutions not problems
 
-(technical over exposure)
+(technical overexposure)
 
 Need to deconstruct.
 
