@@ -8,12 +8,41 @@ See the [Introduction](#part1) section.
 
 ## How do I manage large numbers of acceptance tests?
 
-Easier answer for greenfield projects, much harder for existing code bases.
+It can also be difficult to physically manage a large number of test artifacts.
 
-I think there's two aspects to this, keeping the testing fast enough and keeping the tests relevant.
+This is easier to answer for greenfield projects and much harder for existing code bases with lots of tests.
 
-It can also be difficult to physically manage a large number of test artifacts. Test specification tools can help and many suggest approaches to creating overview or "library" artifacts to bring together all the specifications. If you're using Concordion, there's a Ant task available to [generate overview pages](http://baddotrobot.com/blog/2010/07/07/generate-concordion-overviews/). Cross linking from JIRA or your wiki may also be an option. I've also worked on teams where custom search tools were written to help locate scenarios.
+For the greenfield project, you're influenced by the testing tools you are using. If you're running acceptance tests using JUnit a report will be generated. For vanilla JUnit tests, this isn't really usable to search for specific tests by it's metadata. With other HTML specification tools like Yatspec or Concordion, you can create additional HTML pages to manage and share the results. You might also consider writing custom search tools to help find relevant tests.
 
+For example, when using Concordion you can automatically create overview pages to bring together the specifications in one place using an [Ant task](http://baddotrobot.com/blog/2010/07/07/generate-concordion-overviews/). This allows for cross linking from JIRA or your wiki. Using the Ant task, metadata is inserted into the HTML specifications and used by the tool to generate overview pages and group related tests. For example, the following would associate the test to the group Bugs and Version 2.1. These are easily searchable from the generated overview page.
+
+{title="Listing 1: HTML metadata for the Concordion Ant task", lang="html", line-numbers="on"}
+~~~~~~~
+<head>
+    <title>Example 1: Adding a test to multiple groups</title>
+    <meta name="group" content="Bugs, Version 2.1"/>
+</head>
+~~~~~~~
+
+
+You can also associate tests with their corresponding JIRA in a similar way.
+
+{title="Listing 2: Metadata associating the story with a specific JIRA", lang="html", line-numbers="on"}
+~~~~~~~
+<head>
+    <title>Adding Group Metadata</title>
+    <meta name="jira" content="1240"/>
+</head>
+~~~~~~~
+
+Wiring this up to the build would generate an overview page summarising passing and failing tests and allow you to search and group the tests. For example, you might choose to group your tests by iteration making sign off straight forward.
+
+![](/missing.png)
+
+
+Another aspect to managing the acceptance tests is having an understanding of what tests have already been written. You potentially don't want to write a brand new test if another is already testing the same area and can just be updated. There's a balance to be had between writing too many acceptance tests and writing fewer tests that exercise too much. Writing your tests in a ports and adapters style means you can be less worried about expensive, long running tests but you can still write too many to effectively manage.
+
+In order to understand what tests have been previously written...
 
 ## How do you map acceptance tests to stories in say JIRA?
 
